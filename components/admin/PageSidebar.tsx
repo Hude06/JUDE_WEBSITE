@@ -24,20 +24,26 @@ interface PageSidebarProps {
   pages: PageInfo[];
   selectedSlug: string | null;
   isNavSelected: boolean;
+  isSettingsSelected: boolean;
   onSelectPage: (slug: string) => void;
   onSelectNav: () => void;
+  onSelectSettings: () => void;
   onAddPage: (title: string, slug: string) => void;
   onDeletePage: (slug: string) => void;
+  width: number;
 }
 
 export function PageSidebar({
   pages,
   selectedSlug,
   isNavSelected,
+  isSettingsSelected,
   onSelectPage,
   onSelectNav,
+  onSelectSettings,
   onAddPage,
   onDeletePage,
+  width,
 }: PageSidebarProps) {
   const [newTitle, setNewTitle] = useState('');
   const [newSlug, setNewSlug] = useState('');
@@ -71,11 +77,11 @@ export function PageSidebar({
   }
 
   return (
-    <aside className="w-56 border-r bg-muted/30 flex flex-col">
+    <aside style={{ width }} className="shrink-0 bg-muted/30 flex flex-col">
       <div className="p-4 font-semibold text-sm">Admin</div>
       <Separator />
 
-      <div className="p-2">
+      <div className="p-2 space-y-1">
         <Button
           variant={isNavSelected ? 'secondary' : 'ghost'}
           size="sm"
@@ -83,6 +89,14 @@ export function PageSidebar({
           onClick={onSelectNav}
         >
           Navigation
+        </Button>
+        <Button
+          variant={isSettingsSelected ? 'secondary' : 'ghost'}
+          size="sm"
+          className="w-full justify-start"
+          onClick={onSelectSettings}
+        >
+          Settings
         </Button>
       </div>
 

@@ -17,7 +17,7 @@ export function PreviewPanel({ slug, refreshKey }: PreviewPanelProps) {
   const src = slug === 'home' ? '/' : `/${slug}`;
 
   return (
-    <div className="flex-1 border-l">
+    <div className="flex-1 min-w-0">
       <iframe
         key={`${slug}-${refreshKey}`}
         src={src}

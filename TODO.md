@@ -35,8 +35,8 @@ Stuff we explicitly discussed and meant to do but haven't.
 
 | Task | Status | Assigned | Notes |
 |------|--------|----------|-------|
-| Add page title editing to admin panel | Not Started | | Client can't change a page's title from admin yet. Add a title input at the top of the BlockEditor view. Wire it into `handleBlocksChange`-style state. |
-| Add site settings editor (name, fonts, colors) | Not Started | | Add a "Settings" button in the PageSidebar alongside "Navigation". New `SiteSettingsEditor` component that edits `siteName`, `fonts.heading`, `fonts.body`, `colors.*`. API route `/api/admin/site` already supports PUT. |
+| Add page title editing to admin panel | Complete | Opus-Alpha | Page title is now an editable Input in the editor header. Undo-able via pageHistory. |
+| Add site settings editor (name, fonts, colors) | Complete | Opus-Alpha | New `SiteSettingsEditor` with site name, font inputs + presets, color pickers with hex fallback. New "Settings" button in sidebar. Shared siteConfigHistory with nav for undo. |
 | Build `/deploy-status` skill | Not Started | | Mentioned early in planning but never built. SSH to server, report: container running? which version? SSL cert expiry date? disk/memory usage? last commit timestamp? Useful for checking on sites you haven't touched in months. |
 | Delete `content/pages/test.json` from framework repo | Not Started | | Leftover from development. `/website-init` already deletes it during scaffold, but it shouldn't exist in the framework repo itself. |
 | Audit and remove unused files | Not Started | | `nginx.conf` at repo root — was for old Docker setup, likely unused now. Check if any other dev artifacts remain. |

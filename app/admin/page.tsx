@@ -15,9 +15,11 @@ import {
 import { PageSidebar } from '@/components/admin/PageSidebar';
 import { BlockEditor } from '@/components/admin/BlockEditor';
 import { NavEditor } from '@/components/admin/NavEditor';
+import { SiteSettingsEditor } from '@/components/admin/SiteSettingsEditor';
 import { PreviewPanel } from '@/components/admin/PreviewPanel';
 import { ResizeHandle } from '@/components/admin/ResizeHandle';
 import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
 import { Separator } from '@/components/ui/separator';
 
 const SIDEBAR_WIDTH_KEY = 'admin:sidebarWidth';
@@ -38,7 +40,10 @@ interface PageInfo {
   title: string;
 }
 
-type View = { type: 'page'; slug: string } | { type: 'nav' };
+type View =
+  | { type: 'page'; slug: string }
+  | { type: 'nav' }
+  | { type: 'settings' };
 
 export default function AdminPage() {
   const [pages, setPages] = useState<PageInfo[]>([]);
@@ -53,8 +58,8 @@ export default function AdminPage() {
   const [editorWidth, setEditorWidth] = useState(DEFAULT_EDITOR_WIDTH);
   const [pageHistory, setPageHistory] = useState<PageContent[]>([]);
   const [pageRedoStack, setPageRedoStack] = useState<PageContent[]>([]);
-  const [navHistory, setNavHistory] = useState<SiteConfig[]>([]);
-  const [navRedoStack, setNavRedoStack] = useState<SiteConfig[]>([]);
+  const [siteConfigHistory, setSiteConfigHistory] = useState<SiteConfig[]>([]);
+  const [siteConfigRedoStack, setSiteConfigRedoStack] = useState<SiteConfig[]>([]);
   const sidebarWidthRef = useRef(sidebarWidth);
 
   useEffect(() => {
@@ -115,6 +120,8 @@ export default function AdminPage() {
       setPageContent(data);
       setPageHistory([]);
       setPageRedoStack([]);
+      setSiteConfigHistory([]);
+      setSiteConfigRedoStack([]);
       setDirty(false);
     } catch (err) {
       setError(err instanceof Error ? err.message : 'Failed to load page');
@@ -128,11 +135,26 @@ export default function AdminPage() {
       setSiteConfig(config);
       setView({ type: 'nav' });
       setPageContent(null);
-      setNavHistory([]);
-      setNavRedoStack([]);
+      setPageHistory([]);
+      setPageRedoStack([]);
       setDirty(false);
     } catch (err) {
       setError(err instanceof Error ? err.message : 'Failed to load nav');
+    }
+  }
+
+  async function handleSelectSettings() {
+    try {
+      setError(null);
+      const config = await fetchSiteConfig();
+      setSiteConfig(config);
+      setView({ type: 'settings' });
+      setPageContent(null);
+      setPageHistory([]);
+      setPageRedoStack([]);
+      setDirty(false);
+    } catch (err) {
+      setError(err instanceof Error ? err.message : 'Failed to load settings');
     }
   }
 
@@ -144,22 +166,40 @@ export default function AdminPage() {
     setDirty(true);
   }
 
+  function handleTitleChange(title: string) {
+    if (!pageContent) return;
+    setPageHistory((h) => [...h, pageContent]);
+    setPageRedoStack([]);
+    setPageContent({ ...pageContent, title });
+    setDirty(true);
+  }
+
   function handleNavChange(nav: NavLink[]) {
     if (!siteConfig) return;
-    setNavHistory((h) => [...h, siteConfig]);
-    setNavRedoStack([]);
+    setSiteConfigHistory((h) => [...h, siteConfig]);
+    setSiteConfigRedoStack([]);
     setSiteConfig({ ...siteConfig, nav });
     setDirty(true);
   }
 
+  function handleSettingsChange(updates: Partial<SiteConfig>) {
+    if (!siteConfig) return;
+    setSiteConfigHistory((h) => [...h, siteConfig]);
+    setSiteConfigRedoStack([]);
+    setSiteConfig({ ...siteConfig, ...updates });
+    setDirty(true);
+  }
+
+  const isSiteConfigView = view?.type === 'nav' || view?.type === 'settings';
+
   const canUndo =
     view?.type === 'page' ? pageHistory.length > 0 :
-    view?.type === 'nav' ? navHistory.length > 0 :
+    isSiteConfigView ? siteConfigHistory.length > 0 :
     false;
 
   const canRedo =
     view?.type === 'page' ? pageRedoStack.length > 0 :
-    view?.type === 'nav' ? navRedoStack.length > 0 :
+    isSiteConfigView ? siteConfigRedoStack.length > 0 :
     false;
 
   function handleUndo() {
@@ -169,10 +209,10 @@ export default function AdminPage() {
       setPageHistory((h) => h.slice(0, -1));
       setPageContent(prev);
       setDirty(true);
-    } else if (view?.type === 'nav' && siteConfig && navHistory.length > 0) {
-      const prev = navHistory[navHistory.length - 1];
-      setNavRedoStack((r) => [siteConfig, ...r]);
-      setNavHistory((h) => h.slice(0, -1));
+    } else if (isSiteConfigView && siteConfig && siteConfigHistory.length > 0) {
+      const prev = siteConfigHistory[siteConfigHistory.length - 1];
+      setSiteConfigRedoStack((r) => [siteConfig, ...r]);
+      setSiteConfigHistory((h) => h.slice(0, -1));
       setSiteConfig(prev);
       setDirty(true);
     }
@@ -185,10 +225,10 @@ export default function AdminPage() {
       setPageRedoStack((r) => r.slice(1));
       setPageContent(next);
       setDirty(true);
-    } else if (view?.type === 'nav' && siteConfig && navRedoStack.length > 0) {
-      const next = navRedoStack[0];
-      setNavHistory((h) => [...h, siteConfig]);
-      setNavRedoStack((r) => r.slice(1));
+    } else if (isSiteConfigView && siteConfig && siteConfigRedoStack.length > 0) {
+      const next = siteConfigRedoStack[0];
+      setSiteConfigHistory((h) => [...h, siteConfig]);
+      setSiteConfigRedoStack((r) => r.slice(1));
       setSiteConfig(next);
       setDirty(true);
     }
@@ -220,15 +260,22 @@ export default function AdminPage() {
     try {
       if (view?.type === 'page' && pageContent) {
         await savePage(pageContent);
-      } else if (view?.type === 'nav' && siteConfig) {
+      } else if (isSiteConfigView && siteConfig) {
         await saveSiteConfig(siteConfig);
       }
 
-      const label = view?.type === 'nav' ? 'navigation' : (pageContent?.slug ?? 'page');
+      const label =
+        view?.type === 'nav' ? 'navigation' :
+        view?.type === 'settings' ? 'site settings' :
+        (pageContent?.slug ?? 'page');
       const result = await triggerRebuild(`content: update ${label} via admin`);
 
       setDirty(false);
       setRefreshKey((k) => k + 1);
+
+      if (view?.type === 'page') {
+        await loadPages();
+      }
 
       if (!result.committed) {
         setError('Saved and rebuilt, but could not sync to GitHub');
@@ -279,6 +326,15 @@ export default function AdminPage() {
       );
     }
 
+    if (view?.type === 'settings' && siteConfig) {
+      return (
+        <SiteSettingsEditor
+          config={siteConfig}
+          onChange={handleSettingsChange}
+        />
+      );
+    }
+
     if (view?.type === 'page' && pageContent) {
       return (
         <BlockEditor
@@ -292,13 +348,16 @@ export default function AdminPage() {
     return null;
   }
 
-  const editorTitle = view?.type === 'nav'
-    ? 'Navigation'
-    : pageContent?.title ?? null;
+  const hasEditor =
+    (view?.type === 'page' && pageContent) ||
+    (view?.type === 'nav' && siteConfig) ||
+    (view?.type === 'settings' && siteConfig);
 
-  const editorSubtitle = view?.type === 'nav'
-    ? 'Manage header links'
-    : pageContent ? `/${pageContent.slug}` : null;
+  const editorSubtitle =
+    view?.type === 'nav' ? 'Manage header links' :
+    view?.type === 'settings' ? 'Site name, fonts, and colors' :
+    view?.type === 'page' && pageContent ? `/${pageContent.slug}` :
+    null;
 
   return (
     <>
@@ -306,8 +365,10 @@ export default function AdminPage() {
         pages={pages}
         selectedSlug={selectedSlug}
         isNavSelected={view?.type === 'nav'}
+        isSettingsSelected={view?.type === 'settings'}
         onSelectPage={handleSelectPage}
         onSelectNav={handleSelectNav}
+        onSelectSettings={handleSelectSettings}
         onAddPage={handleAddPage}
         onDeletePage={handleDeletePage}
         width={sidebarWidth}
@@ -325,17 +386,31 @@ export default function AdminPage() {
           </div>
         )}
 
-        {editorTitle ? (
+        {hasEditor ? (
           <>
             <div className="flex items-center justify-between px-4 py-3 gap-2">
-              <div className="min-w-0">
-                <h1 className="text-lg font-semibold truncate">
-                  {editorTitle}
-                  {dirty && (
-                    <span className="ml-2 text-xs text-muted-foreground">(unsaved)</span>
+              <div className="min-w-0 flex-1">
+                {view?.type === 'page' && pageContent ? (
+                  <Input
+                    value={pageContent.title}
+                    onChange={(e) => handleTitleChange(e.target.value)}
+                    className="text-lg font-semibold h-auto border-transparent px-2 -mx-2 hover:border-border focus:border-border shadow-none"
+                    placeholder="Page title"
+                  />
+                ) : (
+                  <h1 className="text-lg font-semibold truncate">
+                    {view?.type === 'nav' ? 'Navigation' : 'Settings'}
+                    {dirty && (
+                      <span className="ml-2 text-xs text-muted-foreground font-normal">(unsaved)</span>
+                    )}
+                  </h1>
+                )}
+                <p className="text-xs text-muted-foreground truncate px-2">
+                  {editorSubtitle}
+                  {view?.type === 'page' && dirty && (
+                    <span className="ml-2 text-muted-foreground">(unsaved)</span>
                   )}
-                </h1>
-                <p className="text-xs text-muted-foreground truncate">{editorSubtitle}</p>
+                </p>
               </div>
               <div className="flex items-center gap-1 shrink-0">
                 <Button
@@ -368,7 +443,7 @@ export default function AdminPage() {
           </>
         ) : (
           <div className="flex-1 flex items-center justify-center text-muted-foreground">
-            Select a page or navigation to edit
+            Select a page, navigation, or settings to edit
           </div>
         )}
       </div>
