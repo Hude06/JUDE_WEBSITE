@@ -36,6 +36,10 @@ This is a reusable website framework. Sites built from this framework share the 
 - `/api/admin/rebuild` — triggers `npm run build` + git commit/push
 - Auth is handled by Nginx basic auth, not application code
 
+## Skills
+
+- `/website-init` — scaffold a new client site from this framework. Run in an empty directory. See `.claude/skills/website-init/SKILL.md`
+
 ## Key Conventions
 
 - No database — everything is JSON files
