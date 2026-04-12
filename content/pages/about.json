@@ -1,0 +1,33 @@
+{
+  "title": "About",
+  "slug": "about",
+  "blocks": [
+    {
+      "id": "about-1",
+      "type": "heading",
+      "text": "About Me"
+    },
+    {
+      "id": "about-2",
+      "type": "paragraph",
+      "text": "I've been building websites and digital experiences for years. I focus on clean design, fast performance, and great user experience."
+    },
+    {
+      "id": "about-3",
+      "type": "image",
+      "src": "/images/portrait.svg",
+      "alt": "Portrait"
+    },
+    {
+      "id": "about-4",
+      "type": "heading",
+      "text": "Skills & Background",
+      "level": 2
+    },
+    {
+      "id": "about-5",
+      "type": "paragraph",
+      "text": "I work with React, Next.js, TypeScript, and modern CSS. I care about accessibility, performance, and writing code that's easy to maintain."
+    }
+  ]
+}

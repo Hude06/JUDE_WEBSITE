@@ -1,0 +1,32 @@
+{
+  "title": "Contact",
+  "slug": "contact",
+  "blocks": [
+    {
+      "id": "contact-1",
+      "type": "heading",
+      "text": "Get In Touch"
+    },
+    {
+      "id": "contact-2",
+      "type": "paragraph",
+      "text": "I'm always open to new projects and opportunities. Feel free to reach out if you'd like to work together."
+    },
+    {
+      "id": "contact-3",
+      "type": "paragraph",
+      "text": "Email me at hello@example.com or connect with me on social media."
+    },
+    {
+      "id": "contact-4",
+      "type": "heading",
+      "text": "Availability",
+      "level": 2
+    },
+    {
+      "id": "contact-5",
+      "type": "paragraph",
+      "text": "I'm currently available for freelance work and consulting. Let's talk about your project."
+    }
+  ]
+}

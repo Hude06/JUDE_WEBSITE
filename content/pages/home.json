@@ -1,0 +1,33 @@
+{
+  "title": "Home",
+  "slug": "home",
+  "blocks": [
+    {
+      "id": "home-1",
+      "type": "heading",
+      "text": "Welcome to My Portfolio"
+    },
+    {
+      "id": "home-2",
+      "type": "paragraph",
+      "text": "I'm a designer and developer who builds clean, modern websites. Take a look around to see my work and learn more about what I do."
+    },
+    {
+      "id": "home-3",
+      "type": "image",
+      "src": "/images/hero.svg",
+      "alt": "Hero illustration"
+    },
+    {
+      "id": "home-4",
+      "type": "heading",
+      "text": "Featured Work",
+      "level": 2
+    },
+    {
+      "id": "home-5",
+      "type": "paragraph",
+      "text": "Here are some of my recent projects. Each one was built with attention to detail, performance, and usability."
+    }
+  ]
+}
