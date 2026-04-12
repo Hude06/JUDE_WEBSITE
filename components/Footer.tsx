@@ -1,11 +1,16 @@
+import { Separator } from '@/components/ui/separator';
+
 interface FooterProps {
   siteName: string;
 }
 
 export function Footer({ siteName }: FooterProps) {
   return (
-    <footer className="text-center py-8 border-t border-slate-200 text-slate-500 text-sm">
-      <p>&copy; {new Date().getFullYear()} {siteName}</p>
-    </footer>
+    <>
+      <Separator />
+      <footer className="py-8 text-center text-sm text-muted-foreground">
+        <p>&copy; {new Date().getFullYear()} {siteName}</p>
+      </footer>
+    </>
   );
 }

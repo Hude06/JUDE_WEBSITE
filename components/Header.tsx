@@ -1,4 +1,7 @@
 import type { NavLink } from '@/lib/types';
+import { buttonVariants } from '@/components/ui/button';
+import { Separator } from '@/components/ui/separator';
+import { cn } from '@/lib/utils';
 
 interface HeaderProps {
   siteName: string;
@@ -7,21 +10,24 @@ interface HeaderProps {
 
 export function Header({ siteName, nav }: HeaderProps) {
   return (
-    <header className="flex items-center justify-between px-8 py-4 border-b border-slate-200">
-      <a href="/" className="text-xl font-bold" style={{ fontFamily: 'var(--font-heading)' }}>
-        {siteName}
-      </a>
-      <nav className="flex gap-6">
-        {nav.map((link) => (
-          <a
-            key={link.href}
-            href={link.href}
-            className="text-slate-500 hover:text-blue-600 text-sm transition-colors"
-          >
-            {link.label}
-          </a>
-        ))}
-      </nav>
-    </header>
+    <>
+      <header className="flex items-center justify-between px-8 py-4">
+        <a href="/" className="text-xl font-bold tracking-tight">
+          {siteName}
+        </a>
+        <nav className="flex items-center gap-1">
+          {nav.map((link) => (
+            <a
+              key={link.href}
+              href={link.href}
+              className={cn(buttonVariants({ variant: 'ghost', size: 'sm' }))}
+            >
+              {link.label}
+            </a>
+          ))}
+        </nav>
+      </header>
+      <Separator />
+    </>
   );
 }

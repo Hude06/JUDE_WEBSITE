@@ -15,32 +15,38 @@ graph TB
     end
 
     subgraph LINODE["Linode Ubuntu Server"]
-        NGINX[Nginx Reverse Proxy + SSL + Admin Auth]
+        NGINX[Nginx Reverse Proxy + SSL + /admin Auth]
         subgraph DOCKER["Docker Container"]
             REPO[Git Repo Clone]
-            NEXTJS[Next.js App]
-            ADMIN[Admin Panel]
+            NEXTJS["Next.js Server (site + admin)"]
             CONTENT[/content/ files]
-            STATIC[Static HTML Output]
+            UPLOADS[/content/uploads/]
         end
     end
 
     subgraph CLIENT["Client Browser"]
         SITE_VIEW[Views Website]
-        ADMIN_VIEW[Admin Page Editor]
+        ADMIN_VIEW[Admin Panel at /admin]
     end
 
     LOCAL_REPO -->|git push| REMOTE_REPO
     REMOTE_REPO -->|git pull| REPO
-    REPO --> NEXTJS
-    NEXTJS -->|npm run build| STATIC
-    NGINX -->|reverse proxy| DOCKER
-    NGINX -->|basic auth on admin subdomain| ADMIN
+    NEXTJS -->|serves pre-rendered pages| SITE_VIEW
+    NEXTJS -->|serves admin panel + API| ADMIN_VIEW
+    NGINX -->|reverse proxy all traffic| DOCKER
+    NGINX -->|basic auth on /admin| ADMIN_VIEW
     CLIENT -->|clientsite.com| NGINX
-    CLIENT -->|admin.clientsite.com| NGINX
-    ADMIN -->|writes content files| CONTENT
+    CLIENT -->|clientsite.com/admin| NGINX
     CONTENT -->|auto commit + push| REMOTE_REPO
 ```
+
+### Key Architecture Decision: Server Mode
+
+Next.js runs as a **server** in Docker, not as a static export. This is required because:
+- The admin panel needs API routes to write content files and trigger rebuilds
+- Pages are still **pre-rendered at build time** (ISR/SSG) — same performance as static
+- One process serves both the site and the admin panel
+- No separate API server needed
 
 ---
 
@@ -83,15 +89,16 @@ flowchart TD
 
     G --> G1[Ask developer for admin password]
     G1 --> G2[Create .htpasswd file on server]
-    G2 --> G3[Add basic auth to admin Nginx config]
+    G2 --> G3[Add basic auth for /admin path in Nginx]
     G3 --> H[Build Docker image from Dockerfile]
     H --> I[Start container with deploy key]
     I --> J[Clone repo inside container]
     J --> K[Run npm install + npm run build]
-    K --> L[Verify site is live — health check]
-    L --> M[Write deploy.json to repo]
-    M --> N[Commit + push deploy.json]
-    N --> O[First deploy complete]
+    K --> L[Start Next.js server inside container]
+    L --> M[Verify site is live — health check]
+    M --> N[Write deploy.json to repo]
+    N --> O[Commit + push deploy.json]
+    O --> P[First deploy complete]
 ```
 
 ---
@@ -115,12 +122,14 @@ flowchart TD
     D --> E[SSH into Linode server]
     E --> F[Git pull inside container]
     F --> G[npm run build inside container]
-    G --> H[Health check — verify site responds]
-    H -->|Fail| I[Git checkout previous commit inside container]
-    I --> I2[npm run build — restore last working version]
-    I2 --> I3[Site stays live on previous version]
-    I3 --> I4[Alert developer with error logs]
-    H -->|Pass| J[Deploy complete]
+    G --> H[Restart Next.js server]
+    H --> I[Health check — verify site responds]
+    I -->|Fail| J[Git checkout previous commit inside container]
+    J --> J2[npm run build — restore last working version]
+    J2 --> J3[Restart Next.js server with previous build]
+    J3 --> J4[Site stays live on previous version]
+    J4 --> J5[Alert developer with error logs]
+    I -->|Pass| K[Deploy complete]
 ```
 
 ---
@@ -129,19 +138,34 @@ flowchart TD
 
 ```mermaid
 flowchart TD
-    A[Client visits admin.clientsite.com] --> B[Nginx basic auth prompt]
+    A[Client visits clientsite.com/admin] --> B[Nginx basic auth prompt]
     B --> C[Client enters password]
     C --> D[Admin page editor loads]
-    D --> E[Select page from dropdown]
-    E --> F[Edit text / upload image / reorder blocks]
-    F --> G[Clicks Save]
-    G --> H[Admin API writes updated content files to /content/]
-    H --> I[Trigger npm run build inside container]
-    I --> J[New static HTML generated]
-    J --> K[Changes live on site]
-    K --> L[Auto git commit with message]
-    L --> M[Git push to GitHub via deploy key]
-    M --> N[Change tracked in repo history]
+    D --> E{What does client want to do?}
+    E --> F[Edit existing page]
+    E --> G[Add new page]
+    E --> H[Delete page]
+
+    F --> F1[Select page from sidebar]
+    F1 --> F2[Edit text fields, reorder blocks]
+    F2 --> F3[See changes in live preview iframe]
+    F3 --> F4[Click Save]
+
+    G --> G1[Enter page title and slug]
+    G1 --> G2[New page created with empty blocks]
+    G2 --> F1
+
+    H --> H1[Select page, click Delete]
+    H1 --> H2[Confirm deletion]
+
+    F4 --> I[Admin API writes updated JSON to /content/pages/]
+    H2 --> I
+    I --> J[Trigger npm run build]
+    J --> K[Pages re-rendered with new content]
+    K --> L[Preview iframe refreshes — client sees changes]
+    L --> M[Auto git commit with descriptive message]
+    M --> N[Git push to GitHub via deploy key]
+    N --> O[Change tracked in repo history]
 ```
 
 ---
@@ -150,45 +174,78 @@ flowchart TD
 
 ```mermaid
 graph TB
-    subgraph EDITOR["Admin Page Editor"]
-        PAGE_SELECT[Page Selector Dropdown]
-        BLOCK_LIST[Block List — form fields]
-        ADD_BLOCK[Add Block Button]
-        SAVE_BTN[Save Button]
-        PREVIEW[Live Preview — iframe]
+    subgraph ADMIN_UI["Admin Panel at /admin"]
+        SIDEBAR[Page List Sidebar]
+        EDITOR[Block Editor — form fields]
+        PREVIEW[Live Preview — iframe of real page]
+        PAGE_MGMT[Add / Delete Page]
     end
 
-    subgraph CONTENT_FILES["/content/"]
+    subgraph API["Admin API Routes (/api/admin/)"]
+        LIST_PAGES["GET /api/admin/pages"]
+        GET_PAGE["GET /api/admin/pages/[slug]"]
+        SAVE_PAGE["PUT /api/admin/pages/[slug]"]
+        CREATE_PAGE["POST /api/admin/pages"]
+        DELETE_PAGE["DELETE /api/admin/pages/[slug]"]
+        UPLOAD_IMG["POST /api/admin/upload"]
+        REBUILD["POST /api/admin/rebuild"]
+    end
+
+    subgraph CONTENT["/content/"]
         PAGES["pages/*.json"]
         UPLOADS["uploads/*"]
         SITE_CONFIG["site.json"]
     end
 
-    subgraph TEMPLATE["Template Components"]
-        BLOCK_RENDERER[BlockRenderer]
-        HEADING[HeadingBlock]
-        PARAGRAPH[ParagraphBlock]
-        IMAGE[ImageBlock]
-        CUSTOM[...custom blocks]
-    end
+    SIDEBAR -->|fetches| LIST_PAGES
+    EDITOR -->|fetches| GET_PAGE
+    EDITOR -->|saves| SAVE_PAGE
+    PAGE_MGMT -->|creates| CREATE_PAGE
+    PAGE_MGMT -->|deletes| DELETE_PAGE
+    SAVE_PAGE -->|writes JSON| PAGES
+    SAVE_PAGE -->|triggers| REBUILD
+    CREATE_PAGE -->|writes JSON| PAGES
+    DELETE_PAGE -->|removes JSON| PAGES
+    UPLOAD_IMG -->|saves file| UPLOADS
+    REBUILD -->|npm run build + git commit + push| CONTENT
+    PREVIEW -->|iframe src=/page-slug| PAGES
+```
 
-    PAGE_SELECT -->|reads page list| PAGES
-    BLOCK_LIST -->|reads block data| PAGES
-    SAVE_BTN -->|writes updated data| PAGES
-    ADD_BLOCK -->|appends new block| PAGES
-    PREVIEW -->|iframe loads actual site| BLOCK_RENDERER
-    BLOCK_RENDERER -->|reads content from| PAGES
-    BLOCK_RENDERER --> HEADING
-    BLOCK_RENDERER --> PARAGRAPH
-    BLOCK_RENDERER --> IMAGE
-    BLOCK_RENDERER --> CUSTOM
+### Admin Panel UI Layout
+
+```
+┌─────────────────────────────────────────────────────┐
+│  Site Name                              /admin      │
+├────────────┬────────────────────────────────────────┤
+│            │                                        │
+│  Pages     │  Editing: About                        │
+│            │                                        │
+│  • Home    │  ┌─ Heading ─────────────────────┐     │
+│  > About   │  │ About Me                      │     │
+│  • Contact │  └───────────────────────────────┘     │
+│            │  ┌─ Paragraph ───────────────────┐     │
+│            │  │ I've been building websites... │     │
+│  ──────    │  └───────────────────────────────┘     │
+│  + Add     │  ┌─ Image ──────────────────────┐     │
+│  Page      │  │ portrait.svg  [Change]        │     │
+│            │  └───────────────────────────────┘     │
+│            │                                        │
+│            │  [Save]              [Preview ▸]       │
+├────────────┴────────────────────────────────────────┤
+│  Preview (iframe — shows real rendered page)        │
+│  ┌────────────────────────────────────────────────┐ │
+│  │                                                │ │
+│  │        Actual site rendering of /about         │ │
+│  │                                                │ │
+│  └────────────────────────────────────────────────┘ │
+└─────────────────────────────────────────────────────┘
 ```
 
 ### The Contract
 
 The admin panel and the template are decoupled. They only share `/content/` files.
 
-- **Admin panel** reads and writes content files — doesn't know or care about CSS frameworks or styling
+- **Admin panel** reads and writes content files via API routes — doesn't know or care about CSS frameworks or styling
 - **Template** reads content files and renders them — any framework, any styles
 - **Preview** is an iframe of the actual site — always accurate regardless of template
 
@@ -201,7 +258,11 @@ The admin panel and the template are decoupled. They only share `/content/` file
   "blocks": [
     { "id": "b1", "type": "heading", "text": "About Me" },
     { "id": "b2", "type": "paragraph", "text": "I design things..." },
-    { "id": "b3", "type": "image", "src": "/uploads/portrait.jpg", "alt": "Portrait" }
+    { "id": "b3", "type": "image", "src": "/uploads/portrait.jpg", "alt": "Portrait" },
+    { "id": "b4", "type": "badge-group", "badges": ["React", "TypeScript"] },
+    { "id": "b5", "type": "card-grid", "cards": [{"title": "Project", "description": "..."}] },
+    { "id": "b6", "type": "button", "text": "Contact", "href": "/contact" },
+    { "id": "b7", "type": "separator" }
   ]
 }
 ```
@@ -222,23 +283,41 @@ This means the admin panel works with any CSS framework (Tailwind, Bootstrap, va
 
 ```mermaid
 flowchart LR
-    CLIENT[Client Browser] -->|admin.clientsite.com| NGINX[Nginx]
-    NGINX -->|auth_basic| HTPASSWD[.htpasswd-clientsite]
-    HTPASSWD -->|password valid| CONTAINER[Docker Container — Admin Panel]
+    CLIENT[Client Browser] -->|clientsite.com/admin| NGINX[Nginx]
+    NGINX -->|auth_basic on /admin path| HTPASSWD[.htpasswd-clientsite]
+    HTPASSWD -->|password valid| CONTAINER["Next.js Server — /admin routes"]
     HTPASSWD -->|password invalid| DENIED[401 Unauthorized]
 ```
 
-### Nginx Config for Admin Subdomain
+### Nginx Config
 
 ```nginx
 server {
-    server_name admin.clientsite.com;
+    server_name clientsite.com;
 
-    auth_basic "Admin";
-    auth_basic_user_file /etc/nginx/.htpasswd-clientsite;
-
+    # All traffic proxied to Next.js
     location / {
         proxy_pass http://localhost:3001;
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+    }
+
+    # Admin path requires basic auth
+    location /admin {
+        auth_basic "Admin";
+        auth_basic_user_file /etc/nginx/.htpasswd-clientsite;
+        proxy_pass http://localhost:3001;
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+    }
+
+    # Admin API also requires auth
+    location /api/admin {
+        auth_basic "Admin";
+        auth_basic_user_file /etc/nginx/.htpasswd-clientsite;
+        proxy_pass http://localhost:3001;
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
     }
 
     # SSL managed by Certbot
@@ -253,6 +332,16 @@ server {
 - HTTPS via Certbot encrypts credentials in transit
 - One less thing to build per site
 - Works with any template
+
+---
+
+## Image Uploads
+
+- Images uploaded through the admin panel are saved to `/content/uploads/`
+- Referenced in content JSON as `/uploads/filename.jpg`
+- Committed to git alongside content changes
+- Suitable for small sites (< 10 images)
+- For image-heavy sites, can be migrated to object storage per-site later
 
 ---
 
@@ -288,7 +377,7 @@ flowchart TD
     G --> H[Rebuild Docker image]
     H --> I[Replace container on server]
     I --> J[Pull latest code + content from GitHub]
-    J --> K[npm run build]
+    J --> K[npm run build + start server]
     K --> L[Verify health check]
 ```
 
@@ -298,9 +387,9 @@ flowchart TD
 
 ```
 /content/pages/
-  home.json       ← hero section, intro text, featured work
-  about.json      ← bio, skills, portrait
-  contact.json    ← contact info, form or links
+  home.json       ← hero, intro, featured work cards, tech badges
+  about.json      ← bio, portrait, skills badges
+  contact.json    ← contact cards, availability badges
 
 /content/site.json ← site name, nav links, fonts, colors
 ```
@@ -311,37 +400,65 @@ flowchart TD
 
 ```
 site-repo/
-├── app/                    # Next.js pages + routes
-│   ├── layout.tsx
-│   ├── page.tsx
-│   └── [slug]/
-│       └── page.tsx
-├── components/             # React components
+├── app/                        # Next.js App Router
+│   ├── layout.tsx              # Root layout — Header, Footer, site config
+│   ├── page.tsx                # Home route — loads home.json
+│   ├── not-found.tsx           # 404 page
+│   ├── [slug]/
+│   │   └── page.tsx            # Dynamic route — loads /content/pages/{slug}.json
+│   ├── admin/
+│   │   ├── page.tsx            # Admin panel — page editor UI
+│   │   └── layout.tsx          # Admin layout (no site header/footer)
+│   └── api/
+│       └── admin/
+│           ├── pages/
+│           │   └── route.ts    # GET (list) / POST (create) pages
+│           │   └── [slug]/
+│           │       └── route.ts # GET / PUT / DELETE a page
+│           ├── upload/
+│           │   └── route.ts    # POST image upload
+│           └── rebuild/
+│               └── route.ts    # POST trigger rebuild + git commit/push
+├── components/
 │   ├── Header.tsx
 │   ├── Footer.tsx
 │   ├── BlockRenderer.tsx
+│   ├── ui/                     # shadcn/ui components
+│   │   ├── button.tsx
+│   │   ├── card.tsx
+│   │   ├── badge.tsx
+│   │   ├── separator.tsx
+│   │   └── ...
 │   └── blocks/
-│       ├── TextBlock.tsx
-│       ├── ImageBlock.tsx
 │       ├── HeadingBlock.tsx
+│       ├── ParagraphBlock.tsx
+│       ├── ImageBlock.tsx
+│       ├── BadgeGroupBlock.tsx
+│       ├── CardGridBlock.tsx
+│       ├── ButtonBlock.tsx
+│       ├── SeparatorBlock.tsx
 │       └── ...
-├── admin/                  # Admin page editor
-│   ├── app/
-│   ├── components/
-│   └── api/
-├── content/                # Client-editable content
+├── lib/
+│   ├── content.ts              # loadPage(), loadSiteConfig(), listPages()
+│   ├── types.ts                # Block, PageContent, SiteConfig types
+│   └── utils.ts                # shadcn cn() utility
+├── content/
 │   ├── pages/
 │   │   ├── home.json
 │   │   ├── about.json
 │   │   └── contact.json
-│   ├── uploads/            # Client-uploaded images
-│   └── site.json           # Site-wide config (name, fonts, colors)
-├── public/                 # Static assets
-├── styles/                 # Global styles
-├── deploy.json             # Deployment config (created by /deploy-init)
+│   ├── uploads/                # Client-uploaded images (< 10, committed to git)
+│   └── site.json
+├── public/
+│   └── images/                 # Static template assets
+├── deploy.json                 # Deployment config (created by /deploy-init)
 ├── Dockerfile
-├── docker-compose.yml
-├── next.config.js
+├── next.config.ts
+├── components.json             # shadcn config
+├── postcss.config.mjs
+├── tailwind config (v4 — auto)
+├── tsconfig.json
+├── jest.config.ts
 ├── package.json
 └── README.md
 ```
@@ -356,13 +473,15 @@ flowchart LR
         NGINX[Nginx]
         HTPASSWD[.htpasswd per site]
         subgraph CONTAINER["Docker Container"]
+            NEXTJS["Next.js Server"]
             KEY[GitHub Deploy Key]
         end
     end
 
     NGINX -->|HTTPS only via Certbot| INTERNET[Internet]
-    NGINX -->|basic auth on admin.*| HTPASSWD
-    HTPASSWD -->|authenticated requests only| CONTAINER
+    NGINX -->|basic auth on /admin + /api/admin| HTPASSWD
+    HTPASSWD -->|authenticated requests only| NEXTJS
+    NEXTJS -->|serves site pages without auth| INTERNET
     KEY -->|push only, no delete, no force push| GH[GitHub Repo]
     KEY -->|scoped to single repo| GH
 ```

@@ -1,20 +1,31 @@
-# Stage 1: Build static site
-FROM node:20-alpine AS builder
-
+# Stage 1: Install dependencies
+FROM node:20-alpine AS deps
 WORKDIR /app
-
 COPY package.json package-lock.json ./
 RUN npm ci
 
+# Stage 2: Build
+FROM node:20-alpine AS builder
+WORKDIR /app
+COPY --from=deps /app/node_modules ./node_modules
 COPY . .
 RUN npm run build
 
-# Stage 2: Serve with nginx
-FROM nginx:alpine AS runner
+# Stage 3: Run
+FROM node:20-alpine AS runner
+WORKDIR /app
 
-COPY --from=builder /app/out /usr/share/nginx/html
-COPY nginx.conf /etc/nginx/conf.d/default.conf
+RUN apk add --no-cache git
 
-EXPOSE 80
+ENV NODE_ENV=production
+ENV PORT=3000
+ENV HOSTNAME=0.0.0.0
 
-CMD ["nginx", "-g", "daemon off;"]
+COPY --from=builder /app/public ./public
+COPY --from=builder /app/content ./content
+COPY --from=builder /app/.next/standalone ./
+COPY --from=builder /app/.next/static ./.next/static
+
+EXPOSE 3000
+
+CMD ["node", "server.js"]

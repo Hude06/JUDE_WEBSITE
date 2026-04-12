@@ -11,10 +11,10 @@ describe('ImageBlock', () => {
     expect(img).toHaveAttribute('alt', 'Test image');
   });
 
-  it('wraps image in a figure', () => {
+  it('wraps image in a card', () => {
     const { container } = render(
       <ImageBlock block={{ id: 'img2', type: 'image', src: '/photo.png', alt: 'Photo' }} />
     );
-    expect(container.querySelector('figure')).toBeInTheDocument();
+    expect(container.querySelector('[data-slot="card"]')).toBeInTheDocument();
   });
 });

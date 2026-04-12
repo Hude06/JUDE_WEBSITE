@@ -14,6 +14,7 @@ const config: Config = {
   },
   setupFilesAfterEnv: ['<rootDir>/__tests__/setup.ts'],
   testPathIgnorePatterns: ['/node_modules/', '/.next/', '__mocks__', 'setup.ts'],
+  modulePathIgnorePatterns: ['<rootDir>/.next/'],
 };
 
 export default config;

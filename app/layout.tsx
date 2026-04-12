@@ -1,13 +1,10 @@
 import type { Metadata } from 'next';
 import { loadSiteConfig } from '@/lib/content';
-import { Header } from '@/components/Header';
-import { Footer } from '@/components/Footer';
+import { Geist } from 'next/font/google';
+import { cn } from '@/lib/utils';
 import './globals.css';
-import { Geist } from "next/font/google";
-import { cn } from "@/lib/utils";
 
-const geist = Geist({subsets:['latin'],variable:'--font-sans'});
-
+const geist = Geist({ subsets: ['latin'], variable: '--font-sans' });
 const config = loadSiteConfig();
 
 export const metadata: Metadata = {
@@ -29,11 +26,9 @@ export default function RootLayout({
   } as React.CSSProperties;
 
   return (
-    <html lang="en" className={cn("font-sans", geist.variable)}>
+    <html lang="en" className={cn('font-sans', geist.variable)}>
       <body className="min-h-screen flex flex-col antialiased" style={cssVars}>
-        <Header siteName={config.siteName} nav={config.nav} />
-        <main className="flex-1 max-w-4xl mx-auto px-4 py-8 w-full">{children}</main>
-        <Footer siteName={config.siteName} />
+        {children}
       </body>
     </html>
   );
