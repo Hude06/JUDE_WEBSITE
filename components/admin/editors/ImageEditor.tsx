@@ -6,6 +6,7 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Button } from '@/components/ui/button';
 import { uploadImage } from '@/lib/admin-api';
+import { ImageCropper } from '@/components/admin/ImageCropper';
 
 interface ImageEditorProps {
   block: ImageBlock;
@@ -17,23 +18,44 @@ export function ImageEditor({ block, onChange }: ImageEditorProps) {
   const [uploading, setUploading] = useState(false);
   const [dragOver, setDragOver] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [pendingFile, setPendingFile] = useState<File | null>(null);
+  const [cropperOpen, setCropperOpen] = useState(false);
 
-  async function handleFile(file: File) {
+  function handleFile(file: File) {
     if (!file.type.startsWith('image/')) {
       setError('File must be an image');
       return;
     }
 
     setError(null);
+    setPendingFile(file);
+    setCropperOpen(true);
+  }
+
+  async function handleCropComplete(blob: Blob) {
+    if (!pendingFile) return;
+
+    setCropperOpen(false);
     setUploading(true);
+
     try {
-      const path = await uploadImage(file);
+      const croppedFile = new File([blob], pendingFile.name, {
+        type: blob.type,
+      });
+      const path = await uploadImage(croppedFile);
       onChange({ ...block, src: path });
     } catch (err) {
       setError(err instanceof Error ? err.message : 'Upload failed');
     } finally {
       setUploading(false);
+      setPendingFile(null);
     }
+  }
+
+  function handleCropCancel() {
+    setCropperOpen(false);
+    setPendingFile(null);
+    if (fileRef.current) fileRef.current.value = '';
   }
 
   function handleFileChange(e: React.ChangeEvent<HTMLInputElement>) {
@@ -130,6 +152,13 @@ export function ImageEditor({ block, onChange }: ImageEditorProps) {
           Remove image
         </Button>
       )}
+
+      <ImageCropper
+        open={cropperOpen}
+        file={pendingFile}
+        onCropComplete={handleCropComplete}
+        onCancel={handleCropCancel}
+      />
     </div>
   );
 }
