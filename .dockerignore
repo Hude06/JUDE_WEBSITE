@@ -3,5 +3,4 @@ node_modules
 out
 .git
 __tests__
-*.md
 .dockerignore

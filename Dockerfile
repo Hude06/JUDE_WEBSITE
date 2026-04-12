@@ -1,31 +1,20 @@
-# Stage 1: Install dependencies
-FROM node:20-alpine AS deps
+FROM node:20-alpine
+
 WORKDIR /app
+
+RUN apk add --no-cache git openssh-client
+
 COPY package.json package-lock.json ./
 RUN npm ci
 
-# Stage 2: Build
-FROM node:20-alpine AS builder
-WORKDIR /app
-COPY --from=deps /app/node_modules ./node_modules
 COPY . .
 RUN npm run build
-
-# Stage 3: Run
-FROM node:20-alpine AS runner
-WORKDIR /app
-
-RUN apk add --no-cache git
 
 ENV NODE_ENV=production
 ENV PORT=3000
 ENV HOSTNAME=0.0.0.0
-
-COPY --from=builder /app/public ./public
-COPY --from=builder /app/content ./content
-COPY --from=builder /app/.next/standalone ./
-COPY --from=builder /app/.next/static ./.next/static
+ENV SKIP_TYPE_CHECK=1
 
 EXPOSE 3000
 
-CMD ["node", "server.js"]
+CMD ["node", ".next/standalone/server.js"]
