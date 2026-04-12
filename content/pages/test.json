@@ -1,0 +1,16 @@
+{
+  "title": "Test",
+  "slug": "test",
+  "blocks": [
+    {
+      "id": "test-1",
+      "type": "heading",
+      "text": "Test"
+    },
+    {
+      "id": "test-2",
+      "type": "paragraph",
+      "text": "Start editing this page..."
+    }
+  ]
+}

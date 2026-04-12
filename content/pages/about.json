@@ -20,14 +20,78 @@
     },
     {
       "id": "about-4",
+      "type": "separator"
+    },
+    {
+      "id": "about-5",
       "type": "heading",
       "text": "Skills & Background",
       "level": 2
     },
     {
-      "id": "about-5",
+      "id": "about-6",
       "type": "paragraph",
-      "text": "I work with React, Next.js, TypeScript, and modern CSS. I care about accessibility, performance, and writing code that's easy to maintain."
+      "text": "I work with modern web technologies to build fast, accessible, and maintainable websites. Every project starts with understanding the problem before writing a single line of code."
+    },
+    {
+      "id": "about-7",
+      "type": "heading",
+      "text": "Frontend",
+      "level": 3
+    },
+    {
+      "id": "about-8",
+      "type": "badge-group",
+      "badges": [
+        "React",
+        "Next.js",
+        "TypeScript",
+        "Tailwind CSS",
+        "HTML/CSS"
+      ]
+    },
+    {
+      "id": "about-9",
+      "type": "heading",
+      "text": "Backend",
+      "level": 3
+    },
+    {
+      "id": "about-10",
+      "type": "badge-group",
+      "badges": [
+        "Node.js",
+        "PostgreSQL",
+        "Docker",
+        "REST APIs"
+      ]
+    },
+    {
+      "id": "about-11",
+      "type": "heading",
+      "text": "Design",
+      "level": 3
+    },
+    {
+      "id": "about-12",
+      "type": "badge-group",
+      "badges": [
+        "Figma",
+        "UI/UX",
+        "Responsive Design",
+        "Accessibility"
+      ]
+    },
+    {
+      "id": "about-13",
+      "type": "separator"
+    },
+    {
+      "id": "about-14",
+      "type": "button",
+      "text": "Let's work together",
+      "href": "/contact",
+      "variant": "default"
     }
   ]
 }

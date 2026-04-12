@@ -10,23 +10,47 @@
     {
       "id": "contact-2",
       "type": "paragraph",
-      "text": "I'm always open to new projects and opportunities. Feel free to reach out if you'd like to work together."
+      "text": "I'm always open to new projects and opportunities. Whether you need a full website build, a redesign, or just want to chat about an idea — I'd love to hear from you."
     },
     {
       "id": "contact-3",
-      "type": "paragraph",
-      "text": "Email me at hello@example.com or connect with me on social media."
+      "type": "separator"
     },
     {
       "id": "contact-4",
+      "type": "card-grid",
+      "cards": [
+        {
+          "title": "Email",
+          "description": "hello@example.com",
+          "link": "mailto:hello@example.com"
+        },
+        {
+          "title": "GitHub",
+          "description": "github.com/username",
+          "link": "https://github.com"
+        }
+      ]
+    },
+    {
+      "id": "contact-5",
+      "type": "separator"
+    },
+    {
+      "id": "contact-6",
       "type": "heading",
       "text": "Availability",
       "level": 2
     },
     {
-      "id": "contact-5",
+      "id": "contact-7",
       "type": "paragraph",
-      "text": "I'm currently available for freelance work and consulting. Let's talk about your project."
+      "text": "I'm currently available for freelance work and consulting. Typical turnaround for a full website is 2-4 weeks depending on scope."
+    },
+    {
+      "id": "contact-8",
+      "type": "badge-group",
+      "badges": ["Freelance", "Consulting", "Full-time"]
     }
   ]
 }
