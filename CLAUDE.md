@@ -40,6 +40,7 @@ This is a reusable website framework. Sites built from this framework share the 
 
 - `/website-init` — scaffold a new client site from this framework. Run in an empty directory. See `.claude/skills/website-init/SKILL.md`
 - `/deploy-init` — first-time deployment wizard. Sets up Docker, Nginx, SSL, admin auth, deploy key. See `.claude/skills/deploy-init/SKILL.md`
+- `/deploy` — repeatable deploy for code updates. Pulls remote, pushes local, rebuilds in container, health checks with auto-rollback. See `.claude/skills/deploy/SKILL.md`
 
 ## Key Conventions
 
