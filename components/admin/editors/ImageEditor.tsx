@@ -15,34 +15,104 @@ interface ImageEditorProps {
 export function ImageEditor({ block, onChange }: ImageEditorProps) {
   const fileRef = useRef<HTMLInputElement>(null);
   const [uploading, setUploading] = useState(false);
+  const [dragOver, setDragOver] = useState(false);
+  const [error, setError] = useState<string | null>(null);
 
-  async function handleFileChange(e: React.ChangeEvent<HTMLInputElement>) {
-    const file = e.target.files?.[0];
-    if (!file) return;
+  async function handleFile(file: File) {
+    if (!file.type.startsWith('image/')) {
+      setError('File must be an image');
+      return;
+    }
 
+    setError(null);
     setUploading(true);
     try {
       const path = await uploadImage(file);
       onChange({ ...block, src: path });
-    } catch {
-      // upload failed — keep current image
+    } catch (err) {
+      setError(err instanceof Error ? err.message : 'Upload failed');
     } finally {
       setUploading(false);
     }
   }
 
+  function handleFileChange(e: React.ChangeEvent<HTMLInputElement>) {
+    const file = e.target.files?.[0];
+    if (file) handleFile(file);
+  }
+
+  function handleDrop(e: React.DragEvent<HTMLDivElement>) {
+    e.preventDefault();
+    setDragOver(false);
+    const file = e.dataTransfer.files?.[0];
+    if (file) handleFile(file);
+  }
+
+  function handleDragOver(e: React.DragEvent<HTMLDivElement>) {
+    e.preventDefault();
+    setDragOver(true);
+  }
+
+  function handleDragLeave(e: React.DragEvent<HTMLDivElement>) {
+    e.preventDefault();
+    setDragOver(false);
+  }
+
   return (
-    <div className="space-y-2">
-      {block.src && (
-        <img src={block.src} alt={block.alt} className="w-32 h-32 object-cover rounded" />
+    <div className="space-y-3">
+      <div
+        onDrop={handleDrop}
+        onDragOver={handleDragOver}
+        onDragLeave={handleDragLeave}
+        className={`
+          relative rounded-lg border-2 border-dashed overflow-hidden
+          transition-colors cursor-pointer
+          ${dragOver ? 'border-primary bg-primary/5' : 'border-border'}
+          ${uploading ? 'opacity-50' : ''}
+        `}
+        onClick={() => !uploading && fileRef.current?.click()}
+      >
+        {block.src ? (
+          <div className="relative">
+            <img
+              src={block.src}
+              alt={block.alt}
+              className="w-full max-h-64 object-contain bg-muted/20"
+            />
+            <div className="absolute inset-0 bg-black/0 hover:bg-black/40 transition-colors flex items-center justify-center opacity-0 hover:opacity-100">
+              <span className="text-white text-sm font-medium">
+                {uploading ? 'Uploading...' : 'Click or drop to change'}
+              </span>
+            </div>
+          </div>
+        ) : (
+          <div className="p-8 text-center text-muted-foreground">
+            <p className="text-sm">
+              {uploading ? 'Uploading...' : 'Click or drop an image here'}
+            </p>
+            <p className="text-xs mt-1">PNG, JPG, WebP, GIF up to 5MB</p>
+          </div>
+        )}
+      </div>
+
+      {error && (
+        <p className="text-sm text-destructive">{error}</p>
       )}
+
       <div>
         <Label>Alt text</Label>
         <Input
           value={block.alt}
           onChange={(e) => onChange({ ...block, alt: e.target.value })}
+          placeholder="Describe the image for accessibility"
         />
+        {!block.alt && (
+          <p className="text-xs text-muted-foreground mt-1">
+            Alt text helps screen readers and SEO
+          </p>
+        )}
       </div>
+
       <input
         ref={fileRef}
         type="file"
@@ -50,14 +120,16 @@ export function ImageEditor({ block, onChange }: ImageEditorProps) {
         className="hidden"
         onChange={handleFileChange}
       />
-      <Button
-        variant="outline"
-        size="sm"
-        onClick={() => fileRef.current?.click()}
-        disabled={uploading}
-      >
-        {uploading ? 'Uploading...' : 'Change Image'}
-      </Button>
+
+      {block.src && (
+        <Button
+          variant="ghost"
+          size="sm"
+          onClick={() => onChange({ ...block, src: '' })}
+        >
+          Remove image
+        </Button>
+      )}
     </div>
   );
 }

@@ -17,7 +17,7 @@ All architecture details are in `ARCHITECTURE.md`. Key decisions:
 - **Next.js server mode** (`output: 'standalone'`) — not static export. Required because admin panel needs API routes for CRUD operations.
 - **Admin panel at `/admin`** — same Next.js app, route group `(site)` has Header/Footer, `/admin` has bare layout. No separate admin subdomain.
 - **Nginx basic auth** on `/admin` and `/api/admin` — zero auth code in the framework. Password set via htpasswd on the server.
-- **Image uploads** — filesystem in `/content/uploads/`, committed to git. Fine for < 10 images per site.
+- **Image uploads** — filesystem in `/public/uploads/`, committed to git. Served directly by Next.js at `/uploads/*`. Fine for < 10 images per site.
 - **Single-stage Dockerfile** — keeps full source, node_modules, git in container (~500MB). Required because container needs to `git pull`, `npm run build`, and `git push` for content updates and deploys.
 - **Deploy key** — generated on the server, private key never leaves. Scoped to one repo, write access only. Used for auto-commit from admin panel.
 - **Git as source of truth** — client edits via admin → writes JSON → rebuilds → auto-commits → pushes to GitHub. Developer pulls latest before working.
@@ -58,7 +58,7 @@ All architecture details are in `ARCHITECTURE.md`. Key decisions:
 - `GET/POST /api/admin/pages` — list and create pages
 - `GET/PUT/DELETE /api/admin/pages/[slug]` — single page CRUD
 - `GET/PUT /api/admin/site` — read/update site config (nav, fonts, colors)
-- `POST /api/admin/upload` — image upload to `/content/uploads/`
+- `POST /api/admin/upload` — image upload to `/public/uploads/`
 - `POST /api/admin/rebuild` — triggers `npm run build` + git commit/push
 
 ### Server-Side Helpers

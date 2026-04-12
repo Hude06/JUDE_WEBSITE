@@ -32,7 +32,7 @@ This is a reusable website framework. Sites built from this framework share the 
 - `/admin` — client-facing page editor
 - `/api/admin/pages` — CRUD for pages
 - `/api/admin/site` — read/update site config
-- `/api/admin/upload` — image upload to `/content/uploads/`
+- `/api/admin/upload` — image upload to `/public/uploads/`
 - `/api/admin/rebuild` — triggers `npm run build` + git commit/push
 - Auth is handled by Nginx basic auth, not application code
 

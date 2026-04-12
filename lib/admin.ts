@@ -8,7 +8,8 @@ const execAsync = promisify(exec);
 
 const CONTENT_DIR = path.join(process.cwd(), 'content');
 const PAGES_DIR = path.join(CONTENT_DIR, 'pages');
-const UPLOADS_DIR = path.join(CONTENT_DIR, 'uploads');
+const PUBLIC_DIR = path.join(process.cwd(), 'public');
+const UPLOADS_DIR = path.join(PUBLIC_DIR, 'uploads');
 
 const SLUG_REGEX = /^[a-z0-9-]+$/;
 
@@ -143,7 +144,7 @@ export async function rebuildSite(): Promise<boolean> {
 export async function gitCommitAndPush(message: string): Promise<boolean> {
   try {
     const cwd = process.cwd();
-    await execAsync('git add content/', { cwd });
+    await execAsync('git add content/ public/uploads/', { cwd });
     await execAsync(`git commit -m "${message.replace(/"/g, '\\"')}"`, { cwd });
     await execAsync('git push', { cwd });
     return true;

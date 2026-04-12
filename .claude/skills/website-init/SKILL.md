@@ -163,7 +163,7 @@ Edit content through the admin panel or directly in these files:
 
 - Pages: `content/pages/*.json`
 - Site config: `content/site.json`
-- Uploads: `content/uploads/`
+- Uploads: `public/uploads/` (served directly by Next.js)
 
 ## Architecture
 

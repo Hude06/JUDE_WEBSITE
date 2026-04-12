@@ -20,7 +20,7 @@ graph TB
             REPO[Git Repo Clone]
             NEXTJS["Next.js Server (site + admin)"]
             CONTENT[/content/ files]
-            UPLOADS[/content/uploads/]
+            UPLOADS[/public/uploads/]
         end
     end
 
@@ -337,8 +337,8 @@ server {
 
 ## Image Uploads
 
-- Images uploaded through the admin panel are saved to `/content/uploads/`
-- Referenced in content JSON as `/uploads/filename.jpg`
+- Images uploaded through the admin panel are saved to `/public/uploads/`
+- Referenced in content JSON as `/uploads/filename.jpg` (Next.js serves files in `/public/` at the root URL)
 - Committed to git alongside content changes
 - Suitable for small sites (< 10 images)
 - For image-heavy sites, can be migrated to object storage per-site later
