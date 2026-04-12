@@ -3,14 +3,14 @@
   "slug": "about",
   "blocks": [
     {
-      "id": "about-1",
-      "type": "heading",
-      "text": "About Me"
-    },
-    {
       "id": "about-2",
       "type": "paragraph",
       "text": "I've been building websites and digital experiences for years. I focus on clean design, fast performance, and great user experience."
+    },
+    {
+      "id": "about-1",
+      "type": "heading",
+      "text": "About Me"
     },
     {
       "id": "about-3",
