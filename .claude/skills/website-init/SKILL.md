@@ -41,13 +41,13 @@ Run these BEFORE asking any questions. If any fail, show the error and STOP.
    If not authenticated: "GitHub CLI is not authenticated. Run `! gh auth login` and try again."
    If authenticated: show which account is active, ask developer to confirm it's correct.
 
-3. **Check directory is empty:**
-   ```
-   ls -A (excluding .DS_Store)
-   ```
-   If `.git` exists: "This directory already has a git repo. Are you in the right directory?"
-   If other files exist: "This directory is not empty. /website-init is designed for empty directories. Proceed anyway? (files may be overwritten)"
-   If denied: STOP.
+3. **Detect environment:**
+
+   Check if the framework is already present by looking for `package.json` with `"name": "website-framework"`:
+   
+   - **Framework already here:** Skip the clone step entirely. The developer either cloned the repo manually or is running the skill from within the framework. Just sever the git link (`rm -rf .git`) and proceed to customization.
+   - **Empty directory:** Will need to clone the framework first.
+   - **Non-empty directory without framework:** Warn "This directory has files but doesn't look like the website-framework. /website-init works in either an empty directory or a freshly cloned framework. Proceed anyway?" If denied: STOP.
 
 ## Information Gathering
 
@@ -69,14 +69,20 @@ The GitHub repo will be named `{clientName}-site` (e.g., `jane-photography-site`
 
 After gathering info, execute these steps in order. Show progress for each step.
 
-### Step 1: Clone Framework
+### Step 1: Get Framework
 
+**If the framework is already in the directory** (detected in preflight):
+```bash
+rm -rf .git
+```
+Just sever the git link. The code is already here.
+
+**If the directory is empty** (skill installed globally):
 ```bash
 gh repo clone Hude06/website-framework . -- --depth 1
 rm -rf .git
 ```
-
-This pulls the latest framework and severs the link to the framework repo. If the clone fails, check network connectivity and repo access.
+Clone the latest framework and sever the link. If the clone fails, check network connectivity and repo access.
 
 ### Step 2: Customize Content Files
 
