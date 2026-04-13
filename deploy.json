@@ -1,0 +1,18 @@
+{
+  "site": {
+    "name": "JUDE_WEBSITE",
+    "domain": "judemakes.com",
+    "repo": "Hude06/JUDE_WEBSITE"
+  },
+  "server": {
+    "host": "",
+    "user": "",
+    "sshKeyPath": "~/.ssh/id_ed25519",
+    "port": 22
+  },
+  "docker": {
+    "containerName": "jude-makes-things",
+    "port": 3001
+  },
+  "status": "not-deployed"
+}
