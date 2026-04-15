@@ -11,6 +11,18 @@ This is a reusable website framework. Sites built from this framework share the 
 - Admin panel at `/admin` lets clients edit content without code access
 - See `ARCHITECTURE.md` for full system diagrams and deployment flows
 
+## AI Playbook — READ BEFORE WRITING BLOCK JSON
+
+Before adding, composing, or editing any block JSON, read `AI_PLAYBOOK.md` at the repo root. It's the menu of every block type (21 total), theme preset (5 distinct aesthetic POVs), motion primitive (`<Reveal>`, `<Stagger>`, `<Parallax>`), font pair, section composition rule, and placeholder asset available in this framework. Contains two complete recipe examples (dark editorial, neo-brutalist agency) and a do/don't list.
+
+## Design Toolkit Reference — READ BEFORE BUILDING VISUALS
+
+Before scaffolding a new site, adding a visual element, or picking fonts/icons/animation, read `DESIGN_TOOLKITS.md`. It contains the opinionated ranked list of free UI toolkits, component libraries, icons, fonts, and animation libraries — organized by website type (portfolio, SaaS, blog, landing page, etc.).
+
+Default stack for this framework: **Next.js + Tailwind v4 + shadcn/ui + Lucide icons + Motion**, with Instrument Serif + Inter as default fonts. `DESIGN_TOOLKITS.md` tells you when to layer on extensions (Aceternity, Tremor, GSAP) and when to break glass and use a different stack entirely (Nextra for docs, Astro for content-heavy, etc.).
+
+Never hand-roll custom JSX in `app/(site)/` pages — always go through the block system. If the primitives don't cover what you need, add a new block type (see "Adding a Block Type" below) rather than writing one-off JSX.
+
 ## Content System
 
 - `lib/content.ts` — `loadPage(slug)`, `loadSiteConfig()`, `listPages()`

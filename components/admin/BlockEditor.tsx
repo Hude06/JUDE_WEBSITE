@@ -9,6 +9,20 @@ import { ImageEditor } from './editors/ImageEditor';
 import { BadgeGroupEditor } from './editors/BadgeGroupEditor';
 import { CardGridEditor } from './editors/CardGridEditor';
 import { ButtonEditor } from './editors/ButtonEditor';
+import { HeroEditor } from './editors/HeroEditor';
+import { FeatureGridEditor } from './editors/FeatureGridEditor';
+import { CtaEditor } from './editors/CtaEditor';
+import { FaqEditor } from './editors/FaqEditor';
+import { StatsEditor } from './editors/StatsEditor';
+import { PricingEditor } from './editors/PricingEditor';
+import { StepsEditor } from './editors/StepsEditor';
+import { TeamEditor } from './editors/TeamEditor';
+import { RichTextEditor } from './editors/RichTextEditor';
+import { VideoEditor } from './editors/VideoEditor';
+import { ContactFormEditor } from './editors/ContactFormEditor';
+import { TwoColumnEditor } from './editors/TwoColumnEditor';
+import { QuoteEditor } from './editors/QuoteEditor';
+import { SectionEditor } from './editors/SectionEditor';
 import { BlockGallery } from './BlockGallery';
 
 interface BlockEditorProps {
@@ -25,6 +39,20 @@ const typeLabels: Record<string, string> = {
   'card-grid': 'Card Grid',
   button: 'Button',
   separator: 'Separator',
+  hero: 'Hero',
+  'feature-grid': 'Feature Grid',
+  cta: 'Call to Action',
+  faq: 'FAQ',
+  stats: 'Stats',
+  pricing: 'Pricing',
+  steps: 'Steps',
+  team: 'Team',
+  'rich-text': 'Rich Text',
+  video: 'Video',
+  'contact-form': 'Contact Form',
+  'two-column': 'Two Column',
+  quote: 'Quote',
+  section: 'Section',
 };
 
 function moveBlock(blocks: Block[], index: number, direction: -1 | 1): Block[] {
@@ -69,6 +97,34 @@ export function BlockEditor({ blocks, onBlocksChange, slug }: BlockEditorProps) 
         return <ButtonEditor block={block} onChange={onChange} />;
       case 'separator':
         return <p className="text-sm text-muted-foreground italic">Visual separator</p>;
+      case 'hero':
+        return <HeroEditor block={block} onChange={onChange} />;
+      case 'feature-grid':
+        return <FeatureGridEditor block={block} onChange={onChange} />;
+      case 'cta':
+        return <CtaEditor block={block} onChange={onChange} />;
+      case 'faq':
+        return <FaqEditor block={block} onChange={onChange} />;
+      case 'stats':
+        return <StatsEditor block={block} onChange={onChange} />;
+      case 'pricing':
+        return <PricingEditor block={block} onChange={onChange} />;
+      case 'steps':
+        return <StepsEditor block={block} onChange={onChange} />;
+      case 'team':
+        return <TeamEditor block={block} onChange={onChange} />;
+      case 'rich-text':
+        return <RichTextEditor block={block} onChange={onChange} />;
+      case 'video':
+        return <VideoEditor block={block} onChange={onChange} />;
+      case 'contact-form':
+        return <ContactFormEditor block={block} onChange={onChange} />;
+      case 'two-column':
+        return <TwoColumnEditor block={block} onChange={onChange} />;
+      case 'quote':
+        return <QuoteEditor block={block} onChange={onChange} />;
+      case 'section':
+        return <SectionEditor block={block} onChange={onChange} />;
       default:
         return <p className="text-sm text-muted-foreground">Unknown block type</p>;
     }
@@ -109,17 +165,11 @@ export function BlockEditor({ blocks, onBlocksChange, slug }: BlockEditorProps) 
               </Button>
             </div>
           </CardHeader>
-          <CardContent>
-            {renderEditor(block, index)}
-          </CardContent>
+          <CardContent>{renderEditor(block, index)}</CardContent>
         </Card>
       ))}
 
-      <BlockGallery
-        onAddBlock={handleAddBlock}
-        slug={slug}
-        blockCount={blocks.length}
-      />
+      <BlockGallery onAddBlock={handleAddBlock} slug={slug} blockCount={blocks.length} />
     </div>
   );
 }

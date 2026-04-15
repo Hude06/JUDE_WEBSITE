@@ -12,6 +12,17 @@ Scaffold a new client website from the `Hude06/website-framework` GitHub repo.
 - Developer types `/website-init`
 - Developer says "new site", "scaffold a site", "start a new client website", "init a website"
 
+## Required Reading — Before Scaffolding Any Content
+
+Before you write a single line of content, block, or JSON for the new site, read `DESIGN_TOOLKITS.md` in the framework root. Jump to Section 1 ("Quick chooser by website type") and find the row that matches the site you're building.
+
+- If the chooser says the framework is the right fit, note the **Add-ons** (e.g., Tremor for dashboards, GSAP for agency sites) and install them as part of scaffolding.
+- If the chooser says **"break glass"** (e.g., docs should use Nextra, not this framework), STOP and ask the user: "This framework is Next.js with a JSON block system, but for a {site type} I'd recommend {alternative} instead. Do you want me to: (a) use {alternative}, (b) force-fit this framework anyway, or (c) help you pick?"
+- Use the default stack the framework ships with (Tailwind + shadcn + Lucide + Motion) unless the chooser recommends otherwise.
+- Use the fonts recommended in Section 6 — specifically the "Pairings that work" table — rather than picking blind.
+
+Never hand-roll custom JSX inside `app/(site)/` pages. Always use the block system. If you need something the blocks don't support, add a new block type following the 6-file checklist in `CLAUDE.md`.
+
 ## Security Rules — READ FIRST
 
 These rules are non-negotiable. Violating any of them is a critical failure.

@@ -1,0 +1,44 @@
+{
+  "name": "studio",
+  "label": "Studio",
+  "description": "Swiss brutalism for agencies and portfolios. Pure white, pure black, electric lime accent. Zero radius, hard offset shadows. Bricolage Grotesque breaks the grid.",
+  "colors": {
+    "bg": "oklch(1 0 0)",
+    "fg": "oklch(0.08 0 0)",
+    "primary": "oklch(0.08 0 0)",
+    "primaryForeground": "oklch(1 0 0)",
+    "accent": "oklch(0.82 0.24 140)",
+    "accentForeground": "oklch(0.08 0 0)",
+    "muted": "oklch(0.97 0 0)",
+    "mutedForeground": "oklch(0.4 0 0)",
+    "border": "oklch(0.08 0 0)",
+    "card": "oklch(1 0 0)",
+    "cardForeground": "oklch(0.08 0 0)"
+  },
+  "colorsDark": {
+    "bg": "oklch(0.08 0 0)",
+    "fg": "oklch(1 0 0)",
+    "primary": "oklch(1 0 0)",
+    "primaryForeground": "oklch(0.08 0 0)",
+    "muted": "oklch(0.15 0 0)",
+    "mutedForeground": "oklch(0.7 0 0)",
+    "border": "oklch(1 0 0)",
+    "card": "oklch(0.08 0 0)",
+    "cardForeground": "oklch(1 0 0)"
+  },
+  "radius": "0rem",
+  "shadow": {
+    "sm": "2px 2px 0 0 oklch(0.08 0 0)",
+    "md": "4px 4px 0 0 oklch(0.08 0 0)",
+    "lg": "8px 8px 0 0 oklch(0.82 0.24 140)",
+    "xl": "12px 12px 0 0 oklch(0.82 0.24 140)"
+  },
+  "fontPair": "studio",
+  "motion": {
+    "duration": 0.25,
+    "ease": "cubic-bezier(0.68, -0.55, 0.265, 1.55)",
+    "stagger": 0.06,
+    "character": "elastic"
+  },
+  "atmosphere": "grid-rulers"
+}

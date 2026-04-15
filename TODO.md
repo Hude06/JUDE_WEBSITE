@@ -160,6 +160,7 @@ Stuff we explicitly discussed and meant to do but haven't.
 
 | Task | Completed By | Commit | Summary |
 |------|--------------|--------|---------|
+| DESIGN_TOOLKITS.md reference doc | Opus-Alpha | | Ranked list of free UI toolkits, component libraries, icons, fonts, animation libs by website type. Wired into CLAUDE.md and /website-init skill. |
 | Framework skeleton | | | Next.js + TypeScript + content system + block renderer |
 | 7 block types (heading, paragraph, image, badge-group, card-grid, button, separator) | | | All typed, rendered, editable |
 | Admin panel UI | | | Page editor, block gallery, nav editor, live preview iframe |
