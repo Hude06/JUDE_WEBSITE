@@ -1,0 +1,63 @@
+{
+  "note": "Curated public-domain and Unsplash image URLs AI agents can reference while drafting. Replace with real assets before launch.",
+  "categories": {
+    "hero": [
+      {
+        "url": "https://images.unsplash.com/photo-1531058020387-3be344556be6?w=1600&q=80",
+        "description": "Abstract architectural curves, warm light"
+      },
+      {
+        "url": "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=1600&q=80",
+        "description": "Minimal product shot on neutral background"
+      },
+      {
+        "url": "https://images.unsplash.com/photo-1517336714731-489689fd1ca8?w=1600&q=80",
+        "description": "Moody landscape, editorial"
+      }
+    ],
+    "portrait": [
+      {
+        "url": "https://images.unsplash.com/photo-1633332755192-727a05c4013d?w=800&q=80",
+        "description": "Professional headshot, neutral background"
+      },
+      {
+        "url": "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=800&q=80",
+        "description": "Portrait, warm tones"
+      },
+      {
+        "url": "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=800&q=80",
+        "description": "Portrait, outdoor"
+      }
+    ],
+    "team": [
+      {
+        "url": "https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=1200&q=80",
+        "description": "Team around a table, candid"
+      },
+      {
+        "url": "https://images.unsplash.com/photo-1551434678-e076c223a692?w=1200&q=80",
+        "description": "Team collaborating at laptops"
+      }
+    ],
+    "product": [
+      {
+        "url": "https://images.unsplash.com/photo-1512436991641-6745cdb1723f?w=1200&q=80",
+        "description": "Workspace desk, moody"
+      },
+      {
+        "url": "https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=1200&q=80",
+        "description": "Minimal product photography"
+      }
+    ],
+    "texture": [
+      {
+        "url": "https://images.unsplash.com/photo-1557672172-298e090bd0f1?w=1600&q=80",
+        "description": "Paper texture, warm"
+      },
+      {
+        "url": "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1600&q=80",
+        "description": "Mountain backdrop, atmospheric"
+      }
+    ]
+  }
+}

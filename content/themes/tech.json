@@ -1,0 +1,41 @@
+{
+  "name": "tech",
+  "label": "Tech",
+  "description": "Terminal-inspired precision for developer tools and technical products. Deep slate background, cool foreground, fluorescent cyan accent. Dot-grid, CRT scanlines, instant transitions.",
+  "colors": {
+    "bg": "oklch(0.12 0.02 260)",
+    "fg": "oklch(0.92 0.02 260)",
+    "primary": "oklch(0.82 0.22 195)",
+    "primaryForeground": "oklch(0.12 0.02 260)",
+    "accent": "oklch(0.82 0.22 195)",
+    "accentForeground": "oklch(0.12 0.02 260)",
+    "muted": "oklch(0.18 0.02 260)",
+    "mutedForeground": "oklch(0.65 0.02 260)",
+    "border": "oklch(0.22 0.02 260)",
+    "card": "oklch(0.15 0.02 260)",
+    "cardForeground": "oklch(0.92 0.02 260)"
+  },
+  "colorsDark": {
+    "bg": "oklch(0.08 0.02 260)",
+    "fg": "oklch(0.95 0.02 260)",
+    "muted": "oklch(0.13 0.02 260)",
+    "mutedForeground": "oklch(0.7 0.02 260)",
+    "border": "oklch(0.18 0.02 260)",
+    "card": "oklch(0.11 0.02 260)"
+  },
+  "radius": "0.125rem",
+  "shadow": {
+    "sm": "0 0 0 1px oklch(0.82 0.22 195 / 0.15)",
+    "md": "0 0 20px 0 oklch(0.82 0.22 195 / 0.1)",
+    "lg": "0 0 40px 0 oklch(0.82 0.22 195 / 0.15)",
+    "xl": "0 0 60px 0 oklch(0.82 0.22 195 / 0.25)"
+  },
+  "fontPair": "tech",
+  "motion": {
+    "duration": 0.15,
+    "ease": "cubic-bezier(0.4, 0, 0.2, 1)",
+    "stagger": 0.04,
+    "character": "snappy"
+  },
+  "atmosphere": "scanlines-dotgrid"
+}

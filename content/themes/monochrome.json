@@ -1,0 +1,46 @@
+{
+  "name": "monochrome",
+  "label": "Monochrome",
+  "description": "Razor restraint, Braun-adjacent. Off-white, near-black. No accent color — hierarchy comes from font weight and size alone. Linear fades only, no transforms. Negative space is the atmosphere.",
+  "colors": {
+    "bg": "oklch(0.97 0 0)",
+    "fg": "oklch(0.12 0 0)",
+    "primary": "oklch(0.12 0 0)",
+    "primaryForeground": "oklch(0.97 0 0)",
+    "accent": "oklch(0.12 0 0)",
+    "accentForeground": "oklch(0.97 0 0)",
+    "muted": "oklch(0.94 0 0)",
+    "mutedForeground": "oklch(0.5 0 0)",
+    "border": "oklch(0.12 0 0 / 0.08)",
+    "card": "oklch(0.97 0 0)",
+    "cardForeground": "oklch(0.12 0 0)"
+  },
+  "colorsDark": {
+    "bg": "oklch(0.12 0 0)",
+    "fg": "oklch(0.97 0 0)",
+    "primary": "oklch(0.97 0 0)",
+    "primaryForeground": "oklch(0.12 0 0)",
+    "accent": "oklch(0.97 0 0)",
+    "accentForeground": "oklch(0.12 0 0)",
+    "muted": "oklch(0.17 0 0)",
+    "mutedForeground": "oklch(0.65 0 0)",
+    "border": "oklch(0.97 0 0 / 0.08)",
+    "card": "oklch(0.14 0 0)",
+    "cardForeground": "oklch(0.97 0 0)"
+  },
+  "radius": "0.25rem",
+  "shadow": {
+    "sm": "none",
+    "md": "none",
+    "lg": "none",
+    "xl": "none"
+  },
+  "fontPair": "monochrome",
+  "motion": {
+    "duration": 0.4,
+    "ease": "linear",
+    "stagger": 0.05,
+    "character": "linear"
+  },
+  "atmosphere": "void"
+}

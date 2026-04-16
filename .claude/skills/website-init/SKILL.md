@@ -12,6 +12,17 @@ Scaffold a new client website from the `Hude06/website-framework` GitHub repo.
 - Developer types `/website-init`
 - Developer says "new site", "scaffold a site", "start a new client website", "init a website"
 
+## Required Reading — Before Scaffolding Any Content
+
+Before you write a single line of content, block, or JSON for the new site, read `DESIGN_TOOLKITS.md` in the framework root. Jump to Section 1 ("Quick chooser by website type") and find the row that matches the site you're building.
+
+- If the chooser says the framework is the right fit, note the **Add-ons** (e.g., Tremor for dashboards, GSAP for agency sites) and install them as part of scaffolding.
+- If the chooser says **"break glass"** (e.g., docs should use Nextra, not this framework), STOP and ask the user: "This framework is Next.js with a JSON block system, but for a {site type} I'd recommend {alternative} instead. Do you want me to: (a) use {alternative}, (b) force-fit this framework anyway, or (c) help you pick?"
+- Use the default stack the framework ships with (Tailwind + shadcn + Lucide + Motion) unless the chooser recommends otherwise.
+- Use the fonts recommended in Section 6 — specifically the "Pairings that work" table — rather than picking blind.
+
+Never hand-roll custom JSX inside `app/(site)/` pages. Always use the block system. If you need something the blocks don't support, add a new block type following the 6-file checklist in `CLAUDE.md`.
+
 ## Security Rules — READ FIRST
 
 These rules are non-negotiable. Violating any of them is a critical failure.
@@ -86,21 +97,18 @@ Clone the latest framework and sever the link. If the clone fails, check network
 
 ### Step 2: Customize Content Files
 
-Edit these files with the developer's answers:
+The framework ships with a blank skeleton at `content/site.json` and `content/pages/home.json`. Build the client's site by editing these files (and adding more pages under `content/pages/` as needed). If you want ideas or examples of how blocks fit together, peek at `examples/starter-site/` — it's reference material, not a starting point.
 
 **`content/site.json`:**
 - Set `siteName` to the provided site name
 - Set `colors.primary` to the provided primary color
-- Keep nav, fonts, and other colors as defaults
+- Update `nav` to match the pages you create
+- Keep fonts as defaults unless `DESIGN_TOOLKITS.md` Section 6 suggests something better for this site type
 
 **`content/pages/home.json`:**
-- Change the first heading block's `text` from "Welcome to My Portfolio" to "Welcome to {siteName}"
+- Replace the placeholder content with a real home page composed for this client, using blocks from `AI_PLAYBOOK.md`
 
-**`content/pages/contact.json`:**
-- Replace `hello@example.com` with the provided contact email in the paragraph block
-
-**Delete test fixtures:**
-- Delete `content/pages/test.json` if it exists (test page from development)
+**Add additional pages** as `content/pages/{slug}.json` based on what the client needs (about, contact, services, etc.). Use the provided contact email anywhere it's referenced.
 
 **`package.json`:**
 - Set `name` to the client name (kebab-case)

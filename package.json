@@ -1,8 +1,7 @@
 {
-  "name": "jude-makes-things",
+  "name": "website-framework",
   "version": "0.1.0",
   "private": true,
-  "description": "Website for Jude — a designer who makes clean, modern websites.",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
@@ -17,6 +16,7 @@
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "lucide-react": "^1.8.0",
+    "motion": "^12.38.0",
     "next": "16.2.3",
     "react": "19.2.4",
     "react-dom": "19.2.4",
