@@ -5,14 +5,20 @@
     "repo": "Hude06/JUDE_WEBSITE"
   },
   "server": {
-    "host": "",
-    "user": "",
-    "sshKeyPath": "~/.ssh/id_ed25519",
+    "sshAlias": "jude@judemakes.com",
+    "user": "jude",
+    "sitesDir": "/home/jude/judemakes_link/judemakes.com",
+    "sitePath": "/home/jude/judemakes_link/judemakes.com/WEBSITE",
     "port": 22
   },
   "docker": {
-    "containerName": "jude-makes-things",
-    "port": 3001
+    "containerName": "judemakes-com",
+    "hostPort": 5817,
+    "containerPort": 3000
   },
-  "status": "not-deployed"
+  "mounts": {
+    "content": "/home/jude/judemakes_link/judemakes.com/WEBSITE/content -> /app/content",
+    "deployKey": "/home/jude/judemakes_link/judemakes.com/WEBSITE/deploy-key -> /root/.ssh"
+  },
+  "status": "deployed"
 }
