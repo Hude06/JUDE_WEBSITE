@@ -23,6 +23,7 @@ Every block lives in `components/blocks/` and has a typed interface in `lib/type
 | Type | Purpose | Use when |
 |---|---|---|
 | `hero` | Big headline section with CTAs and optional image | Top of a landing page |
+| `annotated-hero` | Product image + floating callout chips (notes, popovers, callouts, tags) | Premium app landings, Keeby-style launches |
 | `feature-grid` | Icon + title + description grid (2/3/4 cols) | Selling features or capabilities |
 | `stats` | Metric grid with oversized numerals | Credibility, social proof |
 | `steps` | Numbered process with oversized serif numerals | How-it-works, onboarding |
@@ -212,12 +213,48 @@ To use a custom font pair, leave `fonts.pair` unset and provide raw `fonts.headi
 
 ## 7. Gallery route
 
-Visit `/gallery` in dev to see every block rendered with sample data under the active theme. Change `theme.preset` in site.json and refresh to compare visuals. No admin auth required.
+Visit `/gallery` in dev to see every block AND every UI primitive rendered with sample data under the active theme. Change `theme.preset` in site.json and refresh to compare visuals. No admin auth required.
 
 ```bash
 npm run dev
 # open http://localhost:3000/gallery
 ```
+
+---
+
+## 8. UI primitives
+
+Thin, token-driven presentational components in `components/ui/`. Every primitive reads theme CSS variables — no hardcoded colors, radii, or shadows. Switch `theme.preset` in site.json and every primitive reshapes in character.
+
+**When to use:** inside blocks, inside admin editors, inside custom pages. Import from `@/components/ui/<name>`.
+
+**When NOT to use:** in flat-block content JSON. Blocks are the authoring surface; primitives are the implementation layer blocks compose with.
+
+| Primitive | Purpose | Variants |
+|---|---|---|
+| `Button` | Clickable interaction | `default` / `outline` / `ghost` / `secondary` / `destructive` / `link` × `sm` / `default` / `lg` / `icon-xs` / `icon-sm` / `icon` / `icon-lg` |
+| `Card` | Surface container | `default` / `sm` + slot subcomponents (Header/Title/Description/Content/Footer/Action) |
+| `Badge` | Label, tag, status | `default` / `secondary` / `outline` / `destructive` / `ghost` / `link` |
+| `Input` | Single-line text field | native `type` prop |
+| `Textarea` | Multi-line text field | native `rows` |
+| `Label` | Form field label | — |
+| `Separator` | Horizontal/vertical rule | `horizontal` / `vertical` |
+| `Checkbox` | Boolean input | — |
+| `Radio` | One-of-many input | — |
+| `Switch` | On/off toggle | — |
+| `Kbd` | Keyboard shortcut glyph | — |
+
+Every primitive is ≤80 lines, forwards refs, and uses plain React — no runtime dependencies beyond Tailwind and `cn()`. Accessibility-heavy components (Dialog, Select, NavigationMenu) still come from Base UI.
+
+**`buttonVariants({ variant, size, className })`** — exported helper for applying button classes to a non-button element like `<a>`:
+```tsx
+import { buttonVariants } from '@/components/ui/button';
+<a href="/foo" className={buttonVariants({ variant: 'ghost', size: 'sm' })}>
+  Link that looks like a button
+</a>
+```
+
+Same pattern available for `badgeVariants()`.
 
 ---
 
@@ -275,6 +312,76 @@ Paired with `site.json`:
 ```json
 { "theme": { "preset": "editorial", "appearance": "dark" }, "fonts": { "pair": "editorial" } }
 ```
+
+## Recipe: Premium app landing (Keeby-style)
+
+Use `annotated-hero` to pin sticky-note style callouts over a product image, then follow with a wide `feature-grid` and a simple `cta`.
+
+```json
+{
+  "title": "Premium App",
+  "slug": "home",
+  "blocks": [
+    {
+      "id": "s1",
+      "type": "section",
+      "background": "default",
+      "width": "wide",
+      "padding": "xl",
+      "blocks": [
+        {
+          "id": "ah",
+          "type": "annotated-hero",
+          "eyebrow": "0 thocks and counting",
+          "headline": "Your keyboard,\nbut better.",
+          "subheadline": "Mechanical keyboard sounds for Mac.",
+          "caption": "$4.99 · One-time purchase",
+          "primaryCta": { "text": "Download for Mac", "href": "#" },
+          "image": "/images/laptop.jpg",
+          "imageAlt": "Mac showing the app",
+          "imagePosition": "left",
+          "imageAspect": "landscape",
+          "annotations": [
+            { "id": "n1", "text": "try typing here to hear it yourself!", "x": 18, "y": 72, "variant": "note", "rotate": -3, "delay": 0.2 },
+            { "id": "n2", "text": "select switches", "x": 56, "y": 34, "variant": "popover", "delay": 0.35 },
+            { "id": "n3", "text": "click me!", "x": 40, "y": 12, "variant": "callout", "emoji": "👆", "rotate": 2, "delay": 0.5 }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "s2",
+      "type": "section",
+      "background": "default",
+      "width": "wide",
+      "padding": "lg",
+      "blocks": [
+        {
+          "id": "feat",
+          "type": "feature-grid",
+          "columns": 3,
+          "items": [
+            { "icon": "zap", "title": "Low latency", "description": "Lock-free audio engine." },
+            { "icon": "radio", "title": "Real recordings", "description": "Captured from actual switches." },
+            { "icon": "shield", "title": "Completely private", "description": "No data collected, fully offline." }
+          ]
+        }
+      ]
+    }
+  ]
+}
+```
+
+Chip variants available in `annotated-hero` annotations:
+- `note` — warm sticky-note with italic body text
+- `chip` — pill tag with optional emoji
+- `callout` — dark speech bubble with tail
+- `popover` — mac-style dropdown with accent dot
+- `tag` — minimal label with leading dot
+
+Annotations take `x`/`y` as 0-100 percent over the image container. On mobile (<md), they collapse automatically into a 2-col grid below the image.
+
+---
 
 ## Recipe: Neo-brutalist agency portfolio
 

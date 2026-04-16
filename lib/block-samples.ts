@@ -63,6 +63,22 @@ function sample(id: string, type: Block['type']): Block {
         secondaryCta: { text: 'About the work', href: '#' },
         align: 'left',
       };
+    case 'annotated-hero':
+      return {
+        id,
+        type: 'annotated-hero',
+        eyebrow: '0 thocks and counting',
+        headline: 'Your keyboard,\nbut better.',
+        subheadline: 'Mechanical keyboard sounds for Mac.',
+        caption: '$4.99 · One-time purchase',
+        primaryCta: { text: 'Download for Mac', href: '#' },
+        image:
+          'https://images.unsplash.com/photo-1611186871348-b1ce696e52c9?w=1600&q=80',
+        imageAlt: 'Laptop mockup on a warm background',
+        imagePosition: 'left',
+        imageAspect: 'landscape',
+        annotations: [],
+      };
     case 'feature-grid':
       return {
         id,
@@ -242,6 +258,7 @@ export function getSample(type: Block['type']): Block {
 
 export const ALL_BLOCK_TYPES: Block['type'][] = [
   'hero',
+  'annotated-hero',
   'heading',
   'paragraph',
   'rich-text',

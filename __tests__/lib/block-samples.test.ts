@@ -34,7 +34,7 @@ describe('block-samples', () => {
     expect(section.blocks.length).toBeGreaterThan(0);
   });
 
-  it('includes all 21 block types', () => {
-    expect(ALL_BLOCK_TYPES.length).toBe(21);
+  it('includes all 22 block types', () => {
+    expect(ALL_BLOCK_TYPES.length).toBe(22);
   });
 });

@@ -1,8 +1,9 @@
 {
-  "siteName": "New Site",
+  "siteName": "Portfolio",
   "nav": [
     { "label": "Home", "href": "/" },
-    { "label": "Roastery example →", "href": "/examples/roastery" }
+    { "label": "About", "href": "/about" },
+    { "label": "Contact", "href": "/contact" }
   ],
   "fonts": {
     "heading": "Georgia, serif",

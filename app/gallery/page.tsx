@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import { BlockRenderer } from '@/components/BlockRenderer';
 import { getAllSamples, ALL_BLOCK_TYPES } from '@/lib/block-samples';
 import { listThemes } from '@/lib/themes';
+import { UiShowcase } from './ui-showcase';
 
 export const metadata: Metadata = {
   title: 'Block Gallery',
@@ -56,6 +57,22 @@ export default function GalleryPage() {
             </li>
           ))}
         </ol>
+      </div>
+
+      <div className="mx-auto max-w-5xl px-4 py-16 md:px-8">
+        <div className="mb-12 border-t-2 border-border pt-12">
+          <p className="mb-3 text-xs uppercase tracking-[0.22em] text-muted-foreground">
+            UI primitives
+          </p>
+          <h2 className="font-heading text-4xl leading-[0.95] tracking-tight md:text-5xl">
+            Components
+          </h2>
+          <p className="mt-4 max-w-xl text-base leading-relaxed text-muted-foreground md:text-lg">
+            The token-driven primitives that every block composes with. Switch
+            theme preset and everything below rerenders in character.
+          </p>
+        </div>
+        <UiShowcase />
       </div>
     </main>
   );

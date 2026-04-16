@@ -10,6 +10,7 @@ import { BadgeGroupEditor } from './editors/BadgeGroupEditor';
 import { CardGridEditor } from './editors/CardGridEditor';
 import { ButtonEditor } from './editors/ButtonEditor';
 import { HeroEditor } from './editors/HeroEditor';
+import { AnnotatedHeroEditor } from './editors/AnnotatedHeroEditor';
 import { FeatureGridEditor } from './editors/FeatureGridEditor';
 import { CtaEditor } from './editors/CtaEditor';
 import { FaqEditor } from './editors/FaqEditor';
@@ -40,6 +41,7 @@ const typeLabels: Record<string, string> = {
   button: 'Button',
   separator: 'Separator',
   hero: 'Hero',
+  'annotated-hero': 'Annotated Hero',
   'feature-grid': 'Feature Grid',
   cta: 'Call to Action',
   faq: 'FAQ',
@@ -99,6 +101,8 @@ export function BlockEditor({ blocks, onBlocksChange, slug }: BlockEditorProps) 
         return <p className="text-sm text-muted-foreground italic">Visual separator</p>;
       case 'hero':
         return <HeroEditor block={block} onChange={onChange} />;
+      case 'annotated-hero':
+        return <AnnotatedHeroEditor block={block} onChange={onChange} />;
       case 'feature-grid':
         return <FeatureGridEditor block={block} onChange={onChange} />;
       case 'cta':

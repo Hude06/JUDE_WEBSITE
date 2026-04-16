@@ -8,6 +8,7 @@ import { CardGridBlock } from './blocks/CardGridBlock';
 import { ButtonBlock } from './blocks/ButtonBlock';
 import { SeparatorBlock } from './blocks/SeparatorBlock';
 import { HeroBlock } from './blocks/HeroBlock';
+import { AnnotatedHeroBlock } from './blocks/AnnotatedHeroBlock';
 import { FeatureGridBlock } from './blocks/FeatureGridBlock';
 import { CtaBlock } from './blocks/CtaBlock';
 import { FaqBlock } from './blocks/FaqBlock';
@@ -31,6 +32,7 @@ const blockRegistry: Record<string, ComponentType<{ block: never }>> = {
   button: ButtonBlock as ComponentType<{ block: never }>,
   separator: SeparatorBlock as ComponentType<{ block: never }>,
   hero: HeroBlock as ComponentType<{ block: never }>,
+  'annotated-hero': AnnotatedHeroBlock as ComponentType<{ block: never }>,
   'feature-grid': FeatureGridBlock as ComponentType<{ block: never }>,
   cta: CtaBlock as ComponentType<{ block: never }>,
   faq: FaqBlock as ComponentType<{ block: never }>,

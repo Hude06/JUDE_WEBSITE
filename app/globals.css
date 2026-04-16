@@ -136,12 +136,20 @@ h1, h2, h3, h4, h5, h6 {
   html {
     @apply font-sans;
   }
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+  }
 }
 
 /* Theme presets — additive overrides keyed on [data-theme] attribute.
-   Keep :root defaults intact so legacy sites render unchanged. */
+   Keep :root defaults intact so legacy sites render unchanged.
+   Selectors are bare (no :root) so a nested element can scope a different
+   theme — used by /examples/[example] routes to render under their own
+   preset without disturbing the framework reference page. */
 
-:root[data-theme="editorial"] {
+[data-theme="editorial"] {
   --background: oklch(0.98 0.01 85);
   --foreground: oklch(0.15 0.02 30);
   --card: oklch(0.99 0.005 85);
@@ -162,8 +170,8 @@ h1, h2, h3, h4, h5, h6 {
   --radius: 0.375rem;
 }
 
-:root[data-theme="editorial"].dark,
-:root[data-theme="editorial"][data-appearance="dark"] {
+[data-theme="editorial"].dark,
+[data-theme="editorial"][data-appearance="dark"] {
   --background: oklch(0.13 0.015 40);
   --foreground: oklch(0.95 0.01 80);
   --card: oklch(0.16 0.015 40);
@@ -182,7 +190,7 @@ h1, h2, h3, h4, h5, h6 {
   --input: oklch(0.25 0.015 40);
 }
 
-:root[data-theme="studio"] {
+[data-theme="studio"] {
   --background: oklch(1 0 0);
   --foreground: oklch(0.08 0 0);
   --card: oklch(1 0 0);
@@ -203,8 +211,8 @@ h1, h2, h3, h4, h5, h6 {
   --radius: 0rem;
 }
 
-:root[data-theme="studio"].dark,
-:root[data-theme="studio"][data-appearance="dark"] {
+[data-theme="studio"].dark,
+[data-theme="studio"][data-appearance="dark"] {
   --background: oklch(0.08 0 0);
   --foreground: oklch(1 0 0);
   --card: oklch(0.08 0 0);
@@ -221,7 +229,7 @@ h1, h2, h3, h4, h5, h6 {
   --input: oklch(1 0 0);
 }
 
-:root[data-theme="tech"] {
+[data-theme="tech"] {
   --background: oklch(0.12 0.02 260);
   --foreground: oklch(0.92 0.02 260);
   --card: oklch(0.15 0.02 260);
@@ -242,7 +250,7 @@ h1, h2, h3, h4, h5, h6 {
   --radius: 0.125rem;
 }
 
-:root[data-theme="warm"] {
+[data-theme="warm"] {
   --background: oklch(0.94 0.03 80);
   --foreground: oklch(0.25 0.05 50);
   --card: oklch(0.96 0.02 80);
@@ -263,8 +271,8 @@ h1, h2, h3, h4, h5, h6 {
   --radius: 1.25rem;
 }
 
-:root[data-theme="warm"].dark,
-:root[data-theme="warm"][data-appearance="dark"] {
+[data-theme="warm"].dark,
+[data-theme="warm"][data-appearance="dark"] {
   --background: oklch(0.2 0.03 50);
   --foreground: oklch(0.92 0.03 80);
   --card: oklch(0.23 0.03 50);
@@ -281,7 +289,7 @@ h1, h2, h3, h4, h5, h6 {
   --input: oklch(0.3 0.03 50);
 }
 
-:root[data-theme="monochrome"] {
+[data-theme="monochrome"] {
   --background: oklch(0.97 0 0);
   --foreground: oklch(0.12 0 0);
   --card: oklch(0.97 0 0);
@@ -302,8 +310,8 @@ h1, h2, h3, h4, h5, h6 {
   --radius: 0.25rem;
 }
 
-:root[data-theme="monochrome"].dark,
-:root[data-theme="monochrome"][data-appearance="dark"] {
+[data-theme="monochrome"].dark,
+[data-theme="monochrome"][data-appearance="dark"] {
   --background: oklch(0.12 0 0);
   --foreground: oklch(0.97 0 0);
   --card: oklch(0.14 0 0);

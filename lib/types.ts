@@ -208,6 +208,44 @@ export interface QuoteBlock {
   avatar?: string;
 }
 
+export type AnnotationVariant = 'note' | 'chip' | 'callout' | 'popover' | 'tag';
+
+export interface Annotation {
+  id: string;
+  text: string;
+  x: number;
+  y: number;
+  variant?: AnnotationVariant;
+  emoji?: string;
+  rotate?: number;
+  delay?: number;
+  arrow?: {
+    targetX: number;
+    targetY: number;
+    curvature?: number;
+  };
+}
+
+export type AnnotatedHeroImagePosition = 'left' | 'right';
+export type AnnotatedHeroImageAspect = 'landscape' | 'square' | 'portrait';
+
+export interface AnnotatedHeroBlock {
+  id: string;
+  type: 'annotated-hero';
+  eyebrow?: string;
+  headline: string;
+  subheadline?: string;
+  caption?: string;
+  primaryCta?: { text: string; href: string };
+  secondaryCta?: { text: string; href: string };
+  image: string;
+  imageAlt?: string;
+  imagePosition?: AnnotatedHeroImagePosition;
+  imageAspect?: AnnotatedHeroImageAspect;
+  annotations?: Annotation[];
+  align?: 'left' | 'center';
+}
+
 export type SectionBackground = 'default' | 'muted' | 'foreground' | 'accent' | 'card';
 export type SectionWidth = 'narrow' | 'standard' | 'wide' | 'full';
 export type SectionPadding = 'none' | 'sm' | 'md' | 'lg' | 'xl';
@@ -232,6 +270,7 @@ export type LeafBlock =
   | ButtonBlock
   | SeparatorBlock
   | HeroBlock
+  | AnnotatedHeroBlock
   | FeatureGridBlock
   | CtaBlock
   | FaqBlock
@@ -255,6 +294,7 @@ export type Block =
   | ButtonBlock
   | SeparatorBlock
   | HeroBlock
+  | AnnotatedHeroBlock
   | FeatureGridBlock
   | CtaBlock
   | FaqBlock

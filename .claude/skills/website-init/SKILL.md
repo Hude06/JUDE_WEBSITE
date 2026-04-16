@@ -97,21 +97,18 @@ Clone the latest framework and sever the link. If the clone fails, check network
 
 ### Step 2: Customize Content Files
 
-Edit these files with the developer's answers:
+The framework ships with a blank skeleton at `content/site.json` and `content/pages/home.json`. Build the client's site by editing these files (and adding more pages under `content/pages/` as needed). If you want ideas or examples of how blocks fit together, peek at `examples/starter-site/` — it's reference material, not a starting point.
 
 **`content/site.json`:**
 - Set `siteName` to the provided site name
 - Set `colors.primary` to the provided primary color
-- Keep nav, fonts, and other colors as defaults
+- Update `nav` to match the pages you create
+- Keep fonts as defaults unless `DESIGN_TOOLKITS.md` Section 6 suggests something better for this site type
 
 **`content/pages/home.json`:**
-- Change the first heading block's `text` from "Welcome to My Portfolio" to "Welcome to {siteName}"
+- Replace the placeholder content with a real home page composed for this client, using blocks from `AI_PLAYBOOK.md`
 
-**`content/pages/contact.json`:**
-- Replace `hello@example.com` with the provided contact email in the paragraph block
-
-**Delete test fixtures:**
-- Delete `content/pages/test.json` if it exists (test page from development)
+**Add additional pages** as `content/pages/{slug}.json` based on what the client needs (about, contact, services, etc.). Use the provided contact email anywhere it's referenced.
 
 **`package.json`:**
 - Set `name` to the client name (kebab-case)
