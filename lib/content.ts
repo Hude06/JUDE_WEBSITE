@@ -5,8 +5,27 @@ import type { PageContent, SiteConfig } from './types';
 const CONTENT_DIR = path.join(process.cwd(), 'content');
 const PAGES_DIR = path.join(CONTENT_DIR, 'pages');
 
+const SLUG_REGEX = /^[a-z0-9-]+$/;
+
+function isSafeSlug(slug: string): boolean {
+  return typeof slug === 'string' && SLUG_REGEX.test(slug) && slug.length > 0 && slug.length <= 100;
+}
+
+function assertInsidePages(target: string): void {
+  const resolvedBase = path.resolve(PAGES_DIR) + path.sep;
+  const resolvedTarget = path.resolve(target);
+  if (!(resolvedTarget + path.sep).startsWith(resolvedBase) && resolvedTarget !== path.resolve(PAGES_DIR)) {
+    throw new Error('Path traversal detected');
+  }
+}
+
 export function loadPage(slug: string): PageContent {
+  if (!isSafeSlug(slug)) {
+    throw new Error(`Invalid slug: ${slug}`);
+  }
+
   const filePath = path.join(PAGES_DIR, `${slug}.json`);
+  assertInsidePages(filePath);
 
   if (!fs.existsSync(filePath)) {
     throw new Error(`Page not found: ${slug}`);

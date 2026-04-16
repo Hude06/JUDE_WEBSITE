@@ -22,11 +22,11 @@ export async function GET() {
 export async function PUT(request: Request) {
   try {
     const body = await request.json();
-    writeSiteConfig(body as SiteConfig);
+    const saved = writeSiteConfig(body);
 
     return NextResponse.json<ApiResponse<SiteConfig>>({
       success: true,
-      data: body as SiteConfig,
+      data: saved,
     });
   } catch (error) {
     const message = error instanceof Error ? error.message : 'Failed to update site config';

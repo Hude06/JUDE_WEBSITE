@@ -2,7 +2,7 @@ import { NextResponse } from 'next/server';
 import { saveUploadedFile } from '@/lib/admin';
 import type { ApiResponse } from '@/lib/types';
 
-const MAX_SIZE = 5 * 1024 * 1024; // 5MB
+const MAX_SIZE = 5 * 1024 * 1024;
 
 export async function POST(request: Request) {
   try {
@@ -12,13 +12,6 @@ export async function POST(request: Request) {
     if (!file) {
       return NextResponse.json<ApiResponse<null>>(
         { success: false, error: 'No file provided' },
-        { status: 400 }
-      );
-    }
-
-    if (!file.type.startsWith('image/')) {
-      return NextResponse.json<ApiResponse<null>>(
-        { success: false, error: 'File must be an image' },
         { status: 400 }
       );
     }
@@ -41,7 +34,7 @@ export async function POST(request: Request) {
     const message = error instanceof Error ? error.message : 'Upload failed';
     return NextResponse.json<ApiResponse<null>>(
       { success: false, error: message },
-      { status: 500 }
+      { status: 400 }
     );
   }
 }

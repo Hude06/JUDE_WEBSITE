@@ -1,5 +1,5 @@
 import { NextResponse } from 'next/server';
-import { rebuildSite, gitCommitAndPush, isRebuilding } from '@/lib/admin';
+import { rebuildSite, gitCommitAndPush, isRebuilding, rebuildCooldownRemainingMs } from '@/lib/admin';
 import type { ApiResponse } from '@/lib/types';
 
 interface RebuildResult {
@@ -15,9 +15,21 @@ export async function POST(request: Request) {
     );
   }
 
+  const cooldown = rebuildCooldownRemainingMs();
+  if (cooldown > 0) {
+    return NextResponse.json<ApiResponse<null>>(
+      { success: false, error: `Rate limited: wait ${Math.ceil(cooldown / 1000)}s` },
+      { status: 429 }
+    );
+  }
+
   try {
     const body = await request.json().catch(() => ({}));
-    const message = (body as { message?: string }).message || 'content: update via admin panel';
+    const raw = (body as { message?: unknown }).message;
+    const message =
+      typeof raw === 'string' && raw.trim().length > 0 && raw.length <= 500
+        ? raw
+        : 'content: update via admin panel';
 
     await rebuildSite();
     const committed = await gitCommitAndPush(message);
