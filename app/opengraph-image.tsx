@@ -1,6 +1,7 @@
 import { ImageResponse } from 'next/og';
 
-export const runtime = 'edge';
+// Uses default Node.js runtime — edge runtime is not supported in the
+// standalone Docker build.
 export const alt = 'Jude Makes Things — Websites, made simple.';
 export const size = {
   width: 1200,
