@@ -1,8 +1,14 @@
 {
   "siteName": "New Site",
   "nav": [
-    { "label": "Home", "href": "/" },
-    { "label": "Roastery example →", "href": "/examples/roastery" }
+    {
+      "label": "Home",
+      "href": "/"
+    },
+    {
+      "label": "Roastery example →",
+      "href": "/examples/roastery"
+    }
   ],
   "fonts": {
     "heading": "Georgia, serif",
