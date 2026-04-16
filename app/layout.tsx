@@ -11,6 +11,7 @@ import {
 } from 'next/font/google';
 import { cn } from '@/lib/utils';
 import { SmoothAnchorScroll } from '@/components/SmoothAnchorScroll';
+import { PlausibleScript } from '@/components/PlausibleScript';
 import './globals.css';
 
 const geist = Geist({ subsets: ['latin'], variable: '--font-sans' });
@@ -86,6 +87,7 @@ export default function RootLayout({
       <body className="min-h-screen flex flex-col antialiased" style={cssVars}>
         <SmoothAnchorScroll />
         {children}
+        <PlausibleScript />
       </body>
     </html>
   );
