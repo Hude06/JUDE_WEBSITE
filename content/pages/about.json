@@ -6,12 +6,12 @@
       "id": "about-1",
       "type": "heading",
       "level": 1,
-      "text": "Hi, I’m Jude Hill."
+      "text": "Hi, I'm Jude Hill."
     },
     {
       "id": "about-2",
       "type": "paragraph",
-      "text": "I’m a high school student from Eugene, Oregon who builds stunning websites that are fast and simple. Whether you’re a small business, a creative, or just someone with an idea — I’d love to help you create something that you’ll love. I design in the browser, ship every few days, and hand off something you can update yourself.",
+      "text": "I'm a high school student from Eugene, Oregon who builds stunning websites that are fast and simple. Whether you're a small business, a creative, or just someone with an idea — I'd love to help you create something you'll love. I design in the browser, ship every few days, and hand off something you can update yourself.",
       "dropCap": true
     },
     {
@@ -22,10 +22,15 @@
       "variant": "default"
     },
     {
+      "id": "about-sep-1",
+      "type": "separator"
+    },
+    {
       "id": "about-4",
       "type": "heading",
       "level": 2,
-      "text": "How I work"
+      "text": "How I work",
+      "anchorId": "how"
     },
     {
       "id": "about-5",
@@ -33,32 +38,37 @@
       "steps": [
         {
           "title": "We talk",
-          "description": "You tell me about your project — what you need, who it’s for, and what you’re imagining. A quick conversation is all it takes to get started."
+          "description": "You tell me about your project — what you need, who it's for, and what you're imagining. A quick conversation is all it takes to get started."
         },
         {
           "title": "I design + build",
-          "description": "I get to work in the browser. You’ll see real progress every few days, not just mockups."
+          "description": "I get to work in the browser. You'll see real progress every few days, not just mockups."
         },
         {
           "title": "We iterate",
-          "description": "You give feedback, I make it happen. Quick rounds until you’re happy — no rush, no pressure."
+          "description": "You give feedback, I make it happen. Quick rounds until you're happy — no rush, no pressure."
         },
         {
           "title": "You own it",
-          "description": "When it’s done, it’s yours — the site, the code, and the content. I’ll stick around if you need help down the road."
+          "description": "When it's done, it's yours — the site, the code, and the content. I'll stick around if you need help down the road."
         }
       ]
+    },
+    {
+      "id": "about-sep-2",
+      "type": "separator"
     },
     {
       "id": "about-6",
       "type": "heading",
       "level": 2,
-      "text": "Outside the browser"
+      "text": "Outside the browser",
+      "anchorId": "else"
     },
     {
       "id": "about-7",
       "type": "paragraph",
-      "text": "When I’m not building websites, you’ll find me flying FPV drones, making things in my workshop, or shipping orders from my Etsy store."
+      "text": "When I'm not building websites, you'll find me flying FPV drones, making things in my workshop, or shipping orders from my Etsy store."
     },
     {
       "id": "about-8",

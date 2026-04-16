@@ -5,10 +5,10 @@
     {
       "id": "home-1",
       "type": "hero",
-      "eyebrow": "Jude Hill — Website Designer",
+      "eyebrow": "Jude Hill — Designer & Developer",
       "headline": "Websites, made simple.",
       "subheadline": "Fast, beautiful sites built by hand for small businesses, creatives, and anyone with an idea worth shipping.",
-      "primaryCta": { "text": "Get in touch", "href": "/contact" },
+      "primaryCta": { "text": "Start a project", "href": "/contact" },
       "secondaryCta": { "text": "See selected work", "href": "/#work" }
     },
     {
@@ -33,7 +33,7 @@
     {
       "id": "home-4",
       "type": "case-study",
-      "client": "Bobby Salazar’s",
+      "client": "Bobby Salazar's",
       "tagline": "Family-run Mexican food since 1990 — restaurants, catering, retail salsa, and recipes that go back generations.",
       "year": "2024",
       "role": "Design + Build",
@@ -54,10 +54,15 @@
       "reverse": false
     },
     {
+      "id": "home-sep-1",
+      "type": "separator"
+    },
+    {
       "id": "home-6",
       "type": "heading",
       "level": 2,
-      "text": "How I work"
+      "text": "How I work",
+      "anchorId": "process"
     },
     {
       "id": "home-7",
@@ -70,13 +75,37 @@
         },
         {
           "title": "Continuous support",
-          "description": "Your site isn’t done when it launches. I stick around to iterate, tweak, and improve based on what’s working."
+          "description": "Your site isn't done when it launches. I stick around to iterate, tweak, and improve based on what's working."
         },
         {
           "title": "Quick and fast",
           "description": "Performance comes first. Every site loads fast, runs smooth, and scores well where it counts."
         }
       ]
+    },
+    {
+      "id": "home-sep-2",
+      "type": "separator"
+    },
+    {
+      "id": "home-8",
+      "type": "heading",
+      "level": 2,
+      "text": "A little about me",
+      "anchorId": "about-snippet"
+    },
+    {
+      "id": "home-9",
+      "type": "paragraph",
+      "text": "I'm a high school student from Eugene, Oregon who builds websites for small businesses and creatives. I design in the browser, ship every few days, and hand off something you can update yourself. When I'm not shipping code, I'm flying FPV drones, running an Etsy store, and making things in my workshop.",
+      "dropCap": true
+    },
+    {
+      "id": "home-10",
+      "type": "button",
+      "text": "Read more",
+      "href": "/about",
+      "variant": "outline"
     }
   ]
 }
