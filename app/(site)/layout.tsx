@@ -12,7 +12,7 @@ export default function SiteLayout({
   return (
     <>
       <Header siteName={config.siteName} nav={config.nav} />
-      <main className="flex-1 max-w-4xl mx-auto px-4 py-8 w-full">{children}</main>
+      <main className="flex-1">{children}</main>
       <Footer siteName={config.siteName} />
     </>
   );

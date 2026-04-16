@@ -23,6 +23,7 @@ import { VideoEditor } from './editors/VideoEditor';
 import { ContactFormEditor } from './editors/ContactFormEditor';
 import { TwoColumnEditor } from './editors/TwoColumnEditor';
 import { QuoteEditor } from './editors/QuoteEditor';
+import { CaseStudyEditor } from './editors/CaseStudyEditor';
 import { SectionEditor } from './editors/SectionEditor';
 import { BlockGallery } from './BlockGallery';
 
@@ -54,6 +55,7 @@ const typeLabels: Record<string, string> = {
   'contact-form': 'Contact Form',
   'two-column': 'Two Column',
   quote: 'Quote',
+  'case-study': 'Case Study',
   section: 'Section',
 };
 
@@ -127,6 +129,8 @@ export function BlockEditor({ blocks, onBlocksChange, slug }: BlockEditorProps) 
         return <TwoColumnEditor block={block} onChange={onChange} />;
       case 'quote':
         return <QuoteEditor block={block} onChange={onChange} />;
+      case 'case-study':
+        return <CaseStudyEditor block={block} onChange={onChange} />;
       case 'section':
         return <SectionEditor block={block} onChange={onChange} />;
       default:

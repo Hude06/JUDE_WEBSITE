@@ -1,5 +1,4 @@
 import type { BadgeGroupBlock as BadgeGroupBlockType } from '@/lib/types';
-import { Badge } from '@/components/ui/badge';
 
 interface BadgeGroupBlockProps {
   block: BadgeGroupBlockType;
@@ -7,10 +6,10 @@ interface BadgeGroupBlockProps {
 
 export function BadgeGroupBlock({ block }: BadgeGroupBlockProps) {
   return (
-    <div className="flex flex-wrap gap-2 my-4">
-      {block.badges.map((badge) => (
-        <Badge key={badge} variant="secondary">{badge}</Badge>
-      ))}
+    <div className="mx-auto max-w-[var(--container-default)] px-6 md:px-10 py-6">
+      <p className="text-xs uppercase tracking-[0.2em] text-[color:var(--color-muted)]">
+        {block.badges.join(' · ')}
+      </p>
     </div>
   );
 }

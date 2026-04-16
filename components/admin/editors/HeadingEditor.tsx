@@ -34,6 +34,16 @@ export function HeadingEditor({ block, onChange }: HeadingEditorProps) {
           <option value={6}>H6</option>
         </select>
       </div>
+      <div>
+        <Label>Anchor ID (optional)</Label>
+        <Input
+          value={block.anchorId ?? ''}
+          onChange={(e) =>
+            onChange({ ...block, anchorId: e.target.value || undefined })
+          }
+          placeholder="e.g. work — lets nav links target this heading"
+        />
+      </div>
     </div>
   );
 }

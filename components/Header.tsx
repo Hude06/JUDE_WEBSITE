@@ -1,7 +1,4 @@
 import type { NavLink } from '@/lib/types';
-import { buttonVariants } from '@/components/ui/button';
-import { Separator } from '@/components/ui/separator';
-import { cn } from '@/lib/utils';
 
 interface HeaderProps {
   siteName: string;
@@ -10,24 +7,26 @@ interface HeaderProps {
 
 export function Header({ siteName, nav }: HeaderProps) {
   return (
-    <>
-      <header className="flex items-center justify-between px-8 py-4">
-        <a href="/" className="text-xl font-bold tracking-tight">
+    <header className="sticky top-0 z-40 bg-white/92 backdrop-blur-sm border-b border-[color:var(--color-hairline)]">
+      <div className="mx-auto flex max-w-[var(--container-wide)] items-baseline justify-between px-6 py-5 md:px-10 md:py-6">
+        <a
+          href="/"
+          className="font-display italic text-2xl md:text-[1.75rem] leading-none tracking-tight text-[color:var(--color-fg)]"
+        >
           {siteName}
         </a>
-        <nav className="flex items-center gap-1">
+        <nav className="flex items-baseline gap-5 sm:gap-8 md:gap-12">
           {nav.map((link) => (
             <a
               key={link.href}
               href={link.href}
-              className={cn(buttonVariants({ variant: 'ghost', size: 'sm' }))}
+              className="link-underline text-sm text-[color:var(--color-fg)]"
             >
               {link.label}
             </a>
           ))}
         </nav>
-      </header>
-      <Separator />
-    </>
+      </div>
+    </header>
   );
 }

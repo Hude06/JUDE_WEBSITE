@@ -1,79 +1,46 @@
 import type { CtaBlock as CtaBlockType } from '@/lib/types';
-import { buttonVariants } from '@/components/ui/button';
+import { secondaryLink } from '@/lib/buttons';
 import { cn } from '@/lib/utils';
-import { ArrowRight } from 'lucide-react';
 
 interface CtaBlockProps {
   block: CtaBlockType;
 }
 
 export function CtaBlock({ block }: CtaBlockProps) {
-  const tone = block.tone ?? 'default';
-
-  const toneClasses = {
-    default: 'bg-muted text-foreground',
-    bold: 'bg-foreground text-background',
-    quiet: 'bg-background text-foreground ring-1 ring-border',
-  }[tone];
-
   return (
-    <section
-      className={cn(
-        'relative my-16 overflow-hidden rounded-2xl p-10 md:p-16',
-        toneClasses,
-      )}
-    >
-      {tone === 'bold' && (
-        <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,rgba(255,255,255,0.08),transparent_55%)]" />
-      )}
-      <div className="relative grid gap-8 md:grid-cols-[1.5fr_auto] md:items-end">
-        <div className="space-y-4">
-          {block.eyebrow && (
-            <p
-              className={cn(
-                'text-xs uppercase tracking-[0.22em]',
-                tone === 'bold' ? 'text-background/60' : 'text-muted-foreground',
-              )}
-            >
-              {block.eyebrow}
-            </p>
-          )}
-          <h2 className="font-heading text-4xl leading-tight tracking-tight md:text-5xl">
-            {block.title}
-          </h2>
-          {block.description && (
-            <p
-              className={cn(
-                'max-w-xl text-base md:text-lg',
-                tone === 'bold' ? 'text-background/70' : 'text-muted-foreground',
-              )}
-            >
-              {block.description}
-            </p>
-          )}
-        </div>
+    <section className="mx-auto max-w-[var(--container-wide)] px-6 md:px-10 py-[var(--space-section-lg)]">
+      <div className="max-w-5xl">
+        {block.eyebrow && (
+          <p className="text-xs uppercase tracking-[0.22em] text-[color:var(--color-muted)] mb-8">
+            {block.eyebrow}
+          </p>
+        )}
+
+        <h2
+          className="font-display leading-[0.92] tracking-[-0.02em] text-[color:var(--color-fg)]"
+          style={{ fontSize: 'clamp(2.5rem, 8vw, 7rem)' }}
+        >
+          {block.title}
+        </h2>
+
+        {block.description && (
+          <p className="mt-8 max-w-xl text-lg md:text-xl text-[color:var(--color-muted)] leading-snug">
+            {block.description}
+          </p>
+        )}
+
         {(block.primaryCta || block.secondaryCta) && (
-          <div className="flex flex-wrap gap-3">
+          <div className="mt-12 flex flex-wrap items-center gap-x-10 gap-y-6">
             {block.primaryCta && (
               <a
                 href={block.primaryCta.href}
-                className={cn(
-                  buttonVariants({
-                    variant: tone === 'bold' ? 'secondary' : 'default',
-                    size: 'lg',
-                  }),
-                  'group/cta',
-                )}
+                className={cn(secondaryLink, 'text-xl md:text-2xl')}
               >
-                {block.primaryCta.text}
-                <ArrowRight className="ml-1 size-4 transition-transform group-hover/cta:translate-x-1" />
+                {block.primaryCta.text} →
               </a>
             )}
             {block.secondaryCta && (
-              <a
-                href={block.secondaryCta.href}
-                className={cn(buttonVariants({ variant: 'ghost', size: 'lg' }))}
-              >
+              <a href={block.secondaryCta.href} className={secondaryLink}>
                 {block.secondaryCta.text}
               </a>
             )}

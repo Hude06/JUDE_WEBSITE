@@ -1,78 +1,82 @@
 {
-  "title": "Home",
+  "title": "Jude Hill — Websites, made simple.",
   "slug": "home",
   "blocks": [
     {
       "id": "home-1",
-      "type": "heading",
-      "text": "Welcome to Jude Makes Things"
+      "type": "hero",
+      "eyebrow": "Jude Hill — Website Designer",
+      "headline": "Websites, made simple.",
+      "subheadline": "Fast, beautiful sites built by hand for small businesses, creatives, and anyone with an idea worth shipping.",
+      "primaryCta": { "text": "Get in touch", "href": "/contact" },
+      "secondaryCta": { "text": "See selected work", "href": "/#work" }
     },
     {
       "id": "home-2",
-      "type": "paragraph",
-      "text": "I'm a designer and developer who builds clean, modern websites. Take a look around to see my work and learn more about what I do."
+      "type": "heading",
+      "level": 2,
+      "text": "Selected work",
+      "anchorId": "work"
     },
     {
       "id": "home-3",
-      "type": "button",
-      "text": "Get in touch",
-      "href": "/contact",
-      "variant": "default"
+      "type": "case-study",
+      "client": "Rosales Designs",
+      "tagline": "A branding studio with sixteen years of work across food, lifestyle, and consumer brands.",
+      "year": "2025",
+      "role": "Design + Build",
+      "image": "/portfolio/rosales-designs.png",
+      "link": "https://rosalesdesigns.com",
+      "status": "live",
+      "reverse": false
     },
     {
       "id": "home-4",
-      "type": "separator"
+      "type": "case-study",
+      "client": "Bobby Salazar’s",
+      "tagline": "Family-run Mexican food since 1990 — restaurants, catering, retail salsa, and recipes that go back generations.",
+      "year": "2024",
+      "role": "Design + Build",
+      "image": "/portfolio/bobby-salazars.png",
+      "link": "https://bobbysalazar.com",
+      "status": "live",
+      "reverse": true
     },
     {
       "id": "home-5",
-      "type": "heading",
-      "text": "Featured Work",
-      "level": 2
+      "type": "case-study",
+      "client": "Gravel Truck Plans",
+      "tagline": "End-of-life planning for families who want their paperwork in order before anything goes wrong.",
+      "year": "2024",
+      "role": "Design + Build",
+      "image": "/portfolio/gravel-truck-plans.png",
+      "status": "archived",
+      "reverse": false
     },
     {
       "id": "home-6",
-      "type": "card-grid",
-      "cards": [
-        {
-          "title": "Brand Redesign",
-          "description": "Complete visual identity overhaul for a tech startup, including logo, color system, and website.",
-          "image": "/images/hero.svg",
-          "link": "#"
-        },
-        {
-          "title": "E-Commerce Platform",
-          "description": "Built a high-performance online store with custom product pages and checkout flow.",
-          "image": "/images/hero.svg",
-          "link": "#"
-        },
-        {
-          "title": "SaaS Dashboard",
-          "description": "Designed and developed an analytics dashboard with real-time data visualization.",
-          "image": "/images/hero.svg",
-          "link": "#"
-        },
-        {
-          "title": "Mobile App",
-          "description": "Cross-platform mobile app for a fitness brand with workout tracking and social features.",
-          "image": "/images/hero.svg",
-          "link": "#"
-        }
-      ]
+      "type": "heading",
+      "level": 2,
+      "text": "How I work"
     },
     {
       "id": "home-7",
-      "type": "separator"
-    },
-    {
-      "id": "home-8",
-      "type": "heading",
-      "text": "Technologies I Work With",
-      "level": 2
-    },
-    {
-      "id": "home-9",
-      "type": "badge-group",
-      "badges": ["React", "Next.js", "TypeScript", "Tailwind CSS", "Node.js", "Figma", "PostgreSQL", "Docker"]
+      "type": "feature-grid",
+      "columns": 3,
+      "items": [
+        {
+          "title": "Clean and simple",
+          "description": "No clutter, no bloat. Every site is stripped down to what matters — clear design, modern aesthetics, and an experience that just works."
+        },
+        {
+          "title": "Continuous support",
+          "description": "Your site isn’t done when it launches. I stick around to iterate, tweak, and improve based on what’s working."
+        },
+        {
+          "title": "Quick and fast",
+          "description": "Performance comes first. Every site loads fast, runs smooth, and scores well where it counts."
+        }
+      ]
     }
   ]
 }

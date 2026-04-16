@@ -21,6 +21,7 @@ import { VideoBlock } from './blocks/VideoBlock';
 import { ContactFormBlock } from './blocks/ContactFormBlock';
 import { TwoColumnBlock } from './blocks/TwoColumnBlock';
 import { QuoteBlock } from './blocks/QuoteBlock';
+import { CaseStudyBlock } from './blocks/CaseStudyBlock';
 import { SectionBlock } from './blocks/SectionBlock';
 
 const blockRegistry: Record<string, ComponentType<{ block: never }>> = {
@@ -45,6 +46,7 @@ const blockRegistry: Record<string, ComponentType<{ block: never }>> = {
   'contact-form': ContactFormBlock as ComponentType<{ block: never }>,
   'two-column': TwoColumnBlock as ComponentType<{ block: never }>,
   quote: QuoteBlock as ComponentType<{ block: never }>,
+  'case-study': CaseStudyBlock as ComponentType<{ block: never }>,
   section: SectionBlock as ComponentType<{ block: never }>,
 };
 

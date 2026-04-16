@@ -1,18 +1,18 @@
 {
   "siteName": "Jude Makes Things",
   "nav": [
-    { "label": "Home", "href": "/" },
+    { "label": "Work", "href": "/#work" },
     { "label": "About", "href": "/about" },
     { "label": "Contact", "href": "/contact" }
   ],
   "fonts": {
-    "heading": "Georgia, serif",
-    "body": "system-ui, sans-serif"
+    "heading": "var(--font-display)",
+    "body": "var(--font-body)"
   },
   "colors": {
-    "primary": "#2563eb",
-    "secondary": "#64748b",
+    "primary": "#000000",
+    "secondary": "#666666",
     "background": "#ffffff",
-    "text": "#1e293b"
+    "text": "#1a1a1a"
   }
 }

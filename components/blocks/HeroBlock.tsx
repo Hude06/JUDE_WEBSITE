@@ -1,82 +1,75 @@
 import type { HeroBlock as HeroBlockType } from '@/lib/types';
-import { buttonVariants } from '@/components/ui/button';
-import { cn } from '@/lib/utils';
-import { ArrowUpRight } from 'lucide-react';
+import { Reveal } from '@/lib/motion';
+import { primaryButton, secondaryLink } from '@/lib/buttons';
 
 interface HeroBlockProps {
   block: HeroBlockType;
 }
 
 export function HeroBlock({ block }: HeroBlockProps) {
-  const align = block.align ?? 'left';
-  const isCenter = align === 'center';
-
   return (
-    <section className="relative -mx-4 my-12 overflow-hidden md:-mx-8 lg:-mx-16">
-      <div className="pointer-events-none absolute inset-0 -z-10 bg-[radial-gradient(ellipse_at_top_left,rgba(0,0,0,0.05),transparent_60%)]" />
+    <section
+      className="relative overflow-hidden bg-white"
+      style={{
+        backgroundImage: 'url(/noise.svg)',
+        backgroundRepeat: 'repeat',
+        backgroundSize: '200px',
+      }}
+    >
+      {/* Wash slightly de-saturating the noise so it feels like paper grain */}
       <div
-        className={cn(
-          'relative grid gap-10 px-4 py-20 md:px-8 md:py-28 lg:px-16 lg:py-32',
-          block.image && !isCenter ? 'lg:grid-cols-[1.3fr_1fr] lg:items-end' : 'grid-cols-1',
-          isCenter && 'text-center',
-        )}
-      >
-        <div className={cn('space-y-6', isCenter && 'mx-auto max-w-3xl')}>
+        aria-hidden
+        className="absolute inset-0 bg-white/[0.88] pointer-events-none"
+      />
+
+      <div className="relative mx-auto max-w-[var(--container-wide)] px-6 md:px-10 pt-12 pb-24 md:pt-16 md:pb-32">
+        <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-4 md:gap-12 mb-10 md:mb-14">
           {block.eyebrow && (
-            <p
-              className={cn(
-                'inline-flex items-center gap-3 text-xs uppercase tracking-[0.22em] text-muted-foreground',
-                isCenter && 'justify-center',
-              )}
-            >
-              <span className="h-px w-8 bg-foreground/40" />
-              {block.eyebrow}
-            </p>
+            <Reveal delay={0} duration={0.6}>
+              <p className="text-xs uppercase tracking-[0.24em] text-[color:var(--color-muted)]">
+                {block.eyebrow}
+              </p>
+            </Reveal>
           )}
-          <h1 className="font-heading text-5xl leading-[0.95] tracking-tight text-foreground md:text-6xl lg:text-7xl xl:text-8xl">
+          <Reveal delay={0.04} duration={0.5}>
+            <p className="text-xs uppercase tracking-[0.24em] text-[color:var(--color-muted)] tabular-nums md:text-right">
+              Eugene, Oregon · 2026 · Available
+            </p>
+          </Reveal>
+        </div>
+
+        <Reveal delay={0.1} duration={0.7}>
+          <h1
+            className="font-display leading-[0.92] tracking-[-0.03em] text-[color:var(--color-fg)]"
+            style={{ fontSize: 'clamp(3.5rem, 11vw, 10rem)' }}
+          >
             {block.headline}
           </h1>
-          {block.subheadline && (
-            <p
-              className={cn(
-                'max-w-2xl text-lg leading-relaxed text-muted-foreground md:text-xl',
-                isCenter && 'mx-auto',
-              )}
-            >
+        </Reveal>
+
+        {block.subheadline && (
+          <Reveal delay={0.22} duration={0.6}>
+            <p className="mt-12 max-w-2xl text-xl md:text-2xl lg:text-3xl text-[color:var(--color-muted)] leading-[1.3]">
               {block.subheadline}
             </p>
-          )}
-          {(block.primaryCta || block.secondaryCta) && (
-            <div className={cn('flex flex-wrap gap-3 pt-2', isCenter && 'justify-center')}>
+          </Reveal>
+        )}
+
+        {(block.primaryCta || block.secondaryCta) && (
+          <Reveal delay={0.34} duration={0.6}>
+            <div className="mt-16 md:mt-20 flex flex-wrap items-center gap-x-10 gap-y-6">
               {block.primaryCta && (
-                <a
-                  href={block.primaryCta.href}
-                  className={cn(buttonVariants({ variant: 'default', size: 'lg' }), 'group/hcta')}
-                >
+                <a href={block.primaryCta.href} className={primaryButton}>
                   {block.primaryCta.text}
-                  <ArrowUpRight className="ml-1 size-4 transition-transform group-hover/hcta:-translate-y-0.5 group-hover/hcta:translate-x-0.5" />
                 </a>
               )}
               {block.secondaryCta && (
-                <a
-                  href={block.secondaryCta.href}
-                  className={cn(buttonVariants({ variant: 'ghost', size: 'lg' }))}
-                >
-                  {block.secondaryCta.text}
+                <a href={block.secondaryCta.href} className={secondaryLink}>
+                  {block.secondaryCta.text} →
                 </a>
               )}
             </div>
-          )}
-        </div>
-        {block.image && !isCenter && (
-          <div className="relative">
-            <div className="absolute -inset-3 -z-10 rounded-2xl bg-gradient-to-br from-foreground/5 to-transparent" />
-            <img
-              src={block.image}
-              alt={block.headline}
-              className="aspect-[4/5] w-full rounded-xl object-cover"
-            />
-          </div>
+          </Reveal>
         )}
       </div>
     </section>

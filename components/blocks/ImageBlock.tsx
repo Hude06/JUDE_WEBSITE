@@ -1,5 +1,4 @@
 import type { ImageBlock as ImageBlockType } from '@/lib/types';
-import { Card } from '@/components/ui/card';
 
 interface ImageBlockProps {
   block: ImageBlockType;
@@ -7,12 +6,10 @@ interface ImageBlockProps {
 
 export function ImageBlock({ block }: ImageBlockProps) {
   return (
-    <Card className="my-6 overflow-hidden">
-      <img
-        src={block.src}
-        alt={block.alt}
-        className="w-full h-auto"
-      />
-    </Card>
+    <div className="mx-auto max-w-[var(--container-wide)] px-6 md:px-10 py-8">
+      <div className="overflow-hidden rounded-2xl">
+        <img src={block.src} alt={block.alt} className="w-full h-auto block" />
+      </div>
+    </div>
   );
 }

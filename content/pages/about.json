@@ -1,97 +1,90 @@
 {
-  "title": "About",
+  "title": "About — Jude Hill",
   "slug": "about",
   "blocks": [
     {
-      "id": "about-2",
-      "type": "paragraph",
-      "text": "I've been building websites and digital experiences for years. I focus on clean design, fast performance, and great user experience."
-    },
-    {
       "id": "about-1",
       "type": "heading",
-      "text": "About Me"
+      "level": 1,
+      "text": "Hi, I’m Jude Hill."
+    },
+    {
+      "id": "about-2",
+      "type": "paragraph",
+      "text": "I’m a high school student from Eugene, Oregon who builds stunning websites that are fast and simple. Whether you’re a small business, a creative, or just someone with an idea — I’d love to help you create something that you’ll love. I design in the browser, ship every few days, and hand off something you can update yourself.",
+      "dropCap": true
     },
     {
       "id": "about-3",
-      "type": "image",
-      "src": "/uploads/b0cd60d2-9442-45cd-b41b-e6bad62c9ed7.png",
-      "alt": "Portrait"
+      "type": "button",
+      "text": "Start a project",
+      "href": "mailto:jude@judemakes.com",
+      "variant": "default"
     },
     {
       "id": "about-4",
-      "type": "separator"
+      "type": "heading",
+      "level": 2,
+      "text": "How I work"
     },
     {
       "id": "about-5",
-      "type": "heading",
-      "text": "Skills & Background",
-      "level": 2
+      "type": "steps",
+      "steps": [
+        {
+          "title": "We talk",
+          "description": "You tell me about your project — what you need, who it’s for, and what you’re imagining. A quick conversation is all it takes to get started."
+        },
+        {
+          "title": "I design + build",
+          "description": "I get to work in the browser. You’ll see real progress every few days, not just mockups."
+        },
+        {
+          "title": "We iterate",
+          "description": "You give feedback, I make it happen. Quick rounds until you’re happy — no rush, no pressure."
+        },
+        {
+          "title": "You own it",
+          "description": "When it’s done, it’s yours — the site, the code, and the content. I’ll stick around if you need help down the road."
+        }
+      ]
     },
     {
       "id": "about-6",
-      "type": "paragraph",
-      "text": "I work with modern web technologies to build fast, accessible, and maintainable websites. Every project starts with understanding the problem before writing a single line of code."
+      "type": "heading",
+      "level": 2,
+      "text": "Outside the browser"
     },
     {
       "id": "about-7",
-      "type": "heading",
-      "text": "Frontend",
-      "level": 3
+      "type": "paragraph",
+      "text": "When I’m not building websites, you’ll find me flying FPV drones, making things in my workshop, or shipping orders from my Etsy store."
     },
     {
       "id": "about-8",
-      "type": "badge-group",
-      "badges": [
-        "React",
-        "Next.js",
-        "TypeScript",
-        "Tailwind CSS",
-        "HTML/CSS"
+      "type": "card-grid",
+      "cards": [
+        {
+          "title": "Instagram",
+          "description": "@judemakes",
+          "link": "https://instagram.com/judemakes"
+        },
+        {
+          "title": "YouTube",
+          "description": "@Judemakesfpv",
+          "link": "https://youtube.com/@Judemakesfpv"
+        },
+        {
+          "title": "GitHub",
+          "description": "github.com/Hude06",
+          "link": "https://github.com/Hude06"
+        },
+        {
+          "title": "Etsy",
+          "description": "JudeMakesThings",
+          "link": "https://etsy.com/shop/JudeMakesThings"
+        }
       ]
-    },
-    {
-      "id": "about-9",
-      "type": "heading",
-      "text": "Backend",
-      "level": 3
-    },
-    {
-      "id": "about-10",
-      "type": "badge-group",
-      "badges": [
-        "Node.js",
-        "PostgreSQL",
-        "Docker",
-        "REST APIs"
-      ]
-    },
-    {
-      "id": "about-11",
-      "type": "heading",
-      "text": "Design",
-      "level": 3
-    },
-    {
-      "id": "about-12",
-      "type": "badge-group",
-      "badges": [
-        "Figma",
-        "UI/UX",
-        "Responsive Design",
-        "Accessibility"
-      ]
-    },
-    {
-      "id": "about-13",
-      "type": "separator"
-    },
-    {
-      "id": "about-14",
-      "type": "button",
-      "text": "Let's work together",
-      "href": "/contact",
-      "variant": "default"
     }
   ]
 }

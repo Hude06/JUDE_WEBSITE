@@ -3,12 +3,14 @@ export interface HeadingBlock {
   type: 'heading';
   text: string;
   level?: 1 | 2 | 3 | 4 | 5 | 6;
+  anchorId?: string;
 }
 
 export interface ParagraphBlock {
   id: string;
   type: 'paragraph';
   text: string;
+  dropCap?: boolean;
 }
 
 export interface ImageBlock {
@@ -246,6 +248,19 @@ export interface AnnotatedHeroBlock {
   align?: 'left' | 'center';
 }
 
+export interface CaseStudyBlock {
+  id: string;
+  type: 'case-study';
+  client: string;
+  tagline: string;
+  year: string;
+  role: string;
+  image: string;
+  link?: string;
+  status?: 'live' | 'archived';
+  reverse?: boolean;
+}
+
 export type SectionBackground = 'default' | 'muted' | 'foreground' | 'accent' | 'card';
 export type SectionWidth = 'narrow' | 'standard' | 'wide' | 'full';
 export type SectionPadding = 'none' | 'sm' | 'md' | 'lg' | 'xl';
@@ -282,7 +297,8 @@ export type LeafBlock =
   | VideoBlock
   | ContactFormBlock
   | TwoColumnBlock
-  | QuoteBlock;
+  | QuoteBlock
+  | CaseStudyBlock;
 
 export type Block =
   | HeadingBlock
@@ -307,6 +323,7 @@ export type Block =
   | ContactFormBlock
   | TwoColumnBlock
   | QuoteBlock
+  | CaseStudyBlock
   | SectionBlock;
 
 export interface PageContent {

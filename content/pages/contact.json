@@ -1,23 +1,20 @@
 {
-  "title": "Contact",
+  "title": "Contact — Jude Hill",
   "slug": "contact",
   "blocks": [
     {
       "id": "contact-1",
       "type": "heading",
-      "text": "Get In Touch"
+      "level": 1,
+      "text": "Let’s talk."
     },
     {
       "id": "contact-2",
       "type": "paragraph",
-      "text": "I'm always open to new projects and opportunities. Whether you need a full website build, a redesign, or just want to chat about an idea — I'd love to hear from you."
+      "text": "Based in Eugene, Oregon and excited to start working with you. Send me an email with a few sentences about your project and I’ll get back to you shortly."
     },
     {
       "id": "contact-3",
-      "type": "separator"
-    },
-    {
-      "id": "contact-4",
       "type": "card-grid",
       "cards": [
         {
@@ -27,30 +24,41 @@
         },
         {
           "title": "GitHub",
-          "description": "github.com/username",
-          "link": "https://github.com"
+          "description": "github.com/Hude06",
+          "link": "https://github.com/Hude06"
+        },
+        {
+          "title": "Instagram",
+          "description": "@judemakes",
+          "link": "https://instagram.com/judemakes"
+        },
+        {
+          "title": "YouTube",
+          "description": "@Judemakesfpv",
+          "link": "https://youtube.com/@Judemakesfpv"
+        },
+        {
+          "title": "Etsy",
+          "description": "JudeMakesThings",
+          "link": "https://etsy.com/shop/JudeMakesThings"
         }
       ]
     },
     {
+      "id": "contact-4",
+      "type": "heading",
+      "level": 2,
+      "text": "What I’m good for"
+    },
+    {
       "id": "contact-5",
-      "type": "separator"
+      "type": "paragraph",
+      "text": "Personal sites, small business sites, portfolios, landing pages, and just about anything that needs to look clean and load fast."
     },
     {
       "id": "contact-6",
-      "type": "heading",
-      "text": "Availability",
-      "level": 2
-    },
-    {
-      "id": "contact-7",
-      "type": "paragraph",
-      "text": "I'm currently available for freelance work and consulting. Typical turnaround for a full website is 2-4 weeks depending on scope."
-    },
-    {
-      "id": "contact-8",
       "type": "badge-group",
-      "badges": ["Freelance", "Consulting", "Full-time"]
+      "badges": ["Eugene, Oregon", "Available now", "Replies within a day"]
     }
   ]
 }

@@ -333,6 +333,24 @@ const blockTemplates: BlockTemplate[] = [
     icon: '—',
     create: (id) => ({ id, type: 'separator' }),
   },
+  {
+    type: 'case-study',
+    label: 'Case Study',
+    description: 'Portfolio piece with image, tagline, and metadata',
+    icon: '◨',
+    create: (id) => ({
+      id,
+      type: 'case-study',
+      client: 'New Client',
+      tagline: 'One sentence describing what this project is.',
+      year: '2025',
+      role: 'Design + Build',
+      image: '',
+      link: '',
+      status: 'live',
+      reverse: false,
+    }),
+  },
 ];
 
 interface BlockGalleryProps {
