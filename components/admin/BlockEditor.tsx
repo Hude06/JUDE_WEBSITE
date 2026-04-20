@@ -1,5 +1,6 @@
 'use client';
 
+import type { ComponentType } from 'react';
 import type { Block } from '@/lib/types';
 import { Card, CardHeader, CardTitle, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
@@ -25,6 +26,7 @@ import { TwoColumnEditor } from './editors/TwoColumnEditor';
 import { QuoteEditor } from './editors/QuoteEditor';
 import { SectionEditor } from './editors/SectionEditor';
 import { BlockGallery } from './BlockGallery';
+import { clientEditors, clientTypeLabels } from '@client/editor-registry';
 
 interface BlockEditorProps {
   blocks: Block[];
@@ -32,7 +34,38 @@ interface BlockEditorProps {
   slug: string;
 }
 
-const typeLabels: Record<string, string> = {
+type EditorComponent = ComponentType<{ block: Block; onChange: (updated: Block) => void }>;
+
+const frameworkEditors: Record<string, EditorComponent> = {
+  heading: HeadingEditor as EditorComponent,
+  paragraph: ParagraphEditor as EditorComponent,
+  image: ImageEditor as EditorComponent,
+  'badge-group': BadgeGroupEditor as EditorComponent,
+  'card-grid': CardGridEditor as EditorComponent,
+  button: ButtonEditor as EditorComponent,
+  hero: HeroEditor as EditorComponent,
+  'annotated-hero': AnnotatedHeroEditor as EditorComponent,
+  'feature-grid': FeatureGridEditor as EditorComponent,
+  cta: CtaEditor as EditorComponent,
+  faq: FaqEditor as EditorComponent,
+  stats: StatsEditor as EditorComponent,
+  pricing: PricingEditor as EditorComponent,
+  steps: StepsEditor as EditorComponent,
+  team: TeamEditor as EditorComponent,
+  'rich-text': RichTextEditor as EditorComponent,
+  video: VideoEditor as EditorComponent,
+  'contact-form': ContactFormEditor as EditorComponent,
+  'two-column': TwoColumnEditor as EditorComponent,
+  quote: QuoteEditor as EditorComponent,
+  section: SectionEditor as EditorComponent,
+};
+
+const editorRegistry: Record<string, EditorComponent> = {
+  ...frameworkEditors,
+  ...(clientEditors as Record<string, EditorComponent>),
+};
+
+const frameworkTypeLabels: Record<string, string> = {
   heading: 'Heading',
   paragraph: 'Paragraph',
   image: 'Image',
@@ -55,6 +88,11 @@ const typeLabels: Record<string, string> = {
   'two-column': 'Two Column',
   quote: 'Quote',
   section: 'Section',
+};
+
+const typeLabels: Record<string, string> = {
+  ...frameworkTypeLabels,
+  ...clientTypeLabels,
 };
 
 function moveBlock(blocks: Block[], index: number, direction: -1 | 1): Block[] {
@@ -84,54 +122,15 @@ export function BlockEditor({ blocks, onBlocksChange, slug }: BlockEditorProps) 
   function renderEditor(block: Block, index: number) {
     const onChange = (updated: Block) => handleBlockChange(index, updated);
 
-    switch (block.type) {
-      case 'heading':
-        return <HeadingEditor block={block} onChange={onChange} />;
-      case 'paragraph':
-        return <ParagraphEditor block={block} onChange={onChange} />;
-      case 'image':
-        return <ImageEditor block={block} onChange={onChange} />;
-      case 'badge-group':
-        return <BadgeGroupEditor block={block} onChange={onChange} />;
-      case 'card-grid':
-        return <CardGridEditor block={block} onChange={onChange} />;
-      case 'button':
-        return <ButtonEditor block={block} onChange={onChange} />;
-      case 'separator':
-        return <p className="text-sm text-muted-foreground italic">Visual separator</p>;
-      case 'hero':
-        return <HeroEditor block={block} onChange={onChange} />;
-      case 'annotated-hero':
-        return <AnnotatedHeroEditor block={block} onChange={onChange} />;
-      case 'feature-grid':
-        return <FeatureGridEditor block={block} onChange={onChange} />;
-      case 'cta':
-        return <CtaEditor block={block} onChange={onChange} />;
-      case 'faq':
-        return <FaqEditor block={block} onChange={onChange} />;
-      case 'stats':
-        return <StatsEditor block={block} onChange={onChange} />;
-      case 'pricing':
-        return <PricingEditor block={block} onChange={onChange} />;
-      case 'steps':
-        return <StepsEditor block={block} onChange={onChange} />;
-      case 'team':
-        return <TeamEditor block={block} onChange={onChange} />;
-      case 'rich-text':
-        return <RichTextEditor block={block} onChange={onChange} />;
-      case 'video':
-        return <VideoEditor block={block} onChange={onChange} />;
-      case 'contact-form':
-        return <ContactFormEditor block={block} onChange={onChange} />;
-      case 'two-column':
-        return <TwoColumnEditor block={block} onChange={onChange} />;
-      case 'quote':
-        return <QuoteEditor block={block} onChange={onChange} />;
-      case 'section':
-        return <SectionEditor block={block} onChange={onChange} />;
-      default:
-        return <p className="text-sm text-muted-foreground">Unknown block type</p>;
+    if (block.type === 'separator') {
+      return <p className="text-sm text-muted-foreground italic">Visual separator</p>;
     }
+
+    const Editor = editorRegistry[block.type];
+    if (!Editor) {
+      return <p className="text-sm text-muted-foreground">Unknown block type</p>;
+    }
+    return <Editor block={block} onChange={onChange} />;
   }
 
   return (

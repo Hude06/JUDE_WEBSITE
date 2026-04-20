@@ -297,7 +297,7 @@ export const SiteConfigSchema = z.object({
   fonts: z.object({
     heading: fontFamily,
     body: fontFamily,
-    pair: z.enum(['editorial', 'studio', 'tech', 'warm', 'monochrome']).optional(),
+    pair: z.string().max(100).optional(),
   }),
   colors: z.object({
     primary: hexColor,
@@ -306,7 +306,7 @@ export const SiteConfigSchema = z.object({
     text: hexColor,
   }),
   theme: z.object({
-    preset: z.enum(['editorial', 'studio', 'tech', 'warm', 'monochrome']).optional(),
+    preset: z.string().max(100).optional(),
     appearance: z.enum(['light', 'dark', 'auto']).optional(),
     accent: hexColor.optional(),
   }).optional(),

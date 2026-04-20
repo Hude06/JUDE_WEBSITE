@@ -22,8 +22,9 @@ import { ContactFormBlock } from './blocks/ContactFormBlock';
 import { TwoColumnBlock } from './blocks/TwoColumnBlock';
 import { QuoteBlock } from './blocks/QuoteBlock';
 import { SectionBlock } from './blocks/SectionBlock';
+import { clientBlocks } from '@client/registry';
 
-const blockRegistry: Record<string, ComponentType<{ block: never }>> = {
+const frameworkBlocks: Record<string, ComponentType<{ block: never }>> = {
   heading: HeadingBlock as ComponentType<{ block: never }>,
   paragraph: ParagraphBlock as ComponentType<{ block: never }>,
   image: ImageBlock as ComponentType<{ block: never }>,
@@ -46,6 +47,11 @@ const blockRegistry: Record<string, ComponentType<{ block: never }>> = {
   'two-column': TwoColumnBlock as ComponentType<{ block: never }>,
   quote: QuoteBlock as ComponentType<{ block: never }>,
   section: SectionBlock as ComponentType<{ block: never }>,
+};
+
+const blockRegistry: Record<string, ComponentType<{ block: never }>> = {
+  ...frameworkBlocks,
+  ...clientBlocks,
 };
 
 interface BlockRendererProps {

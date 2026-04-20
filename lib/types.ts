@@ -284,7 +284,14 @@ export type LeafBlock =
   | TwoColumnBlock
   | QuoteBlock;
 
-export type Block =
+import type { ClientBlock } from '../client/types';
+
+export interface BaseBlock {
+  id: string;
+  type: string;
+}
+
+export type FrameworkBlock =
   | HeadingBlock
   | ParagraphBlock
   | ImageBlock
@@ -308,6 +315,8 @@ export type Block =
   | TwoColumnBlock
   | QuoteBlock
   | SectionBlock;
+
+export type Block = FrameworkBlock | ClientBlock;
 
 export interface PageContent {
   title: string;

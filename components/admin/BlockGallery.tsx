@@ -11,9 +11,10 @@ import {
   DialogTrigger,
 } from '@/components/ui/dialog';
 import { Card, CardContent } from '@/components/ui/card';
+import { clientTemplates } from '@client/gallery';
 
 interface BlockTemplate {
-  type: Block['type'];
+  type: string;
   label: string;
   description: string;
   icon: string;
@@ -341,6 +342,8 @@ interface BlockGalleryProps {
   blockCount: number;
 }
 
+const allTemplates: BlockTemplate[] = [...blockTemplates, ...clientTemplates];
+
 export function BlockGallery({ onAddBlock, slug, blockCount }: BlockGalleryProps) {
   const [open, setOpen] = useState(false);
   const counterRef = useRef(0);
@@ -364,7 +367,7 @@ export function BlockGallery({ onAddBlock, slug, blockCount }: BlockGalleryProps
           <DialogTitle>Add a Block</DialogTitle>
         </DialogHeader>
         <div className="grid max-h-[60vh] grid-cols-2 gap-2 overflow-y-auto pr-1">
-          {blockTemplates.map((template) => (
+          {allTemplates.map((template) => (
             <Card
               key={template.type}
               size="sm"

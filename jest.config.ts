@@ -9,6 +9,7 @@ const config: Config = {
     }],
   },
   moduleNameMapper: {
+    '^@client/(.*)$': '<rootDir>/client/$1',
     '^@/(.*)$': '<rootDir>/$1',
     '\\.(css|less|scss)$': '<rootDir>/__tests__/__mocks__/styleMock.ts',
   },

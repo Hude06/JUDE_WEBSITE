@@ -56,8 +56,8 @@ Run these BEFORE asking any questions. If any fail, show the error and STOP.
 
    Check if the framework is already present by looking for `package.json` with `"name": "website-framework"`:
    
-   - **Framework already here:** Skip the clone step entirely. The developer either cloned the repo manually or is running the skill from within the framework. Just sever the git link (`rm -rf .git`) and proceed to customization.
-   - **Empty directory:** Will need to clone the framework first.
+   - **Framework already here:** The developer cloned the framework manually. Do NOT `rm -rf .git` — we need to keep the git history so future framework merges have a common ancestor. Instead, rename the origin to `framework` in Step 1.
+   - **Empty directory:** Will need to clone the framework first. Use a full clone (NOT `--depth 1`) for the same reason — merge needs history.
    - **Non-empty directory without framework:** Warn "This directory has files but doesn't look like the website-framework. /website-init works in either an empty directory or a freshly cloned framework. Proceed anyway?" If denied: STOP.
 
 ## Information Gathering
@@ -80,20 +80,38 @@ The GitHub repo will be named `{clientName}-site` (e.g., `jane-photography-site`
 
 After gathering info, execute these steps in order. Show progress for each step.
 
-### Step 1: Get Framework
+### Step 1: Get Framework (preserves history for future merges)
+
+The client site needs `framework` as a git remote so `npm run sync-framework` can pull updates. Do NOT delete `.git` — we need the commit history so merges have a common ancestor.
 
 **If the framework is already in the directory** (detected in preflight):
 ```bash
-rm -rf .git
+# Rename the framework clone's origin to 'framework'
+git remote rename origin framework 2>/dev/null || git remote add framework https://github.com/Hude06/website-framework.git
+git fetch framework
 ```
-Just sever the git link. The code is already here.
 
-**If the directory is empty** (skill installed globally):
+**If the directory is empty:**
 ```bash
-gh repo clone Hude06/website-framework . -- --depth 1
-rm -rf .git
+gh repo clone Hude06/website-framework .
+git remote rename origin framework
+git fetch framework
 ```
-Clone the latest framework and sever the link. If the clone fails, check network connectivity and repo access.
+No `--depth 1` — the merge base needs full history.
+
+### Step 1b: Mark this as a client site
+
+```bash
+touch .client-site
+```
+
+This file is the marker that activates the zone guardrail — Claude Code and pre-commit hooks will refuse edits to framework-zone files while this file exists at the repo root. See `CLAUDE.md` § "Zone Rules".
+
+The framework's `.gitignore` already excludes `.client-site` so it won't accidentally land upstream. It does get committed to the CLIENT repo though — you want to force-add it:
+
+```bash
+git add -f .client-site
+```
 
 ### Step 2: Customize Content Files
 
@@ -201,19 +219,27 @@ The build MUST pass before committing. If it fails:
 3. Rebuild (max 2 retries)
 4. If still failing, tell the developer — this may be a framework bug
 
-### Step 7: Initialize Git and Create Repo
+### Step 7: Commit Scaffold and Create Client Repo
+
+Do NOT run `git init` — the repo is already initialized with framework history (from Step 1). Just stage and commit the scaffold changes on top:
 
 ```bash
-git init
 git add -A
+git add -f .client-site
 git commit -m "feat: initial site scaffold for {siteName}"
 ```
 
-Then create the private GitHub repo:
+Then create the private GitHub repo and add it as `origin`:
 
 ```bash
 gh repo create {clientName}-site --private --source=. --remote=origin --push
 ```
+
+After this, you should have TWO remotes:
+- `origin` → the client's private repo (push site-specific commits here)
+- `framework` → https://github.com/Hude06/website-framework (read-only, pull updates with `npm run sync-framework`)
+
+Verify with `git remote -v`.
 
 If the repo name is already taken:
 - Tell the developer: "The repo name {clientName}-site already exists."
@@ -255,3 +281,6 @@ Next steps:
 - Do not modify the framework's CLAUDE.md or AGENTS.md
 - Do not modify ARCHITECTURE.md
 - Do not add extra dependencies beyond what the framework includes
+- **Do not `rm -rf .git`** — framework update merges need the shared history
+- **Do not edit framework-zone files during scaffolding** (anything outside `client/`, `content/pages/`, `content/site.json`, `public/uploads/`, `package.json`, `README.md`, `deploy.json`). If the zone guard blocks something, you're in the wrong zone.
+- Do not edit the frozen `client/` stubs (`registry.ts`, `editor-registry.ts`, `gallery.ts`, `types.ts`, `theme.ts`) during scaffolding — leave them as empty stubs. Clients fill them in when they actually add a custom block.

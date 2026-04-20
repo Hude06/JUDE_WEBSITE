@@ -3,8 +3,9 @@ import studio from '../content/themes/studio.json';
 import tech from '../content/themes/tech.json';
 import warm from '../content/themes/warm.json';
 import monochrome from '../content/themes/monochrome.json';
+import { clientThemes } from '../client/theme';
 
-export type ThemePresetName = 'editorial' | 'studio' | 'tech' | 'warm' | 'monochrome';
+export type ThemePresetName = string;
 
 export type FontPairName = 'editorial' | 'studio' | 'tech' | 'warm' | 'monochrome';
 
@@ -49,7 +50,7 @@ export interface ThemePreset {
   atmosphere?: string;
 }
 
-const registry: Record<ThemePresetName, ThemePreset> = {
+const frameworkRegistry: Record<string, ThemePreset> = {
   editorial: editorial as ThemePreset,
   studio: studio as ThemePreset,
   tech: tech as ThemePreset,
@@ -57,8 +58,13 @@ const registry: Record<ThemePresetName, ThemePreset> = {
   monochrome: monochrome as ThemePreset,
 };
 
+const registry: Record<string, ThemePreset> = {
+  ...frameworkRegistry,
+  ...clientThemes,
+};
+
 export function listThemes(): ThemePresetName[] {
-  return Object.keys(registry) as ThemePresetName[];
+  return Object.keys(registry);
 }
 
 export function loadTheme(name: ThemePresetName): ThemePreset {

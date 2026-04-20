@@ -32,12 +32,20 @@ Never hand-roll custom JSX in `app/(site)/` pages — always go through the bloc
 
 ## Adding a Block Type
 
-1. Add interface to `lib/types.ts`, add to `Block` union
+There are two paths depending on whether the block belongs in the framework or is client-specific. Check zone rules below before picking a path.
+
+### Framework block (ships to all clients, requires editing the framework repo)
+
+1. Add interface to `lib/types.ts`, add to `FrameworkBlock` union
 2. Create component in `components/blocks/`
-3. Register in `BlockRenderer.tsx`
+3. Register in `BlockRenderer.tsx` (`frameworkBlocks` object)
 4. Create editor in `components/admin/editors/`
-5. Register in `components/admin/BlockEditor.tsx`
-6. Add to `components/admin/BlockGallery.tsx`
+5. Register in `components/admin/BlockEditor.tsx` (`frameworkEditors` + `frameworkTypeLabels`)
+6. Add to `components/admin/BlockGallery.tsx` (`blockTemplates` array)
+
+### Client block (lives only in a specific client site, goes in `client/`)
+
+See `client/README.md` for the complete walkthrough. Summary: create `client/blocks/<Name>/<Name>Block.tsx` + `<Name>Editor.tsx` + `manifest.ts`, then register them in `client/registry.ts`, `client/editor-registry.ts`, and `client/gallery.ts`. Add the type to `client/types.ts`.
 
 ## Admin Panel
 
@@ -93,16 +101,45 @@ These changes WILL break the admin panel unless you update multiple files in syn
 
 - **Changing `/content/` directory structure** — `lib/content.ts` hardcodes `content/pages/` and `content/site.json`. Moving these breaks the loader.
 
-## Framework Clone Model
+## Zone Rules (Framework vs. Client)
 
-When `/website-init` runs, it copies the ENTIRE framework into the new client site repo. Each client site is an independent fork:
+This repo is organized into two zones. Which files you can edit depends on whether you are in the **framework repo** or a **client site**.
 
-- Bug fixes to the framework do NOT auto-propagate to existing client sites
-- New block types added to the framework do NOT appear in existing client sites
-- Changes in a client site do NOT affect other clients
-- This is intentional — sites are isolated and stable
+### Client sites
 
-To pull framework updates into an existing client site, manually cherry-pick the relevant commits or copy the files.
+A client site has `.client-site` at the repo root (created by `website-init`). In a client site:
+
+- **Editable (client zone):**
+  - `client/**` — custom blocks, custom editors, custom themes, gallery registrations, block type extensions
+  - `content/pages/*.json` — page content
+  - `content/site.json` — nav, fonts, colors
+  - `public/uploads/**` — client-uploaded images
+- **Read-only (framework zone):** everything else (`app/`, `components/`, `lib/`, `middleware.ts`, `next.config.ts`, `Dockerfile`, `nginx.conf`, `content/themes/`, `content/placeholders.json`, framework docs).
+
+### Framework repo
+
+The framework repo has NO `.client-site` marker. In the framework repo:
+
+- **Editable (framework zone):** everything that is framework-owned.
+- **Frozen (client zone):** `client/registry.ts`, `client/editor-registry.ts`, `client/gallery.ts`, `client/types.ts`, `client/theme.ts` — these stubs were committed once in Phase 1 and MUST NOT be edited again. Clients overwrite these files; editing them upstream causes a merge conflict in every client site on `sync-framework`.
+- Only `client/README.md`, `client/blocks/.gitkeep`, and `client/themes/.gitkeep` are framework-editable inside `client/`.
+
+### Guardrails
+
+Two layers enforce the zone split:
+1. **Pre-commit git hook** (`scripts/check-zones.sh`, installed by `npm install` via `scripts/install-hooks.sh`) — blocks commits that cross zones.
+2. **Claude Code PreToolUse hook** (`scripts/claude-zone-guard.sh`, wired up in `.claude/settings.json`) — blocks Edit/Write/MultiEdit calls against cross-zone files at tool-call time.
+
+Escape hatch: `FRAMEWORK_EDIT=1 <command>` disables both guards for that invocation. Use only for emergency patches — edits with this flag may conflict on future framework updates.
+
+## Framework/Client Update Model
+
+When `/website-init` runs, it clones the framework and sets up a `framework` git remote pointing at https://github.com/Hude06/website-framework. Each client site is an independent fork that can pull framework updates cleanly because the zone split guarantees edits never overlap.
+
+- To pull framework updates into a client site: `npm run sync-framework` (runs `scripts/sync-framework.sh`).
+- Framework updates flow only into framework-zone files.
+- Client customizations live entirely in `client/`, `content/pages/`, `content/site.json`, `public/uploads/` — untouched by updates.
+- Merge conflicts are prevented by the guardrail hooks on both sides.
 
 ## Key Conventions
 
