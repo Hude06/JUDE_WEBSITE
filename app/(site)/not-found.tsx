@@ -25,7 +25,7 @@ export default function NotFound() {
         <a href="/" className={primaryButton}>
           Back to home
         </a>
-        <a href="mailto:jude@judemakes.com" className={secondaryLink}>
+        <a href="mailto:jude@micah77.org" className={secondaryLink}>
           Email me →
         </a>
       </div>

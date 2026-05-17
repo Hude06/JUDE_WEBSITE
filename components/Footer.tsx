@@ -56,10 +56,10 @@ export function Footer({ siteName }: FooterProps) {
 
           <div className="mt-14 flex flex-wrap items-center gap-x-10 gap-y-4">
             <a
-              href="mailto:jude@judemakes.com"
+              href="mailto:jude@micah77.org"
               className="group inline-flex items-center gap-3 text-xl md:text-2xl text-[color:var(--color-fg)]"
             >
-              <span className="link-underline">jude@judemakes.com</span>
+              <span className="link-underline">jude@micah77.org</span>
               <span
                 aria-hidden
                 className="inline-block transition-transform duration-300 ease-[var(--ease-out-soft)] group-hover:translate-x-1"
