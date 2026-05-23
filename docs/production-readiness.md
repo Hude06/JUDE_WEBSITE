@@ -6,6 +6,7 @@ This checklist tracks what must be true for the framework to be considered produ
 
 - [x] `npm run verify` exists and runs lint, typecheck, tests, and production build.
 - [x] CI runs verification on push/PR.
+- [x] CI runs scaffold smoke test via `npm create @judemakesthings/website-framework` and validates admin CRUD flow.
 - [x] Next.js build warnings from deprecated `middleware` convention are resolved (migrated to `proxy.ts`).
 
 ## 2. Core Architecture Contract

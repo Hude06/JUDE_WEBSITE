@@ -8,6 +8,7 @@ import path from 'node:path';
 import { spawnSync } from 'node:child_process';
 
 const DEFAULT_REPO = 'https://github.com/Hude06/website-framework.git';
+const CONTENT_CONTRACT_VERSION = 1;
 const EXCLUDED_ROOT_ENTRIES = new Set([
   '.git',
   'node_modules',
@@ -150,6 +151,48 @@ function copyTemplate(sourceDir, targetDir) {
   });
 }
 
+function writeContractVersion(filePath) {
+  const raw = fs.readFileSync(filePath, 'utf8');
+  const parsed = JSON.parse(raw);
+
+  if (typeof parsed !== 'object' || parsed === null || Array.isArray(parsed)) {
+    fail(`invalid JSON object in ${filePath}`);
+  }
+
+  const json = parsed;
+  const changed = json.contractVersion !== CONTENT_CONTRACT_VERSION;
+  if (!changed) return false;
+
+  json.contractVersion = CONTENT_CONTRACT_VERSION;
+  fs.writeFileSync(filePath, `${JSON.stringify(json, null, 2)}\n`);
+  return true;
+}
+
+function stampContentContractVersion(targetDir) {
+  const contentDir = path.join(targetDir, 'content');
+  const pagesDir = path.join(contentDir, 'pages');
+  const candidates = [path.join(contentDir, 'site.json')];
+
+  if (fs.existsSync(pagesDir)) {
+    for (const entry of fs.readdirSync(pagesDir)) {
+      if (!entry.endsWith('.json')) continue;
+      candidates.push(path.join(pagesDir, entry));
+    }
+  }
+
+  let changedCount = 0;
+  for (const filePath of candidates) {
+    if (!fs.existsSync(filePath)) continue;
+    if (writeContractVersion(filePath)) changedCount += 1;
+  }
+
+  if (changedCount > 0) {
+    ok(`stamped contractVersion=${CONTENT_CONTRACT_VERSION} in ${changedCount} content file(s)`);
+  } else {
+    info('content contractVersion already current');
+  }
+}
+
 function main() {
   const options = parseArgs(process.argv.slice(2));
 
@@ -178,6 +221,7 @@ function main() {
     fs.mkdirSync(targetPath, { recursive: true });
     info('copying template files');
     copyTemplate(cloneDir, targetPath);
+    stampContentContractVersion(targetPath);
 
     fs.closeSync(fs.openSync(path.join(targetPath, '.client-site'), 'w'));
     ok('created .client-site marker');
