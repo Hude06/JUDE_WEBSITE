@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.1.3 - 2026-05-23
+
+- Stamp `contractVersion: 1` into scaffolded content JSON files.
+
 ## 0.1.2 - 2026-05-23
 
 - Add `repository.url` metadata for npm provenance validation in GitHub Actions publish.
