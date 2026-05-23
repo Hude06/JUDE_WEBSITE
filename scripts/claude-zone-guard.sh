@@ -46,7 +46,7 @@ is_framework_zone() {
     public/uploads/*) return 1 ;;
     .client-site)    return 1 ;;
     app/*|components/*|lib/*) return 0 ;;
-    middleware.ts|next.config.ts|Dockerfile|nginx.conf) return 0 ;;
+    middleware.ts|proxy.ts|next.config.ts|Dockerfile|nginx.conf) return 0 ;;
     content/themes/*|content/placeholders.json) return 0 ;;
     AI_PLAYBOOK.md|ARCHITECTURE.md|DESIGN_TOOLKITS.md|AGENTS.md) return 0 ;;
     scripts/*|.husky/*|.claude/*) return 0 ;;

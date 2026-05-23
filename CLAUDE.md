@@ -126,7 +126,7 @@ A client site has `.client-site` at the repo root (created by `website-init`). I
   - `content/pages/*.json` — page content
   - `content/site.json` — nav, fonts, colors, theme
   - `public/uploads/**` — client-uploaded images
-- **Read-only (framework zone):** everything else (`app/`, `components/`, `lib/`, `middleware.ts`, `next.config.ts`, `Dockerfile`, `nginx.conf`, `content/themes/`, framework docs).
+- **Read-only (framework zone):** everything else (`app/`, `components/`, `lib/`, `proxy.ts`, `next.config.ts`, `Dockerfile`, `nginx.conf`, `content/themes/`, framework docs).
 
 ### Framework repo
 

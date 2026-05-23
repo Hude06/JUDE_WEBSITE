@@ -6,9 +6,12 @@ class MockIntersectionObserver {
   readonly thresholds: ReadonlyArray<number> = [];
 
   constructor(
-    _callback: IntersectionObserverCallback,
-    _options?: IntersectionObserverInit,
-  ) {}
+    callback: IntersectionObserverCallback,
+    options?: IntersectionObserverInit,
+  ) {
+    void callback;
+    void options;
+  }
 
   observe(): void {}
   unobserve(): void {}
