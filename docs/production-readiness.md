@@ -26,7 +26,7 @@ This checklist tracks what must be true for the framework to be considered produ
 - [x] CSRF protection applied to mutating admin API calls in `proxy.ts`.
 - [x] Admin rebuild endpoint has lock + cooldown.
 - [ ] Add rate-limit strategy for admin APIs at proxy layer or app layer.
-- [ ] Add backup/restore runbook for content JSON and uploads.
+- [x] Add backup/restore runbook for content JSON and uploads — see `docs/backup-restore.md`.
 
 ## 5. npm Publishing Track
 
