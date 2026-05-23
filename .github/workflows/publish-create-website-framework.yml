@@ -1,0 +1,45 @@
+name: Publish Create Website Framework
+
+on:
+  push:
+    tags:
+      - create-website-framework-v*
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      id-token: write
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+          registry-url: https://registry.npmjs.org
+
+      - name: Validate tag matches package version
+        run: |
+          TAG_VERSION="${GITHUB_REF_NAME#create-website-framework-v}"
+          PKG_VERSION="$(node -p \"require('./packages/create-website-framework/package.json').version\")"
+          if [ "$TAG_VERSION" != "$PKG_VERSION" ]; then
+            echo "Tag version ($TAG_VERSION) does not match package version ($PKG_VERSION)"
+            exit 1
+          fi
+
+      - name: Install dependencies
+        run: npm ci --no-audit --no-fund
+
+      - name: Dry-run package contents
+        run: npm pack --dry-run
+        working-directory: packages/create-website-framework
+
+      - name: Publish to npm
+        run: npm publish --access public --provenance
+        working-directory: packages/create-website-framework
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}

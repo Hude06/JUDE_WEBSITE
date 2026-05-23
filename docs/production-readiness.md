@@ -41,5 +41,5 @@ Before publish:
 - [x] License file present.
 - [x] Decide distribution model (`CLI package`).
 - [x] Finalize CLI package publish metadata (`@judemakes/create-website-framework` with `bin`, `files`, and `publishConfig`).
-- [ ] Add changelog/release versioning flow.
-- [ ] Run `npm pack --dry-run` and validate package contents.
+- [x] Add changelog/release versioning flow — see `docs/releasing-create-cli.md`.
+- [x] Run `npm pack --dry-run` and validate package contents (validated for `@judemakes/create-website-framework`).
