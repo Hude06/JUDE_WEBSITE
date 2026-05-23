@@ -18,7 +18,7 @@ This checklist tracks what must be true for the framework to be considered produ
 
 - [x] Docker build path exists and builds standalone Next output.
 - [x] Nginx template aligns with reverse-proxy + `/admin` auth architecture.
-- [ ] Add an environment-variable reference document for deploys (`ADMIN_ALLOWED_HOST`, `FLEET_TOKEN`, `PLAUSIBLE_*`, etc.).
+- [x] Add an environment-variable reference document for deploys (`ADMIN_ALLOWED_HOST`, `FLEET_TOKEN`, `PLAUSIBLE_*`, etc.) — see `docs/deployment-env.md`.
 - [ ] Add scripted post-deploy health check docs/commands.
 
 ## 4. Security and Operations

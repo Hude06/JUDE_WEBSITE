@@ -42,6 +42,7 @@ Visit:
 - `http://localhost:3000/ui-preview` — primitive showcase with theme switcher
 
 Release hardening checklist: `docs/production-readiness.md`
+Deployment env reference: `docs/deployment-env.md`
 
 ## Project Structure
 
