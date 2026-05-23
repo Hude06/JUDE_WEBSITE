@@ -1,0 +1,45 @@
+# Production Readiness Checklist
+
+This checklist tracks what must be true for the framework to be considered production-ready and safe to roll out for client-site generation.
+
+## 1. Quality Gates
+
+- [x] `npm run verify` exists and runs lint, typecheck, tests, and production build.
+- [x] CI runs verification on push/PR.
+- [x] Next.js build warnings from deprecated `middleware` convention are resolved (migrated to `proxy.ts`).
+
+## 2. Core Architecture Contract
+
+- [x] Framework/client zone boundaries are enforced by hooks and tool guardrails.
+- [x] Documentation states immutable-core model and client extension paths.
+- [x] Upload path docs align with runtime (`public/uploads` served at `/uploads/*`).
+
+## 3. Deployment Baseline
+
+- [x] Docker build path exists and builds standalone Next output.
+- [x] Nginx template aligns with reverse-proxy + `/admin` auth architecture.
+- [ ] Add an environment-variable reference document for deploys (`ADMIN_ALLOWED_HOST`, `FLEET_TOKEN`, `PLAUSIBLE_*`, etc.).
+- [ ] Add scripted post-deploy health check docs/commands.
+
+## 4. Security and Operations
+
+- [x] CSRF protection applied to mutating admin API calls in `proxy.ts`.
+- [x] Admin rebuild endpoint has lock + cooldown.
+- [ ] Add rate-limit strategy for admin APIs at proxy layer or app layer.
+- [ ] Add backup/restore runbook for content JSON and uploads.
+
+## 5. npm Publishing Track
+
+The repo is currently a framework application repo. Publishing to npm requires choosing the distribution model:
+
+1. **Template package**: publish files for scaffold tools to copy.
+2. **CLI package**: publish `create-*` command that scaffolds repos.
+3. **Library package**: publish reusable runtime modules consumed by apps.
+
+Before publish:
+
+- [x] License file present.
+- [ ] Decide distribution model.
+- [ ] Finalize `package.json` publish metadata (`private`, `files`, `bin` or `exports`, `publishConfig`).
+- [ ] Add changelog/release versioning flow.
+- [ ] Run `npm pack --dry-run` and validate package contents.

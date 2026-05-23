@@ -41,6 +41,8 @@ Visit:
 - `http://localhost:3000/admin` — admin panel (block editor + preview)
 - `http://localhost:3000/ui-preview` — primitive showcase with theme switcher
 
+Release hardening checklist: `docs/production-readiness.md`
+
 ## Project Structure
 
 ```
