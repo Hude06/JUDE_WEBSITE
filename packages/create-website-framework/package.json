@@ -1,9 +1,13 @@
 {
   "name": "@judemakesthings/create-website-framework",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Scaffold a new client site from the website-framework template.",
   "type": "module",
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Hude06/website-framework"
+  },
   "bin": {
     "create-website-framework": "./bin/create-website-framework.js"
   },
