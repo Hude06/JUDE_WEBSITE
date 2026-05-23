@@ -7,8 +7,10 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint",
+    "typecheck": "tsc --noEmit",
     "test": "jest",
     "test:coverage": "jest --coverage",
+    "verify": "npm run lint && npm run typecheck && npm run test -- --runInBand && npm run build",
     "prepare": "bash scripts/install-hooks.sh || true",
     "sync-framework": "bash scripts/sync-framework.sh"
   },
