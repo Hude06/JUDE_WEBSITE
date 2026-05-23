@@ -1,5 +1,5 @@
 {
-  "name": "@judemakes/create-website-framework",
+  "name": "@judemakesthings/create-website-framework",
   "version": "0.1.0",
   "description": "Scaffold a new client site from the website-framework template.",
   "type": "module",

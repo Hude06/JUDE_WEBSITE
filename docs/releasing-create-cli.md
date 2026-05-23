@@ -1,4 +1,4 @@
-# Releasing `@judemakes/create-website-framework`
+# Releasing `@judemakesthings/create-website-framework`
 
 This repo publishes the initializer package from `packages/create-website-framework/`.
 
@@ -22,7 +22,7 @@ Confirm only expected files are included.
 
 ```bash
 git add packages/create-website-framework/package.json packages/create-website-framework/CHANGELOG.md
-git commit -m "release(create): @judemakes/create-website-framework vX.Y.Z"
+git commit -m "release(create): @judemakesthings/create-website-framework vX.Y.Z"
 git push origin main
 ```
 
@@ -47,4 +47,4 @@ The workflow validates tag/version alignment, runs `npm pack --dry-run`, and pub
 
 Set this repo secret:
 
-- `NPM_TOKEN`: npm automation token with publish access for `@judemakes/create-website-framework`.
+- `NPM_TOKEN`: npm automation token with publish access for `@judemakesthings/create-website-framework`.

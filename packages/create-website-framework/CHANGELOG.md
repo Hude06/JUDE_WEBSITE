@@ -2,7 +2,7 @@
 
 ## 0.1.0 - 2026-05-23
 
-- Initial release of `@judemakes/create-website-framework`.
+- Initial release of `@judemakesthings/create-website-framework`.
 - Local scaffold flow:
   - clone selected framework ref
   - copy clean template files

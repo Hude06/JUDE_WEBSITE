@@ -52,10 +52,10 @@ Create CLI release runbook: `docs/releasing-create-cli.md`
 Use the initializer:
 
 ```bash
-npm create @judemakes/website-framework my-client-site
+npm create @judemakesthings/website-framework my-client-site
 ```
 
-This runs the scoped create package `@judemakes/create-website-framework`, scaffolds a local site, adds the `framework` remote, and creates the `.client-site` marker.
+This runs the scoped create package `@judemakesthings/create-website-framework`, scaffolds a local site, adds the `framework` remote, and creates the `.client-site` marker.
 
 ## Project Structure
 

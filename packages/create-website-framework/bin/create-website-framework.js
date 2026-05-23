@@ -35,8 +35,8 @@ function printHelp() {
 create-website-framework
 
 Usage:
-  npm create @judemakes/website-framework <directory> [-- --ref <ref>]
-  npx @judemakes/create-website-framework <directory> [--ref <ref>]
+  npm create @judemakesthings/website-framework <directory> [-- --ref <ref>]
+  npx @judemakesthings/create-website-framework <directory> [--ref <ref>]
 
 Options:
   --ref <git-ref>               Framework branch or tag to scaffold from (default: main)

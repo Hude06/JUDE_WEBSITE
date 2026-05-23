@@ -1,17 +1,17 @@
-# @judemakes/create-website-framework
+# @judemakesthings/create-website-framework
 
 Scaffold a new client website from the `Hude06/website-framework` repo.
 
 ## Usage
 
 ```bash
-npm create @judemakes/website-framework my-client-site
+npm create @judemakesthings/website-framework my-client-site
 ```
 
 Equivalent direct package call:
 
 ```bash
-npx @judemakes/create-website-framework my-client-site
+npx @judemakesthings/create-website-framework my-client-site
 ```
 
 ## Options
