@@ -43,6 +43,7 @@ Visit:
 
 Release hardening checklist: `docs/production-readiness.md`
 Deployment env reference: `docs/deployment-env.md`
+Post-deploy health checks: `docs/post-deploy-healthcheck.md`
 
 ## Project Structure
 
