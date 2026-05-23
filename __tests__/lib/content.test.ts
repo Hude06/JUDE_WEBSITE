@@ -1,10 +1,12 @@
 import { loadPage, loadSiteConfig, listPages } from '@/lib/content';
+import { CONTENT_CONTRACT_VERSION } from '@/lib/contract';
 
 describe('loadPage', () => {
   it('returns page content for a valid slug', () => {
     const page = loadPage('home');
     expect(page.title).toBeDefined();
     expect(page.slug).toBe('home');
+    expect(page.contractVersion).toBe(CONTENT_CONTRACT_VERSION);
     expect(Array.isArray(page.blocks)).toBe(true);
     expect(page.blocks.length).toBeGreaterThan(0);
   });
@@ -33,6 +35,7 @@ describe('loadSiteConfig', () => {
   it('returns valid site config', () => {
     const config = loadSiteConfig();
     expect(config.siteName).toBeDefined();
+    expect(config.contractVersion).toBe(CONTENT_CONTRACT_VERSION);
     expect(Array.isArray(config.nav)).toBe(true);
     expect(config.nav.length).toBeGreaterThan(0);
     expect(config.fonts.heading).toBeDefined();

@@ -1,6 +1,7 @@
 import { NextResponse } from 'next/server';
 import { listPages, loadPage } from '@/lib/content';
 import { writePage, validateSlug, generateBlockId } from '@/lib/admin';
+import { CONTENT_CONTRACT_VERSION } from '@/lib/contract';
 import type { ApiResponse, FrameworkBlock, PageContent } from '@/lib/types';
 
 export async function GET() {
@@ -47,7 +48,12 @@ export async function POST(request: Request) {
       { id: generateBlockId(slug, 0), type: 'heading', text: title, level: 1, size: 'display' },
       { id: generateBlockId(slug, 1), type: 'text', body: 'Start editing this page…' },
     ];
-    const page: PageContent = { title, slug, blocks: starterBlocks };
+    const page: PageContent = {
+      contractVersion: CONTENT_CONTRACT_VERSION,
+      title,
+      slug,
+      blocks: starterBlocks,
+    };
 
     writePage(page);
 

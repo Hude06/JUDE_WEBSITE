@@ -1,3 +1,5 @@
+import type { ContentContractVersion } from './contract';
+
 /* ============================================================
    Shared sub-types
    ============================================================ */
@@ -156,6 +158,7 @@ export type Block = BaseBlock;
    Page + site config
    ============================================================ */
 export interface PageContent {
+  contractVersion: ContentContractVersion;
   title: string;
   slug: string;
   description?: string;
@@ -168,6 +171,7 @@ export interface NavLink {
 }
 
 export interface SiteConfig {
+  contractVersion: ContentContractVersion;
   siteName: string;
   nav: NavLink[];
   fonts: {

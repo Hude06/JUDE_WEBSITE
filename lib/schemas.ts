@@ -1,4 +1,5 @@
 import { z } from 'zod';
+import { CONTENT_CONTRACT_VERSION } from './contract';
 
 const safeUrl = z
   .string()
@@ -35,6 +36,10 @@ const longText = z.string().max(20000);
 const hexColor = z.string().regex(/^#([0-9a-fA-F]{3,8})$/, 'Must be a hex color');
 const fontFamily = z.string().max(200);
 const id = z.string().min(1).max(200);
+const contractVersion = z.preprocess(
+  (value) => (value === undefined ? CONTENT_CONTRACT_VERSION : value),
+  z.literal(CONTENT_CONTRACT_VERSION)
+);
 
 const headingLevel = z.union([z.literal(1), z.literal(2), z.literal(3), z.literal(4), z.literal(5), z.literal(6)]);
 const headingSize = z.enum(['sm', 'md', 'lg', 'xl', 'display', 'hero']);
@@ -88,7 +93,7 @@ const HeadingBlockSchema = z.object({
   size: headingSize.optional(),
   tone: tone.optional(),
   align: align.optional(),
-});
+}).strict();
 
 const TextBlockSchema = z.object({
   id, type: z.literal('text'),
@@ -97,7 +102,7 @@ const TextBlockSchema = z.object({
   tone: tone.optional(),
   weight: weight.optional(),
   align: align.optional(),
-});
+}).strict();
 
 const ImageBlockSchema = z.object({
   id, type: z.literal('image'),
@@ -105,7 +110,7 @@ const ImageBlockSchema = z.object({
   alt: shortText,
   caption: shortText.optional(),
   width: imageWidth.optional(),
-});
+}).strict();
 
 const ButtonBlockSchema = z.object({
   id, type: z.literal('button'),
@@ -114,7 +119,7 @@ const ButtonBlockSchema = z.object({
   variant: buttonVariant.optional(),
   size: buttonSize.optional(),
   align: align.optional(),
-});
+}).strict();
 
 const HeroBlockSchema = z.object({
   id, type: z.literal('hero'),
@@ -123,7 +128,7 @@ const HeroBlockSchema = z.object({
   buttons: z.array(ctaLink).max(4).optional(),
   image: imageSrc.optional(),
   align: align.optional(),
-});
+}).strict();
 
 const SectionBlockSchema = z.object({
   id, type: z.literal('section'),
@@ -132,21 +137,21 @@ const SectionBlockSchema = z.object({
   background: sectionBackground.optional(),
   padding: sectionPadding.optional(),
   anchor: z.string().max(100).optional(),
-});
+}).strict();
 
 const GridBlockSchema = z.object({
   id, type: z.literal('grid'),
   heading: shortText.optional(),
   items: z.array(gridItem).max(20),
   columns: gridColumns.optional(),
-});
+}).strict();
 
 const TwoColumnBlockSchema = z.object({
   id, type: z.literal('two-column'),
   left: columnSide,
   right: columnSide,
   ratio: columnRatio.optional(),
-});
+}).strict();
 
 const QuoteBlockSchema = z.object({
   id, type: z.literal('quote'),
@@ -154,7 +159,7 @@ const QuoteBlockSchema = z.object({
   author: shortText.optional(),
   role: shortText.optional(),
   image: imageSrc.optional(),
-});
+}).strict();
 
 const FormBlockSchema = z.object({
   id, type: z.literal('form'),
@@ -162,7 +167,7 @@ const FormBlockSchema = z.object({
   fields: z.array(formField).max(20),
   submitLabel: shortText.optional(),
   action: safeUrl.optional(),
-});
+}).strict();
 
 const FrameworkBlockSchema = z.discriminatedUnion('type', [
   HeadingBlockSchema,
@@ -181,13 +186,15 @@ const ClientBlockSchema = z.object({ id, type: z.string() }).passthrough();
 const BlockSchema = z.union([FrameworkBlockSchema, ClientBlockSchema]);
 
 export const PageContentSchema = z.object({
+  contractVersion,
   title: shortText,
   slug: z.string().regex(/^[a-z0-9-]+$/, 'Slug must be lowercase letters, numbers, and dashes only').max(100),
   description: mediumText.optional(),
   blocks: z.array(BlockSchema).max(200),
-});
+}).strict();
 
 export const SiteConfigSchema = z.object({
+  contractVersion,
   siteName: shortText,
   nav: z.array(z.object({ label: shortText, href: safeUrl })).max(20),
   fonts: z.object({
@@ -215,7 +222,7 @@ export const SiteConfigSchema = z.object({
   plausible: z.object({
     domain: z.string().max(200).optional(),
   }).optional(),
-});
+}).strict();
 
 export type PageContentInput = z.infer<typeof PageContentSchema>;
 export type SiteConfigInput = z.infer<typeof SiteConfigSchema>;

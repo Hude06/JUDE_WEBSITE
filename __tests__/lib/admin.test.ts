@@ -4,6 +4,7 @@ import {
   validatePageContent,
   generateBlockId,
 } from '@/lib/admin';
+import { CONTENT_CONTRACT_VERSION } from '@/lib/contract';
 
 describe('slugify', () => {
   it('lowercases and replaces spaces with hyphens', () => {
@@ -42,6 +43,7 @@ describe('validateSlug', () => {
 describe('validatePageContent', () => {
   it('accepts valid page content', () => {
     const page = {
+      contractVersion: CONTENT_CONTRACT_VERSION,
       title: 'Test',
       slug: 'test',
       blocks: [{ id: 'b1', type: 'heading', text: 'Hello' }],
@@ -58,13 +60,13 @@ describe('validatePageContent', () => {
 
   it('rejects invalid slug', () => {
     expect(() =>
-      validatePageContent({ title: 'Test', slug: 'INVALID', blocks: [] })
+      validatePageContent({ contractVersion: CONTENT_CONTRACT_VERSION, title: 'Test', slug: 'INVALID', blocks: [] })
     ).toThrow(/slug/i);
   });
 
   it('rejects non-array blocks', () => {
     expect(() =>
-      validatePageContent({ title: 'Test', slug: 'test', blocks: 'nope' })
+      validatePageContent({ contractVersion: CONTENT_CONTRACT_VERSION, title: 'Test', slug: 'test', blocks: 'nope' })
     ).toThrow(/blocks/i);
   });
 

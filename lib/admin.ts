@@ -4,6 +4,7 @@ import { execFile } from 'child_process';
 import { promisify } from 'util';
 import type { PageContent, SiteConfig } from './types';
 import { PageContentSchema, SiteConfigSchema } from './schemas';
+import { withContractVersion } from './contract';
 
 const execFileAsync = promisify(execFile);
 
@@ -45,7 +46,7 @@ function formatIssue(issue: { path: PropertyKey[]; message: string }): string {
 }
 
 export function validatePageContent(data: unknown): PageContent {
-  const result = PageContentSchema.safeParse(data);
+  const result = PageContentSchema.safeParse(withContractVersion(data));
   if (!result.success) {
     const first = result.error.issues[0];
     throw new Error(`Invalid page content: ${first ? formatIssue(first) : 'unknown error'}`);
@@ -91,7 +92,7 @@ export function deletePage(slug: string): void {
 }
 
 export function writeSiteConfig(config: unknown): SiteConfig {
-  const result = SiteConfigSchema.safeParse(config);
+  const result = SiteConfigSchema.safeParse(withContractVersion(config));
   if (!result.success) {
     const first = result.error.issues[0];
     throw new Error(`Invalid site config: ${first ? formatIssue(first) : 'unknown error'}`);

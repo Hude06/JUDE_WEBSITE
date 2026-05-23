@@ -1,6 +1,8 @@
 import fs from 'fs';
 import path from 'path';
 import type { PageContent, SiteConfig } from './types';
+import { PageContentSchema, SiteConfigSchema } from './schemas';
+import { withContractVersion } from './contract';
 
 const CONTENT_DIR = path.join(process.cwd(), 'content');
 const PAGES_DIR = path.join(CONTENT_DIR, 'pages');
@@ -20,6 +22,11 @@ function assertInsidePages(target: string): void {
   }
 }
 
+function formatIssue(issue: { path: PropertyKey[]; message: string }): string {
+  const pathStr = issue.path.map((p) => String(p)).join('.');
+  return pathStr ? `${pathStr}: ${issue.message}` : issue.message;
+}
+
 export function loadPage(slug: string): PageContent {
   if (!isSafeSlug(slug)) {
     throw new Error(`Invalid slug: ${slug}`);
@@ -33,13 +40,15 @@ export function loadPage(slug: string): PageContent {
   }
 
   const raw = fs.readFileSync(filePath, 'utf-8');
-  const page: PageContent = JSON.parse(raw);
+  const parsedRaw: unknown = JSON.parse(raw);
+  const parsed = PageContentSchema.safeParse(withContractVersion(parsedRaw));
 
-  if (!page.title || !page.slug || !Array.isArray(page.blocks)) {
-    throw new Error(`Invalid page content: ${slug}`);
+  if (!parsed.success) {
+    const first = parsed.error.issues[0];
+    throw new Error(`Invalid page content: ${first ? formatIssue(first) : slug}`);
   }
 
-  return page;
+  return parsed.data as PageContent;
 }
 
 export function loadSiteConfig(): SiteConfig {
@@ -50,13 +59,15 @@ export function loadSiteConfig(): SiteConfig {
   }
 
   const raw = fs.readFileSync(filePath, 'utf-8');
-  const config: SiteConfig = JSON.parse(raw);
+  const parsedRaw: unknown = JSON.parse(raw);
+  const parsed = SiteConfigSchema.safeParse(withContractVersion(parsedRaw));
 
-  if (!config.siteName || !Array.isArray(config.nav)) {
-    throw new Error('Invalid site config');
+  if (!parsed.success) {
+    const first = parsed.error.issues[0];
+    throw new Error(`Invalid site config: ${first ? formatIssue(first) : 'unknown error'}`);
   }
 
-  return config;
+  return parsed.data as SiteConfig;
 }
 
 export function listPages(): string[] {
