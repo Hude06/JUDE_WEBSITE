@@ -39,7 +39,7 @@ The repo is currently a framework application repo. Publishing to npm requires c
 Before publish:
 
 - [x] License file present.
-- [ ] Decide distribution model.
-- [ ] Finalize `package.json` publish metadata (`private`, `files`, `bin` or `exports`, `publishConfig`).
+- [x] Decide distribution model (`CLI package`).
+- [x] Finalize CLI package publish metadata (`@judemakes/create-website-framework` with `bin`, `files`, and `publishConfig`).
 - [ ] Add changelog/release versioning flow.
 - [ ] Run `npm pack --dry-run` and validate package contents.

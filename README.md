@@ -46,6 +46,16 @@ Deployment env reference: `docs/deployment-env.md`
 Post-deploy health checks: `docs/post-deploy-healthcheck.md`
 Backup/restore runbook: `docs/backup-restore.md`
 
+## Scaffold A New Client Site
+
+Use the initializer:
+
+```bash
+npm create @judemakes/website-framework my-client-site
+```
+
+This runs the scoped create package `@judemakes/create-website-framework`, scaffolds a local site, adds the `framework` remote, and creates the `.client-site` marker.
+
 ## Project Structure
 
 ```

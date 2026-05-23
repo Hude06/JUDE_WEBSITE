@@ -1,0 +1,27 @@
+{
+  "name": "@judemakes/create-website-framework",
+  "version": "0.1.0",
+  "description": "Scaffold a new client site from the website-framework template.",
+  "type": "module",
+  "license": "MIT",
+  "bin": {
+    "create-website-framework": "./bin/create-website-framework.js"
+  },
+  "files": [
+    "bin",
+    "README.md"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "keywords": [
+    "create",
+    "scaffold",
+    "website-framework",
+    "nextjs",
+    "admin-cms"
+  ]
+}
