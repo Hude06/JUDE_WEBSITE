@@ -22,6 +22,7 @@ A reusable framework for building static-ish client websites. You scaffold a new
 - **No CSS framework** — small set of hand-rolled primitives + CSS Modules + design tokens. No Tailwind, no shadcn.
 - **5 theme presets** — editorial / studio / tech / warm / monochrome. Themes are CSS variable bundles applied via `[data-theme]`.
 - **No database** — everything is JSON files in `/content/`
+- **Immutable core model** — client sites extend via `client/` and content JSON. Framework internals stay stable and updateable.
 - **No auth code in the app** — Nginx basic auth protects `/admin` on the server
 - **Git-backed** — content changes commit and push automatically
 
@@ -83,8 +84,10 @@ lib/
 content/
   pages/*.json         Page content files (home, about, contact)
   themes/*.json        5 theme presets
-  uploads/             Client-uploaded images
   site.json            Site config (name, nav links, fonts, theme)
+
+public/
+  uploads/             Client-uploaded images served at `/uploads/*`
 
 client/
   blocks/              Client-specific custom blocks (empty by default)
