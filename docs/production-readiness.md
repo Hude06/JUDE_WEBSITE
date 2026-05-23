@@ -43,3 +43,9 @@ Before publish:
 - [x] Finalize CLI package publish metadata (`@judemakesthings/create-website-framework` with `bin`, `files`, and `publishConfig`).
 - [x] Add changelog/release versioning flow — see `docs/releasing-create-cli.md`.
 - [x] Run `npm pack --dry-run` and validate package contents (validated for `@judemakesthings/create-website-framework`).
+
+## 6. Immutable Contract Track
+
+- [x] Define contract document for framework input boundary (`docs/contract-v1.md`).
+- [x] Ensure `contractVersion` is normalized in runtime/admin paths for legacy JSON files.
+- [x] Enforce contract schema at runtime load and admin save paths.

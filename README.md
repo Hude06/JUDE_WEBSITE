@@ -45,6 +45,7 @@ Release hardening checklist: `docs/production-readiness.md`
 Deployment env reference: `docs/deployment-env.md`
 Post-deploy health checks: `docs/post-deploy-healthcheck.md`
 Backup/restore runbook: `docs/backup-restore.md`
+Content contract: `docs/contract-v1.md`
 Create CLI release runbook: `docs/releasing-create-cli.md`
 
 ## Scaffold A New Client Site
@@ -134,8 +135,11 @@ Need something more specific (FAQ, pricing, team grid)? Build a **custom block**
 
 ## Content File Format
 
+Content files use `contractVersion` for forward migrations. Legacy files without it are read as v1 and normalized on save.
+
 ```json
 {
+  "contractVersion": 1,
   "title": "About",
   "slug": "about",
   "blocks": [
