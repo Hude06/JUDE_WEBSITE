@@ -73,7 +73,7 @@ export function AcmeHeroBlock({ block }: { block: AcmeHeroBlockType }) {
 }
 ```
 
-For block-specific layout that doesn't fit a primitive, add a co-located CSS Module (`AcmeHeroBlock.module.css`) and import it. Always use design tokens (CSS variables — see `AI_PLAYBOOK.md` §4) for colors, spacing, type — never hard-coded values.
+For block-specific layout that doesn't fit a primitive, add a co-located CSS Module (`AcmeHeroBlock.module.css`) and import it. Always use design tokens (CSS variables from `app/globals.css`) for colors, spacing, and type — never hard-coded values.
 
 ### 3. Build the admin editor
 

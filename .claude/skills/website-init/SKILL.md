@@ -16,9 +16,9 @@ Scaffold a new client website from the `Hude06/website-framework` GitHub repo.
 
 The framework root only exists after Step 1 clones it. As soon as the clone lands, read these three files in the new working directory before doing any content customization:
 
-1. `CLAUDE.md` — zone rules (what you can/can't edit), the block system contract, and the "Safe to Change" vs "Breaks Admin Panel" reference. Read this first.
-2. `AI_PLAYBOOK.md` — the menu of 10 base blocks, 5 theme presets, 12 UI primitives, design tokens, do/don't list.
-3. `DESIGN_TOOLKITS.md` — when this framework is the right tool (and when to break glass to Nextra/Astro/etc.).
+1. `CLAUDE.md` — zone rules, contract boundaries, and AI-agent workflow.
+2. `README.md` — block catalog, architecture map, and project structure.
+3. `ARCHITECTURE.md` — deployment and system flow details when needed.
 
 The framework ships with hand-rolled UI primitives in `lib/ui/` + CSS Modules + CSS variable tokens. **Do NOT add Tailwind, shadcn, or any other CSS framework.** UI customization happens entirely through:
 - Picking one of 5 theme presets (`editorial`, `studio`, `tech`, `warm`, `monochrome`) in `site.json`
@@ -32,7 +32,7 @@ The 5 theme presets — match the client's vibe to one of these:
 - **warm** — Apothecary, hand-made. Soft cream + terracotta, big rounded corners. Restaurants, wellness brands, lifestyle.
 - **monochrome** — Braun. Pure grayscale, minimal accent. Architecture, photography, anything where the work is the brand.
 
-If `DESIGN_TOOLKITS.md` says the project should **"break glass"** (e.g., docs should use Nextra, not this framework), STOP and ask the user: "This framework is Next.js with a JSON block system, but for a {site type} I'd recommend {alternative} instead. Do you want me to: (a) use {alternative}, (b) force-fit this framework anyway, or (c) help you pick?"
+If the requested project clearly does not fit this framework (for example: docs-only site, large e-commerce app, or real-time collaborative product), STOP and ask the user: "This framework is optimized for content-as-JSON marketing/client sites. For this use case I'd recommend {alternative}. Do you want me to: (a) use {alternative}, (b) force-fit this framework anyway, or (c) help you choose?"
 
 Never hand-roll custom JSX inside `app/(site)/` pages. Always use the block system. If a block type doesn't exist for what you need, add a new client-specific block (see `client/README.md`) rather than editing framework files.
 
@@ -140,7 +140,7 @@ The framework ships with **generic** starter content at `content/site.json` and 
 - The `colors` block is a legacy fallback for sites that don't use a theme preset; you can leave it at defaults
 
 **`content/pages/home.json`:**
-- Replace the generic blocks with a real home page for this client. Read `AI_PLAYBOOK.md` for the block catalog.
+- Replace the generic blocks with a real home page for this client. Use the block catalog in `README.md`.
 - Most home pages: one `hero` (always top), one `grid` (3 cards of value props or features), one `quote` (if you have a testimonial or memorable line), one `section` as a CTA at the bottom.
 - Don't add 10 blocks. 4–6 is usually right.
 
@@ -316,8 +316,8 @@ Next steps:
 - Do not open a browser
 - Do not SSH to any server
 - Do not create `.env` files (no secrets needed at this stage)
-- Do not modify framework docs (`CLAUDE.md`, `AGENTS.md`, `AI_PLAYBOOK.md`, `DESIGN_TOOLKITS.md`, `ARCHITECTURE.md`)
-- **Do not add Tailwind, shadcn, base-ui, class-variance-authority, clsx, tailwind-merge, DaisyUI, Mantine, or any other CSS framework / component library.** The framework was deliberately built without one. UI tailoring happens through theme presets + the 12 primitives in `lib/ui/` + per-client custom blocks. See `DESIGN_TOOLKITS.md` for the forbidden-additions list and acceptable scoped libs.
+- Do not modify framework docs (`CLAUDE.md`, `AGENTS.md`, `ARCHITECTURE.md`) unless explicitly requested.
+- **Do not add Tailwind, shadcn, base-ui, class-variance-authority, clsx, tailwind-merge, DaisyUI, Mantine, or any other CSS framework / component library.** The framework was deliberately built without one. UI tailoring happens through theme presets + the primitives in `lib/ui/` + per-client custom blocks.
 - Do not add extra runtime dependencies beyond what the framework includes unless the client genuinely needs them (and if so, add as a per-client custom block, not at the framework level).
 - Do not hand-roll JSX inside `app/(site)/` routes — extend the block system instead. If a block type doesn't exist, build a custom one in `client/blocks/`.
 - **Do not `rm -rf .git`** — framework update merges need the shared history
