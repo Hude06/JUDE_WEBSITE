@@ -7,30 +7,66 @@ TARGET_DIR="${TMP_DIR}/smoke-site"
 PORT="${SMOKE_PORT:-4011}"
 BASE_URL="http://127.0.0.1:${PORT}"
 DEV_PID=""
+TEMP_REF=""
 
 cleanup() {
   if [[ -n "${DEV_PID}" ]]; then
     kill "${DEV_PID}" >/dev/null 2>&1 || true
     wait "${DEV_PID}" >/dev/null 2>&1 || true
   fi
+  if [[ -n "${TEMP_REF}" ]]; then
+    git -C "${ROOT_DIR}" branch -D "${TEMP_REF}" >/dev/null 2>&1 || true
+  fi
   rm -rf "${TMP_DIR}"
 }
 trap cleanup EXIT
 
-echo "→ scaffolding smoke site with npm create"
-CREATE_ARGS=(create @judemakesthings/website-framework "${TARGET_DIR}" -- --no-install)
-if [[ -n "${SMOKE_FRAMEWORK_REPO:-}" ]]; then
-  CREATE_ARGS+=(--framework-repo "${SMOKE_FRAMEWORK_REPO}")
+if [[ "${SMOKE_USE_PUBLISHED_CREATE:-0}" == "1" ]]; then
+  echo "→ scaffolding smoke site with published npm create package"
+  CREATE_ARGS=(create @judemakesthings/website-framework "${TARGET_DIR}" -- --no-install)
+  if [[ -n "${SMOKE_FRAMEWORK_REPO:-}" ]]; then
+    CREATE_ARGS+=(--framework-repo "${SMOKE_FRAMEWORK_REPO}")
+  fi
+  if [[ -n "${SMOKE_FRAMEWORK_REF:-}" ]]; then
+    CREATE_ARGS+=(--ref "${SMOKE_FRAMEWORK_REF}")
+  fi
+  npm "${CREATE_ARGS[@]}"
+else
+  echo "→ scaffolding smoke site with local create CLI source"
+  LOCAL_REPO="${SMOKE_FRAMEWORK_REPO:-${ROOT_DIR}}"
+  LOCAL_REF="${SMOKE_FRAMEWORK_REF:-}"
+  if [[ -z "${LOCAL_REF}" ]]; then
+    if [[ "${LOCAL_REPO}" == "${ROOT_DIR}" ]]; then
+      TEMP_REF="smoke-ref-$$-$(date +%s)"
+      git -C "${ROOT_DIR}" branch -f "${TEMP_REF}" HEAD >/dev/null
+      LOCAL_REF="${TEMP_REF}"
+    else
+      LOCAL_REF="main"
+    fi
+  fi
+
+  CREATE_ARGS=(
+    "${ROOT_DIR}/packages/create-website-framework/bin/create-website-framework.js"
+    "${TARGET_DIR}"
+    --no-install
+    --framework-repo "${LOCAL_REPO}"
+    --ref "${LOCAL_REF}"
+  )
+  node "${CREATE_ARGS[@]}"
 fi
-if [[ -n "${SMOKE_FRAMEWORK_REF:-}" ]]; then
-  CREATE_ARGS+=(--ref "${SMOKE_FRAMEWORK_REF}")
-fi
-npm "${CREATE_ARGS[@]}"
 
 test -f "${TARGET_DIR}/.client-site"
 echo "✓ .client-site marker exists"
 
 pushd "${TARGET_DIR}" >/dev/null
+
+echo "→ validating framework git history linkage"
+git fetch framework --tags >/dev/null
+if ! git merge-base --is-ancestor "$(git rev-parse HEAD)" "framework/main"; then
+  echo "✗ scaffolded repo does not share history with framework/main"
+  exit 1
+fi
+echo "✓ scaffolded repo shares history with framework/main"
 
 echo "→ installing scaffold dependencies"
 npm install --no-audit --no-fund >/dev/null

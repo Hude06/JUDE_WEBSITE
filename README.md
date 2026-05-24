@@ -58,6 +58,8 @@ npm create @judemakesthings/website-framework my-client-site
 
 This runs the scoped create package `@judemakesthings/create-website-framework`, scaffolds a local site, adds the `framework` remote, and creates the `.client-site` marker.
 
+The scaffold keeps shared git history with the framework so `npm run sync-framework` can pull updates without unrelated-history merges.
+
 ## Project Structure
 
 ```

@@ -3,20 +3,12 @@
 'use strict';
 
 import fs from 'node:fs';
-import os from 'node:os';
 import path from 'node:path';
 import { spawnSync } from 'node:child_process';
 
 const DEFAULT_REPO = 'https://github.com/Hude06/website-framework.git';
 const CONTENT_CONTRACT_VERSION = 1;
-const EXCLUDED_ROOT_ENTRIES = new Set([
-  '.git',
-  'node_modules',
-  '.next',
-  '.npm-cache',
-  'coverage',
-  'dist',
-]);
+const FRAMEWORK_REMOTE_NAME = 'framework';
 
 function info(message) {
   console.log(`→ ${message}`);
@@ -139,18 +131,6 @@ function ensureEmptyOrMissingDirectory(targetPath) {
   }
 }
 
-function copyTemplate(sourceDir, targetDir) {
-  fs.cpSync(sourceDir, targetDir, {
-    recursive: true,
-    filter(src) {
-      const rel = path.relative(sourceDir, src);
-      if (!rel) return true;
-      const rootName = rel.split(path.sep)[0];
-      return !EXCLUDED_ROOT_ENTRIES.has(rootName);
-    },
-  });
-}
-
 function writeContractVersion(filePath) {
   const raw = fs.readFileSync(filePath, 'utf8');
   const parsed = JSON.parse(raw);
@@ -205,50 +185,38 @@ function main() {
   ensureEmptyOrMissingDirectory(targetPath);
 
   info(`scaffolding in ${targetPath}`);
+  info(`cloning framework (${options.ref}) with shared git history`);
+  run('git', ['clone', '--depth', '1', '--branch', options.ref, options.frameworkRepo, targetPath], process.cwd());
 
-  const tempRoot = fs.mkdtempSync(path.join(os.tmpdir(), 'website-framework-'));
-  const cloneDir = path.join(tempRoot, 'framework');
+  stampContentContractVersion(targetPath);
 
-  try {
-    info(`cloning framework (${options.ref})`);
-    run('git', ['clone', '--depth', '1', '--branch', options.ref, options.frameworkRepo, cloneDir], process.cwd());
+  fs.closeSync(fs.openSync(path.join(targetPath, '.client-site'), 'w'));
+  ok('created .client-site marker');
 
-    const gitDir = path.join(cloneDir, '.git');
-    if (fs.existsSync(gitDir)) {
-      fs.rmSync(gitDir, { recursive: true, force: true });
-    }
+  info('configuring framework remote');
+  run('git', ['remote', 'rename', 'origin', FRAMEWORK_REMOTE_NAME], targetPath);
+  run(
+    'git',
+    ['config', `remote.${FRAMEWORK_REMOTE_NAME}.fetch`, `+refs/heads/*:refs/remotes/${FRAMEWORK_REMOTE_NAME}/*`],
+    targetPath
+  );
+  ok('configured framework remote');
 
-    fs.mkdirSync(targetPath, { recursive: true });
-    info('copying template files');
-    copyTemplate(cloneDir, targetPath);
-    stampContentContractVersion(targetPath);
-
-    fs.closeSync(fs.openSync(path.join(targetPath, '.client-site'), 'w'));
-    ok('created .client-site marker');
-
-    info('initializing git repository');
-    run('git', ['init'], targetPath);
-    run('git', ['remote', 'add', 'framework', options.frameworkRepo], targetPath);
-    ok('configured framework remote');
-
-    if (options.install) {
-      info('installing dependencies');
-      run('npm', ['install'], targetPath);
-      ok('dependencies installed');
-    } else {
-      info('skipping npm install (--no-install)');
-    }
-
-    const relTarget = path.relative(process.cwd(), targetPath);
-    const displayTarget = !relTarget || relTarget.startsWith('..') ? targetPath : relTarget;
-
-    console.log('\nNext steps:');
-    console.log(`  cd ${displayTarget}`);
-    console.log('  npm run verify');
-    console.log('  npm run dev');
-  } finally {
-    fs.rmSync(tempRoot, { recursive: true, force: true });
+  if (options.install) {
+    info('installing dependencies');
+    run('npm', ['install'], targetPath);
+    ok('dependencies installed');
+  } else {
+    info('skipping npm install (--no-install)');
   }
+
+  const relTarget = path.relative(process.cwd(), targetPath);
+  const displayTarget = !relTarget || relTarget.startsWith('..') ? targetPath : relTarget;
+
+  console.log('\nNext steps:');
+  console.log(`  cd ${displayTarget}`);
+  console.log('  npm run verify');
+  console.log('  npm run dev');
 }
 
 main();

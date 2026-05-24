@@ -23,8 +23,8 @@ npx @judemakesthings/create-website-framework my-client-site
 ## What it does
 
 1. Clones the framework at the selected ref
-2. Copies template files into your target directory
+2. Keeps shared git history with the framework for clean update merges
 3. Creates `.client-site` marker
-4. Initializes git in the generated site
-5. Adds `framework` remote pointing at the framework repo
+4. Renames `origin` to `framework` for `npm run sync-framework`
+5. Stamps `contractVersion` in content files when needed
 6. Installs dependencies (unless `--no-install` is set)

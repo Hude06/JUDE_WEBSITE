@@ -35,6 +35,27 @@ That script (`scripts/sync-framework.sh`):
 
 Because the zone guard prevents framework-zone edits in client sites, conflicts should only occur in **shared files**. In practice this is almost always `package.json` (and maybe `CLAUDE.md` if you've customized it).
 
+### `refusing to merge unrelated histories`
+
+This only happens in legacy client sites created before the shared-history scaffolder update.
+
+One-time bootstrap:
+
+```bash
+git fetch framework --tags
+git merge --no-edit --allow-unrelated-histories framework/main
+```
+
+If conflicts appear in client content files, keep the client versions:
+
+```bash
+git checkout --ours content/pages/about.json content/pages/contact.json content/pages/home.json content/site.json
+git add content/pages/about.json content/pages/contact.json content/pages/home.json content/site.json
+git commit -m "bootstrap framework history merge"
+```
+
+After that, future `npm run sync-framework` runs work normally.
+
 ### `package.json` conflict
 
 Typical cause: framework added a dependency while you changed `name`/`description`.
