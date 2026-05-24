@@ -23,7 +23,7 @@ trap cleanup EXIT
 
 if [[ "${SMOKE_USE_PUBLISHED_CREATE:-0}" == "1" ]]; then
   echo "→ scaffolding smoke site with published npm create package"
-  CREATE_ARGS=(create @judemakesthings/website-framework "${TARGET_DIR}" -- --no-install)
+  CREATE_ARGS=(create @judemakesthings/website-framework@latest "${TARGET_DIR}" -- --no-install)
   if [[ -n "${SMOKE_FRAMEWORK_REPO:-}" ]]; then
     CREATE_ARGS+=(--framework-repo "${SMOKE_FRAMEWORK_REPO}")
   fi
