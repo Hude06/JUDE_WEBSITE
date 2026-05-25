@@ -33,6 +33,7 @@ Use this framework to scaffold new client sites, then customize in client-safe z
 
 Only edit:
 
+- `site/**`
 - `client/**`
 - `content/pages/*.json`
 - `content/site.json`
@@ -52,18 +53,24 @@ Everything else is framework-owned and should be treated as read-only.
 ## Safe Workflow For AI Agents
 
 1. Read `README.md` first for architecture and file map.
-2. If changing content contract or admin saves, also read:
+2. For visual/chrome changes in a client site, prefer `site/**` first.
+   - `site/shell.tsx` for header/footer/layout
+   - `site/styles.css` for global look-and-feel
+   - `site/metadata.ts` for SEO/social metadata
+   - `site/not-found.tsx` for 404
+3. If changing content contract or admin saves, also read:
    - `docs/contract-v1.md`
    - `lib/content.ts`
    - `lib/admin.ts`
    - `lib/schemas.ts`
-3. Make small changes.
-4. Run `npm run verify`.
-5. Commit and push.
+4. Make small changes.
+5. Run `npm run verify`.
+6. Commit and push.
 
 ## Canonical References
 
 - Human overview: `README.md`
 - System/deploy details: `ARCHITECTURE.md`
 - Contract rules: `docs/contract-v1.md`
+- Site customization rules: `site/README.md`
 - Client customization rules: `client/README.md`

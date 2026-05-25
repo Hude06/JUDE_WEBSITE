@@ -4,6 +4,8 @@ This directory is **client-owned**. Everything under `client/` belongs to the in
 
 Framework updates (via `git merge framework/main`) touch files **outside** this directory. Files inside `client/` are yours to edit, delete, or rearrange.
 
+For site-wide chrome/layout/metadata/styles, use `site/**` (see `site/README.md`).
+
 ## What goes here
 
 | File / Directory | Purpose |
@@ -191,7 +193,7 @@ Create `client/placeholders.json` with the same shape as `content/placeholders.j
 
 ## Can I edit framework files?
 
-No. Framework-owned files (everything outside `client/`, `content/pages/`, `content/site.json`, `public/uploads/`) are managed by the framework and updated via `git merge framework/main`. Editing them will cause merge conflicts on every future update.
+No. Framework-owned files (everything outside `site/`, `client/`, `content/pages/`, `content/site.json`, `public/uploads/`) are managed by the framework and updated via `git merge framework/main`. Editing them will cause merge conflicts on every future update.
 
 If you genuinely need a framework change, make it in the framework repo (https://github.com/Hude06/website-framework), then pull it down with `scripts/sync-framework.sh`.
 

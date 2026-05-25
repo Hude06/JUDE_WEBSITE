@@ -33,7 +33,7 @@ That script (`scripts/sync-framework.sh`):
 
 ## Resolving conflicts
 
-Because the zone guard prevents framework-zone edits in client sites, conflicts should only occur in **shared files**. In practice this is almost always `package.json` (and maybe `CLAUDE.md` if you've customized it).
+Because the zone guard prevents framework-zone edits in client sites, conflicts should only occur in **shared files**. In practice this is usually `package.json` (and occasionally `CLAUDE.md` or `site/*` if both sides changed the same file).
 
 ### `refusing to merge unrelated histories`
 
@@ -74,6 +74,15 @@ If framework files in `client/` were updated by the framework (shouldn't happen,
 ```bash
 git checkout --ours client/registry.ts
 git add client/registry.ts
+```
+
+### `site/*` conflict
+
+`site/**` is the recommended client-safe layer for layout/chrome/styles/metadata overrides. If a merge conflict happens there, keep your client customization unless you intentionally want the framework's new default:
+
+```bash
+git checkout --ours site/shell.tsx site/styles.css site/metadata.ts site/not-found.tsx
+git add site/shell.tsx site/styles.css site/metadata.ts site/not-found.tsx
 ```
 
 ### I edited a framework-zone file with `FRAMEWORK_EDIT=1`

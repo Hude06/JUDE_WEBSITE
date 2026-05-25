@@ -22,7 +22,7 @@ A reusable framework for building static-ish client websites. You scaffold a new
 - **No CSS framework** — small set of hand-rolled primitives + CSS Modules + design tokens. No Tailwind, no shadcn.
 - **5 theme presets** — editorial / studio / tech / warm / monochrome. Themes are CSS variable bundles applied via `[data-theme]`.
 - **No database** — everything is JSON files in `/content/`
-- **Immutable core model** — client sites extend via `client/` and content JSON. Framework internals stay stable and updateable.
+- **Immutable core model** — client sites extend via `site/`, `client/`, and content JSON. Framework internals stay stable and updateable.
 - **No auth code in the app** — Nginx basic auth protects `/admin` on the server
 - **Git-backed** — content changes commit and push automatically
 
@@ -116,6 +116,13 @@ client/
   types.ts             Client block TypeScript union
   theme.ts             Client theme presets map
   README.md            Client zone docs
+
+site/
+  shell.tsx            Client-owned site chrome (header/footer/layout)
+  metadata.ts          Client-owned metadata overrides
+  not-found.tsx        Client-owned 404 component
+  styles.css           Client-owned global style overrides
+  README.md            Site customization guidance
 ```
 
 ## The 10 Base Blocks

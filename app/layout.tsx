@@ -1,58 +1,92 @@
 import type { Metadata } from 'next';
+import {
+  Geist,
+  Instrument_Serif,
+  Inter,
+  Bricolage_Grotesque,
+  JetBrains_Mono,
+  Fraunces,
+  Lora,
+} from 'next/font/google';
 import { loadSiteConfig } from '@/lib/content';
-import { Instrument_Serif, Inter } from 'next/font/google';
 import { cn } from '@/lib/utils';
 import { SmoothAnchorScroll } from '@/components/SmoothAnchorScroll';
+import { PlausibleScript } from '@/components/PlausibleScript';
+import { siteMetadata } from '@/site/metadata';
 import './globals.css';
+import '@/site/styles.css';
 
+const geist = Geist({ subsets: ['latin'], variable: '--font-geist' });
 const instrumentSerif = Instrument_Serif({
   subsets: ['latin'],
   weight: '400',
-  style: ['normal', 'italic'],
   variable: '--font-instrument-serif',
-  display: 'swap',
 });
-
-const inter = Inter({
+const inter = Inter({ subsets: ['latin'], variable: '--font-inter' });
+const bricolage = Bricolage_Grotesque({
   subsets: ['latin'],
-  variable: '--font-inter',
-  display: 'swap',
+  variable: '--font-bricolage',
 });
+const jetbrainsMono = JetBrains_Mono({
+  subsets: ['latin'],
+  variable: '--font-jetbrains-mono',
+});
+const fraunces = Fraunces({ subsets: ['latin'], variable: '--font-fraunces' });
+const lora = Lora({ subsets: ['latin'], variable: '--font-lora' });
+
+const FONT_PAIR_VARS: Record<string, { display: string; body: string }> = {
+  editorial: { display: 'var(--font-instrument-serif)', body: 'var(--font-inter)' },
+  studio: { display: 'var(--font-bricolage)', body: 'var(--font-jetbrains-mono)' },
+  tech: { display: 'var(--font-jetbrains-mono)', body: 'var(--font-geist)' },
+  warm: { display: 'var(--font-fraunces)', body: 'var(--font-lora)' },
+  monochrome: { display: 'var(--font-geist)', body: 'var(--font-geist)' },
+};
 
 const config = loadSiteConfig();
 
+const baseMetadata: Metadata = {
+  title: config.siteName,
+};
+
 export const metadata: Metadata = {
-  title: 'Jude Hill — Websites, made simple.',
-  description:
-    'Designer & developer building fast, beautiful websites. Based in Eugene, Oregon.',
+  ...baseMetadata,
+  ...siteMetadata,
+  title: siteMetadata.title ?? baseMetadata.title,
   openGraph: {
-    title: 'Jude Hill — Websites, made simple.',
-    description:
-      'Designer & developer building fast, beautiful websites. Based in Eugene, Oregon.',
-    type: 'website',
-    locale: 'en_US',
     siteName: config.siteName,
-  },
-  twitter: {
-    card: 'summary_large_image',
-    title: 'Jude Hill — Websites, made simple.',
-    description: 'Designer & developer building fast, beautiful websites.',
+    ...(siteMetadata.openGraph ?? {}),
   },
 };
 
-export default function RootLayout({
-  children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+export default function RootLayout({ children }: { children: React.ReactNode }) {
+  const pair = config.fonts?.pair ?? null;
+  const pairVars = pair && FONT_PAIR_VARS[pair];
+
+  const cssVars: React.CSSProperties = {
+    '--font-display': pairVars?.display ?? config.fonts?.heading ?? 'var(--font-geist)',
+    '--font-body': pairVars?.body ?? config.fonts?.body ?? 'var(--font-geist)',
+  } as React.CSSProperties;
+
+  const themePreset = config.theme?.preset;
+  const appearance = config.theme?.appearance ?? 'light';
+
+  const htmlClass = cn(
+    appearance === 'dark' && 'dark',
+    geist.variable,
+    instrumentSerif.variable,
+    inter.variable,
+    bricolage.variable,
+    jetbrainsMono.variable,
+    fraunces.variable,
+    lora.variable,
+  );
+
   return (
-    <html
-      lang="en"
-      className={cn(instrumentSerif.variable, inter.variable)}
-    >
-      <body className="min-h-screen flex flex-col antialiased">
+    <html lang="en" data-theme={themePreset} data-appearance={appearance} className={htmlClass}>
+      <body style={cssVars}>
         <SmoothAnchorScroll />
         {children}
+        <PlausibleScript />
       </body>
     </html>
   );
