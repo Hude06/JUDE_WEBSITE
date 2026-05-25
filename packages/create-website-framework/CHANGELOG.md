@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.1.5 - 2026-05-25
+
+- Stop mutating `content/*.json` after clone so fresh scaffolded repos start with a clean working tree.
+- Keep shared-history scaffold behavior and remote configuration from `0.1.4`.
+
 ## 0.1.4 - 2026-05-24
 
 - Preserve shared git history when scaffolding by cloning directly into the target directory.

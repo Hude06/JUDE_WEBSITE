@@ -26,5 +26,5 @@ npx @judemakesthings/create-website-framework my-client-site
 2. Keeps shared git history with the framework for clean update merges
 3. Creates `.client-site` marker
 4. Renames `origin` to `framework` for `npm run sync-framework`
-5. Stamps `contractVersion` in content files when needed
+5. Leaves tracked framework files unchanged so new repos start clean
 6. Installs dependencies (unless `--no-install` is set)

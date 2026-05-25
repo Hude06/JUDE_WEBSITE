@@ -60,6 +60,13 @@ echo "✓ .client-site marker exists"
 
 pushd "${TARGET_DIR}" >/dev/null
 
+if [[ -n "$(git status --porcelain)" ]]; then
+  echo "✗ scaffolded repo has uncommitted changes immediately after create"
+  git status --short
+  exit 1
+fi
+echo "✓ scaffolded repo starts clean"
+
 echo "→ validating framework git history linkage"
 git fetch framework --tags >/dev/null
 if ! git merge-base --is-ancestor "$(git rev-parse HEAD)" "framework/main"; then
