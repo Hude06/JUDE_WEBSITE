@@ -65,9 +65,22 @@ export function SmoothAnchorScroll() {
       if (!anchor) return;
 
       const href = anchor.getAttribute('href');
-      if (!href || !href.startsWith('#') || href === '#') return;
+      if (!href) return;
 
-      const id = decodeURIComponent(href.slice(1));
+      // Parse out the hash. Support "#anchor", "/#anchor", "/path#anchor".
+      const hashIndex = href.indexOf('#');
+      if (hashIndex === -1) return;
+
+      const path = href.slice(0, hashIndex);
+      const hash = href.slice(hashIndex + 1);
+      if (!hash) return;
+
+      // Only smooth-scroll when the target is on the current page.
+      // path === '' → "#anchor" (same page)
+      // path === window.location.pathname → "/current/path#anchor"
+      if (path !== '' && path !== window.location.pathname) return;
+
+      const id = decodeURIComponent(hash);
       const destination = document.getElementById(id);
       if (!destination) return;
 
