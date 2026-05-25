@@ -1,0 +1,53 @@
+{
+  "title": "Projects — Jude Hill",
+  "slug": "projects",
+  "blocks": [
+    {
+      "id": "projects-1",
+      "type": "jude-heading",
+      "level": 1,
+      "text": "Projects"
+    },
+    {
+      "id": "projects-2",
+      "type": "paragraph",
+      "text": "A collection of apps, tools, and experiments I'm building on the side. Some are shipping, some are in progress, all are things I wanted to exist.",
+      "dropCap": true
+    },
+    {
+      "id": "projects-sep-1",
+      "type": "separator"
+    },
+    {
+      "id": "projects-3",
+      "type": "jude-heading",
+      "level": 2,
+      "text": "Apps & tools",
+      "anchorId": "apps"
+    },
+    {
+      "id": "projects-4",
+      "type": "card-grid",
+      "cards": [
+        {
+          "title": "Coming soon",
+          "description": "An app I'm currently working on — details and a link will land here soon."
+        }
+      ]
+    },
+    {
+      "id": "projects-sep-2",
+      "type": "separator"
+    },
+    {
+      "id": "projects-5",
+      "type": "cta",
+      "title": "Got an idea worth building?",
+      "description": "If you're working on something and want a collaborator or a second set of eyes, get in touch.",
+      "primaryCta": {
+        "text": "Start a conversation",
+        "href": "/contact"
+      }
+    }
+  ]
+}

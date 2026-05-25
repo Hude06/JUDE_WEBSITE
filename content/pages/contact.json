@@ -1,32 +1,83 @@
 {
-  "title": "Contact",
+  "title": "Contact — Jude Hill",
   "slug": "contact",
   "blocks": [
     {
-      "id": "contact-heading",
-      "type": "heading",
-      "text": "Get in touch",
+      "id": "contact-1",
+      "type": "jude-heading",
       "level": 1,
-      "size": "display",
-      "align": "center"
+      "text": "Let's talk."
     },
     {
-      "id": "contact-intro",
-      "type": "text",
-      "body": "Send us a message. We read every one.",
-      "align": "center",
-      "tone": "muted",
-      "size": "lg"
+      "id": "contact-2",
+      "type": "paragraph",
+      "text": "Based in Eugene, Oregon and excited to start working with you. Send me an email with a few sentences about your project and I'll get back to you shortly."
     },
     {
-      "id": "contact-form",
-      "type": "form",
-      "submitLabel": "Send message",
-      "fields": [
-        { "name": "name", "label": "Name", "type": "text", "required": true },
-        { "name": "email", "label": "Email", "type": "email", "required": true },
-        { "name": "message", "label": "Message", "type": "textarea", "required": true }
+      "id": "contact-6",
+      "type": "badge-group",
+      "badges": [
+        "Available now",
+        "Eugene, Oregon",
+        "Replies within a day"
       ]
+    },
+    {
+      "id": "contact-sep-1",
+      "type": "separator"
+    },
+    {
+      "id": "contact-head-2",
+      "type": "jude-heading",
+      "level": 2,
+      "text": "Reach me here",
+      "anchorId": "channels"
+    },
+    {
+      "id": "contact-3",
+      "type": "card-grid",
+      "cards": [
+        {
+          "title": "Email",
+          "description": "jude@micah77.org",
+          "link": "mailto:jude@micah77.org"
+        },
+        {
+          "title": "GitHub",
+          "description": "github.com/Hude06",
+          "link": "https://github.com/Hude06"
+        },
+        {
+          "title": "Instagram",
+          "description": "@judemakes",
+          "link": "https://instagram.com/judemakes"
+        },
+        {
+          "title": "YouTube",
+          "description": "@Judemakesfpv",
+          "link": "https://youtube.com/@Judemakesfpv"
+        },
+        {
+          "title": "Etsy",
+          "description": "JudeMakesThings",
+          "link": "https://etsy.com/shop/JudeMakesThings"
+        }
+      ]
+    },
+    {
+      "id": "contact-sep-2",
+      "type": "separator"
+    },
+    {
+      "id": "contact-4",
+      "type": "jude-heading",
+      "level": 2,
+      "text": "What I'm good for"
+    },
+    {
+      "id": "contact-5",
+      "type": "paragraph",
+      "text": "Personal sites, small business sites, portfolios, landing pages, and just about anything that needs to look clean and load fast."
     }
   ]
 }
