@@ -40,6 +40,7 @@ fi
 is_framework_zone() {
   local f="$1"
   case "$f" in
+    site/*)          return 1 ;;
     client/*)        return 1 ;;
     content/pages/*) return 1 ;;
     content/site.json) return 1 ;;
@@ -71,7 +72,7 @@ is_client_zone() {
 if [[ $IS_CLIENT_SITE -eq 1 ]]; then
   if is_framework_zone "$REL"; then
     echo "✗ Zone guard: '$REL' is framework-owned and cannot be edited in a client site." >&2
-    echo "  Client customizations belong in client/, content/pages/, content/site.json, or public/uploads/." >&2
+    echo "  Client customizations belong in site/, client/, content/pages/, content/site.json, or public/uploads/." >&2
     echo "  To override: set FRAMEWORK_EDIT=1 in the environment (be prepared to resolve merge conflicts on sync-framework)." >&2
     exit 2
   fi

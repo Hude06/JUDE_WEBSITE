@@ -1,0 +1,7 @@
+/*
+  Client-owned global style overrides.
+
+  This file is imported from app/layout.tsx after framework globals.
+  Add site-specific CSS here (tokens, typography tuning, custom utilities, etc.)
+  without editing framework-owned files.
+*/

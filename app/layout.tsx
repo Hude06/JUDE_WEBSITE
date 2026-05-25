@@ -12,7 +12,9 @@ import { loadSiteConfig } from '@/lib/content';
 import { cn } from '@/lib/utils';
 import { SmoothAnchorScroll } from '@/components/SmoothAnchorScroll';
 import { PlausibleScript } from '@/components/PlausibleScript';
+import { siteMetadata } from '@/site/metadata';
 import './globals.css';
+import '@/site/styles.css';
 
 const geist = Geist({ subsets: ['latin'], variable: '--font-geist' });
 const instrumentSerif = Instrument_Serif({
@@ -42,8 +44,18 @@ const FONT_PAIR_VARS: Record<string, { display: string; body: string }> = {
 
 const config = loadSiteConfig();
 
-export const metadata: Metadata = {
+const baseMetadata: Metadata = {
   title: config.siteName,
+};
+
+export const metadata: Metadata = {
+  ...baseMetadata,
+  ...siteMetadata,
+  title: siteMetadata.title ?? baseMetadata.title,
+  openGraph: {
+    siteName: config.siteName,
+    ...(siteMetadata.openGraph ?? {}),
+  },
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {

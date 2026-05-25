@@ -43,6 +43,7 @@ fi
 is_framework_zone() {
   local f="$1"
   case "$f" in
+    site/*)          return 1 ;;  # client-safe shell/metadata/styles overrides
     client/*)        return 1 ;;  # client zone wins
     content/pages/*) return 1 ;;  # client data
     content/site.json) return 1 ;;  # client data
@@ -102,7 +103,7 @@ if [[ $IS_CLIENT_SITE -eq 1 ]]; then
     echo "    - $f"
   done
   echo ""
-  echo "  Client customizations belong in client/, content/pages/, content/site.json, or public/uploads/."
+  echo "  Client customizations belong in site/, client/, content/pages/, content/site.json, or public/uploads/."
   echo "  If you really need to patch the framework from a client site, set FRAMEWORK_EDIT=1 and accept"
   echo "  that your changes may conflict on the next 'scripts/sync-framework.sh'."
 else
