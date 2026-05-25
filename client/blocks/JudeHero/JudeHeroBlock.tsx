@@ -1,7 +1,7 @@
 import type { JudeHeroBlock as JudeHeroBlockType } from '@/client/types';
 import { Reveal } from '@/lib/motion';
 import { primaryButton, primaryButtonArrow, secondaryLink } from '@/client/blocks/shared/buttons';
-import { LiveMasthead } from '@/components/LiveMasthead';
+import { LiveMasthead } from '@/site/components/LiveMasthead';
 
 interface JudeHeroBlockProps {
   block: JudeHeroBlockType;
