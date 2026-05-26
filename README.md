@@ -21,6 +21,7 @@ A reusable framework for building static-ish client websites. You scaffold a new
 - **BlockRenderer contract** — admin panel edits JSON data, blocks render it. Generic over the registry.
 - **No CSS framework** — small set of hand-rolled primitives + CSS Modules + design tokens. No Tailwind, no shadcn.
 - **5 theme presets** — editorial / studio / tech / warm / monochrome. Themes are CSS variable bundles applied via `[data-theme]`.
+- **Dual animation engines** — Motion is the default engine; GSAP is optional per site (`content/site.json`).
 - **No database** — everything is JSON files in `/content/`
 - **Immutable core model** — client sites extend via `site/`, `client/`, and content JSON. Framework internals stay stable and updateable.
 - **No auth code in the app** — Nginx basic auth protects `/admin` on the server
@@ -98,7 +99,7 @@ lib/
   types.ts             TypeScript types for the 10 base blocks + page + site config
   schemas.ts           Zod schemas (validate on save)
   themes.ts            Theme preset loader
-  motion.tsx           Reveal / Stagger / Parallax primitives (Framer Motion)
+  motion.tsx           Reveal / Stagger / Parallax primitives (engine-aware: Motion or GSAP)
 
 content/
   pages/*.json         Page content files (home, about, contact)
@@ -158,6 +159,24 @@ Content files use `contractVersion` for forward migrations. Legacy files without
 }
 ```
 
+## Animation Engine Selection
+
+Each site can choose its animation engine through `content/site.json`:
+
+```json
+{
+  "motion": {
+    "engine": "motion",
+    "intensity": "subtle"
+  }
+}
+```
+
+- `"motion"` keeps the current Motion-based behavior.
+- `"gsap"` enables GSAP-powered Reveal/Stagger/Parallax primitives.
+
+Use GSAP when you need advanced timeline choreography and heavier scroll storytelling.
+
 ## Adding a New Block Type
 
 **Framework block** (ships to all clients — edit this repo):
@@ -186,6 +205,7 @@ See `ARCHITECTURE.md` for full deployment flow diagrams.
 - **Next.js 16** — App Router, standalone output
 - **React 19** — server and client components
 - **Motion** — animation primitives (Reveal / Stagger / Parallax)
+- **GSAP** — optional advanced animation engine (`gsap`, `@gsap/react`)
 - **Lucide** — icon library (optional, on demand)
 - **Zod** — schema validation for admin saves
 - **TypeScript** — strict mode

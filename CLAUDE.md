@@ -48,6 +48,9 @@ Everything else is framework-owned and should be treated as read-only.
 - Keep slug rules aligned with validation (`^[a-z0-9-]+$`).
 - Do not add Tailwind/shadcn or another CSS framework.
   - UI system is `lib/ui/*` + CSS Modules + tokens in `app/globals.css`.
+- When editing animation primitives, preserve both supported engines:
+  - `motion.engine = "motion"` (default)
+  - `motion.engine = "gsap"`
 - Validate schema-compatible changes in `lib/types.ts`, `lib/schemas.ts`, and block render/editor registries together.
 
 ## Safe Workflow For AI Agents

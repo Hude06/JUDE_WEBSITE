@@ -45,6 +45,9 @@ Rules:
 
 - Invalid or unexpected structures are rejected by admin save APIs.
 - Runtime loads use the same schema contract as admin writes.
+- `motion.engine` accepts:
+  - `"motion"` (default)
+  - `"gsap"`
 
 ## Enforcement Points
 
