@@ -1,6 +1,5 @@
 import type { CtaBlock as CtaBlockType } from '@/client/types';
 import { secondaryLink } from '@/client/blocks/shared/buttons';
-import { cn } from '@/lib/utils';
 
 interface CtaBlockProps {
   block: CtaBlockType;
@@ -8,31 +7,31 @@ interface CtaBlockProps {
 
 export function CtaBlock({ block }: CtaBlockProps) {
   return (
-    <section className="mx-auto max-w-[var(--container-wide)] px-6 md:px-10 py-[var(--space-section-lg)]">
-      <div className="max-w-5xl">
+    <section className="jude-container cta-block">
+      <div className="cta-block__inner">
         {block.eyebrow && (
-          <p className="text-xs uppercase tracking-[0.22em] text-[color:var(--color-muted)] mb-8">
+          <p className="cta-block__eyebrow">
             {block.eyebrow}
           </p>
         )}
 
         <h2
-          className="font-display leading-[0.92] tracking-[-0.02em] text-[color:var(--color-fg)]"
+          className="cta-block__title"
           style={{ fontSize: 'clamp(2.5rem, 8vw, 7rem)' }}
         >
           {block.title}
         </h2>
 
         {block.description && (
-          <p className="mt-8 max-w-xl text-lg md:text-xl text-[color:var(--color-muted)] leading-snug">
+          <p className="cta-block__description">
             {block.description}
           </p>
         )}
 
         {(block.primaryCta || block.secondaryCta) && (
-          <div className="mt-12 flex flex-wrap items-center gap-x-10 gap-y-6">
+          <div className="cta-block__actions">
             {block.primaryCta && (
-              <a href={block.primaryCta.href} className={cn(secondaryLink, 'text-xl md:text-2xl')}>
+              <a href={block.primaryCta.href} className={`${secondaryLink} cta-block__primary-link`}>
                 {block.primaryCta.text} →
               </a>
             )}

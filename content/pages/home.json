@@ -1,118 +1,97 @@
 {
+  "contractVersion": 1,
   "title": "Jude Hill — Websites, made simple.",
   "slug": "home",
   "description": "Freelance designer and developer building fast, modern websites for small businesses and creatives in Eugene, Oregon.",
   "blocks": [
     {
-      "id": "home-1",
-      "type": "jude-hero",
-      "eyebrow": "Jude Hill — Designer & Developer",
-      "headline": "Websites, made simple.",
-      "subheadline": "Fast, beautiful sites built by hand for small businesses, creatives, and anyone with an idea worth shipping.",
-      "primaryCta": {
-        "text": "Start a project",
-        "href": "/contact"
-      },
-      "secondaryCta": {
-        "text": "See selected work",
-        "href": "/#work"
-      }
-    },
-    {
-      "id": "home-2",
-      "type": "jude-heading",
-      "level": 2,
-      "text": "Selected work",
-      "anchorId": "work"
-    },
-    {
-      "id": "home-3",
-      "type": "case-study",
-      "client": "Rosales Designs",
-      "tagline": "A branding studio with sixteen years of work across food, lifestyle, and consumer brands.",
-      "year": "2025",
-      "role": "Design + Build",
-      "image": "/portfolio/rosales-designs.png",
-      "link": "https://rosalesdesigns.com",
-      "status": "live",
-      "reverse": false
-    },
-    {
-      "id": "home-4",
-      "type": "case-study",
-      "client": "Bobby Salazar's",
-      "tagline": "Family-run Mexican food since 1990 — restaurants, catering, retail salsa, and recipes that go back generations.",
-      "year": "2024",
-      "role": "Design + Build",
-      "image": "/portfolio/bobby-salazars.png",
-      "link": "https://bobbysalazar.com",
-      "status": "live",
-      "reverse": true
-    },
-    {
-      "id": "home-5",
-      "type": "case-study",
-      "client": "Gravel Truck Plans",
-      "tagline": "End-of-life planning for families who want their paperwork in order before anything goes wrong.",
-      "year": "2024",
-      "role": "Design + Build",
-      "image": "/portfolio/gravel-truck-plans.png",
-      "status": "archived",
-      "reverse": false
-    },
-    {
-      "id": "home-sep-1",
-      "type": "separator"
-    },
-    {
-      "id": "home-6",
-      "type": "jude-heading",
-      "level": 2,
-      "text": "How I work",
-      "anchorId": "process"
-    },
-    {
-      "id": "home-7",
-      "type": "feature-grid",
-      "columns": 3,
-      "items": [
+      "id": "home-hero",
+      "type": "hero",
+      "title": "Websites, made simple.",
+      "subtitle": "Fast, beautiful sites built by hand for small businesses, creatives, and anyone with an idea worth shipping.",
+      "align": "center",
+      "buttons": [
         {
-          "title": "Clean and simple",
-          "description": "No clutter, no bloat. Every site is stripped down to what matters — clear design, modern aesthetics, and an experience that just works."
+          "label": "Start a project",
+          "href": "/contact",
+          "variant": "primary"
         },
         {
-          "title": "Continuous support",
-          "description": "Your site isn't done when it launches. I stick around to iterate, tweak, and improve based on what's working."
-        },
-        {
-          "title": "Quick and fast",
-          "description": "Performance comes first. Every site loads fast, runs smooth, and scores well where it counts."
+          "label": "See selected work",
+          "href": "/#work",
+          "variant": "secondary"
         }
       ]
     },
     {
-      "id": "home-sep-2",
-      "type": "separator"
+      "id": "home-work-intro",
+      "type": "section",
+      "anchor": "work",
+      "heading": "Selected work",
+      "body": "A few projects I have designed and shipped for real businesses."
     },
     {
-      "id": "home-8",
-      "type": "jude-heading",
-      "level": 2,
-      "text": "A little about me",
-      "anchorId": "about-snippet"
+      "id": "home-work-grid",
+      "type": "grid",
+      "columns": 3,
+      "items": [
+        {
+          "title": "Rosales Designs",
+          "body": "Branding studio website focused on clarity, motion, and conversion.",
+          "image": "/portfolio/rosales-designs.png"
+        },
+        {
+          "title": "Bobby Salazar's",
+          "body": "Restaurant and retail web presence with streamlined navigation and strong performance.",
+          "image": "/portfolio/bobby-salazars.png"
+        },
+        {
+          "title": "Gravel Truck Plans",
+          "body": "Simple, calm informational site for families preparing important planning documents.",
+          "image": "/portfolio/gravel-truck-plans.png"
+        }
+      ]
     },
     {
-      "id": "home-9",
-      "type": "paragraph",
-      "text": "I'm a high school student from Eugene, Oregon who builds websites for small businesses and creatives. I design in the browser, ship every few days, and hand off something you can update yourself. When I'm not shipping code, I'm flying FPV drones, running an Etsy store, and making things in my workshop.",
-      "dropCap": true
+      "id": "home-process-intro",
+      "type": "section",
+      "anchor": "process",
+      "heading": "How I work",
+      "body": "A fast, collaborative process that keeps momentum high from kickoff to launch."
     },
     {
-      "id": "home-10",
-      "type": "jude-button",
-      "text": "Read more",
+      "id": "home-process-grid",
+      "type": "grid",
+      "columns": 3,
+      "items": [
+        {
+          "title": "Clean and simple",
+          "body": "No clutter, no bloat. Every section has a job and supports the goal."
+        },
+        {
+          "title": "Continuous support",
+          "body": "After launch, I keep iterating based on feedback and real usage."
+        },
+        {
+          "title": "Quick and fast",
+          "body": "Performance comes first so pages load smoothly on real devices."
+        }
+      ]
+    },
+    {
+      "id": "home-about-intro",
+      "type": "section",
+      "anchor": "about-snippet",
+      "heading": "A little about me",
+      "body": "I am a high school student from Eugene, Oregon who builds websites for small businesses and creatives. I design in the browser, ship every few days, and hand off something you can update yourself."
+    },
+    {
+      "id": "home-about-button",
+      "type": "button",
+      "label": "Read more",
       "href": "/about",
-      "variant": "outline"
+      "variant": "secondary",
+      "align": "left"
     }
   ]
 }

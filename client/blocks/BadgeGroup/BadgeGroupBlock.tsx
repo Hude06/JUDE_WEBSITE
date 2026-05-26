@@ -6,12 +6,12 @@ interface BadgeGroupBlockProps {
 
 export function BadgeGroupBlock({ block }: BadgeGroupBlockProps) {
   return (
-    <div className="mx-auto max-w-[var(--container-wide)] px-6 md:px-10 py-6">
-      <ul className="flex flex-wrap gap-2.5">
+    <div className="jude-container badge-group-block">
+      <ul className="badge-group-block__list">
         {block.badges.map((badge, i) => (
           <li
             key={i}
-            className="inline-flex items-center gap-2 rounded-full border border-[color:var(--color-hairline-strong)] bg-white/60 px-3.5 py-1.5 text-[0.72rem] uppercase tracking-[0.18em] text-[color:var(--color-fg)]"
+            className="badge-group-block__item"
           >
             {i === 0 && <span className="pulse-dot" aria-hidden />}
             <span>{badge}</span>

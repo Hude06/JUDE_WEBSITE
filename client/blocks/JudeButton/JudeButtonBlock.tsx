@@ -11,7 +11,7 @@ export function JudeButtonBlock({ block }: JudeButtonBlockProps) {
   const isExternal = block.href.startsWith('http') || block.href.startsWith('mailto:');
 
   return (
-    <div className="mx-auto max-w-[var(--container-wide)] px-6 md:px-10 py-6">
+    <div className="jude-container jude-button-block">
       <a
         href={block.href}
         className={isGhost ? ghostButton : primaryButton}

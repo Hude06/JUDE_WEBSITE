@@ -21,10 +21,18 @@ function renderHeadline(headline: string) {
 }
 
 export function JudeHeroBlock({ block }: JudeHeroBlockProps) {
+  const isCentered = block.align === 'center';
+
   return (
     <section className="paper-grain relative overflow-hidden">
       <div className="relative mx-auto max-w-[var(--container-wide)] px-6 md:px-10 pt-10 md:pt-16 pb-20 md:pb-28">
-        <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-3 md:gap-12 mb-14 md:mb-20">
+        <div
+          className={
+            isCentered
+              ? 'flex flex-col items-center text-center gap-4 mb-12 md:mb-14'
+              : 'flex flex-col md:flex-row md:items-center md:justify-between gap-3 md:gap-12 mb-14 md:mb-20'
+          }
+        >
           {block.eyebrow && (
             <Reveal delay={0} duration={0.6}>
               <p className="text-[0.72rem] uppercase tracking-[0.26em] text-[color:var(--color-muted)]">
@@ -52,36 +60,58 @@ export function JudeHeroBlock({ block }: JudeHeroBlockProps) {
 
         <Reveal delay={0.1} duration={0.7}>
           <h1
-            className="font-display leading-[0.88] tracking-[-0.035em] text-[color:var(--color-fg)]"
+            className={
+              isCentered
+                ? 'mx-auto max-w-5xl text-center font-display leading-[0.88] tracking-[-0.035em] text-[color:var(--color-fg)]'
+                : 'font-display leading-[0.88] tracking-[-0.035em] text-[color:var(--color-fg)]'
+            }
             style={{ fontSize: 'clamp(3.75rem, 13vw, 11.5rem)' }}
           >
             {renderHeadline(block.headline)}
           </h1>
         </Reveal>
 
-        <div className="mt-12 md:mt-16 grid gap-10 md:gap-16 md:grid-cols-[1.3fr_1fr] items-end">
+        <div
+          className={
+            isCentered
+              ? 'mt-10 md:mt-14 flex flex-col items-center gap-8 text-center'
+              : 'mt-12 md:mt-16 grid gap-10 md:gap-16 md:grid-cols-[1.3fr_1fr] items-end'
+          }
+        >
           {block.subheadline && (
             <Reveal delay={0.24} duration={0.6}>
-              <p className="max-w-xl text-xl md:text-2xl text-[color:var(--color-fg)]/80 leading-[1.35]">
+              <p
+                className={
+                  isCentered
+                    ? 'mx-auto max-w-2xl text-xl md:text-2xl text-[color:var(--color-fg)]/80 leading-[1.35]'
+                    : 'max-w-xl text-xl md:text-2xl text-[color:var(--color-fg)]/80 leading-[1.35]'
+                }
+              >
                 {block.subheadline}
               </p>
             </Reveal>
           )}
 
-          <Reveal delay={0.3} duration={0.6} className="md:justify-self-end">
+          <Reveal delay={0.3} duration={0.6} className={isCentered ? 'self-center' : 'md:justify-self-end'}>
             <dl className="space-y-3 text-[0.78rem] uppercase tracking-[0.22em] tabular-nums">
-              <MetaRow label="Based in" value="Eugene, Oregon" />
-              <MetaRow label="Local time" value={<LiveMasthead />} />
-              <MetaRow label="Role" value="Designer & developer" />
+              <MetaRow label="Based in" value="Eugene, Oregon" centered={isCentered} />
+              <MetaRow label="Local time" value={<LiveMasthead />} centered={isCentered} />
+              <MetaRow label="Role" value="Designer & developer" centered={isCentered} />
             </dl>
           </Reveal>
         </div>
 
         {(block.primaryCta || block.secondaryCta) && (
           <Reveal delay={0.38} duration={0.6}>
-            <div className="mt-14 md:mt-20 flex flex-wrap items-center gap-x-8 gap-y-5">
+            <div
+              className={
+                isCentered
+                  ? 'mt-12 md:mt-16 flex flex-wrap items-center justify-center gap-x-8 gap-y-5'
+                  : 'mt-14 md:mt-20 flex flex-wrap items-center gap-x-8 gap-y-5'
+              }
+            >
               {block.primaryCta && (
-                <a href={block.primaryCta.href} className={primaryButton}>
+                <a href={block.primaryCta.href} className={primaryButton} style={{ color: 'var(--color-bg)' }}>
                   <span>{block.primaryCta.text}</span>
                   <span className={primaryButtonArrow} aria-hidden>→</span>
                 </a>
@@ -102,7 +132,13 @@ export function JudeHeroBlock({ block }: JudeHeroBlockProps) {
         )}
 
         <Reveal delay={0.6} duration={0.6}>
-          <div className="mt-20 md:mt-28 flex items-center gap-4 text-[0.7rem] uppercase tracking-[0.28em] text-[color:var(--color-muted)]">
+          <div
+            className={
+              isCentered
+                ? 'mt-16 md:mt-20 flex items-center justify-center gap-4 text-[0.7rem] uppercase tracking-[0.28em] text-[color:var(--color-muted)]'
+                : 'mt-20 md:mt-28 flex items-center gap-4 text-[0.7rem] uppercase tracking-[0.28em] text-[color:var(--color-muted)]'
+            }
+          >
             <span className="block h-px w-10 bg-[color:var(--color-hairline-strong)]" />
             <span>Selected work below</span>
           </div>
@@ -112,10 +148,20 @@ export function JudeHeroBlock({ block }: JudeHeroBlockProps) {
   );
 }
 
-function MetaRow({ label, value }: { label: string; value: React.ReactNode }) {
+function MetaRow({
+  label,
+  value,
+  centered = false,
+}: {
+  label: string;
+  value: React.ReactNode;
+  centered?: boolean;
+}) {
   return (
-    <div className="flex items-baseline gap-5 md:justify-end">
-      <dt className="text-[color:var(--color-subtle)] min-w-[5.5rem] md:text-right">{label}</dt>
+    <div className={centered ? 'flex items-baseline justify-center gap-5' : 'flex items-baseline gap-5 md:justify-end'}>
+      <dt className={centered ? 'text-[color:var(--color-subtle)] min-w-[5.5rem]' : 'text-[color:var(--color-subtle)] min-w-[5.5rem] md:text-right'}>
+        {label}
+      </dt>
       <dd className="text-[color:var(--color-fg)]">{value}</dd>
     </div>
   );

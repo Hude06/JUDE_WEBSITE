@@ -7,10 +7,10 @@ interface ParagraphBlockProps {
 
 export function ParagraphBlock({ block }: ParagraphBlockProps) {
   return (
-    <div className="mx-auto max-w-[var(--container-wide)] px-6 md:px-10 py-4">
+    <div className="jude-container paragraph-block">
       <p
         className={cn(
-          'max-w-[62ch] text-lg md:text-xl leading-[1.6] text-[color:var(--color-fg)]/85',
+          'paragraph-block__text',
           block.dropCap && 'drop-cap',
         )}
       >

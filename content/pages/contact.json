@@ -1,84 +1,67 @@
 {
+  "contractVersion": 1,
   "title": "Contact — Jude Hill",
   "slug": "contact",
   "description": "Start a web design project with Jude Hill. Reach out from Eugene, Oregon for portfolios, small business sites, and landing pages.",
   "blocks": [
     {
-      "id": "contact-1",
-      "type": "jude-heading",
-      "level": 1,
-      "text": "Let's talk."
+      "id": "contact-hero",
+      "type": "hero",
+      "title": "Let's talk.",
+      "subtitle": "Based in Eugene, Oregon and excited to start working with you. Send me an email with a few sentences about your project and I'll get back to you shortly."
     },
     {
-      "id": "contact-2",
-      "type": "paragraph",
-      "text": "Based in Eugene, Oregon and excited to start working with you. Send me an email with a few sentences about your project and I'll get back to you shortly."
+      "id": "contact-reach-intro",
+      "type": "section",
+      "anchor": "channels",
+      "heading": "Reach me here",
+      "body": "Email is best for project inquiries, but you can also find me on social platforms."
     },
     {
-      "id": "contact-6",
-      "type": "badge-group",
-      "badges": [
-        "Available now",
-        "Eugene, Oregon",
-        "Replies within a day"
-      ]
+      "id": "contact-email",
+      "type": "button",
+      "label": "Email — jude@micah77.org",
+      "href": "mailto:jude@micah77.org",
+      "variant": "primary",
+      "align": "left"
     },
     {
-      "id": "contact-sep-1",
-      "type": "separator"
+      "id": "contact-github",
+      "type": "button",
+      "label": "GitHub",
+      "href": "https://github.com/Hude06",
+      "variant": "ghost",
+      "align": "left"
     },
     {
-      "id": "contact-head-2",
-      "type": "jude-heading",
-      "level": 2,
-      "text": "Reach me here",
-      "anchorId": "channels"
+      "id": "contact-instagram",
+      "type": "button",
+      "label": "Instagram",
+      "href": "https://instagram.com/judemakes",
+      "variant": "ghost",
+      "align": "left"
     },
     {
-      "id": "contact-3",
-      "type": "card-grid",
-      "cards": [
-        {
-          "title": "Email",
-          "description": "jude@micah77.org",
-          "link": "mailto:jude@micah77.org"
-        },
-        {
-          "title": "GitHub",
-          "description": "github.com/Hude06",
-          "link": "https://github.com/Hude06"
-        },
-        {
-          "title": "Instagram",
-          "description": "@judemakes",
-          "link": "https://instagram.com/judemakes"
-        },
-        {
-          "title": "YouTube",
-          "description": "@Judemakesfpv",
-          "link": "https://youtube.com/@Judemakesfpv"
-        },
-        {
-          "title": "Etsy",
-          "description": "JudeMakesThings",
-          "link": "https://etsy.com/shop/JudeMakesThings"
-        }
-      ]
+      "id": "contact-youtube",
+      "type": "button",
+      "label": "YouTube",
+      "href": "https://youtube.com/@Judemakesfpv",
+      "variant": "ghost",
+      "align": "left"
     },
     {
-      "id": "contact-sep-2",
-      "type": "separator"
+      "id": "contact-etsy",
+      "type": "button",
+      "label": "Etsy",
+      "href": "https://etsy.com/shop/JudeMakesThings",
+      "variant": "ghost",
+      "align": "left"
     },
     {
-      "id": "contact-4",
-      "type": "jude-heading",
-      "level": 2,
-      "text": "What I'm good for"
-    },
-    {
-      "id": "contact-5",
-      "type": "paragraph",
-      "text": "Personal sites, small business sites, portfolios, landing pages, and just about anything that needs to look clean and load fast."
+      "id": "contact-services",
+      "type": "section",
+      "heading": "What I'm good for",
+      "body": "Personal sites, small business sites, portfolios, landing pages, and just about anything that needs to look clean and load fast."
     }
   ]
 }

@@ -42,7 +42,7 @@ export function CaseStudyBlock({ block }: CaseStudyBlockProps) {
   );
 
   return (
-    <section className="scroll-reveal mx-auto max-w-[var(--container-wide)] px-6 md:px-10 py-10 md:py-16">
+    <section className="mx-auto max-w-[var(--container-wide)] px-6 md:px-10 py-10 md:py-16">
       <div
         className={cn(
           'grid gap-10 md:gap-16 lg:gap-24 items-center',

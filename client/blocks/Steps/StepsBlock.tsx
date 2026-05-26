@@ -6,17 +6,17 @@ interface StepsBlockProps {
 
 export function StepsBlock({ block }: StepsBlockProps) {
   return (
-    <section className="mx-auto max-w-[var(--container-wide)] px-6 md:px-10 py-10 md:py-16 scroll-reveal">
+    <section className="jude-container steps-block">
       {(block.eyebrow || block.heading) && (
-        <header className="mb-14 max-w-2xl">
+        <header className="steps-block__header">
           {block.eyebrow && (
-            <p className="mb-5 text-[0.72rem] uppercase tracking-[0.26em] text-[color:var(--color-muted)]">
+            <p className="steps-block__eyebrow">
               {block.eyebrow}
             </p>
           )}
           {block.heading && (
             <h2
-              className="font-display leading-[1.0] tracking-[-0.025em] text-[color:var(--color-fg)]"
+              className="steps-block__heading"
               style={{ fontSize: 'clamp(2rem, 5vw, 3.5rem)' }}
             >
               {block.heading}
@@ -25,27 +25,27 @@ export function StepsBlock({ block }: StepsBlockProps) {
         </header>
       )}
 
-      <ol className="border-t border-[color:var(--color-hairline-strong)]">
+      <ol className="steps-block__list">
         {block.steps.map((step, i) => (
           <li
             key={i}
-            className="group grid gap-3 border-b border-[color:var(--color-hairline)] py-8 md:grid-cols-[6rem_1fr_2fr] md:gap-14 md:py-12 md:items-baseline transition-colors hover:bg-white/60"
+            className="steps-block__item"
           >
-            <div className="flex items-baseline gap-3">
-              <span className="font-display italic text-[color:var(--color-accent-ink)] leading-none tabular-nums text-lg">
+            <div className="steps-block__meta">
+              <span className="steps-block__index tabular-nums">
                 {String(i + 1).padStart(2, '0')}
               </span>
-              <span className="text-[0.7rem] uppercase tracking-[0.24em] text-[color:var(--color-subtle)]">
+              <span className="steps-block__label">
                 Step
               </span>
             </div>
             <h3
-              className="font-display leading-[1.05] tracking-[-0.02em] text-[color:var(--color-fg)]"
+              className="steps-block__title"
               style={{ fontSize: 'clamp(1.5rem, 2.6vw, 2.25rem)' }}
             >
               {step.title}
             </h3>
-            <p className="max-w-xl text-base md:text-lg leading-[1.55] text-[color:var(--color-muted)]">
+            <p className="steps-block__description">
               {step.description}
             </p>
           </li>
