@@ -15,7 +15,6 @@
     "sync-framework": "bash scripts/sync-framework.sh"
   },
   "dependencies": {
-    "@tailwindcss/postcss": "^4.3.0",
     "@gsap/react": "^2.1.2",
     "gsap": "^3.15.0",
     "lucide-react": "^1.8.0",
@@ -23,7 +22,6 @@
     "next": "16.2.3",
     "react": "19.2.4",
     "react-dom": "19.2.4",
-    "tailwindcss": "^4.3.0",
     "zod": "^4.3.6"
   },
   "devDependencies": {
