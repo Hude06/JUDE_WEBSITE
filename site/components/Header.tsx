@@ -8,20 +8,20 @@ interface HeaderProps {
 
 export function Header({ siteName, nav }: HeaderProps) {
   return (
-    <header className="sticky top-0 z-40 bg-[color:var(--color-bg)]/80 backdrop-blur-md border-b border-[color:var(--color-hairline)]">
-      <div className="mx-auto flex max-w-[var(--container-wide)] items-center justify-between px-6 py-4 md:px-10 md:py-5">
+    <header className="site-header">
+      <div className="jude-container site-header__inner">
         <Link
           href="/"
-          className="group inline-flex items-center gap-3 text-[color:var(--color-fg)]"
+          className="site-brand"
           aria-label={`${siteName} — home`}
         >
           <span
             aria-hidden
-            className="relative grid h-9 w-9 place-items-center rounded-full border border-[color:var(--color-hairline-strong)] bg-white transition-all duration-300 group-hover:border-[color:var(--color-fg)] group-hover:bg-[color:var(--color-fg)] group-hover:text-[color:var(--color-bg)]"
+            className="site-brand__mark"
           >
             <span
               aria-hidden
-              className="italic"
+              className="site-brand__letter"
               style={{
                 fontFamily: 'var(--font-display)',
                 fontSize: '1.35rem',
@@ -32,22 +32,22 @@ export function Header({ siteName, nav }: HeaderProps) {
               J
             </span>
           </span>
-          <span className="text-[0.72rem] uppercase tracking-[0.26em] tabular-nums">
-            <span className="text-[color:var(--color-fg)] font-medium">{siteName}</span>
-            <span className="mx-2 text-[color:var(--color-subtle)]">—</span>
-            <span className="hidden sm:inline text-[color:var(--color-subtle)]">
+          <span className="site-brand__label">
+            <span className="site-brand__name">{siteName}</span>
+            <span className="site-brand__separator">—</span>
+            <span className="site-brand__role">
               Designer &amp; Developer
             </span>
           </span>
         </Link>
 
-        <nav className="flex items-baseline gap-6 sm:gap-9 md:gap-12">
+        <nav className="site-nav">
           {nav.map((link) =>
             link.href.startsWith('/') ? (
               <Link
                 key={link.href}
                 href={link.href}
-                className="link-underline text-[0.95rem] font-medium tracking-tight text-[color:var(--color-fg)]"
+                className="site-nav__link link-underline"
               >
                 {link.label}
               </Link>
@@ -55,7 +55,7 @@ export function Header({ siteName, nav }: HeaderProps) {
               <a
                 key={link.href}
                 href={link.href}
-                className="link-underline text-[0.95rem] font-medium tracking-tight text-[color:var(--color-fg)]"
+                className="site-nav__link link-underline"
               >
                 {link.label}
               </a>

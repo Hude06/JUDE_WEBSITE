@@ -28,7 +28,7 @@ export function LiveMasthead() {
 
   return (
     <span
-      className="tabular-nums text-[color:var(--color-muted)]"
+      className="site-live-time tabular-nums"
       aria-label="Current Pacific time"
     >
       {time ?? 'Eugene, Oregon'}

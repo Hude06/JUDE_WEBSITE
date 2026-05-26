@@ -11,19 +11,19 @@ export function Marquee({ items, className }: MarqueeProps) {
   const track = [...items, ...items];
   return (
     <div
-      className={`marquee border-y border-[color:var(--color-hairline)] bg-[color:var(--color-surface)] py-5 ${className ?? ''}`}
+      className={`site-marquee ${className ?? ''}`}
       aria-hidden
     >
-      <div className="marquee__track">
+      <div className="site-marquee__track">
         {track.map((item, i) => (
           <span
             key={i}
-            className="inline-flex items-center whitespace-nowrap px-8 font-display leading-none text-[color:var(--color-fg)]"
+            className="site-marquee__item"
             style={{ fontSize: 'clamp(1.6rem, 3vw, 2.4rem)' }}
           >
             {item}
             <span
-              className="ml-8 inline-block h-2 w-2 rounded-full bg-[color:var(--color-accent-ink)]"
+              className="site-marquee__dot"
               aria-hidden
             />
           </span>

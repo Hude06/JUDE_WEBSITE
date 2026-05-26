@@ -8,17 +8,11 @@ export interface SiteShellProps {
   children: ReactNode;
 }
 
-/**
- * Client-owned site chrome shell.
- *
- * Edit this in a client site to customize header/footer/layout while keeping
- * framework route files updateable via sync-framework.
- */
 export function SiteShell({ config, children }: SiteShellProps) {
   return (
     <>
       <Header siteName={config.siteName} nav={config.nav} />
-      <main className="flex-1">{children}</main>
+      <main>{children}</main>
       <Footer siteName={config.siteName} />
     </>
   );
