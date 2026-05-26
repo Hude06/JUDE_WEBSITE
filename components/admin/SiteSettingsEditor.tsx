@@ -26,6 +26,17 @@ const pairOptions = [
   { value: 'monochrome', label: 'Monochrome (Geist only)' },
 ];
 
+const motionEngineOptions = [
+  { value: 'motion', label: 'Motion (default)' },
+  { value: 'gsap', label: 'GSAP' },
+];
+
+const motionIntensityOptions = [
+  { value: 'none', label: 'None' },
+  { value: 'subtle', label: 'Subtle' },
+  { value: 'rich', label: 'Rich' },
+];
+
 interface SiteSettingsEditorProps {
   config: SiteConfig;
   onChange: (config: SiteConfig) => void;
@@ -73,6 +84,31 @@ export function SiteSettingsEditor({ config, onChange }: SiteSettingsEditorProps
         label="Body font (CSS family)"
         value={config.fonts.body}
         onChange={(body) => onChange({ ...config, fonts: { ...config.fonts, body } })}
+      />
+
+      <Heading level={4} size="md">Motion</Heading>
+      <SelectField
+        label="Animation engine"
+        hint="Use GSAP for advanced motion sequences and scroll choreography."
+        value={config.motion?.engine ?? 'motion'}
+        options={motionEngineOptions}
+        onChange={(v) =>
+          onChange({
+            ...config,
+            motion: { ...config.motion, engine: v as 'motion' | 'gsap' },
+          })
+        }
+      />
+      <SelectField
+        label="Motion intensity"
+        value={config.motion?.intensity ?? 'subtle'}
+        options={motionIntensityOptions}
+        onChange={(v) =>
+          onChange({
+            ...config,
+            motion: { ...config.motion, intensity: v as 'none' | 'subtle' | 'rich' },
+          })
+        }
       />
 
       <Heading level={4} size="md">Colors (legacy fallback)</Heading>

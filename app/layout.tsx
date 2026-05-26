@@ -9,6 +9,7 @@ import {
   Lora,
 } from 'next/font/google';
 import { loadSiteConfig } from '@/lib/content';
+import { resolveMotionEngine } from '@/lib/motion-engine';
 import { cn } from '@/lib/utils';
 import { SmoothAnchorScroll } from '@/components/SmoothAnchorScroll';
 import { PlausibleScript } from '@/components/PlausibleScript';
@@ -69,6 +70,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 
   const themePreset = config.theme?.preset;
   const appearance = config.theme?.appearance ?? 'light';
+  const motionEngine = resolveMotionEngine(config);
 
   const htmlClass = cn(
     appearance === 'dark' && 'dark',
@@ -82,7 +84,13 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   );
 
   return (
-    <html lang="en" data-theme={themePreset} data-appearance={appearance} className={htmlClass}>
+    <html
+      lang="en"
+      data-theme={themePreset}
+      data-appearance={appearance}
+      data-motion-engine={motionEngine}
+      className={htmlClass}
+    >
       <body style={cssVars}>
         <SmoothAnchorScroll />
         {children}
