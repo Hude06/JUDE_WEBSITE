@@ -215,6 +215,7 @@ export const SiteConfigSchema = z.object({
   }).optional(),
   motion: z.object({
     intensity: z.enum(['none', 'subtle', 'rich']).optional(),
+    engine: z.enum(['motion', 'gsap']).optional(),
   }).optional(),
   contact: z.object({
     email: z.string().email().max(200).optional(),

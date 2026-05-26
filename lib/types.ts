@@ -17,6 +17,7 @@ export type SectionPadding = 'sm' | 'md' | 'lg' | 'xl';
 export type GridColumns = 2 | 3 | 4;
 export type ColumnRatio = '50-50' | '60-40' | '40-60';
 export type FormFieldType = 'text' | 'textarea' | 'email';
+export type MotionEngine = 'motion' | 'gsap';
 
 export interface CtaLink {
   label: string;
@@ -192,6 +193,7 @@ export interface SiteConfig {
   };
   motion?: {
     intensity?: 'none' | 'subtle' | 'rich';
+    engine?: MotionEngine;
   };
   contact?: {
     email?: string;

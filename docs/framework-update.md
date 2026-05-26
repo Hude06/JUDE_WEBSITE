@@ -99,6 +99,18 @@ npm test        # should pass
 npm run dev     # visually confirm the site still looks right
 ```
 
+If your framework version includes dual animation engines, confirm your site setting is what you expect:
+
+```json
+{
+  "motion": {
+    "engine": "motion"
+  }
+}
+```
+
+Switch to `"gsap"` only when you intentionally want GSAP-powered primitives.
+
 ## Reverting
 
 If the update broke something and you want to bail:
