@@ -13,6 +13,7 @@ import { resolveMotionEngine } from '@/lib/motion-engine';
 import { cn } from '@/lib/utils';
 import { SmoothAnchorScroll } from '@/components/SmoothAnchorScroll';
 import { PlausibleScript } from '@/components/PlausibleScript';
+import { AnimationEngineProvider } from '@/components/motion/AnimationEngineProvider';
 import { siteMetadata } from '@/site/metadata';
 import './globals.css';
 import '@/site/styles.css';
@@ -92,9 +93,11 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       className={htmlClass}
     >
       <body style={cssVars}>
-        <SmoothAnchorScroll />
-        {children}
-        <PlausibleScript />
+        <AnimationEngineProvider engine={motionEngine}>
+          <SmoothAnchorScroll />
+          {children}
+          <PlausibleScript />
+        </AnimationEngineProvider>
       </body>
     </html>
   );
