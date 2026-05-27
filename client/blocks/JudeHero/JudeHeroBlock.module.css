@@ -1,0 +1,291 @@
+.root {
+  position: relative;
+  overflow: hidden;
+}
+
+.inner {
+  position: relative;
+  margin-inline: auto;
+  max-width: var(--container-wide);
+  padding: 2.5rem 1.5rem 5rem;
+}
+
+@media (min-width: 768px) {
+  .inner {
+    padding: 4rem 2.5rem 7rem;
+  }
+}
+
+.accentWord {
+  color: var(--color-accent-ink);
+  font-style: italic;
+}
+
+.topCentered {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 3rem;
+  text-align: center;
+}
+
+@media (min-width: 768px) {
+  .topCentered {
+    margin-bottom: 3.5rem;
+  }
+}
+
+.topSplit {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  margin-bottom: 3.5rem;
+}
+
+@media (min-width: 768px) {
+  .topSplit {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    gap: 3rem;
+    margin-bottom: 5rem;
+  }
+}
+
+.eyebrow {
+  color: var(--color-muted);
+  font-size: 0.72rem;
+  letter-spacing: 0.26em;
+  text-transform: uppercase;
+}
+
+.eyebrowLead {
+  color: var(--color-fg);
+  font-weight: 500;
+}
+
+.eyebrowTail {
+  margin-left: 0.5rem;
+  color: var(--color-subtle);
+}
+
+.availabilityPill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.625rem;
+  border: 1px solid var(--color-hairline-strong);
+  border-radius: 9999px;
+  background: oklch(1 0 0 / 0.7);
+  padding: 0.375rem 1rem 0.375rem 0.625rem;
+  backdrop-filter: blur(4px);
+}
+
+.availabilityLabel {
+  color: var(--color-fg);
+  font-size: 0.72rem;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+}
+
+.headline {
+  color: var(--color-fg);
+  font-family: var(--font-display);
+  font-size: clamp(3.75rem, 13vw, 11.5rem);
+  letter-spacing: -0.035em;
+  line-height: 0.88;
+}
+
+.headlineCentered {
+  max-width: 64rem;
+  margin-inline: auto;
+  text-align: center;
+}
+
+.contentCentered {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
+  margin-top: 2.5rem;
+  text-align: center;
+}
+
+@media (min-width: 768px) {
+  .contentCentered {
+    margin-top: 3.5rem;
+  }
+}
+
+.contentSplit {
+  display: grid;
+  align-items: end;
+  gap: 2.5rem;
+  margin-top: 3rem;
+}
+
+@media (min-width: 768px) {
+  .contentSplit {
+    grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr);
+    gap: 4rem;
+    margin-top: 4rem;
+  }
+}
+
+.subheadline {
+  color: color-mix(in oklab, var(--color-fg) 80%, transparent);
+  font-size: 1.25rem;
+  line-height: 1.35;
+}
+
+@media (min-width: 768px) {
+  .subheadline {
+    font-size: 1.5rem;
+  }
+}
+
+.subheadlineCentered {
+  max-width: 42rem;
+  margin-inline: auto;
+}
+
+.subheadlineSplit {
+  max-width: 36rem;
+}
+
+.metaRevealCentered {
+  align-self: center;
+}
+
+@media (min-width: 768px) {
+  .metaRevealSplit {
+    justify-self: end;
+  }
+}
+
+.metaList {
+  display: grid;
+  gap: 0.75rem;
+  font-size: 0.78rem;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+}
+
+.ctaCentered {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  column-gap: 2rem;
+  row-gap: 1.25rem;
+  margin-top: 3rem;
+}
+
+@media (min-width: 768px) {
+  .ctaCentered {
+    margin-top: 4rem;
+  }
+}
+
+.ctaSplit {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  column-gap: 2rem;
+  row-gap: 1.25rem;
+  margin-top: 3.5rem;
+}
+
+@media (min-width: 768px) {
+  .ctaSplit {
+    margin-top: 5rem;
+  }
+}
+
+.secondaryAction {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.secondaryArrow {
+  display: inline-block;
+  transition: transform 300ms var(--ease-out-soft);
+}
+
+.secondaryAction:hover .secondaryArrow {
+  transform: translateX(0.25rem);
+}
+
+.workTagCentered,
+.workTagSplit {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  color: var(--color-muted);
+  font-size: 0.7rem;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+}
+
+.workTagCentered {
+  justify-content: center;
+  margin-top: 4rem;
+}
+
+@media (min-width: 768px) {
+  .workTagCentered {
+    margin-top: 5rem;
+  }
+}
+
+.workTagSplit {
+  margin-top: 5rem;
+}
+
+@media (min-width: 768px) {
+  .workTagSplit {
+    margin-top: 7rem;
+  }
+}
+
+.workTagLine {
+  display: block;
+  width: 2.5rem;
+  height: 1px;
+  background: var(--color-hairline-strong);
+}
+
+.metaRowCentered,
+.metaRowSplit {
+  display: flex;
+  align-items: baseline;
+  gap: 1.25rem;
+}
+
+.metaRowCentered {
+  justify-content: center;
+}
+
+@media (min-width: 768px) {
+  .metaRowSplit {
+    justify-content: flex-end;
+  }
+}
+
+.metaLabel {
+  color: var(--color-subtle);
+  min-width: 5.5rem;
+}
+
+@media (min-width: 768px) {
+  .metaLabelRight {
+    text-align: right;
+  }
+}
+
+.metaValue {
+  color: var(--color-fg);
+}

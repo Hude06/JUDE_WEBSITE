@@ -1,0 +1,112 @@
+.container {
+  margin-inline: auto;
+  max-width: var(--container-wide);
+  padding-inline: 1.5rem;
+}
+
+@media (min-width: 768px) {
+  .container {
+    padding-inline: 2.5rem;
+  }
+}
+
+.withAnchor {
+  scroll-margin-top: 6rem;
+}
+
+.level1Wrap {
+  padding-top: var(--space-section-md);
+  padding-bottom: 1.5rem;
+}
+
+.level2Wrap {
+  padding-top: var(--space-section-md);
+  padding-bottom: 0.5rem;
+}
+
+.level3Wrap {
+  padding-top: 1.5rem;
+  padding-bottom: 0.5rem;
+}
+
+.level4Wrap,
+.level5Wrap {
+  padding-top: 1rem;
+  padding-bottom: 0.5rem;
+}
+
+.level6Wrap {
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+}
+
+.level1Heading,
+.defaultHeading {
+  max-width: 64rem;
+  color: var(--color-fg);
+  font-family: var(--font-display);
+  font-size: clamp(3rem, 10vw, 8rem);
+  letter-spacing: -0.03em;
+  line-height: 0.9;
+}
+
+.level2Heading {
+  max-width: 56rem;
+  color: var(--color-fg);
+  font-family: var(--font-display);
+  font-size: clamp(2.25rem, 5.5vw, 4rem);
+  letter-spacing: -0.025em;
+  line-height: 1;
+}
+
+.level3Heading {
+  color: var(--color-fg);
+  font-family: var(--font-display);
+  font-size: clamp(1.5rem, 2.4vw, 2rem);
+  line-height: 1.15;
+}
+
+.level4Heading {
+  color: var(--color-muted);
+  font-size: 0.72rem;
+  font-weight: 500;
+  letter-spacing: 0.26em;
+  text-transform: uppercase;
+}
+
+.level5Heading {
+  color: var(--color-fg);
+  font-size: 1rem;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+}
+
+.level6Heading {
+  color: var(--color-fg);
+  font-size: 0.875rem;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+}
+
+.dividerRow {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+  margin-bottom: 1.5rem;
+}
+
+.dividerLine {
+  display: block;
+  flex: 1;
+  height: 1px;
+  max-width: 4rem;
+  background: var(--color-hairline-strong);
+}
+
+.sectionMark {
+  color: var(--color-muted);
+  font-size: 0.72rem;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+}

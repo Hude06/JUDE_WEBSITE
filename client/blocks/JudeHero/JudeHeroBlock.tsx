@@ -1,7 +1,9 @@
 import type { JudeHeroBlock as JudeHeroBlockType } from '@/client/types';
 import { Reveal } from '@/lib/motion';
+import { cn } from '@/lib/utils';
 import { primaryButton, primaryButtonArrow, secondaryLink } from '@/client/blocks/shared/buttons';
 import { LiveMasthead } from '@/site/components/LiveMasthead';
+import styles from './JudeHeroBlock.module.css';
 
 interface JudeHeroBlockProps {
   block: JudeHeroBlockType;
@@ -9,13 +11,13 @@ interface JudeHeroBlockProps {
 
 function renderHeadline(headline: string) {
   const words = headline.split(' ');
-  if (words.length < 2) return <span className="italic">{headline}</span>;
+  if (words.length < 2) return <span style={{ fontStyle: 'italic' }}>{headline}</span>;
   const last = words[words.length - 1];
   const rest = words.slice(0, -1).join(' ');
   return (
     <>
       {rest}{' '}
-      <span className="italic text-[color:var(--color-accent-ink)]">{last}</span>
+      <span className={styles.accentWord}>{last}</span>
     </>
   );
 }
@@ -24,76 +26,43 @@ export function JudeHeroBlock({ block }: JudeHeroBlockProps) {
   const isCentered = block.align === 'center';
 
   return (
-    <section className="paper-grain relative overflow-hidden">
-      <div className="relative mx-auto max-w-[var(--container-wide)] px-6 md:px-10 pt-10 md:pt-16 pb-20 md:pb-28">
-        <div
-          className={
-            isCentered
-              ? 'flex flex-col items-center text-center gap-4 mb-12 md:mb-14'
-              : 'flex flex-col md:flex-row md:items-center md:justify-between gap-3 md:gap-12 mb-14 md:mb-20'
-          }
-        >
+    <section className={cn('paper-grain', styles.root)}>
+      <div className={styles.inner}>
+        <div className={isCentered ? styles.topCentered : styles.topSplit}>
           {block.eyebrow && (
             <Reveal delay={0} duration={0.6}>
-              <p className="text-[0.72rem] uppercase tracking-[0.26em] text-[color:var(--color-muted)]">
-                <span className="text-[color:var(--color-fg)] font-medium">
-                  {block.eyebrow.split('—')[0]?.trim() || block.eyebrow}
-                </span>
+              <p className={styles.eyebrow}>
+                <span className={styles.eyebrowLead}>{block.eyebrow.split('—')[0]?.trim() || block.eyebrow}</span>
                 {block.eyebrow.includes('—') && (
-                  <span className="ml-2 text-[color:var(--color-subtle)]">
-                    — {block.eyebrow.split('—').slice(1).join('—').trim()}
-                  </span>
+                  <span className={styles.eyebrowTail}>— {block.eyebrow.split('—').slice(1).join('—').trim()}</span>
                 )}
               </p>
             </Reveal>
           )}
 
           <Reveal delay={0.08} duration={0.55}>
-            <div className="inline-flex items-center gap-2.5 rounded-full border border-[color:var(--color-hairline-strong)] bg-white/70 backdrop-blur-sm pl-2.5 pr-4 py-1.5">
+            <div className={styles.availabilityPill}>
               <span className="pulse-dot" aria-hidden />
-              <span className="text-[0.72rem] uppercase tracking-[0.22em] text-[color:var(--color-fg)] tabular-nums">
-                Available · 2026
-              </span>
+              <span className={styles.availabilityLabel}>Available · 2026</span>
             </div>
           </Reveal>
         </div>
 
         <Reveal delay={0.1} duration={0.7}>
-          <h1
-            className={
-              isCentered
-                ? 'mx-auto max-w-5xl text-center font-display leading-[0.88] tracking-[-0.035em] text-[color:var(--color-fg)]'
-                : 'font-display leading-[0.88] tracking-[-0.035em] text-[color:var(--color-fg)]'
-            }
-            style={{ fontSize: 'clamp(3.75rem, 13vw, 11.5rem)' }}
-          >
-            {renderHeadline(block.headline)}
-          </h1>
+          <h1 className={cn(styles.headline, isCentered && styles.headlineCentered)}>{renderHeadline(block.headline)}</h1>
         </Reveal>
 
-        <div
-          className={
-            isCentered
-              ? 'mt-10 md:mt-14 flex flex-col items-center gap-8 text-center'
-              : 'mt-12 md:mt-16 grid gap-10 md:gap-16 md:grid-cols-[1.3fr_1fr] items-end'
-          }
-        >
+        <div className={isCentered ? styles.contentCentered : styles.contentSplit}>
           {block.subheadline && (
             <Reveal delay={0.24} duration={0.6}>
-              <p
-                className={
-                  isCentered
-                    ? 'mx-auto max-w-2xl text-xl md:text-2xl text-[color:var(--color-fg)]/80 leading-[1.35]'
-                    : 'max-w-xl text-xl md:text-2xl text-[color:var(--color-fg)]/80 leading-[1.35]'
-                }
-              >
+              <p className={cn(styles.subheadline, isCentered ? styles.subheadlineCentered : styles.subheadlineSplit)}>
                 {block.subheadline}
               </p>
             </Reveal>
           )}
 
-          <Reveal delay={0.3} duration={0.6} className={isCentered ? 'self-center' : 'md:justify-self-end'}>
-            <dl className="space-y-3 text-[0.78rem] uppercase tracking-[0.22em] tabular-nums">
+          <Reveal delay={0.3} duration={0.6} className={isCentered ? styles.metaRevealCentered : styles.metaRevealSplit}>
+            <dl className={styles.metaList}>
               <MetaRow label="Based in" value="Eugene, Oregon" centered={isCentered} />
               <MetaRow label="Local time" value={<LiveMasthead />} centered={isCentered} />
               <MetaRow label="Role" value="Designer & developer" centered={isCentered} />
@@ -103,13 +72,7 @@ export function JudeHeroBlock({ block }: JudeHeroBlockProps) {
 
         {(block.primaryCta || block.secondaryCta) && (
           <Reveal delay={0.38} duration={0.6}>
-            <div
-              className={
-                isCentered
-                  ? 'mt-12 md:mt-16 flex flex-wrap items-center justify-center gap-x-8 gap-y-5'
-                  : 'mt-14 md:mt-20 flex flex-wrap items-center gap-x-8 gap-y-5'
-              }
-            >
+            <div className={isCentered ? styles.ctaCentered : styles.ctaSplit}>
               {block.primaryCta && (
                 <a href={block.primaryCta.href} className={primaryButton} style={{ color: 'var(--color-bg)' }}>
                   <span>{block.primaryCta.text}</span>
@@ -117,12 +80,9 @@ export function JudeHeroBlock({ block }: JudeHeroBlockProps) {
                 </a>
               )}
               {block.secondaryCta && (
-                <a href={block.secondaryCta.href} className={secondaryLink}>
+                <a href={block.secondaryCta.href} className={cn(secondaryLink, styles.secondaryAction)}>
                   <span className="link-underline">{block.secondaryCta.text}</span>
-                  <span
-                    className="inline-block transition-transform duration-300 ease-[var(--ease-out-soft)] group-hover:translate-x-1"
-                    aria-hidden
-                  >
+                  <span className={styles.secondaryArrow} aria-hidden>
                     →
                   </span>
                 </a>
@@ -132,14 +92,8 @@ export function JudeHeroBlock({ block }: JudeHeroBlockProps) {
         )}
 
         <Reveal delay={0.6} duration={0.6}>
-          <div
-            className={
-              isCentered
-                ? 'mt-16 md:mt-20 flex items-center justify-center gap-4 text-[0.7rem] uppercase tracking-[0.28em] text-[color:var(--color-muted)]'
-                : 'mt-20 md:mt-28 flex items-center gap-4 text-[0.7rem] uppercase tracking-[0.28em] text-[color:var(--color-muted)]'
-            }
-          >
-            <span className="block h-px w-10 bg-[color:var(--color-hairline-strong)]" />
+          <div className={isCentered ? styles.workTagCentered : styles.workTagSplit}>
+            <span className={styles.workTagLine} />
             <span>Selected work below</span>
           </div>
         </Reveal>
@@ -158,11 +112,9 @@ function MetaRow({
   centered?: boolean;
 }) {
   return (
-    <div className={centered ? 'flex items-baseline justify-center gap-5' : 'flex items-baseline gap-5 md:justify-end'}>
-      <dt className={centered ? 'text-[color:var(--color-subtle)] min-w-[5.5rem]' : 'text-[color:var(--color-subtle)] min-w-[5.5rem] md:text-right'}>
-        {label}
-      </dt>
-      <dd className="text-[color:var(--color-fg)]">{value}</dd>
+    <div className={centered ? styles.metaRowCentered : styles.metaRowSplit}>
+      <dt className={cn(styles.metaLabel, !centered && styles.metaLabelRight)}>{label}</dt>
+      <dd className={styles.metaValue}>{value}</dd>
     </div>
   );
 }
