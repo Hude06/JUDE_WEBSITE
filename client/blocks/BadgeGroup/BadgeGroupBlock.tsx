@@ -10,7 +10,7 @@ export function BadgeGroupBlock({ block }: BadgeGroupBlockProps) {
       <ul className="badge-group-block__list">
         {block.badges.map((badge, i) => (
           <li
-            key={i}
+            key={`${i}-${badge}`}
             className="badge-group-block__item"
           >
             {i === 0 && <span className="pulse-dot" aria-hidden />}

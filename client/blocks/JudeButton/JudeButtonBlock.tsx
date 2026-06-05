@@ -1,5 +1,6 @@
 import type { JudeButtonBlock as JudeButtonBlockType } from '@/client/types';
 import { primaryButton, primaryButtonArrow, ghostButton } from '@/client/blocks/shared/buttons';
+import { SmartLink } from '@/client/blocks/shared/SmartLink';
 
 interface JudeButtonBlockProps {
   block: JudeButtonBlockType;
@@ -12,17 +13,15 @@ export function JudeButtonBlock({ block }: JudeButtonBlockProps) {
 
   return (
     <div className="jude-container jude-button-block">
-      <a
+      <SmartLink
         href={block.href}
         className={isGhost ? ghostButton : primaryButton}
-        target={block.href.startsWith('http') ? '_blank' : undefined}
-        rel={block.href.startsWith('http') ? 'noopener noreferrer' : undefined}
       >
         <span>{block.text}</span>
         <span className={primaryButtonArrow} aria-hidden>
           {isExternal ? '↗' : '→'}
         </span>
-      </a>
+      </SmartLink>
     </div>
   );
 }

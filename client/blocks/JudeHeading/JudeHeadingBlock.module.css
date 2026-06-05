@@ -1,13 +1,7 @@
 .container {
   margin-inline: auto;
   max-width: var(--container-wide);
-  padding-inline: 1.5rem;
-}
-
-@media (min-width: 768px) {
-  .container {
-    padding-inline: 2.5rem;
-  }
+  padding-inline: var(--gutter);
 }
 
 .withAnchor {

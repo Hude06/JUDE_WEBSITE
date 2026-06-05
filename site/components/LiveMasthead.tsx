@@ -30,8 +30,9 @@ export function LiveMasthead() {
     <span
       className="site-live-time tabular-nums"
       aria-label="Current Pacific time"
+      aria-live="polite"
     >
-      {time ?? 'Eugene, Oregon'}
+      {time ?? 'Pacific time'}
     </span>
   );
 }

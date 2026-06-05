@@ -2,112 +2,101 @@
   "contractVersion": 1,
   "title": "About — Jude Hill",
   "slug": "about",
-  "description": "Meet Jude Hill, a Eugene-based student designer and developer focused on clean, high-performance websites and long-term client support.",
+  "description": "Designer & developer building fast, beautiful websites. Based in Eugene, Oregon.",
   "blocks": [
     {
-      "id": "about-hero",
-      "type": "hero",
-      "title": "Hi, I'm Jude Hill.",
-      "subtitle": "I'm a high school student from Eugene, Oregon who builds stunning websites that are fast and simple. Whether you're a small business, a creative, or just someone with an idea, I'd love to help you create something you'll love.",
-      "buttons": [
-        {
-          "label": "Start a project",
-          "href": "mailto:jude@micah77.org",
-          "variant": "primary"
-        }
-      ]
+      "id": "about-1",
+      "type": "jude-heading",
+      "text": "Hi, I'm Jude Hill.",
+      "level": 1
     },
     {
-      "id": "about-process-intro",
-      "type": "section",
-      "anchor": "how",
-      "heading": "How I work",
-      "body": "Simple process, fast feedback loops, and clean handoff."
+      "id": "about-2",
+      "type": "paragraph",
+      "text": "I'm a high school student from Eugene, Oregon who builds stunning websites that are fast and simple. Whether you're a small business, a creative, or just someone with an idea — I'd love to help you create something you'll love. I design in the browser, ship every few days, and hand off something you can update yourself.",
+      "dropCap": true
     },
     {
-      "id": "about-process-grid",
-      "type": "grid",
-      "columns": 2,
-      "items": [
+      "id": "about-3",
+      "type": "jude-button",
+      "text": "Start a project",
+      "href": "mailto:jude@micah77.org",
+      "variant": "default"
+    },
+    {
+      "id": "about-sep-1",
+      "type": "separator"
+    },
+    {
+      "id": "about-4",
+      "type": "jude-heading",
+      "text": "How I work",
+      "level": 2,
+      "anchorId": "how"
+    },
+    {
+      "id": "about-5",
+      "type": "steps",
+      "steps": [
         {
           "title": "We talk",
-          "body": "You tell me what you need, who it's for, and what success looks like."
+          "description": "You tell me about your project — what you need, who it's for, and what you're imagining. A quick conversation is all it takes to get started."
         },
         {
           "title": "I design + build",
-          "body": "I work directly in the browser so you see real progress quickly."
+          "description": "I get to work in the browser. You'll see real progress every few days, not just mockups."
         },
         {
           "title": "We iterate",
-          "body": "You give feedback, I ship updates, and we tighten things together."
+          "description": "You give feedback, I make it happen. Quick rounds until you're happy — no rush, no pressure."
         },
         {
           "title": "You own it",
-          "body": "At launch, the site and content are yours. I can stay on for support as needed."
+          "description": "When it's done, it's yours — the site, the code, and the content. I'll stick around if you need help down the road."
         }
       ]
     },
     {
-      "id": "about-outside-intro",
-      "type": "section",
-      "anchor": "else",
-      "heading": "Outside the browser",
-      "body": "When I'm not building websites, you'll find me flying FPV drones, making things in my workshop, or shipping Etsy orders."
+      "id": "about-sep-2",
+      "type": "separator"
     },
     {
-      "id": "about-links-grid",
-      "type": "grid",
-      "columns": 2,
-      "items": [
+      "id": "about-6",
+      "type": "jude-heading",
+      "text": "Outside the browser",
+      "level": 2,
+      "anchorId": "else"
+    },
+    {
+      "id": "about-7",
+      "type": "paragraph",
+      "text": "When I'm not building websites, you'll find me flying FPV drones, making things in my workshop, or shipping orders from my Etsy store."
+    },
+    {
+      "id": "about-8",
+      "type": "card-grid",
+      "cards": [
         {
           "title": "Instagram",
-          "body": "@judemakes"
+          "description": "@judemakes",
+          "link": "https://instagram.com/judemakes"
         },
         {
           "title": "YouTube",
-          "body": "@Judemakesfpv"
+          "description": "@Judemakesfpv",
+          "link": "https://youtube.com/@Judemakesfpv"
         },
         {
           "title": "GitHub",
-          "body": "github.com/Hude06"
+          "description": "github.com/Hude06",
+          "link": "https://github.com/Hude06"
         },
         {
           "title": "Etsy",
-          "body": "JudeMakesThings"
+          "description": "JudeMakesThings",
+          "link": "https://etsy.com/shop/JudeMakesThings"
         }
       ]
-    },
-    {
-      "id": "about-link-instagram",
-      "type": "button",
-      "label": "Instagram",
-      "href": "https://instagram.com/judemakes",
-      "variant": "ghost",
-      "align": "left"
-    },
-    {
-      "id": "about-link-youtube",
-      "type": "button",
-      "label": "YouTube",
-      "href": "https://youtube.com/@Judemakesfpv",
-      "variant": "ghost",
-      "align": "left"
-    },
-    {
-      "id": "about-link-github",
-      "type": "button",
-      "label": "GitHub",
-      "href": "https://github.com/Hude06",
-      "variant": "ghost",
-      "align": "left"
-    },
-    {
-      "id": "about-link-etsy",
-      "type": "button",
-      "label": "Etsy",
-      "href": "https://etsy.com/shop/JudeMakesThings",
-      "variant": "ghost",
-      "align": "left"
     }
   ]
 }

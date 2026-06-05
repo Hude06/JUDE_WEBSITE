@@ -43,6 +43,8 @@ export function Tilt({ children, maxTilt = 4, className }: TiltProps) {
       onMouseMove={onMove}
       onMouseLeave={onLeave}
       className={className}
+      /* Inline styles required: the 3D perspective transform is written
+         directly to node.style at runtime via requestAnimationFrame. */
       style={{
         transformStyle: 'preserve-3d',
         transition: 'transform 400ms cubic-bezier(0.16, 1, 0.3, 1)',

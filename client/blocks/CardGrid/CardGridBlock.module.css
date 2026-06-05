@@ -1,13 +1,7 @@
 .root {
   margin-inline: auto;
   max-width: var(--container-wide);
-  padding-inline: 1.5rem;
-}
-
-@media (min-width: 768px) {
-  .root {
-    padding-inline: 2.5rem;
-  }
+  padding-inline: var(--gutter);
 }
 
 .listRoot {
@@ -120,6 +114,7 @@
 .title {
   color: var(--color-fg);
   font-family: var(--font-display);
+  font-size: clamp(1.4rem, 2.4vw, 1.9rem);
   line-height: 1.15;
   transition: color 300ms var(--ease-out-soft);
 }
@@ -136,6 +131,16 @@
   font-size: 0.875rem;
   text-overflow: ellipsis;
   white-space: nowrap;
+}
+
+@media (max-width: 640px) {
+  .description {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    white-space: normal;
+    text-overflow: clip;
+  }
 }
 
 @media (min-width: 768px) {
@@ -206,6 +211,7 @@
   margin-top: 1.5rem;
   color: var(--color-fg);
   font-family: var(--font-display);
+  font-size: clamp(1.5rem, 2.5vw, 2rem);
   line-height: 1.15;
 }
 

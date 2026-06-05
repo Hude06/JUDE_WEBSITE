@@ -5,8 +5,10 @@ interface StepsBlockProps {
 }
 
 export function StepsBlock({ block }: StepsBlockProps) {
+  if (!block.steps?.length) return null;
+
   return (
-    <section className="jude-container steps-block">
+    <section className="jude-container steps-block scroll-reveal">
       {(block.eyebrow || block.heading) && (
         <header className="steps-block__header">
           {block.eyebrow && (
@@ -15,10 +17,7 @@ export function StepsBlock({ block }: StepsBlockProps) {
             </p>
           )}
           {block.heading && (
-            <h2
-              className="steps-block__heading"
-              style={{ fontSize: 'clamp(2rem, 5vw, 3.5rem)' }}
-            >
+            <h2 className="steps-block__heading">
               {block.heading}
             </h2>
           )}
@@ -28,7 +27,7 @@ export function StepsBlock({ block }: StepsBlockProps) {
       <ol className="steps-block__list">
         {block.steps.map((step, i) => (
           <li
-            key={i}
+            key={`${i}-${step.title}`}
             className="steps-block__item"
           >
             <div className="steps-block__meta">
@@ -39,10 +38,7 @@ export function StepsBlock({ block }: StepsBlockProps) {
                 Step
               </span>
             </div>
-            <h3
-              className="steps-block__title"
-              style={{ fontSize: 'clamp(1.5rem, 2.6vw, 2.25rem)' }}
-            >
+            <h3 className="steps-block__title">
               {step.title}
             </h3>
             <p className="steps-block__description">

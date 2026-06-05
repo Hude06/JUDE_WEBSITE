@@ -2,46 +2,54 @@
   "contractVersion": 1,
   "title": "Projects — Jude Hill",
   "slug": "projects",
-  "description": "Explore side projects, experiments, and tools by Jude Hill, from in-progress ideas to shipped web products.",
+  "description": "Designer & developer building fast, beautiful websites. Based in Eugene, Oregon.",
   "blocks": [
     {
-      "id": "projects-hero",
-      "type": "hero",
-      "title": "Projects",
-      "subtitle": "A collection of apps, tools, and experiments I'm building on the side. Some are shipping, some are in progress, all are things I wanted to exist."
+      "id": "projects-1",
+      "type": "jude-heading",
+      "text": "Projects",
+      "level": 1
     },
     {
-      "id": "projects-apps-intro",
-      "type": "section",
-      "anchor": "apps",
-      "heading": "Apps & tools",
-      "body": "Current work and experiments."
+      "id": "projects-2",
+      "type": "paragraph",
+      "text": "A collection of apps, tools, and experiments I'm building on the side. Some are shipping, some are in progress, all are things I wanted to exist.",
+      "dropCap": true
     },
     {
-      "id": "projects-apps-grid",
-      "type": "grid",
-      "columns": 2,
-      "items": [
+      "id": "projects-sep-1",
+      "type": "separator"
+    },
+    {
+      "id": "projects-3",
+      "type": "jude-heading",
+      "text": "Apps & tools",
+      "level": 2,
+      "anchorId": "apps"
+    },
+    {
+      "id": "projects-4",
+      "type": "card-grid",
+      "cards": [
         {
           "title": "Coming soon",
-          "body": "An app I'm currently working on. Details and a link will land here soon."
+          "description": "An app I'm currently working on — details and a link will land here soon."
         }
       ]
     },
     {
-      "id": "projects-cta-intro",
-      "type": "section",
-      "heading": "Got an idea worth building?",
-      "body": "If you're working on something and want a collaborator or a second set of eyes, get in touch."
+      "id": "projects-sep-2",
+      "type": "separator"
     },
     {
-      "id": "projects-cta-button",
-      "type": "button",
-      "label": "Start a conversation",
-      "href": "/contact",
-      "variant": "primary",
-      "size": "lg",
-      "align": "left"
+      "id": "projects-5",
+      "type": "cta",
+      "title": "Got an idea worth building?",
+      "description": "If you're working on something and want a collaborator or a second set of eyes, get in touch.",
+      "primaryCta": {
+        "text": "Start a conversation",
+        "href": "/contact"
+      }
     }
   ]
 }

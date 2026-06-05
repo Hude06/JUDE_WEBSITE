@@ -22,8 +22,8 @@ export function JudeHeadingBlock({ block }: JudeHeadingBlockProps) {
     case 2:
       return (
         <div id={id} className={cn(container, styles.level2Wrap)}>
-          <div className={styles.dividerRow}>
-            <span aria-hidden className={styles.dividerLine} />
+          <div className={styles.dividerRow} aria-hidden>
+            <span className={styles.dividerLine} />
             <span className={styles.sectionMark}>{id ? `§ ${id}` : '§'}</span>
           </div>
           <h2 className={styles.level2Heading}>{block.text}</h2>

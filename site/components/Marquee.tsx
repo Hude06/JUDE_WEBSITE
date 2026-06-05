@@ -19,7 +19,6 @@ export function Marquee({ items, className }: MarqueeProps) {
           <span
             key={i}
             className="site-marquee__item"
-            style={{ fontSize: 'clamp(1.6rem, 3vw, 2.4rem)' }}
           >
             {item}
             <span

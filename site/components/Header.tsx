@@ -22,18 +22,12 @@ export function Header({ siteName, nav }: HeaderProps) {
             <span
               aria-hidden
               className="site-brand__letter"
-              style={{
-                fontFamily: 'var(--font-display)',
-                fontSize: '1.35rem',
-                lineHeight: 1,
-                transform: 'translate(1px, -2px)',
-              }}
             >
               J
             </span>
           </span>
           <span className="site-brand__label">
-            <span className="site-brand__name">{siteName}</span>
+            <span className="site-brand__name">Jude Hill</span>
             <span className="site-brand__separator">—</span>
             <span className="site-brand__role">
               Designer &amp; Developer

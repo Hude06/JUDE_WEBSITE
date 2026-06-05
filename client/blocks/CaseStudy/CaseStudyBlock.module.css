@@ -1,12 +1,12 @@
 .root {
   margin-inline: auto;
   max-width: var(--container-wide);
-  padding: 2.5rem 1.5rem;
+  padding: 2.5rem var(--gutter);
 }
 
 @media (min-width: 768px) {
   .root {
-    padding: 4rem 2.5rem;
+    padding: 4rem var(--gutter);
   }
 }
 
@@ -63,6 +63,11 @@
   display: block;
   width: 100%;
   height: auto;
+  /* Reserve space before load (prevents CLS) and frame every screenshot
+     consistently to the top of the capture regardless of its native ratio. */
+  aspect-ratio: 16 / 10;
+  object-fit: cover;
+  object-position: top center;
   transition: transform 800ms var(--ease-out-soft);
 }
 

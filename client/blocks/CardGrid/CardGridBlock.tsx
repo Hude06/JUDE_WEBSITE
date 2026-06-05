@@ -1,4 +1,5 @@
 import type { CardGridBlock as CardGridBlockType } from '@/client/types';
+import { SmartLink } from '@/client/blocks/shared/SmartLink';
 import styles from './CardGridBlock.module.css';
 
 interface CardGridBlockProps {
@@ -10,7 +11,7 @@ export function CardGridBlock({ block }: CardGridBlockProps) {
 
   if (!hasImages) {
     return (
-      <nav className={`${styles.root} ${styles.listRoot}`}>
+      <section className={`${styles.root} ${styles.listRoot}`}>
         <ul className={styles.list}>
           {block.cards.map((card, i) => {
             const isExternal = card.link?.startsWith('http');
@@ -19,7 +20,7 @@ export function CardGridBlock({ block }: CardGridBlockProps) {
                 <div className={styles.lead}>
                   <span className={styles.index}>{String(i + 1).padStart(2, '0')}</span>
                   <div className={styles.copy}>
-                    <h3 className={styles.title} style={{ fontSize: 'clamp(1.4rem, 2.4vw, 1.9rem)' }}>
+                    <h3 className={styles.title}>
                       {card.title}
                     </h3>
                     <p className={styles.description}>{card.description}</p>
@@ -34,14 +35,9 @@ export function CardGridBlock({ block }: CardGridBlockProps) {
             return (
               <li key={card.title} className={styles.item}>
                 {card.link ? (
-                  <a
-                    href={card.link}
-                    target={isExternal ? '_blank' : undefined}
-                    rel={isExternal ? 'noopener noreferrer' : undefined}
-                    className={styles.itemLink}
-                  >
+                  <SmartLink href={card.link} className={styles.itemLink}>
                     {content}
-                  </a>
+                  </SmartLink>
                 ) : (
                   <div className={styles.group}>{content}</div>
                 )}
@@ -49,7 +45,7 @@ export function CardGridBlock({ block }: CardGridBlockProps) {
             );
           })}
         </ul>
-      </nav>
+      </section>
     );
   }
 
@@ -66,10 +62,11 @@ export function CardGridBlock({ block }: CardGridBlockProps) {
                     alt={card.title}
                     className={styles.image}
                     loading="lazy"
+                    decoding="async"
                   />
                 </div>
               )}
-              <h3 className={styles.cardTitle} style={{ fontSize: 'clamp(1.5rem, 2.5vw, 2rem)' }}>
+              <h3 className={styles.cardTitle}>
                 {card.title}
               </h3>
               <p className={styles.cardDescription}>{card.description}</p>
@@ -77,9 +74,9 @@ export function CardGridBlock({ block }: CardGridBlockProps) {
           );
 
           return card.link ? (
-            <a key={card.title} href={card.link} className={styles.cardLink}>
+            <SmartLink key={card.title} href={card.link} className={styles.cardLink}>
               {inner}
-            </a>
+            </SmartLink>
           ) : (
             <div key={card.title}>{inner}</div>
           );

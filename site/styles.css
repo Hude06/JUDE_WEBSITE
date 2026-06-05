@@ -11,11 +11,13 @@
   --color-surface: oklch(0.975 0.005 85);
   --color-fg: oklch(0.17 0.008 90);
   --color-muted: oklch(0.48 0.008 90);
-  --color-subtle: oklch(0.72 0.005 90);
+  --color-subtle: oklch(0.55 0.005 90);
   --color-hairline: oklch(0.9 0.005 85);
   --color-hairline-strong: oklch(0.82 0.006 85);
   --color-accent-ink: oklch(0.55 0.18 45);
   --color-live: oklch(0.7 0.15 150);
+  /* --color-subtle darkened from 0.72 -> 0.55 lightness to clear WCAG AA (4.65:1)
+     on the paper background while staying the lightest of the fg/muted/subtle tiers. */
 
   --space-section-sm: clamp(3rem, 5vw, 5rem);
   --space-section-md: clamp(4.5rem, 7vw, 7rem);
@@ -23,14 +25,39 @@
 
   --container-wide: 1400px;
 
+  /* Single source of truth for horizontal page gutter. Responsive overrides
+     live just below so every block (global .jude-container and the CSS-module
+     block wrappers) shares one consistent inset at each breakpoint. */
+  --gutter: 1.5rem;
+
+  /* Shared fluid type scale (replaces scattered inline clamp() font sizes). */
+  --fs-display-hero: clamp(3rem, 10vw, 9rem);
+  --fs-display-xl: clamp(6rem, 18vw, 16rem);
+  --fs-section-heading: clamp(2rem, 5vw, 3.5rem);
+  --fs-cta-title: clamp(2.5rem, 8vw, 7rem);
+  --fs-marquee: clamp(1.6rem, 3vw, 2.4rem);
+
   --ease-out-soft: cubic-bezier(0.22, 1, 0.36, 1);
   --ease-in-out-soft: cubic-bezier(0.65, 0, 0.35, 1);
+}
+
+@media (max-width: 640px) {
+  :root {
+    --gutter: 1rem;
+  }
+}
+
+@media (min-width: 768px) {
+  :root {
+    --gutter: 2.5rem;
+  }
 }
 
 html {
   font-feature-settings: "ss01", "cv01", "cv11";
   font-optical-sizing: auto;
   color-scheme: light only;
+  scroll-behavior: smooth;
 }
 
 body {
@@ -65,10 +92,6 @@ a {
   color: inherit;
 }
 
-a:hover {
-  opacity: 0.96;
-}
-
 .tabular-nums {
   font-variant-numeric: tabular-nums;
 }
@@ -76,13 +99,7 @@ a:hover {
 .jude-container {
   margin-inline: auto;
   max-width: var(--container-wide);
-  padding-inline: 1.5rem;
-}
-
-@media (min-width: 768px) {
-  .jude-container {
-    padding-inline: 2.5rem;
-  }
+  padding-inline: var(--gutter);
 }
 
 .link-underline {
@@ -183,7 +200,7 @@ a:hover {
   align-items: center;
   gap: 0.625rem;
   border-radius: 9999px;
-  padding: 0.875rem 1.25rem 0.875rem 1.5rem;
+  padding: 0.95rem 1.25rem 0.95rem 1.5rem;
   font-size: 0.95rem;
   font-weight: 500;
   letter-spacing: -0.01em;
@@ -301,7 +318,11 @@ a:hover {
 }
 
 .site-brand__letter {
+  font-family: var(--font-display);
+  font-size: 1.35rem;
   font-style: italic;
+  line-height: 1;
+  transform: translate(1px, -2px);
 }
 
 .site-brand__label {
@@ -339,6 +360,28 @@ a:hover {
   gap: 1.5rem;
 }
 
+@media (max-width: 640px) {
+  .site-header__inner {
+    flex-wrap: wrap;
+    row-gap: 0.75rem;
+  }
+
+  .site-nav {
+    width: 100%;
+    justify-content: flex-start;
+    gap: 1rem;
+  }
+
+  .site-brand__label {
+    font-size: 0.66rem;
+    letter-spacing: 0.18em;
+  }
+
+  .site-brand__separator {
+    margin-inline: 0.3rem;
+  }
+}
+
 @media (min-width: 640px) {
   .site-nav {
     gap: 2.25rem;
@@ -371,6 +414,7 @@ a:hover {
   display: flex;
   width: max-content;
   animation: marquee-scroll 42s linear infinite;
+  will-change: transform;
 }
 
 .site-marquee:hover .site-marquee__track {
@@ -393,8 +437,15 @@ a:hover {
   padding-inline: 2rem;
   color: var(--color-fg);
   font-family: var(--font-display);
+  font-size: var(--fs-marquee);
   line-height: 1;
   white-space: nowrap;
+}
+
+@media (max-width: 640px) {
+  .site-marquee__item {
+    padding-inline: 1rem;
+  }
 }
 
 .site-marquee__dot {
@@ -432,6 +483,13 @@ a:hover {
   padding-bottom: 6rem;
 }
 
+@media (max-width: 640px) {
+  .site-footer__cta-inner {
+    padding-top: 3.5rem;
+    padding-bottom: 3.5rem;
+  }
+}
+
 @media (min-width: 768px) {
   .site-footer__cta-inner {
     padding-top: 10rem;
@@ -451,6 +509,7 @@ a:hover {
   margin: 0;
   color: var(--color-fg);
   font-family: var(--font-display);
+  font-size: var(--fs-display-hero);
   line-height: 0.9;
   letter-spacing: -0.035em;
 }
@@ -539,7 +598,11 @@ a:hover {
 }
 
 .site-footer__brand-letter {
+  font-family: var(--font-display);
+  font-size: 1.35rem;
   font-style: italic;
+  line-height: 1;
+  transform: translate(1px, -2px);
 }
 
 .site-footer__brand-label {
@@ -650,6 +713,445 @@ a:hover {
   transform: translateX(0);
 }
 
+/* -------------------------------------------------------------------------
+   Reveal animations
+
+   Two complementary, velocity-correct systems (no JS-driven scroll triggers,
+   so nothing can lag behind a fast scroll):
+
+   1. [data-reveal] — a pure-CSS, one-time page-load entrance for above-the-fold
+      content (the hero). Runs on load with a staggered --reveal-delay; needs no
+      JS and cannot race a scroll.
+   2. .scroll-reveal — below-the-fold reveals. On Chromium this is scrubbed to
+      scroll position via animation-timeline: view() (opacity is always exactly
+      proportional to scroll, so it physically cannot fall behind). On browsers
+      without scroll-driven animation support, ScrollRevealFallback adds
+      .is-revealed via IntersectionObserver, snapping already-visible items in
+      immediately.
+   ------------------------------------------------------------------------- */
+
+[data-reveal] {
+  opacity: 0;
+  transform: translateY(24px);
+  animation: reveal-rise var(--reveal-dur, 0.6s) var(--ease-out-soft)
+    var(--reveal-delay, 0s) both;
+}
+
+@keyframes reveal-rise {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@supports (animation-timeline: view()) {
+  .scroll-reveal {
+    animation: scroll-reveal linear both;
+    animation-timeline: view();
+    animation-range: entry cover 25%;
+  }
+
+  @keyframes scroll-reveal {
+    0% {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+}
+
+/* Fallback for Safari/Firefox and any engine lacking scroll-driven animations.
+   Hidden baseline + a short transition revealed by .is-revealed (added by
+   ScrollRevealFallback). The <noscript> block in the shell forces visibility
+   when JS is disabled, so content is never permanently hidden. */
+@supports not (animation-timeline: view()) {
+  .scroll-reveal {
+    opacity: 0;
+    transform: translateY(30px);
+    transition:
+      opacity 0.6s var(--ease-out-soft),
+      transform 0.6s var(--ease-out-soft);
+  }
+
+  .scroll-reveal.is-revealed {
+    opacity: 1;
+    transform: none;
+  }
+
+  /* Already-visible / scrolled-past items snap in with no late fade. */
+  .scroll-reveal.reveal-instant {
+    transition: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  [data-reveal],
+  .scroll-reveal,
+  .scroll-reveal.is-revealed {
+    opacity: 1 !important;
+    transform: none !important;
+    animation: none !important;
+    transition: none !important;
+  }
+}
+
+.paragraph-block {
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+}
+
+.paragraph-block__text {
+  max-width: 62ch;
+  color: color-mix(in oklab, var(--color-fg) 85%, transparent);
+  font-size: 1.125rem;
+  line-height: 1.6;
+}
+
+@media (min-width: 768px) {
+  .paragraph-block__text {
+    font-size: 1.25rem;
+  }
+}
+
+.jude-button-block {
+  padding-top: 1.5rem;
+  padding-bottom: 1.5rem;
+}
+
+.badge-group-block {
+  padding-top: 1.5rem;
+  padding-bottom: 1.5rem;
+}
+
+.badge-group-block__list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.625rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.badge-group-block__item {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  border: 1px solid var(--color-hairline-strong);
+  border-radius: 9999px;
+  background: oklch(1 0 0 / 0.6);
+  padding: 0.375rem 0.875rem;
+  color: var(--color-fg);
+  font-size: 0.72rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+.feature-grid-block {
+  padding-top: 3rem;
+  padding-bottom: 5rem;
+}
+
+.feature-grid-block__header {
+  margin-bottom: 1.5rem;
+}
+
+.feature-grid-block__eyebrow {
+  margin: 0 0 1rem;
+  color: var(--color-muted);
+  font-size: 0.72rem;
+  letter-spacing: 0.26em;
+  text-transform: uppercase;
+}
+
+.feature-grid-block__heading {
+  max-width: 56rem;
+  color: var(--color-fg);
+  font-family: var(--font-display);
+  font-size: var(--fs-section-heading);
+  letter-spacing: -0.025em;
+  line-height: 1;
+}
+
+.feature-grid-block__grid {
+  display: grid;
+  gap: 1px;
+  border: 1px solid var(--color-hairline);
+  border-radius: 0.75rem;
+  background: var(--color-hairline);
+  overflow: hidden;
+}
+
+@media (min-width: 768px) {
+  .feature-grid-block__grid--cols-2 {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .feature-grid-block__grid--cols-3 {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .feature-grid-block__grid--cols-4 {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}
+
+.feature-grid-block__item {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  background: var(--color-bg);
+  padding: 2rem;
+  transition:
+    background-color 300ms var(--ease-out-soft),
+    box-shadow 300ms var(--ease-out-soft);
+}
+
+@media (min-width: 768px) {
+  .feature-grid-block__item {
+    padding: 2.5rem;
+  }
+}
+
+.feature-grid-block__item:hover {
+  background: oklch(1 0 0);
+  /* Inset top accent — visible despite the grid's overflow:hidden clip, and
+     leans on the existing terracotta accent for clearer interactive feedback. */
+  box-shadow: inset 0 2px 0 0 var(--color-accent-ink);
+}
+
+.feature-grid-block__meta {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.feature-grid-block__index {
+  color: var(--color-subtle);
+  font-family: var(--font-display);
+  font-size: 0.85rem;
+  font-style: italic;
+}
+
+.feature-grid-block__rule {
+  display: block;
+  width: 2rem;
+  height: 1px;
+  background: var(--color-hairline-strong);
+}
+
+.feature-grid-block__title {
+  margin-top: 2rem;
+  color: var(--color-fg);
+  font-family: var(--font-display);
+  font-size: clamp(1.35rem, 2vw, 1.75rem);
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+}
+
+.feature-grid-block__description {
+  margin-top: 1rem;
+  color: var(--color-muted);
+  font-size: 0.95rem;
+  line-height: 1.6;
+}
+
+.feature-grid-block__arrow {
+  position: absolute;
+  right: 2rem;
+  bottom: 2rem;
+  color: var(--color-subtle);
+  opacity: 0;
+  transform: translateX(-6px);
+  transition:
+    opacity 400ms var(--ease-out-soft),
+    transform 400ms var(--ease-out-soft);
+}
+
+.feature-grid-block__item:hover .feature-grid-block__arrow {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.steps-block {
+  padding-top: 2.5rem;
+  padding-bottom: 4rem;
+}
+
+@media (min-width: 768px) {
+  .steps-block {
+    padding-top: 4rem;
+    padding-bottom: 6rem;
+  }
+}
+
+.steps-block__header {
+  margin-bottom: 1.5rem;
+}
+
+.steps-block__eyebrow {
+  margin: 0 0 1rem;
+  color: var(--color-muted);
+  font-size: 0.72rem;
+  letter-spacing: 0.26em;
+  text-transform: uppercase;
+}
+
+.steps-block__heading {
+  max-width: 56rem;
+  color: var(--color-fg);
+  font-family: var(--font-display);
+  font-size: var(--fs-section-heading);
+  letter-spacing: -0.025em;
+  line-height: 1;
+}
+
+.steps-block__list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  border-top: 1px solid var(--color-hairline-strong);
+}
+
+.steps-block__item {
+  display: grid;
+  gap: 0.75rem;
+  border-bottom: 1px solid var(--color-hairline);
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+  transition:
+    background-color 300ms var(--ease-out-soft),
+    box-shadow 300ms var(--ease-out-soft);
+}
+
+@media (min-width: 768px) {
+  .steps-block__item {
+    grid-template-columns: 6rem minmax(0, 1fr) minmax(0, 2fr);
+    align-items: baseline;
+    gap: 3.5rem;
+    padding-top: 3rem;
+    padding-bottom: 3rem;
+  }
+}
+
+.steps-block__item:hover {
+  background: oklch(1 0 0 / 0.6);
+  box-shadow: inset 3px 0 0 0 var(--color-accent-ink);
+}
+
+.steps-block__meta {
+  display: flex;
+  align-items: baseline;
+  gap: 0.75rem;
+}
+
+.steps-block__index {
+  color: var(--color-accent-ink);
+  font-family: var(--font-display);
+  font-size: 1.125rem;
+  font-style: italic;
+  line-height: 1;
+}
+
+.steps-block__label {
+  color: var(--color-subtle);
+  font-size: 0.7rem;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+}
+
+.steps-block__title {
+  color: var(--color-fg);
+  font-family: var(--font-display);
+  font-size: clamp(1.5rem, 2.6vw, 2.25rem);
+  letter-spacing: -0.02em;
+  line-height: 1.05;
+}
+
+.steps-block__description {
+  max-width: 42rem;
+  color: var(--color-muted);
+  font-size: 1rem;
+  line-height: 1.55;
+}
+
+.cta-block {
+  padding-top: var(--space-section-lg);
+  padding-bottom: var(--space-section-lg);
+}
+
+.cta-block__inner {
+  max-width: 64rem;
+}
+
+.cta-block__eyebrow {
+  margin: 0 0 1rem;
+  color: var(--color-muted);
+  font-size: 0.72rem;
+  letter-spacing: 0.26em;
+  text-transform: uppercase;
+}
+
+.cta-block__title {
+  margin: 0;
+  color: var(--color-fg);
+  font-family: var(--font-display);
+  font-size: var(--fs-cta-title);
+  letter-spacing: -0.02em;
+  line-height: 0.92;
+}
+
+.cta-block__description {
+  max-width: 36rem;
+  margin-top: 2rem;
+  color: var(--color-muted);
+  font-size: 1.125rem;
+  line-height: 1.4;
+}
+
+.cta-block__actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 1.5rem 2.5rem;
+  margin-top: 3rem;
+}
+
+.cta-block__primary-link {
+  color: var(--color-fg);
+  font-size: 1.25rem;
+}
+
+@media (min-width: 768px) {
+  .cta-block__primary-link {
+    font-size: 1.5rem;
+  }
+}
+
+.separator-block {
+  padding-top: var(--space-section-sm);
+  padding-bottom: var(--space-section-sm);
+}
+
+.separator-block__line {
+  height: 1px;
+  width: 100%;
+  background: linear-gradient(
+    to right,
+    transparent,
+    var(--color-hairline-strong),
+    transparent
+  );
+}
+
 .site-not-found {
   display: flex;
   flex-direction: column;
@@ -671,6 +1173,7 @@ a:hover {
   margin: 2rem 0 0;
   color: var(--color-fg);
   font-family: var(--font-display);
+  font-size: var(--fs-display-xl);
   line-height: 0.9;
   letter-spacing: -0.03em;
 }
@@ -715,6 +1218,12 @@ a:hover {
 }
 
 @media (prefers-reduced-motion: reduce) {
+  .scroll-reveal {
+    opacity: 1;
+    animation: none;
+    transform: none;
+  }
+
   .link-underline,
   .jude-btn,
   .jude-btn__arrow,

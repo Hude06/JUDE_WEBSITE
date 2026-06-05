@@ -92,6 +92,9 @@ export interface CaseStudyBlock {
   year: string;
   role: string;
   image: string;
+  /** Display ordinal shown as "01 / Case study". Explicit so numbering never
+   *  depends on the block id or document order. */
+  index?: string;
   link?: string;
   status?: 'live' | 'archived';
   reverse?: boolean;

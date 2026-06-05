@@ -11,10 +11,7 @@ export function SiteNotFound() {
       <p className="site-not-found__eyebrow">
         Error — 404
       </p>
-      <h1
-        className="site-not-found__title"
-        style={{ fontSize: 'clamp(6rem, 18vw, 16rem)' }}
-      >
+      <h1 className="site-not-found__title">
         Not here.
       </h1>
       <p className="site-not-found__description">

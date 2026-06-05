@@ -5,11 +5,13 @@ interface FeatureGridBlockProps {
 }
 
 export function FeatureGridBlock({ block }: FeatureGridBlockProps) {
+  if (!block.items?.length) return null;
+
   const columns = block.columns ?? 3;
   const colClass = `feature-grid-block__grid--cols-${columns}`;
 
   return (
-    <section className="jude-container feature-grid-block">
+    <section className="jude-container feature-grid-block scroll-reveal">
       {(block.eyebrow || block.heading) && (
         <header className="feature-grid-block__header">
           {block.eyebrow && (
@@ -18,10 +20,7 @@ export function FeatureGridBlock({ block }: FeatureGridBlockProps) {
             </p>
           )}
           {block.heading && (
-            <h2
-              className="feature-grid-block__heading"
-              style={{ fontSize: 'clamp(2rem, 5vw, 3.5rem)' }}
-            >
+            <h2 className="feature-grid-block__heading">
               {block.heading}
             </h2>
           )}
@@ -31,7 +30,7 @@ export function FeatureGridBlock({ block }: FeatureGridBlockProps) {
       <ul className={`feature-grid-block__grid ${colClass}`}>
         {block.items.map((item, i) => (
           <li
-            key={i}
+            key={`${i}-${item.title}`}
             className="feature-grid-block__item"
           >
             <div className="feature-grid-block__meta">
@@ -41,10 +40,7 @@ export function FeatureGridBlock({ block }: FeatureGridBlockProps) {
               <span className="feature-grid-block__rule" />
             </div>
 
-            <h3
-              className="feature-grid-block__title"
-              style={{ fontSize: 'clamp(1.35rem, 2vw, 1.75rem)' }}
-            >
+            <h3 className="feature-grid-block__title">
               {item.title}
             </h3>
             <p className="feature-grid-block__description">

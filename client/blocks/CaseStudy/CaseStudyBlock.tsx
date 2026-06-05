@@ -7,19 +7,10 @@ interface CaseStudyBlockProps {
   block: CaseStudyBlockType;
 }
 
-function deriveIndex(id: string): string | null {
-  const match = id.match(/-(\d+)$/);
-  if (!match) return null;
-  const n = parseInt(match[1], 10);
-  const idx = Math.max(1, n - 2);
-  return String(idx).padStart(2, '0');
-}
-
 export function CaseStudyBlock({ block }: CaseStudyBlockProps) {
-  const { client, tagline, year, role, image, link, status = 'live', reverse = false, id } = block;
+  const { client, tagline, year, role, image, link, status = 'live', reverse = false, index } = block;
 
   const isArchived = status === 'archived';
-  const index = deriveIndex(id);
 
   const imageElement = (
     <div className="browser-frame">
@@ -37,13 +28,14 @@ export function CaseStudyBlock({ block }: CaseStudyBlockProps) {
           alt={`${client} — ${tagline}`}
           className={styles.image}
           loading="lazy"
+          decoding="async"
         />
       </div>
     </div>
   );
 
   return (
-    <section className={styles.root}>
+    <section className={cn(styles.root, 'scroll-reveal')}>
       <div className={cn(styles.layout, reverse && styles.reverse)}>
         <figure className={styles.figure}>
           {link && !isArchived ? (

@@ -43,10 +43,7 @@ export function Footer({ siteName }: FooterProps) {
           <p className="site-footer__eyebrow">
             Got an idea?
           </p>
-          <h2
-            className="site-footer__title"
-            style={{ fontSize: 'clamp(3rem, 10vw, 9rem)' }}
-          >
+          <h2 className="site-footer__title">
             Let&rsquo;s make
             <br />
             something <span className="site-footer__title-accent">
@@ -89,12 +86,6 @@ export function Footer({ siteName }: FooterProps) {
                 <span
                   aria-hidden
                   className="site-footer__brand-letter"
-                  style={{
-                    fontFamily: 'var(--font-display)',
-                    fontSize: '1.35rem',
-                    lineHeight: 1,
-                    transform: 'translate(1px, -2px)',
-                  }}
                 >
                   J
                 </span>

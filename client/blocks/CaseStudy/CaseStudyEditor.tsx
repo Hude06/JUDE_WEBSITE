@@ -11,6 +11,11 @@ interface CaseStudyEditorProps {
 export function CaseStudyEditor({ block, onChange }: CaseStudyEditorProps) {
   return (
     <>
+      <TextField
+        label="Index (e.g. 01)"
+        value={block.index ?? ''}
+        onChange={(index) => onChange({ ...block, index: index || undefined })}
+      />
       <TextField label="Client" value={block.client} onChange={(client) => onChange({ ...block, client })} />
       <TextAreaField label="Tagline" rows={3} value={block.tagline} onChange={(tagline) => onChange({ ...block, tagline })} />
       <TextField label="Year" value={block.year} onChange={(year) => onChange({ ...block, year })} />
