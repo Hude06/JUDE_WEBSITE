@@ -395,6 +395,8 @@ a {
   letter-spacing: 0.22em;
   text-transform: uppercase;
   font-variant-numeric: tabular-nums;
+  /* never let the name or role break mid-phrase (it wrecked tablet widths) */
+  white-space: nowrap;
 }
 
 .site-brand__name {
@@ -406,12 +408,15 @@ a {
   margin-inline: 0.5rem;
 }
 
-.site-brand__role {
+.site-brand__role,
+.site-brand__separator {
   display: none;
 }
 
-@media (min-width: 640px) {
-  .site-brand__role {
+/* Only show the role once there's honest room for it next to the nav. */
+@media (min-width: 1000px) {
+  .site-brand__role,
+  .site-brand__separator {
     display: inline;
   }
 }
