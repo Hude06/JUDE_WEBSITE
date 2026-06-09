@@ -19,23 +19,6 @@ const elsewhere = [
   { label: 'Etsy', href: 'https://etsy.com/shop/JudeMakesThings' },
 ];
 
-/** Light sprout mark for the deep-moss footer band. */
-function SproutMarkLight() {
-  return (
-    <svg width="26" height="30" viewBox="0 0 26 30" fill="none" aria-hidden>
-      <path
-        d="M13 29V12"
-        stroke="var(--paper)"
-        strokeWidth="2.2"
-        strokeLinecap="round"
-      />
-      <circle cx="13" cy="8" r="7" fill="var(--moss-bright)" />
-      <circle cx="6" cy="10" r="3.6" fill="#b8d4a8" />
-      <circle cx="20" cy="11" r="3.2" fill="#9dc2a4" />
-    </svg>
-  );
-}
-
 export function Footer({ siteName }: FooterProps) {
   const year = new Date().getFullYear();
 
@@ -83,20 +66,6 @@ export function Footer({ siteName }: FooterProps) {
         </div>
       </section>
 
-      {/* Treeline silhouette into the deep-moss band — a little Eugene,
-          Oregon horizon at the bottom of every page. */}
-      <svg
-        className="site-footer__treeline"
-        viewBox="0 0 1440 150"
-        preserveAspectRatio="none"
-        aria-hidden
-      >
-        <path
-          fill="var(--moss-deep)"
-          d="M0 150 L0 96 L34 96 L30 70 L52 70 L48 44 L62 44 L74 70 L94 70 L90 96 L130 96 L126 78 L150 78 L146 52 L166 52 L178 78 L200 78 L196 104 L240 104 L236 64 L256 64 L252 34 L270 34 L284 64 L302 64 L298 104 L348 104 L344 80 L366 80 L362 54 L382 54 L394 80 L414 80 L410 110 L470 110 L466 72 L488 72 L484 40 L504 40 L518 72 L536 72 L532 110 L590 110 L586 84 L608 84 L604 58 L624 58 L636 84 L656 84 L652 112 L710 112 L706 68 L728 68 L724 32 L744 32 L758 68 L776 68 L772 112 L830 112 L826 86 L848 86 L844 60 L864 60 L876 86 L896 86 L892 114 L950 114 L946 76 L968 76 L964 46 L984 46 L998 76 L1016 76 L1012 114 L1070 114 L1066 88 L1088 88 L1084 62 L1104 62 L1116 88 L1136 88 L1132 116 L1190 116 L1186 72 L1208 72 L1204 38 L1224 38 L1238 72 L1256 72 L1252 116 L1310 116 L1306 90 L1328 90 L1324 64 L1344 64 L1356 90 L1376 90 L1372 118 L1410 118 L1410 96 L1440 96 L1440 150 Z"
-        />
-      </svg>
-
       <div className="site-footer__band">
         {/* Link bar */}
         <div className="site-footer__links-wrap">
@@ -104,7 +73,9 @@ export function Footer({ siteName }: FooterProps) {
             <div>
               <div className="site-footer__brand-row">
                 <span aria-hidden className="site-footer__brand-mark">
-                  <SproutMarkLight />
+                  <span aria-hidden className="site-footer__brand-letter">
+                    J
+                  </span>
                 </span>
                 <span className="site-footer__brand-label">
                   <span className="site-footer__brand-name">Jude Hill</span>
@@ -138,7 +109,7 @@ export function Footer({ siteName }: FooterProps) {
               </span>
             </span>
             <span className="site-footer__stack">
-              Designed, built &amp; animated by hand
+              Designed &amp; built by Jude Hill
             </span>
           </div>
         </div>

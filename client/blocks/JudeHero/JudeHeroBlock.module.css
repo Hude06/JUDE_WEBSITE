@@ -105,19 +105,18 @@
   font-weight: 300;
 }
 
-.scribble {
+/* Clean rule that draws in beneath the accent word. */
+.accentRule {
   position: absolute;
-  left: -3%;
-  bottom: -0.08em;
-  width: 106%;
-  height: 0.22em;
-  overflow: visible;
-}
-
-.scribble path {
-  stroke-dasharray: 1;
-  stroke-dashoffset: 1;
-  animation: draw 0.9s var(--ease-out-soft) 1.25s forwards;
+  left: 0.02em;
+  right: 0.05em;
+  bottom: 0;
+  height: 0.045em;
+  background: var(--amber);
+  border-radius: 999px;
+  transform: scaleX(0);
+  transform-origin: left;
+  animation: rule-in 0.8s var(--ease-out-soft) 1.35s forwards;
 }
 
 .subheadline {
@@ -183,66 +182,21 @@
   transform: translateX(0.25rem);
 }
 
-/* —— growth rings ————————————————————————— */
-.rings {
-  position: absolute;
-  right: -8%;
-  top: 50%;
-  width: 620px;
-  height: 620px;
-  transform: translateY(-52%);
-  opacity: 0.45;
-  z-index: 0;
-  animation: spin-slow 160s linear infinite;
-  pointer-events: none;
-}
-
-.rings circle {
-  fill: none;
-  stroke: var(--ink);
-  stroke-width: 0.7;
-  opacity: 0.16;
-}
-
-@media (max-width: 899px) {
-  .rings {
-    display: none;
-  }
-}
-
-/* —— drifting leaves ———————————————————————— */
-.leafField {
-  position: absolute;
-  inset: 0;
-  z-index: 1;
-  pointer-events: none;
-}
-
-.leaf {
-  position: absolute;
-  top: -60px;
-  animation: leaf-fall linear infinite;
-  will-change: transform;
-}
-
-.leaf svg {
-  display: block;
-  animation: leaf-sway ease-in-out infinite alternate;
-}
-
-/* —— the self-drawing sketch ————————————————— */
+/* —— the self-drawing illustration ————————————————— */
 .art {
   position: relative;
   z-index: 1;
   display: flex;
   justify-content: center;
-  align-items: flex-end;
+  align-items: center;
 }
 
 .sketch {
   width: min(100%, 480px);
   height: auto;
   overflow: visible;
+  /* grounded, soft presentation shadow in place of a drawn ground line */
+  filter: drop-shadow(0 30px 40px rgba(31, 42, 32, 0.14));
 }
 
 @media (max-width: 899px) {
@@ -253,20 +207,11 @@
 
 .stroke {
   fill: none;
-  stroke: var(--bark);
+  stroke: var(--ink);
   stroke-linecap: round;
   stroke-dasharray: 1;
   stroke-dashoffset: 1;
   animation: draw 1.4s var(--ease-out-soft) forwards;
-}
-
-.ground {
-  fill: none;
-  stroke: var(--ink-faint);
-  stroke-linecap: round;
-  stroke-dasharray: 1;
-  stroke-dashoffset: 1;
-  animation: draw 1.4s var(--ease-out-soft) 0.15s forwards;
 }
 
 .frame {
@@ -311,11 +256,6 @@
   animation-delay: 2.05s;
 }
 
-.sproutStem {
-  animation-delay: 2.45s;
-  animation-duration: 0.9s;
-}
-
 .puff {
   transform-box: fill-box;
   transform-origin: center;
@@ -327,15 +267,13 @@
   opacity: 0;
   transform-box: fill-box;
   transform-origin: center;
-  animation:
-    cursor-in 0.6s var(--ease-out-soft) 2.5s forwards,
-    bob 4.5s ease-in-out 3.1s infinite;
+  animation: cursor-in 0.7s var(--ease-out-soft) 2.5s forwards;
 }
 
 @keyframes cursor-in {
   from {
     opacity: 0;
-    transform: translate(14px, 14px);
+    transform: translate(18px, 18px);
   }
 
   to {
@@ -360,7 +298,7 @@
   letter-spacing: 0.28em;
   text-transform: uppercase;
   opacity: 0;
-  animation: reveal-rise 1s var(--ease-out-soft) 1.9s forwards;
+  animation: hint-rise 1s var(--ease-out-soft) 1.9s forwards;
 }
 
 .scrollHint::after {
@@ -387,6 +325,12 @@
   }
 }
 
+@keyframes rule-in {
+  to {
+    transform: scaleX(1);
+  }
+}
+
 @keyframes draw {
   to {
     stroke-dashoffset: 0;
@@ -396,23 +340,6 @@
 @keyframes bloom {
   to {
     transform: scale(1);
-  }
-}
-
-@keyframes spin-slow {
-  to {
-    transform: translateY(-52%) rotate(360deg);
-  }
-}
-
-@keyframes bob {
-  0%,
-  100% {
-    transform: translateY(0) rotate(-3deg);
-  }
-
-  50% {
-    transform: translateY(-9px) rotate(4deg);
   }
 }
 
@@ -438,27 +365,7 @@
   }
 }
 
-@keyframes leaf-fall {
-  0% {
-    transform: translateY(-8vh) translateX(0);
-  }
-
-  100% {
-    transform: translateY(112vh) translateX(7vw);
-  }
-}
-
-@keyframes leaf-sway {
-  from {
-    transform: rotate(-38deg) translateX(-12px);
-  }
-
-  to {
-    transform: rotate(32deg) translateX(12px);
-  }
-}
-
-@keyframes reveal-rise {
+@keyframes hint-rise {
   from {
     opacity: 0;
     transform: translate(-50%, 26px);
@@ -477,9 +384,12 @@
     animation: none;
   }
 
-  .scribble path,
-  .stroke,
-  .ground {
+  .accentRule {
+    transform: scaleX(1);
+    animation: none;
+  }
+
+  .stroke {
     stroke-dashoffset: 0;
     animation: none;
   }
@@ -494,12 +404,7 @@
     animation: none;
   }
 
-  .leafField,
   .scrollHint {
     display: none;
-  }
-
-  .rings {
-    animation: none;
   }
 }

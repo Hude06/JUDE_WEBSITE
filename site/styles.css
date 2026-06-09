@@ -358,23 +358,21 @@ a {
   position: relative;
   display: grid;
   place-items: center;
-  width: 2.35rem;
-  height: 2.35rem;
+  width: 2.25rem;
+  height: 2.25rem;
+  border: 1px solid var(--color-hairline-strong);
+  border-radius: 9999px;
+  background: var(--paper-bright);
+  transition:
+    border-color 300ms var(--ease-out-soft),
+    background-color 300ms var(--ease-out-soft),
+    color 300ms var(--ease-out-soft);
 }
 
-/* The sprout leaves get a tiny spring "bloom" when you hover the brand. */
-.site-brand__mark .sprout-leaf {
-  transform-box: fill-box;
-  transform-origin: bottom center;
-  transition: transform 450ms var(--ease-spring);
-}
-
-.site-brand:hover .sprout-leaf {
-  transform: scale(1.18);
-}
-
-.site-brand:hover .sprout-leaf--late {
-  transition-delay: 60ms;
+.site-brand:hover .site-brand__mark {
+  color: var(--paper);
+  border-color: var(--moss-deep);
+  background: var(--moss-deep);
 }
 
 .site-brand__letter {
@@ -549,15 +547,13 @@ a {
   }
 }
 
-/* Leaf-shaped marker between marquee items. */
 .site-marquee__dot {
   display: inline-block;
-  width: 0.55rem;
-  height: 0.55rem;
+  width: 0.5rem;
+  height: 0.5rem;
   margin-left: 2rem;
-  border-radius: 0 70% 0 70%;
+  border-radius: 9999px;
   background: var(--amber);
-  transform: rotate(45deg);
 }
 
 /* ============================================================
@@ -681,16 +677,7 @@ a {
   color: var(--moss-deep);
 }
 
-/* Treeline silhouette that hands off into the deep-moss footer band. */
-.site-footer__treeline {
-  display: block;
-  width: 100%;
-  height: auto;
-  line-height: 0;
-  margin-bottom: -1px;
-}
-
-/* Everything below the treeline lives on deep moss. */
+/* Everything below the CTA lives on deep moss. */
 .site-footer__band {
   background: var(--moss-deep);
   color: var(--paper);
@@ -725,11 +712,14 @@ a {
 .site-footer__brand-mark {
   display: grid;
   place-items: center;
-  width: 2.35rem;
-  height: 2.35rem;
+  width: 2.25rem;
+  height: 2.25rem;
+  border: 1px solid rgba(246, 242, 231, 0.35);
+  border-radius: 9999px;
 }
 
 .site-footer__brand-letter {
+  color: var(--paper);
   font-family: var(--font-display);
   font-size: 1.35rem;
   font-style: italic;
@@ -1146,7 +1136,7 @@ a {
 .feature-grid-block__description {
   margin-top: 0.9rem;
   padding-top: 0.9rem;
-  border-top: 1px dashed var(--color-hairline);
+  border-top: 1px solid var(--color-hairline);
   color: var(--color-muted);
   font-size: 0.93rem;
   line-height: 1.6;
@@ -1356,34 +1346,21 @@ a {
   }
 }
 
-/* —— separator: hairlines meeting at a leaf ———————————— */
+/* —— separator ————————————————————————————— */
 .separator-block {
   padding-top: var(--space-section-sm);
   padding-bottom: var(--space-section-sm);
 }
 
 .separator-block__line {
-  position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  height: 1px;
   width: 100%;
-  height: auto;
-  background:
-    linear-gradient(to right, transparent, var(--color-hairline-strong))
-      left center / calc(50% - 2.25rem) 1px no-repeat,
-    linear-gradient(to left, transparent, var(--color-hairline-strong))
-      right center / calc(50% - 2.25rem) 1px no-repeat;
-}
-
-.separator-block__line::before {
-  content: "";
-  width: 0.85rem;
-  height: 0.85rem;
-  border-radius: 0 70% 0 70%;
-  background: var(--moss);
-  opacity: 0.75;
-  transform: rotate(45deg);
+  background: linear-gradient(
+    to right,
+    transparent,
+    var(--color-hairline-strong),
+    transparent
+  );
 }
 
 /* —— 404 ————————————————————————————————— */
