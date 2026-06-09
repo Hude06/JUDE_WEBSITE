@@ -7,14 +7,14 @@
     { "label": "Contact", "href": "/contact" }
   ],
   "fonts": {
-    "heading": "var(--font-instrument-serif)",
-    "body": "var(--font-inter)"
+    "heading": "'Fraunces', var(--font-fraunces), Georgia, serif",
+    "body": "var(--font-bricolage), 'Helvetica Neue', sans-serif"
   },
   "colors": {
-    "primary": "#000000",
-    "secondary": "#666666",
-    "background": "#ffffff",
-    "text": "#1a1a1a"
+    "primary": "#2e5440",
+    "secondary": "#46523f",
+    "background": "#f6f2e7",
+    "text": "#1f2a20"
   },
   "motion": {
     "engine": "gsap",

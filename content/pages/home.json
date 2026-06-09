@@ -1,15 +1,15 @@
 {
   "contractVersion": 1,
-  "title": "Jude Hill — Websites, made simple.",
+  "title": "Jude Hill — Websites, made by hand.",
   "slug": "home",
-  "description": "Designer & developer building fast, beautiful websites. Based in Eugene, Oregon.",
+  "description": "Designer & developer hand-building fast, beautiful websites. Based in Eugene, Oregon.",
   "blocks": [
     {
       "id": "home-1",
       "type": "jude-hero",
       "eyebrow": "Jude Hill — Designer & Developer",
-      "headline": "Websites, made simple.",
-      "subheadline": "Fast, beautiful sites built by hand for small businesses, creatives, and anyone with an idea worth shipping.",
+      "headline": "Websites, made by hand.",
+      "subheadline": "Fast, beautiful sites built one at a time for small businesses, creatives, and anyone with an idea worth shipping — designed in the browser, from Eugene, Oregon.",
       "primaryCta": {
         "text": "Start a project",
         "href": "/contact"

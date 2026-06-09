@@ -6,6 +6,18 @@ interface JudeHeadingBlockProps {
   block: JudeHeadingBlockType;
 }
 
+/** The last word of display headings becomes the italic moss accent. */
+function renderAccentText(text: string) {
+  const words = text.split(' ').filter(Boolean);
+  if (words.length < 2) return <em className={styles.accent}>{text}</em>;
+  return (
+    <>
+      {words.slice(0, -1).join(' ')}{' '}
+      <em className={styles.accent}>{words[words.length - 1]}</em>
+    </>
+  );
+}
+
 export function JudeHeadingBlock({ block }: JudeHeadingBlockProps) {
   const level = block.level ?? 1;
   const id = block.anchorId;
@@ -16,7 +28,7 @@ export function JudeHeadingBlock({ block }: JudeHeadingBlockProps) {
     case 1:
       return (
         <div id={id} className={cn(container, styles.level1Wrap)}>
-          <h1 className={styles.level1Heading}>{block.text}</h1>
+          <h1 className={styles.level1Heading}>{renderAccentText(block.text)}</h1>
         </div>
       );
     case 2:
@@ -26,7 +38,7 @@ export function JudeHeadingBlock({ block }: JudeHeadingBlockProps) {
             <span className={styles.dividerLine} />
             <span className={styles.sectionMark}>{id ? `§ ${id}` : '§'}</span>
           </div>
-          <h2 className={styles.level2Heading}>{block.text}</h2>
+          <h2 className={styles.level2Heading}>{renderAccentText(block.text)}</h2>
         </div>
       );
     case 3:

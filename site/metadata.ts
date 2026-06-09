@@ -9,7 +9,7 @@ const shareImage = {
   url: '/uploads/seo-share-image.png',
   width: 1200,
   height: 630,
-  alt: 'Jude Hill — websites, made simple',
+  alt: 'Jude Hill — websites, made by hand',
 };
 
 /**
@@ -20,14 +20,14 @@ const shareImage = {
  */
 export const siteMetadata: Metadata = {
   metadataBase,
-  title: 'Jude Hill — Websites, made simple.',
-  description: 'Designer & developer building fast, beautiful websites. Based in Eugene, Oregon.',
+  title: 'Jude Hill — Websites, made by hand.',
+  description: 'Designer & developer hand-building fast, beautiful websites. Based in Eugene, Oregon.',
   alternates: {
     canonical: '/',
   },
   openGraph: {
-    title: 'Jude Hill — Websites, made simple.',
-    description: 'Designer & developer building fast, beautiful websites. Based in Eugene, Oregon.',
+    title: 'Jude Hill — Websites, made by hand.',
+    description: 'Designer & developer hand-building fast, beautiful websites. Based in Eugene, Oregon.',
     type: 'website',
     locale: 'en_US',
     url: '/',
@@ -35,8 +35,8 @@ export const siteMetadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Jude Hill — Websites, made simple.',
-    description: 'Designer & developer building fast, beautiful websites.',
+    title: 'Jude Hill — Websites, made by hand.',
+    description: 'Designer & developer hand-building fast, beautiful websites.',
     images: [shareImage.url],
   },
 };
