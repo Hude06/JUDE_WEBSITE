@@ -24,6 +24,8 @@
   --moss-deep: #2e5440;
   --moss-bright: #8fb573;
   --amber: #d08c3a;
+  /* darker amber for small text — the bright amber fails WCAG AA on paper */
+  --amber-deep: #8f5a17;
   --rust: #b85c38;
   --bark: #5b4334;
 
@@ -732,7 +734,7 @@ a {
 }
 
 .site-footer__brand-label {
-  color: rgba(246, 242, 231, 0.6);
+  color: rgba(246, 242, 231, 0.72);
   font-size: 0.72rem;
   letter-spacing: 0.22em;
   text-transform: uppercase;
@@ -749,13 +751,13 @@ a {
 }
 
 .site-footer__brand-role {
-  color: rgba(246, 242, 231, 0.6);
+  color: rgba(246, 242, 231, 0.72);
 }
 
 .site-footer__bio {
   max-width: 22rem;
   margin-top: 1.25rem;
-  color: rgba(246, 242, 231, 0.65);
+  color: rgba(246, 242, 231, 0.78);
   font-size: 0.875rem;
   line-height: 1.6;
 }
@@ -770,7 +772,7 @@ a {
   gap: 0.75rem;
   padding-top: 1.5rem;
   padding-bottom: 1.5rem;
-  color: rgba(246, 242, 231, 0.6);
+  color: rgba(246, 242, 231, 0.72);
   font-size: 0.7rem;
   letter-spacing: 0.22em;
   text-transform: uppercase;
@@ -799,7 +801,7 @@ a {
 }
 
 .site-footer__stack {
-  color: rgba(246, 242, 231, 0.6);
+  color: rgba(246, 242, 231, 0.72);
 }
 
 .site-live-time {
@@ -808,7 +810,7 @@ a {
 
 .site-footer-col__title {
   margin: 0;
-  color: rgba(246, 242, 231, 0.55);
+  color: rgba(246, 242, 231, 0.68);
   font-size: 0.7rem;
   letter-spacing: 0.26em;
   text-transform: uppercase;
@@ -1103,7 +1105,7 @@ a {
 }
 
 .feature-grid-block__index {
-  color: var(--amber);
+  color: var(--amber-deep);
   font-size: 0.72rem;
   font-weight: 700;
   letter-spacing: 0.12em;
@@ -1252,7 +1254,7 @@ a {
 }
 
 .steps-block__index {
-  color: var(--amber);
+  color: var(--amber-deep);
   font-size: 0.8rem;
   font-weight: 700;
   letter-spacing: 0.12em;

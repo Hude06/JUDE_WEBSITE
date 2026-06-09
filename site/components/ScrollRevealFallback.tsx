@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect } from 'react';
+import { usePathname } from 'next/navigation';
 
 /**
  * Cross-browser fallback for `.scroll-reveal` entrances.
@@ -8,15 +9,22 @@ import { useEffect } from 'react';
  * Chromium animates `.scroll-reveal` with scroll-driven CSS
  * (`animation-timeline: view()`), which is scrubbed to scroll position and so is
  * inherently velocity-correct — this component is a no-op there. On browsers that
- * lack scroll-driven animations (Safari, Firefox), it drives the reveal with a
- * single IntersectionObserver, adding `.is-revealed` as elements enter.
+ * lack scroll-driven animations (Safari ≤18, Firefox), it drives the reveal with
+ * a single IntersectionObserver, adding `.is-revealed` as elements enter.
+ *
+ * Re-runs on every route change: this component lives in the persistent layout
+ * shell, so a client-side navigation swaps in brand-new `.scroll-reveal` nodes
+ * that the previous observer never saw. Without the pathname dependency those
+ * sections would stay at opacity 0 forever (a "blank page" below the fold).
  *
  * Snap-if-already-visible: anything already on (or above) the viewport when this
- * mounts — including items the user scrolled past quickly before hydration — is
+ * runs — including items the user scrolled past quickly before hydration — is
  * revealed instantly via `.reveal-instant`, so it never fades in late. Reduced
  * motion is handled in CSS (content forced visible), so we bail early there.
  */
 export function ScrollRevealFallback() {
+  const pathname = usePathname();
+
   useEffect(() => {
     if (typeof window === 'undefined') return;
 
@@ -38,6 +46,7 @@ export function ScrollRevealFallback() {
     // Snap everything already visible or scrolled past; observe the rest.
     const pending: HTMLElement[] = [];
     for (const el of nodes) {
+      if (el.classList.contains('is-revealed')) continue;
       const rect = el.getBoundingClientRect();
       const alreadyShown = rect.top < window.innerHeight && rect.bottom > 0;
       const scrolledPast = rect.bottom <= 0;
@@ -62,7 +71,7 @@ export function ScrollRevealFallback() {
     pending.forEach((el) => observer.observe(el));
 
     return () => observer.disconnect();
-  }, []);
+  }, [pathname]);
 
   return null;
 }

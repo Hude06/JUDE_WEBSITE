@@ -6,10 +6,11 @@ interface JudeHeadingBlockProps {
   block: JudeHeadingBlockType;
 }
 
-/** The last word of display headings becomes the italic moss accent. */
+/** The last word of display headings becomes the italic moss accent.
+    Single-word headings stay plain — an all-accent title reads as a mistake. */
 function renderAccentText(text: string) {
   const words = text.split(' ').filter(Boolean);
-  if (words.length < 2) return <em className={styles.accent}>{text}</em>;
+  if (words.length < 2) return text;
   return (
     <>
       {words.slice(0, -1).join(' ')}{' '}
