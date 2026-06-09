@@ -8,6 +8,13 @@ COPY package.json package-lock.json ./
 RUN npm ci
 
 COPY . .
+
+# Stamped by the deploy: docker build --build-arg BUILD_SHA=$(git rev-parse --short HEAD)
+ARG BUILD_SHA=dev
+ARG BUILD_TIME=
+ENV BUILD_SHA=$BUILD_SHA
+ENV BUILD_TIME=$BUILD_TIME
+
 RUN npm run build
 
 ENV NODE_ENV=production
