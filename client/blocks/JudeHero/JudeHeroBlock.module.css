@@ -22,9 +22,8 @@
   .innerSplit {
     grid-template-columns: 1.05fr 0.95fr;
     gap: 2rem;
-    min-height: calc(100vh - 4.5rem);
-    padding-top: 2rem;
-    padding-bottom: 6rem;
+    padding-top: 5rem;
+    padding-bottom: 6.5rem;
   }
 }
 
@@ -282,39 +281,6 @@
   }
 }
 
-/* —— scroll hint ———————————————————————————— */
-.scrollHint {
-  position: absolute;
-  bottom: 2rem;
-  left: 50%;
-  z-index: 2;
-  transform: translateX(-50%);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 0.5rem;
-  color: var(--color-subtle);
-  font-size: 0.68rem;
-  letter-spacing: 0.28em;
-  text-transform: uppercase;
-  opacity: 0;
-  animation: hint-rise 1s var(--ease-out-soft) 1.9s forwards;
-}
-
-.scrollHint::after {
-  content: "";
-  width: 1.5px;
-  height: 2.6rem;
-  background: linear-gradient(var(--ink-faint), transparent);
-  animation: dripline 2.2s var(--ease-out-soft) infinite;
-}
-
-@media (max-width: 899px) {
-  .scrollHint {
-    display: none;
-  }
-}
-
 /* —— keyframes ——
    CSS Modules localize animation names, so the hero's keyframes must live in
    this file (references to keyframes in site/styles.css would silently hash
@@ -343,40 +309,6 @@
   }
 }
 
-@keyframes dripline {
-  0% {
-    transform: scaleY(0);
-    transform-origin: top;
-  }
-
-  45% {
-    transform: scaleY(1);
-    transform-origin: top;
-  }
-
-  55% {
-    transform: scaleY(1);
-    transform-origin: bottom;
-  }
-
-  100% {
-    transform: scaleY(0);
-    transform-origin: bottom;
-  }
-}
-
-@keyframes hint-rise {
-  from {
-    opacity: 0;
-    transform: translate(-50%, 26px);
-  }
-
-  to {
-    opacity: 1;
-    transform: translate(-50%, 0);
-  }
-}
-
 /* —— reduced motion: everything lands in its final state —— */
 @media (prefers-reduced-motion: reduce) {
   .lineInner {
@@ -402,9 +334,5 @@
   .cursor {
     opacity: 1;
     animation: none;
-  }
-
-  .scrollHint {
-    display: none;
   }
 }

@@ -195,10 +195,6 @@ export function JudeHeroBlock({ block }: JudeHeroBlockProps) {
 
         {!isCentered && <SketchArt />}
       </div>
-
-      <div className={styles.scrollHint} aria-hidden>
-        Scroll
-      </div>
     </section>
   );
 }
