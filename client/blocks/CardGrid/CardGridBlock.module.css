@@ -35,6 +35,7 @@
   display: block;
   margin-inline: -1rem;
   padding-inline: 1rem;
+  border-radius: 12px;
   transition: background-color 300ms var(--ease-out-soft);
 }
 
@@ -45,8 +46,10 @@
   }
 }
 
+/* Soft ink tint — a near-white block here read as a stray white border
+   against the paper background. */
 .itemLink:hover {
-  background: var(--paper-bright);
+  background: rgba(31, 42, 32, 0.045);
 }
 
 .row {
