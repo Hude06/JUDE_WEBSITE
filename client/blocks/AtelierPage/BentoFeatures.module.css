@@ -1,0 +1,174 @@
+.section {
+  background: var(--paper);
+  border-top: 1px solid var(--line-soft);
+  padding-block: var(--space-24);
+}
+
+.inner {
+  max-width: 1100px;
+  margin-inline: auto;
+  padding-inline: var(--space-8);
+}
+
+.header {
+  margin-bottom: var(--space-12);
+}
+
+.eyebrow {
+  font-family: var(--font-body);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: var(--space-3);
+}
+
+.heading {
+  font-family: var(--font-heading);
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 620;
+  letter-spacing: -0.015em;
+  color: var(--ink);
+  line-height: 1.08;
+}
+
+.subheading {
+  margin-top: var(--space-3);
+  font-family: var(--font-body);
+  font-size: var(--text-lg);
+  color: var(--ink-2);
+}
+
+/* ─── Bento grid ──────────────────────────────────────────────── */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: auto auto;
+  gap: var(--space-4);
+}
+
+/* First card is tall, spanning 2 rows */
+.card:first-child {
+  grid-row: span 2;
+}
+
+.card {
+  background: var(--surface);
+  border: 1px solid var(--line-soft);
+  border-radius: 16px;
+  padding: var(--space-8);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  box-shadow: var(--shadow-card);
+  transition: transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1),
+              box-shadow 0.25s ease,
+              border-color 0.2s;
+  will-change: transform;
+}
+
+.card:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-card-hover);
+  border-color: var(--line);
+}
+
+.icon {
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  background: var(--surface-2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  color: var(--ink-2);
+}
+
+.cardTitle {
+  font-family: var(--font-heading);
+  font-size: 1.2rem;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  color: var(--ink);
+  line-height: 1.2;
+}
+
+.cardBody {
+  font-family: var(--font-body);
+  font-size: var(--text-md);
+  color: var(--ink-2);
+  line-height: 1.65;
+  flex: 1;
+}
+
+/* Large card gets bigger text */
+.card:first-child .cardTitle {
+  font-size: 1.5rem;
+}
+
+.card:first-child .cardBody {
+  font-size: var(--text-lg);
+}
+
+/* Visual accent on the tall card */
+.card:first-child {
+  background: color-mix(in srgb, var(--accent) 4%, var(--surface));
+  border-color: color-mix(in srgb, var(--accent) 22%, transparent);
+}
+
+.card:first-child .icon {
+  background: color-mix(in srgb, var(--accent) 13%, transparent);
+  color: var(--accent);
+}
+
+/* Keyboard shortcut display in last card — same kbd style as the app */
+.kbdRow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: auto;
+}
+
+.kbdKey {
+  font-family: var(--font-body);
+  font-size: 0.7rem;
+  font-weight: 600;
+  color: var(--ink-2);
+  background: var(--surface-2);
+  border: 1px solid var(--line);
+  box-shadow: 0 1px 0 var(--line);
+  border-radius: 5px;
+  padding: 0.2rem 0.45rem;
+}
+
+/* ─── Responsive ──────────────────────────────────────────────── */
+@media (max-width: 900px) {
+  .grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .card:first-child {
+    grid-column: span 2;
+    grid-row: span 1;
+  }
+}
+
+@media (max-width: 560px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+
+  .card:first-child {
+    grid-column: span 1;
+  }
+
+  .section {
+    padding-block: var(--space-16);
+  }
+
+  .inner {
+    padding-inline: var(--space-5);
+  }
+}

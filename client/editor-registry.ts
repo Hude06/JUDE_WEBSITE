@@ -1,5 +1,6 @@
 import type { ComponentType } from 'react';
 import type { Block } from '@/lib/types';
+import { AtelierPageEditor } from '@/client/blocks/AtelierPage/AtelierPageEditor';
 import { JudeHeroEditor } from '@/client/blocks/JudeHero/JudeHeroEditor';
 import { JudeHeadingEditor } from '@/client/blocks/JudeHeading/JudeHeadingEditor';
 import { ParagraphEditor } from '@/client/blocks/Paragraph/ParagraphEditor';
@@ -18,6 +19,8 @@ export interface ClientEditorProps<T extends Block = Block> {
 }
 
 export const clientEditors: Record<string, ComponentType<ClientEditorProps>> = {
+  'atelier-page': AtelierPageEditor as unknown as ComponentType<ClientEditorProps>,
+  'atelier-download': AtelierPageEditor as unknown as ComponentType<ClientEditorProps>,
   'jude-hero': JudeHeroEditor as unknown as ComponentType<ClientEditorProps>,
   'jude-heading': JudeHeadingEditor as unknown as ComponentType<ClientEditorProps>,
   paragraph: ParagraphEditor as unknown as ComponentType<ClientEditorProps>,
@@ -32,6 +35,8 @@ export const clientEditors: Record<string, ComponentType<ClientEditorProps>> = {
 };
 
 export const clientTypeLabels: Record<string, string> = {
+  'atelier-page': 'Atelier Page',
+  'atelier-download': 'Atelier Download',
   'jude-hero': 'Jude Hero',
   'jude-heading': 'Jude Heading',
   paragraph: 'Paragraph',

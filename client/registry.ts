@@ -1,4 +1,6 @@
 import type { ComponentType } from 'react';
+import { AtelierPage } from '@/client/blocks/AtelierPage';
+import { AtelierDownload } from '@/client/blocks/AtelierPage/AtelierDownload';
 import { JudeHeroBlock } from '@/client/blocks/JudeHero/JudeHeroBlock';
 import { JudeHeadingBlock } from '@/client/blocks/JudeHeading/JudeHeadingBlock';
 import { ParagraphBlock } from '@/client/blocks/Paragraph/ParagraphBlock';
@@ -12,6 +14,8 @@ import { BadgeGroupBlock } from '@/client/blocks/BadgeGroup/BadgeGroupBlock';
 import { CtaBlock } from '@/client/blocks/Cta/CtaBlock';
 
 export const clientBlocks: Record<string, ComponentType<{ block: never }>> = {
+  'atelier-page': AtelierPage as ComponentType<{ block: never }>,
+  'atelier-download': AtelierDownload as ComponentType<{ block: never }>,
   'jude-hero': JudeHeroBlock as ComponentType<{ block: never }>,
   'jude-heading': JudeHeadingBlock as ComponentType<{ block: never }>,
   paragraph: ParagraphBlock as ComponentType<{ block: never }>,

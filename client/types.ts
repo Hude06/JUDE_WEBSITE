@@ -116,7 +116,19 @@ export interface SeparatorBlock {
   type: 'separator';
 }
 
+export interface AtelierPageBlock {
+  id: string;
+  type: 'atelier-page';
+}
+
+export interface AtelierDownloadBlock {
+  id: string;
+  type: 'atelier-download';
+}
+
 export type ClientBlock =
+  | AtelierPageBlock
+  | AtelierDownloadBlock
   | JudeHeadingBlock
   | ParagraphBlock
   | JudeButtonBlock

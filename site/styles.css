@@ -73,10 +73,12 @@
   }
 }
 
+/* Smooth anchor scrolling is driven by the SmoothAnchorScroll component, not
+   CSS: `scroll-behavior: smooth` on <html> would also animate Next.js's
+   scroll-to-top during route transitions (visible glitch + console warning). */
 html {
   font-optical-sizing: auto;
   color-scheme: light only;
-  scroll-behavior: smooth;
 }
 
 body {
@@ -1463,9 +1465,5 @@ a {
   .site-marquee__track,
   .pulse-dot {
     animation: none;
-  }
-
-  html {
-    scroll-behavior: auto;
   }
 }
