@@ -13,6 +13,7 @@ import { resolveMotionEngine } from '@/lib/motion-engine';
 import { cn } from '@/lib/utils';
 import { SmoothAnchorScroll } from '@/components/SmoothAnchorScroll';
 import { PlausibleScript } from '@/components/PlausibleScript';
+import { TrackPageview } from '@/components/TrackPageview';
 import { AnimationEngineProvider } from '@/components/motion/AnimationEngineProvider';
 import { siteMetadata } from '@/site/metadata';
 import './globals.css';
@@ -97,6 +98,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           <SmoothAnchorScroll />
           {children}
           <PlausibleScript />
+          {process.env.MC_TRACK_DISABLED !== '1' && <TrackPageview />}
         </AnimationEngineProvider>
       </body>
     </html>
