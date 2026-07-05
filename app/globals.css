@@ -43,6 +43,9 @@ a { color: inherit; text-decoration: none; }
   --text-4xl: 2.25rem;
   --text-5xl: 3rem;
   --text-6xl: 3.75rem;
+  --text-7xl: 4.5rem;
+  --text-8xl: 6rem;
+  --text-9xl: 8rem;
 
   /* Line heights */
   --leading-tight: 1.15;
@@ -95,7 +98,32 @@ a { color: inherit; text-decoration: none; }
   --shadow-sm: 0 1px 2px 0 oklch(0 0 0 / 0.05);
   --shadow-md: 0 4px 6px -1px oklch(0 0 0 / 0.08), 0 2px 4px -2px oklch(0 0 0 / 0.05);
   --shadow-lg: 0 10px 15px -3px oklch(0 0 0 / 0.08), 0 4px 6px -4px oklch(0 0 0 / 0.05);
+  --shadow-xl: 0 20px 25px -5px oklch(0 0 0 / 0.08), 0 8px 10px -6px oklch(0 0 0 / 0.05);
+
+  /* ------------------------------------------------------------
+     Art-direction DNA tokens.
+     Defaults reproduce today's rendering; expressive themes override
+     them (via app/layout.tsx injection + [data-layout-dna]/[data-type-scale]
+     rules below). Referenced only by opt-in variant CSS, so setting them
+     here changes nothing for existing sites.
+     ------------------------------------------------------------ */
+  --display-tracking: -0.03em;   /* letter-spacing for hero/display headings */
+  --section-rhythm: var(--space-20);
+  --rule-weight: 1px;
+  --eyebrow-size: var(--text-sm);
+  --eyebrow-tracking: 0.08em;
+  --eyebrow-transform: uppercase;
+  --eyebrow-weight: var(--weight-semibold);
+  --eyebrow-color: var(--muted-foreground);
 }
+
+/* ------------------------------------------------------------
+   Type-scale character. Expressive themes tag <html> with
+   data-type-scale; classic themes never set it, so this is inert
+   for existing sites.
+   ------------------------------------------------------------ */
+:root[data-type-scale="large"] { --display-tracking: -0.035em; }
+:root[data-type-scale="mega"] { --display-tracking: -0.045em; }
 
 /* Dark mode (default theme) */
 .dark {

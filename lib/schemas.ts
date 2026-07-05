@@ -42,7 +42,7 @@ const contractVersion = z.preprocess(
 );
 
 const headingLevel = z.union([z.literal(1), z.literal(2), z.literal(3), z.literal(4), z.literal(5), z.literal(6)]);
-const headingSize = z.enum(['sm', 'md', 'lg', 'xl', 'display', 'hero']);
+const headingSize = z.enum(['sm', 'md', 'lg', 'xl', 'display', 'hero', 'mega', 'giant']);
 const textSize = z.enum(['xs', 'sm', 'base', 'lg', 'xl']);
 const tone = z.enum(['default', 'muted', 'accent']);
 const weight = z.enum(['regular', 'medium', 'semibold', 'bold']);
@@ -55,6 +55,10 @@ const sectionPadding = z.enum(['sm', 'md', 'lg', 'xl']);
 const gridColumns = z.union([z.literal(2), z.literal(3), z.literal(4)]);
 const columnRatio = z.enum(['50-50', '60-40', '40-60']);
 const formFieldType = z.enum(['text', 'textarea', 'email']);
+const heroLayout = z.enum(['stack', 'split', 'full-bleed', 'offset']);
+const gridStyle = z.enum(['cards', 'bare', 'bordered-list', 'numbered', 'feature']);
+const sectionLayout = z.enum(['centered', 'left', 'wide', 'aside']);
+const quoteStyle = z.enum(['centered', 'display', 'bordered']);
 
 const ctaLink = z.object({
   label: shortText,
@@ -128,6 +132,8 @@ const HeroBlockSchema = z.object({
   buttons: z.array(ctaLink).max(4).optional(),
   image: imageSrc.optional(),
   align: align.optional(),
+  layout: heroLayout.optional(),
+  eyebrow: shortText.optional(),
 }).strict();
 
 const SectionBlockSchema = z.object({
@@ -137,6 +143,8 @@ const SectionBlockSchema = z.object({
   background: sectionBackground.optional(),
   padding: sectionPadding.optional(),
   anchor: z.string().max(100).optional(),
+  layout: sectionLayout.optional(),
+  eyebrow: shortText.optional(),
 }).strict();
 
 const GridBlockSchema = z.object({
@@ -144,6 +152,8 @@ const GridBlockSchema = z.object({
   heading: shortText.optional(),
   items: z.array(gridItem).max(20),
   columns: gridColumns.optional(),
+  style: gridStyle.optional(),
+  eyebrow: shortText.optional(),
 }).strict();
 
 const TwoColumnBlockSchema = z.object({
@@ -159,6 +169,7 @@ const QuoteBlockSchema = z.object({
   author: shortText.optional(),
   role: shortText.optional(),
   image: imageSrc.optional(),
+  style: quoteStyle.optional(),
 }).strict();
 
 const FormBlockSchema = z.object({
@@ -200,7 +211,7 @@ export const SiteConfigSchema = z.object({
   fonts: z.object({
     heading: fontFamily,
     body: fontFamily,
-    pair: z.enum(['editorial', 'studio', 'tech', 'warm', 'monochrome']).optional(),
+    pair: z.string().max(50).optional(),
   }),
   colors: z.object({
     primary: hexColor,
@@ -209,9 +220,10 @@ export const SiteConfigSchema = z.object({
     text: hexColor,
   }),
   theme: z.object({
-    preset: z.enum(['editorial', 'studio', 'tech', 'warm', 'monochrome']).optional(),
+    preset: z.string().max(50).optional(),
     appearance: z.enum(['light', 'dark', 'auto']).optional(),
     accent: hexColor.optional(),
+    system: z.enum(['classic', 'expressive']).optional(),
   }).optional(),
   motion: z.object({
     intensity: z.enum(['none', 'subtle', 'rich']).optional(),

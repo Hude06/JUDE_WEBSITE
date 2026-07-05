@@ -1,0 +1,59 @@
+{
+  "name": "almanac",
+  "label": "Almanac",
+  "description": "Old-world reference book. Cream stock, walnut ink, rust accent. Newsreader display over Lora body, ledger-ruled rows, fine paper texture. Measured, restrained motion.",
+  "colors": {
+    "bg": "oklch(0.96 0.015 92)",
+    "fg": "oklch(0.22 0.02 60)",
+    "primary": "oklch(0.34 0.055 52)",
+    "primaryForeground": "oklch(0.96 0.015 92)",
+    "accent": "oklch(0.5 0.12 42)",
+    "accentForeground": "oklch(0.97 0.01 92)",
+    "muted": "oklch(0.92 0.015 90)",
+    "mutedForeground": "oklch(0.42 0.02 55)",
+    "border": "oklch(0.82 0.02 82)",
+    "card": "oklch(0.97 0.01 92)",
+    "cardForeground": "oklch(0.22 0.02 60)"
+  },
+  "colorsDark": {
+    "bg": "oklch(0.19 0.02 58)",
+    "fg": "oklch(0.92 0.02 88)",
+    "primary": "oklch(0.88 0.03 86)",
+    "primaryForeground": "oklch(0.19 0.02 58)",
+    "accent": "oklch(0.62 0.13 44)",
+    "accentForeground": "oklch(0.19 0.02 58)",
+    "muted": "oklch(0.24 0.02 58)",
+    "mutedForeground": "oklch(0.68 0.02 72)",
+    "border": "oklch(0.3 0.02 58)",
+    "card": "oklch(0.22 0.02 58)",
+    "cardForeground": "oklch(0.92 0.02 88)"
+  },
+  "radius": "0.125rem",
+  "shadow": {
+    "sm": "0 1px 0 0 oklch(0.22 0.02 60 / 0.08)",
+    "md": "0 1px 0 0 oklch(0.22 0.02 60 / 0.1)",
+    "lg": "0 2px 0 0 oklch(0.22 0.02 60 / 0.12)",
+    "xl": "0 20px 50px -20px oklch(0.22 0.02 60 / 0.22)"
+  },
+  "fontPair": "almanac",
+  "motion": {
+    "duration": 0.7,
+    "ease": "cubic-bezier(0.22, 1, 0.36, 1)",
+    "stagger": 0.1,
+    "character": "smooth"
+  },
+  "atmosphere": "paper-organic",
+  "structure": {
+    "heroLayout": "split",
+    "gridStyle": "bordered-list",
+    "sectionLayout": "left",
+    "quoteStyle": "centered",
+    "containerWidth": "default",
+    "rule": "hairline"
+  },
+  "type": {
+    "displayScale": "large",
+    "displayTracking": "-0.02em",
+    "eyebrowCase": "upper"
+  }
+}

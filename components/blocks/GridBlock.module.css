@@ -56,3 +56,91 @@
   line-height: var(--leading-relaxed);
   color: var(--muted-foreground);
 }
+
+/* ---- Bare: no card chrome ---- */
+.gridBare {
+  gap: var(--space-8);
+}
+.itemBare {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+/* ---- Numbered: oversized index numerals ---- */
+.gridNumbered {
+  gap: var(--space-10) var(--space-8);
+}
+.itemNumbered {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  padding-top: var(--space-4);
+  border-top: var(--rule-weight) solid var(--border);
+}
+.numeral {
+  font-family: var(--font-display);
+  font-size: var(--text-4xl);
+  font-weight: var(--weight-bold);
+  line-height: 1;
+  color: var(--accent);
+  letter-spacing: -0.02em;
+  margin-bottom: var(--space-1);
+  font-variant-numeric: tabular-nums;
+}
+
+/* ---- Feature: accent rule + emphasized title ---- */
+.gridFeature {
+  gap: var(--space-8);
+}
+.itemFeature {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  padding-top: var(--space-5);
+  position: relative;
+}
+.featureRule {
+  display: block;
+  width: var(--space-10);
+  height: 3px;
+  background: var(--accent);
+  margin-bottom: var(--space-2);
+}
+.itemFeature .itemTitle {
+  font-size: var(--text-2xl);
+}
+
+/* ---- Bordered list: hairline-ruled rows ---- */
+.list {
+  display: flex;
+  flex-direction: column;
+}
+.row {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--space-8);
+  padding-block: var(--space-6);
+  border-top: var(--rule-weight) solid var(--border);
+}
+.row:last-child {
+  border-bottom: var(--rule-weight) solid var(--border);
+}
+.rowMain {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+.rowImage {
+  width: 8rem;
+  height: 5rem;
+  object-fit: cover;
+  border-radius: var(--radius-sm);
+  flex-shrink: 0;
+}
+
+@media (max-width: 600px) {
+  .row { flex-direction: column; gap: var(--space-3); }
+  .rowImage { width: 100%; height: auto; aspect-ratio: 16 / 10; }
+}

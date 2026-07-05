@@ -2,7 +2,7 @@ import type { HTMLAttributes, ReactNode } from 'react';
 import styles from './Heading.module.css';
 
 export type HeadingLevel = 1 | 2 | 3 | 4 | 5 | 6;
-export type HeadingSize = 'sm' | 'md' | 'lg' | 'xl' | 'display' | 'hero';
+export type HeadingSize = 'sm' | 'md' | 'lg' | 'xl' | 'display' | 'hero' | 'mega' | 'giant';
 export type HeadingTone = 'default' | 'muted' | 'accent';
 export type HeadingAlign = 'left' | 'center' | 'right';
 

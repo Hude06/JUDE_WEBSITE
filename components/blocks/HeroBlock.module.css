@@ -34,7 +34,93 @@
   display: block;
 }
 
+/* Shared kicker/eyebrow. */
+.eyebrow {
+  font-size: var(--eyebrow-size);
+  letter-spacing: var(--eyebrow-tracking);
+  text-transform: var(--eyebrow-transform);
+  font-weight: var(--eyebrow-weight);
+  color: var(--accent);
+  margin-bottom: var(--space-2);
+}
+
+/* Split — text beside an image. */
+.split {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-12);
+  align-items: center;
+}
+.splitText {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-6);
+}
+.splitMedia { min-width: 0; }
+.splitImage {
+  width: 100%;
+  height: auto;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-lg);
+}
+
+/* Full-bleed — background image band with overlaid copy. */
+.fullBleed {
+  position: relative;
+  padding-block: var(--space-24);
+  background-size: cover;
+  background-position: center;
+  color: oklch(0.98 0 0);
+  isolation: isolate;
+}
+.fullBleedScrim {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: linear-gradient(
+    to top,
+    oklch(0 0 0 / 0.7),
+    oklch(0 0 0 / 0.35)
+  );
+}
+.fullBleedInner {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-6);
+}
+.fullBleedInner .subtitle { color: oklch(0.95 0 0 / 0.9); }
+
+/* Offset — oversized asymmetric editorial hero. */
+.offset {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 22rem);
+  grid-template-areas:
+    "title title"
+    "aside aside"
+    "image image";
+  gap: var(--space-8) var(--space-12);
+  align-items: end;
+}
+.offsetTitle {
+  grid-area: title;
+  max-width: 16ch;
+}
+.offsetAside {
+  grid-area: aside;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-5);
+  justify-self: start;
+  max-width: 34rem;
+}
+.offset .image { grid-area: image; margin-top: 0; }
+
+@media (max-width: 800px) {
+  .split { grid-template-columns: 1fr; gap: var(--space-8); }
+}
+
 @media (max-width: 640px) {
   .hero { padding-block: var(--space-12); }
   .subtitle { font-size: var(--text-lg); }
+  .fullBleed { padding-block: var(--space-16); }
 }

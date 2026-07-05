@@ -44,6 +44,48 @@ export const FONT_PAIRS: Record<FontPairName, FontPairDefinition> = {
     body: 'Geist',
     description: 'Single sans across all weights — hierarchy via weight and size alone.',
   },
+  atelier: {
+    name: 'atelier',
+    label: 'Atelier',
+    display: 'Fraunces',
+    body: 'Inter',
+    description: 'Oversized opsz-axis serif display over a clean neutral sans for fashion editorial.',
+  },
+  brutalist: {
+    name: 'brutalist',
+    label: 'Brutalist',
+    display: 'Space Grotesk',
+    body: 'JetBrains Mono',
+    description: 'Geometric grotesque display with a raw monospace body for poster-grade contrast.',
+  },
+  console: {
+    name: 'console',
+    label: 'Console',
+    display: 'JetBrains Mono',
+    body: 'JetBrains Mono',
+    description: 'Full monospace, display and body alike — terminal-native.',
+  },
+  almanac: {
+    name: 'almanac',
+    label: 'Almanac',
+    display: 'Newsreader',
+    body: 'Lora',
+    description: 'News serif display over a warm book serif for reference-book gravitas.',
+  },
+  kinetic: {
+    name: 'kinetic',
+    label: 'Kinetic',
+    display: 'Space Grotesk',
+    body: 'Inter',
+    description: 'Bold geometric grotesque display with a versatile sans body.',
+  },
+  salon: {
+    name: 'salon',
+    label: 'Salon',
+    display: 'Playfair Display',
+    body: 'Inter',
+    description: 'High-contrast couture serif display balanced by a quiet sans body.',
+  },
 };
 
 export function listFontPairs(): FontPairDefinition[] {

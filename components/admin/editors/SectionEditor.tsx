@@ -17,11 +17,21 @@ const paddingOptions = [
   { value: 'xl', label: 'Extra large' },
 ];
 
+const layoutOptions = [
+  { value: 'auto', label: 'Theme default' },
+  { value: 'centered', label: 'Centered' },
+  { value: 'left', label: 'Left' },
+  { value: 'wide', label: 'Wide' },
+  { value: 'aside', label: 'Aside (heading + body)' },
+];
+
 export function SectionEditor({ block, onChange }: { block: SectionBlock; onChange: (b: SectionBlock) => void }) {
   return (
     <Stack gap={4}>
+      <TextField label="Eyebrow (optional)" hint="Small label above the heading" value={block.eyebrow ?? ''} onChange={(v) => onChange({ ...block, eyebrow: v || undefined })} />
       <TextField label="Heading (optional)" value={block.heading ?? ''} onChange={(v) => onChange({ ...block, heading: v || undefined })} />
       <TextAreaField label="Body (optional)" value={block.body ?? ''} rows={4} onChange={(v) => onChange({ ...block, body: v || undefined })} />
+      <SelectField label="Layout" value={block.layout ?? 'auto'} options={layoutOptions} onChange={(v) => onChange({ ...block, layout: v === 'auto' ? undefined : (v as SectionBlock['layout']) })} />
       <SelectField label="Background" value={block.background ?? 'default'} options={bgOptions} onChange={(v) => onChange({ ...block, background: v as SectionBlock['background'] })} />
       <SelectField label="Padding" value={block.padding ?? 'md'} options={paddingOptions} onChange={(v) => onChange({ ...block, padding: v as SectionBlock['padding'] })} />
       <TextField label="Anchor ID (optional)" hint="For #anchor links in the URL" value={block.anchor ?? ''} onChange={(v) => onChange({ ...block, anchor: v || undefined })} />

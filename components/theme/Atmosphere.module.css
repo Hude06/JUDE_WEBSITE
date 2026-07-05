@@ -1,0 +1,71 @@
+/* ------------------------------------------------------------
+   Atmosphere overlays.
+
+   Inert by default: the base element paints nothing until <html> carries a
+   matching [data-atmosphere] value (set only for expressive themes). A single
+   fixed, pointer-events:none layer sits above content at very low opacity.
+   ------------------------------------------------------------ */
+.atmosphere {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  pointer-events: none;
+  display: none;
+  background-repeat: repeat;
+}
+
+/* Fine film grain — warm editorial paper (atelier). */
+:global(html[data-atmosphere="grain-warm"]) .atmosphere,
+:global(html[data-atmosphere="grain"]) .atmosphere,
+:global(html[data-atmosphere="paper-organic"]) .atmosphere {
+  display: block;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-size: 160px 160px;
+  opacity: 0.05;
+}
+
+:global(html[data-atmosphere="paper-organic"]) .atmosphere {
+  opacity: 0.045;
+  mix-blend-mode: multiply;
+}
+
+/* Dot grid — brutalist blueprint field. */
+:global(html[data-atmosphere="dot-grid"]) .atmosphere {
+  display: block;
+  background-image: radial-gradient(var(--foreground) 0.75px, transparent 0.75px);
+  background-size: 22px 22px;
+  opacity: 0.06;
+}
+
+/* CRT scanlines + faint dot grid — console/terminal. */
+:global(html[data-atmosphere="scanlines-dotgrid"]) .atmosphere,
+:global(html[data-atmosphere="scanlines"]) .atmosphere {
+  display: block;
+  background-image:
+    repeating-linear-gradient(
+      to bottom,
+      oklch(1 0 0 / 0.05) 0,
+      oklch(1 0 0 / 0.05) 1px,
+      transparent 1px,
+      transparent 3px
+    ),
+    radial-gradient(var(--accent) 0.5px, transparent 0.5px);
+  background-size: 100% 3px, 26px 26px;
+  opacity: 0.5;
+}
+
+/* Soft vignette — salon. */
+:global(html[data-atmosphere="vignette"]) .atmosphere {
+  display: block;
+  background: radial-gradient(
+    120% 120% at 50% 40%,
+    transparent 55%,
+    oklch(0.15 0.02 325 / 0.14) 100%
+  );
+  opacity: 1;
+}
+
+/* Void / none — explicitly nothing. */
+:global(html[data-atmosphere="void"]) .atmosphere {
+  display: none;
+}
