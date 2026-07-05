@@ -1,6 +1,8 @@
 import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
-import { loadPage, listPages } from '@/lib/content';
+import { loadPage, listPages, loadSiteConfig } from '@/lib/content';
+import { resolveReveal } from '@/lib/motion-engine';
+import { resolveThemeStructure } from '@/lib/themes';
 import { BlockRenderer, frameworkBlocks } from '@/components/BlockRenderer';
 import { clientBlocks } from '@client/registry';
 
@@ -34,5 +36,13 @@ export default async function SlugPage({ params }: SlugPageProps) {
   } catch {
     notFound();
   }
-  return <BlockRenderer blocks={page.blocks} registry={blockRegistry} />;
+  const config = loadSiteConfig();
+  return (
+    <BlockRenderer
+      blocks={page.blocks}
+      registry={blockRegistry}
+      reveal={resolveReveal(config)}
+      dna={resolveThemeStructure(config.theme?.preset, config.theme?.system)}
+    />
+  );
 }

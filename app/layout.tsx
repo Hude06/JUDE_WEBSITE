@@ -7,10 +7,14 @@ import {
   JetBrains_Mono,
   Fraunces,
   Lora,
+  Space_Grotesk,
+  Newsreader,
+  Playfair_Display,
 } from 'next/font/google';
 import { loadSiteConfig } from '@/lib/content';
 import { resolveMotionEngine } from '@/lib/motion-engine';
-import { cn } from '@/lib/utils';
+import { isExpressiveTheme, resolveTheme, themeToCssVars, themeToDarkCssVars } from '@/lib/themes';
+import { cn, readableForeground } from '@/lib/utils';
 import { SmoothAnchorScroll } from '@/components/SmoothAnchorScroll';
 import { PlausibleScript } from '@/components/PlausibleScript';
 import { TrackPageview } from '@/components/TrackPageview';
@@ -36,6 +40,9 @@ const jetbrainsMono = JetBrains_Mono({
 });
 const fraunces = Fraunces({ subsets: ['latin'], variable: '--font-fraunces' });
 const lora = Lora({ subsets: ['latin'], variable: '--font-lora' });
+const spaceGrotesk = Space_Grotesk({ subsets: ['latin'], variable: '--font-space-grotesk' });
+const newsreader = Newsreader({ subsets: ['latin'], variable: '--font-newsreader' });
+const playfair = Playfair_Display({ subsets: ['latin'], variable: '--font-playfair' });
 
 const FONT_PAIR_VARS: Record<string, { display: string; body: string }> = {
   editorial: { display: 'var(--font-instrument-serif)', body: 'var(--font-inter)' },
@@ -43,6 +50,13 @@ const FONT_PAIR_VARS: Record<string, { display: string; body: string }> = {
   tech: { display: 'var(--font-jetbrains-mono)', body: 'var(--font-geist)' },
   warm: { display: 'var(--font-fraunces)', body: 'var(--font-lora)' },
   monochrome: { display: 'var(--font-geist)', body: 'var(--font-geist)' },
+  // Expressive generation
+  atelier: { display: 'var(--font-fraunces)', body: 'var(--font-inter)' },
+  brutalist: { display: 'var(--font-space-grotesk)', body: 'var(--font-jetbrains-mono)' },
+  console: { display: 'var(--font-jetbrains-mono)', body: 'var(--font-jetbrains-mono)' },
+  almanac: { display: 'var(--font-newsreader)', body: 'var(--font-lora)' },
+  kinetic: { display: 'var(--font-space-grotesk)', body: 'var(--font-inter)' },
+  salon: { display: 'var(--font-playfair)', body: 'var(--font-inter)' },
 };
 
 const config = loadSiteConfig();
@@ -62,17 +76,38 @@ export const metadata: Metadata = {
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
-  const pair = config.fonts?.pair ?? null;
-  const pairVars = pair && FONT_PAIR_VARS[pair];
+  const themePreset = config.theme?.preset;
+  const appearance = config.theme?.appearance ?? 'light';
+  const motionEngine = resolveMotionEngine(config);
+
+  // Expressive presets opt a site into the art-direction engine. Classic
+  // presets keep the original code path so existing sites are unchanged.
+  const expressive = isExpressiveTheme(themePreset) || config.theme?.system === 'expressive';
+  const theme = resolveTheme(themePreset);
+
+  // Config font pair wins; otherwise an expressive theme supplies its own pair.
+  const pair = config.fonts?.pair ?? (expressive && theme ? theme.fontPair : null);
+  const pairVars = pair ? FONT_PAIR_VARS[pair] : undefined;
 
   const cssVars: React.CSSProperties = {
     '--font-display': pairVars?.display ?? config.fonts?.heading ?? 'var(--font-geist)',
     '--font-body': pairVars?.body ?? config.fonts?.body ?? 'var(--font-geist)',
   } as React.CSSProperties;
 
-  const themePreset = config.theme?.preset;
-  const appearance = config.theme?.appearance ?? 'light';
-  const motionEngine = resolveMotionEngine(config);
+  // Design tokens injected on <html> for expressive themes (which have no
+  // [data-theme] block in globals.css) plus any per-site accent override.
+  const htmlVars: Record<string, string> = {};
+  if (expressive && theme) {
+    Object.assign(htmlVars, themeToCssVars(theme));
+    if (appearance === 'dark') Object.assign(htmlVars, themeToDarkCssVars(theme));
+  }
+  const accent = config.theme?.accent;
+  if (accent) {
+    htmlVars['--accent'] = accent;
+    htmlVars['--accent-foreground'] = readableForeground(accent);
+    htmlVars['--ring'] = accent;
+  }
+  const htmlStyle = Object.keys(htmlVars).length ? (htmlVars as React.CSSProperties) : undefined;
 
   const htmlClass = cn(
     appearance === 'dark' && 'dark',
@@ -83,6 +118,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     jetbrainsMono.variable,
     fraunces.variable,
     lora.variable,
+    spaceGrotesk.variable,
+    newsreader.variable,
+    playfair.variable,
   );
 
   return (
@@ -91,7 +129,12 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       data-theme={themePreset}
       data-appearance={appearance}
       data-motion-engine={motionEngine}
+      data-atmosphere={expressive && theme?.atmosphere ? theme.atmosphere : undefined}
+      data-motion-character={expressive && theme ? theme.motion.character : undefined}
+      data-layout-dna={expressive && theme ? theme.name : undefined}
+      data-type-scale={expressive && theme?.type?.displayScale ? theme.type.displayScale : undefined}
       className={htmlClass}
+      style={htmlStyle}
     >
       <body style={cssVars}>
         <AnimationEngineProvider engine={motionEngine}>

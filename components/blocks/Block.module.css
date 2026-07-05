@@ -21,3 +21,13 @@
 .alignLeft { display: flex; justify-content: flex-start; }
 .alignCenter { display: flex; justify-content: center; }
 .alignRight { display: flex; justify-content: flex-end; }
+
+/* Shared kicker/eyebrow label used above block headings. */
+.eyebrow {
+  font-size: var(--eyebrow-size);
+  letter-spacing: var(--eyebrow-tracking);
+  text-transform: var(--eyebrow-transform);
+  font-weight: var(--eyebrow-weight);
+  color: var(--accent);
+  margin-bottom: var(--space-3);
+}

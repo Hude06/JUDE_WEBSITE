@@ -1,13 +1,20 @@
 import { FONT_PAIRS, listFontPairs, getFontPair } from '@/lib/font-pairs';
 
+const CLASSIC_PAIRS = ['editorial', 'studio', 'tech', 'warm', 'monochrome'] as const;
+const EXPRESSIVE_PAIRS = ['atelier', 'brutalist', 'console', 'almanac', 'kinetic', 'salon'] as const;
+
 describe('FONT_PAIRS', () => {
-  it('defines all 5 pair names', () => {
-    expect(Object.keys(FONT_PAIRS)).toHaveLength(5);
-    expect(FONT_PAIRS).toHaveProperty('editorial');
-    expect(FONT_PAIRS).toHaveProperty('studio');
-    expect(FONT_PAIRS).toHaveProperty('tech');
-    expect(FONT_PAIRS).toHaveProperty('warm');
-    expect(FONT_PAIRS).toHaveProperty('monochrome');
+  it('keeps all 5 classic pair names', () => {
+    for (const name of CLASSIC_PAIRS) {
+      expect(FONT_PAIRS).toHaveProperty(name);
+    }
+  });
+
+  it('adds the expressive pair names', () => {
+    for (const name of EXPRESSIVE_PAIRS) {
+      expect(FONT_PAIRS).toHaveProperty(name);
+    }
+    expect(Object.keys(FONT_PAIRS)).toHaveLength(CLASSIC_PAIRS.length + EXPRESSIVE_PAIRS.length);
   });
 
   it('editorial pair uses Instrument Serif display', () => {
@@ -31,7 +38,7 @@ describe('FONT_PAIRS', () => {
 describe('listFontPairs', () => {
   it('returns an array of all pairs', () => {
     const pairs = listFontPairs();
-    expect(pairs).toHaveLength(5);
+    expect(pairs).toHaveLength(CLASSIC_PAIRS.length + EXPRESSIVE_PAIRS.length);
     for (const pair of pairs) {
       expect(pair.name).toBeDefined();
       expect(pair.display).toBeDefined();

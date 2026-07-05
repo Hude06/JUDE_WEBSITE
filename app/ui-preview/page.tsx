@@ -15,10 +15,21 @@ import {
   ImageField,
   ArrayField,
 } from '@/lib/ui';
+import {
+  allThemes,
+  isExpressiveTheme,
+  listAllThemes,
+  themeToCssVars,
+  themeToDarkCssVars,
+} from '@/lib/themes';
 import styles from './page.module.css';
 
-const THEMES = ['default', 'editorial', 'studio', 'tech', 'warm', 'monochrome'] as const;
-type Theme = typeof THEMES[number];
+const THEMES = ['default', ...listAllThemes()];
+type Theme = string;
+
+// Stable set of token names the injector manages, so switching themes clears
+// any previously-injected expressive tokens before applying the next.
+const MANAGED_VARS = Object.keys(themeToCssVars(allThemes.atelier));
 
 const APPEARANCES = ['light', 'dark'] as const;
 type Appearance = typeof APPEARANCES[number];
@@ -52,11 +63,27 @@ export default function UiPreviewPage() {
 
   useEffect(() => {
     const html = document.documentElement;
+
+    // Clear any previously-injected expressive tokens so classic/default themes
+    // fall back to their globals.css [data-theme] rules.
+    for (const name of MANAGED_VARS) html.style.removeProperty(name);
+    html.removeAttribute('data-type-scale');
+    html.removeAttribute('data-layout-dna');
+
     if (theme === 'default') {
       html.removeAttribute('data-theme');
     } else {
       html.setAttribute('data-theme', theme);
+      if (isExpressiveTheme(theme)) {
+        const preset = allThemes[theme];
+        const vars = { ...themeToCssVars(preset) };
+        if (appearance === 'dark') Object.assign(vars, themeToDarkCssVars(preset));
+        for (const [name, value] of Object.entries(vars)) html.style.setProperty(name, value);
+        if (preset.type?.displayScale) html.setAttribute('data-type-scale', preset.type.displayScale);
+        html.setAttribute('data-layout-dna', preset.name);
+      }
     }
+
     html.setAttribute('data-appearance', appearance);
     if (appearance === 'dark') {
       html.classList.add('dark');

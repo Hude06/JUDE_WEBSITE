@@ -2,13 +2,13 @@
 
 import type { SiteConfig } from '../../lib/types';
 import { Stack, TextField, SelectField, Heading } from '../../lib/ui';
+import { allThemes, listThemes, listExpressiveThemes } from '../../lib/themes';
+import { FONT_PAIRS } from '../../lib/font-pairs';
 
+// Classic presets first, then the expressive generation, each labelled from the registry.
 const themeOptions = [
-  { value: 'editorial', label: 'Editorial' },
-  { value: 'studio', label: 'Studio' },
-  { value: 'tech', label: 'Tech' },
-  { value: 'warm', label: 'Warm' },
-  { value: 'monochrome', label: 'Monochrome' },
+  ...listThemes().map((name) => ({ value: name, label: `${allThemes[name].label} (classic)` })),
+  ...listExpressiveThemes().map((name) => ({ value: name, label: `${allThemes[name].label} (expressive)` })),
 ];
 
 const appearanceOptions = [
@@ -19,11 +19,7 @@ const appearanceOptions = [
 
 const pairOptions = [
   { value: '', label: 'Custom (use heading + body fonts below)' },
-  { value: 'editorial', label: 'Editorial (Instrument Serif + Inter)' },
-  { value: 'studio', label: 'Studio (Bricolage + JetBrains Mono)' },
-  { value: 'tech', label: 'Tech (JetBrains Mono + Geist)' },
-  { value: 'warm', label: 'Warm (Fraunces + Lora)' },
-  { value: 'monochrome', label: 'Monochrome (Geist only)' },
+  ...Object.values(FONT_PAIRS).map((p) => ({ value: p.name, label: `${p.label} (${p.display} + ${p.body})` })),
 ];
 
 const motionEngineOptions = [
@@ -56,9 +52,10 @@ export function SiteSettingsEditor({ config, onChange }: SiteSettingsEditorProps
       <Heading level={4} size="md">Theme</Heading>
       <SelectField
         label="Theme preset"
+        hint="Expressive presets add art direction, atmosphere, and motion."
         value={config.theme?.preset ?? 'editorial'}
         options={themeOptions}
-        onChange={(v) => onChange({ ...config, theme: { ...config.theme, preset: v as SiteConfig['theme'] extends infer T ? T extends { preset?: infer P } ? P : never : never } })}
+        onChange={(v) => onChange({ ...config, theme: { ...config.theme, preset: v } })}
       />
       <SelectField
         label="Appearance"
@@ -66,13 +63,19 @@ export function SiteSettingsEditor({ config, onChange }: SiteSettingsEditorProps
         options={appearanceOptions}
         onChange={(v) => onChange({ ...config, theme: { ...config.theme, appearance: v as 'light' | 'dark' | 'auto' } })}
       />
+      <TextField
+        label="Accent color (optional)"
+        hint="Hex value that overrides the theme accent, e.g. #e0561f"
+        value={config.theme?.accent ?? ''}
+        onChange={(v) => onChange({ ...config, theme: { ...config.theme, accent: v || undefined } })}
+      />
 
       <Heading level={4} size="md">Fonts</Heading>
       <SelectField
         label="Font pair (presets)"
         value={config.fonts.pair ?? ''}
         options={pairOptions}
-        onChange={(v) => onChange({ ...config, fonts: { ...config.fonts, pair: (v || undefined) as SiteConfig['fonts']['pair'] } })}
+        onChange={(v) => onChange({ ...config, fonts: { ...config.fonts, pair: v || undefined } })}
       />
       <TextField
         label="Heading font (CSS family)"

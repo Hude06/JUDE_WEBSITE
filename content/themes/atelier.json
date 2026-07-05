@@ -1,0 +1,59 @@
+{
+  "name": "atelier",
+  "label": "Atelier",
+  "description": "Fashion-house editorial. Warm gallery paper, deep ink, muted clay accent. Oversized Fraunces display, airy negative space, hairline rules, fine warm grain. Asymmetric hero, unadorned grid.",
+  "colors": {
+    "bg": "oklch(0.97 0.008 70)",
+    "fg": "oklch(0.18 0.012 45)",
+    "primary": "oklch(0.18 0.012 45)",
+    "primaryForeground": "oklch(0.97 0.008 70)",
+    "accent": "oklch(0.58 0.11 30)",
+    "accentForeground": "oklch(0.98 0.006 70)",
+    "muted": "oklch(0.94 0.008 68)",
+    "mutedForeground": "oklch(0.46 0.012 45)",
+    "border": "oklch(0.85 0.008 60)",
+    "card": "oklch(0.985 0.005 70)",
+    "cardForeground": "oklch(0.18 0.012 45)"
+  },
+  "colorsDark": {
+    "bg": "oklch(0.16 0.012 45)",
+    "fg": "oklch(0.94 0.008 70)",
+    "primary": "oklch(0.94 0.008 70)",
+    "primaryForeground": "oklch(0.16 0.012 45)",
+    "accent": "oklch(0.68 0.13 32)",
+    "accentForeground": "oklch(0.16 0.012 45)",
+    "muted": "oklch(0.22 0.012 45)",
+    "mutedForeground": "oklch(0.64 0.012 60)",
+    "border": "oklch(0.28 0.012 45)",
+    "card": "oklch(0.19 0.012 45)",
+    "cardForeground": "oklch(0.94 0.008 70)"
+  },
+  "radius": "0.25rem",
+  "shadow": {
+    "sm": "0 1px 0 0 oklch(0.18 0.012 45 / 0.06)",
+    "md": "0 1px 0 0 oklch(0.18 0.012 45 / 0.09)",
+    "lg": "0 1px 0 0 oklch(0.18 0.012 45 / 0.12)",
+    "xl": "0 24px 60px -24px oklch(0.18 0.012 45 / 0.25)"
+  },
+  "fontPair": "atelier",
+  "motion": {
+    "duration": 0.8,
+    "ease": "cubic-bezier(0.22, 1, 0.36, 1)",
+    "stagger": 0.12,
+    "character": "smooth"
+  },
+  "atmosphere": "grain-warm",
+  "structure": {
+    "heroLayout": "offset",
+    "gridStyle": "bare",
+    "sectionLayout": "left",
+    "quoteStyle": "display",
+    "containerWidth": "wide",
+    "rule": "hairline"
+  },
+  "type": {
+    "displayScale": "large",
+    "displayTracking": "-0.04em",
+    "eyebrowCase": "upper"
+  }
+}

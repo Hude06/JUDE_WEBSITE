@@ -21,16 +21,28 @@ The framework root only exists after Step 1 clones it. As soon as the clone land
 3. `ARCHITECTURE.md` — deployment and system flow details when needed.
 
 The framework ships with hand-rolled UI primitives in `lib/ui/` + CSS Modules + CSS variable tokens. **Do NOT add Tailwind, shadcn, or any other CSS framework.** UI customization happens entirely through:
-- Picking one of 5 theme presets (`editorial`, `studio`, `tech`, `warm`, `monochrome`) in `site.json`
+- Picking a theme preset in `site.json` (see the two generations below)
 - Composing pages from the 10 base blocks (heading, text, image, button, hero, section, grid, two-column, quote, form)
+- Choosing per-block **layout variants** (hero `layout`, grid `style`, section `layout`, quote `style`) and adding `eyebrow` labels — all optional, default to the theme's look
+- Setting an optional `theme.accent` hex to personalize any theme
 - Adding custom blocks per-client in `client/blocks/` for anything the base 10 don't cover (see `client/README.md`)
 
-The 5 theme presets — match the client's vibe to one of these:
-- **editorial** — NYT magazine × Linear changelog. Warm paper + deep ink + terracotta accent, hairline rules, no shadows. Default for personal portfolios, agency sites, editorial brands.
-- **studio** — Neo-brutalist. Black/white/neon-green accent, 0-radius edges, heavy lines. Good for design studios, creative agencies.
-- **tech** — Terminal/dashboard. Deep blue + cyan accent, tight radius. Developer tools, B2B SaaS.
-- **warm** — Apothecary, hand-made. Soft cream + terracotta, big rounded corners. Restaurants, wellness brands, lifestyle.
-- **monochrome** — Braun. Pure grayscale, minimal accent. Architecture, photography, anything where the work is the brand.
+**Two theme generations.** Prefer an *expressive* preset for new sites — they carry real art direction (texture/atmosphere, distinctive shadows, scroll motion, and structural layout defaults), so two sites on different expressive presets look genuinely different, not just recolored. Classic presets remain for backward compatibility and stay visually conservative.
+
+Expressive presets (recommended default — match the client's vibe):
+- **atelier** — Fashion editorial. Warm gallery paper, ink, clay accent; oversized Fraunces, hairline rules, fine grain, asymmetric hero. Portfolios, studios, editorial brands.
+- **brutalist** — Neo-brutalist poster. White/black + vermilion, zero radius, hard offset shadows, dot-grid, numbered grids. Design studios, bold creative.
+- **console** — Terminal-native, always dark. Green-black + phosphor accent, JetBrains Mono, scanlines. Developer tools, security, infra.
+- **almanac** — Reference book. Cream stock, walnut ink, ruled rows, Newsreader + Lora. Publications, consultancies, law/finance.
+- **kinetic** — Loud startup. Bright white, electric indigo + citron, big type, color-blocked sections, spring motion. SaaS, launches, product.
+- **salon** — Couture minimalism. Porcelain + plum, Playfair display, soft vignette, dramatic scale. Beauty, hospitality, luxury.
+
+Classic presets (backward-compatible, conservative):
+- **editorial** — NYT magazine × Linear changelog. Warm paper + deep ink + terracotta accent, hairline rules, no shadows.
+- **studio** — Neo-brutalist. Black/white/neon-green accent, 0-radius edges, heavy lines.
+- **tech** — Terminal/dashboard. Deep blue + cyan accent, tight radius.
+- **warm** — Apothecary. Soft cream + terracotta, big rounded corners.
+- **monochrome** — Braun. Pure grayscale, minimal accent.
 
 If the requested project clearly does not fit this framework (for example: docs-only site, large e-commerce app, or real-time collaborative product), STOP and ask the user: "This framework is optimized for content-as-JSON marketing/client sites. For this use case I'd recommend {alternative}. Do you want me to: (a) use {alternative}, (b) force-fit this framework anyway, or (c) help you choose?"
 
@@ -81,7 +93,7 @@ Ask ALL of these in a single message. Do not ask one at a time.
 - **Site name** — the display name (e.g., "Jane's Photography")
 - **Client name** — kebab-case identifier used for repo name and package name (e.g., "jane-photography"). Must match `^[a-z0-9-]+$`. Suggest one derived from the site name.
 - **Site type** — one of: portfolio, agency, restaurant, service business, blog, landing page, e-commerce, other. This drives both theme choice and starter content. (If "other", ask for a one-line description of what the site is.)
-- **Theme preset** — one of `editorial`, `studio`, `tech`, `warm`, `monochrome`. Suggest a default based on the site type (e.g., warm → restaurant; editorial → portfolio/agency; tech → developer tools; studio → design studio; monochrome → photography). The dev can override.
+- **Theme preset** — prefer an expressive preset (`atelier`, `brutalist`, `console`, `almanac`, `kinetic`, `salon`); the classic presets (`editorial`, `studio`, `tech`, `warm`, `monochrome`) remain available. Suggest a default based on the site type (e.g., `atelier` → portfolio/agency; `kinetic` → SaaS/startup; `almanac` → consultancy/publication; `console` → developer tools; `salon` → beauty/hospitality; `warm` → restaurant). The dev can override.
 
 **Optional (provide defaults):**
 - **Domain** — production domain if known (e.g., "janephotography.com"). Default: blank.
@@ -133,15 +145,17 @@ The framework ships with **generic** starter content at `content/site.json` and 
 
 **`content/site.json`:**
 - Set `siteName` to the provided site name
-- Set `theme.preset` to the chosen theme preset (one of `editorial` / `studio` / `tech` / `warm` / `monochrome`)
-- Set `theme.appearance` to `light` (default) or `dark` if the client wants dark mode
-- Set `fonts.pair` to match the theme preset (same name — `"editorial"` pair for `editorial` theme, etc.)
+- Set `theme.preset` to the chosen theme preset (expressive: `atelier` / `brutalist` / `console` / `almanac` / `kinetic` / `salon`; or classic: `editorial` / `studio` / `tech` / `warm` / `monochrome`)
+- Set `theme.appearance` to `light` (default) or `dark` if the client wants dark mode (note: `console` is dark by design)
+- Set `fonts.pair` to match the theme preset (same name — `"atelier"` pair for `atelier` theme, etc.)
+- Optionally set `theme.accent` to a client brand hex to personalize the palette
 - Update `nav` to match the pages you'll create — keep it short (3–5 items max)
 - The `colors` block is a legacy fallback for sites that don't use a theme preset; you can leave it at defaults
 
 **`content/pages/home.json`:**
 - Replace the generic blocks with a real home page for this client. Use the block catalog in `README.md`.
 - Most home pages: one `hero` (always top), one `grid` (3 cards of value props or features), one `quote` (if you have a testimonial or memorable line), one `section` as a CTA at the bottom.
+- On an expressive preset, the hero/grid/section/quote already default to the theme's layout DNA — you don't need to set `layout`/`style`. Add an `eyebrow` on the hero and CTA section for a polished editorial feel, and override a block's `layout`/`style` only when you want something different from the theme default.
 - Don't add 10 blocks. 4–6 is usually right.
 
 **`content/pages/about.json`:**

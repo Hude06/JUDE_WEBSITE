@@ -9,10 +9,21 @@ const columnsOptions = [
   { value: '4', label: '4 columns' },
 ];
 
+const styleOptions = [
+  { value: 'auto', label: 'Theme default' },
+  { value: 'cards', label: 'Cards' },
+  { value: 'bare', label: 'Bare (no chrome)' },
+  { value: 'bordered-list', label: 'Bordered list' },
+  { value: 'numbered', label: 'Numbered' },
+  { value: 'feature', label: 'Feature' },
+];
+
 export function GridEditor({ block, onChange }: { block: GridBlock; onChange: (b: GridBlock) => void }) {
   return (
     <Stack gap={4}>
+      <TextField label="Eyebrow (optional)" hint="Small label above the heading" value={block.eyebrow ?? ''} onChange={(v) => onChange({ ...block, eyebrow: v || undefined })} />
       <TextField label="Heading (optional)" value={block.heading ?? ''} onChange={(v) => onChange({ ...block, heading: v || undefined })} />
+      <SelectField label="Item style" value={block.style ?? 'auto'} options={styleOptions} onChange={(v) => onChange({ ...block, style: v === 'auto' ? undefined : (v as GridBlock['style']) })} />
       <SelectField
         label="Columns"
         value={String(block.columns ?? 3)}

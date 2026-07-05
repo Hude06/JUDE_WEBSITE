@@ -1,0 +1,59 @@
+{
+  "name": "salon",
+  "label": "Salon",
+  "description": "Couture minimalism. Cool porcelain with a mauve cast, deep plum ink, rose accent. Playfair Display at dramatic scale over Inter, soft vignette, diffuse shadows. Centered but grand.",
+  "colors": {
+    "bg": "oklch(0.98 0.006 320)",
+    "fg": "oklch(0.16 0.025 325)",
+    "primary": "oklch(0.22 0.045 330)",
+    "primaryForeground": "oklch(0.98 0.006 320)",
+    "accent": "oklch(0.56 0.13 350)",
+    "accentForeground": "oklch(0.98 0.006 320)",
+    "muted": "oklch(0.95 0.01 318)",
+    "mutedForeground": "oklch(0.46 0.02 325)",
+    "border": "oklch(0.87 0.012 318)",
+    "card": "oklch(0.99 0.004 320)",
+    "cardForeground": "oklch(0.16 0.025 325)"
+  },
+  "colorsDark": {
+    "bg": "oklch(0.16 0.025 325)",
+    "fg": "oklch(0.95 0.008 320)",
+    "primary": "oklch(0.95 0.008 320)",
+    "primaryForeground": "oklch(0.16 0.025 325)",
+    "accent": "oklch(0.66 0.15 350)",
+    "accentForeground": "oklch(0.16 0.025 325)",
+    "muted": "oklch(0.21 0.025 325)",
+    "mutedForeground": "oklch(0.66 0.02 320)",
+    "border": "oklch(0.28 0.025 325)",
+    "card": "oklch(0.19 0.025 325)",
+    "cardForeground": "oklch(0.95 0.008 320)"
+  },
+  "radius": "0.5rem",
+  "shadow": {
+    "sm": "0 2px 10px -3px oklch(0.16 0.025 325 / 0.1)",
+    "md": "0 12px 30px -8px oklch(0.16 0.025 325 / 0.14)",
+    "lg": "0 28px 64px -16px oklch(0.16 0.025 325 / 0.18)",
+    "xl": "0 44px 90px -24px oklch(0.16 0.025 325 / 0.24)"
+  },
+  "fontPair": "salon",
+  "motion": {
+    "duration": 0.9,
+    "ease": "cubic-bezier(0.22, 1, 0.36, 1)",
+    "stagger": 0.14,
+    "character": "smooth"
+  },
+  "atmosphere": "vignette",
+  "structure": {
+    "heroLayout": "centered",
+    "gridStyle": "cards",
+    "sectionLayout": "centered",
+    "quoteStyle": "display",
+    "containerWidth": "default",
+    "rule": "hairline"
+  },
+  "type": {
+    "displayScale": "mega",
+    "displayTracking": "-0.025em",
+    "eyebrowCase": "upper"
+  }
+}

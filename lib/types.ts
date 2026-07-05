@@ -4,7 +4,7 @@ import type { ContentContractVersion } from './contract';
    Shared sub-types
    ============================================================ */
 export type HeadingLevel = 1 | 2 | 3 | 4 | 5 | 6;
-export type HeadingSize = 'sm' | 'md' | 'lg' | 'xl' | 'display' | 'hero';
+export type HeadingSize = 'sm' | 'md' | 'lg' | 'xl' | 'display' | 'hero' | 'mega' | 'giant';
 export type TextSize = 'xs' | 'sm' | 'base' | 'lg' | 'xl';
 export type TextTone = 'default' | 'muted' | 'accent';
 export type TextWeight = 'regular' | 'medium' | 'semibold' | 'bold';
@@ -18,6 +18,13 @@ export type GridColumns = 2 | 3 | 4;
 export type ColumnRatio = '50-50' | '60-40' | '40-60';
 export type FormFieldType = 'text' | 'textarea' | 'email';
 export type MotionEngine = 'motion' | 'gsap';
+
+/* Structural layout variants (opt-in; omitting a field keeps the original
+   layout). Shared with the theme layout DNA in lib/themes.ts. */
+export type HeroLayout = 'stack' | 'split' | 'full-bleed' | 'offset';
+export type GridStyle = 'cards' | 'bare' | 'bordered-list' | 'numbered' | 'feature';
+export type SectionLayout = 'centered' | 'left' | 'wide' | 'aside';
+export type QuoteStyle = 'centered' | 'display' | 'bordered';
 
 export interface CtaLink {
   label: string;
@@ -96,6 +103,10 @@ export interface HeroBlock extends BaseBlock {
   buttons?: CtaLink[];
   image?: string;
   align?: Align;
+  /** Structural variant. Omit to use the theme default (or classic `stack`). */
+  layout?: HeroLayout;
+  /** Small kicker/label above the title. */
+  eyebrow?: string;
 }
 
 export interface SectionBlock extends BaseBlock {
@@ -105,6 +116,10 @@ export interface SectionBlock extends BaseBlock {
   background?: SectionBackground;
   padding?: SectionPadding;
   anchor?: string;
+  /** Structural variant. Omit to use the theme default (or classic `centered`). */
+  layout?: SectionLayout;
+  /** Small kicker/label above the heading. */
+  eyebrow?: string;
 }
 
 export interface GridBlock extends BaseBlock {
@@ -112,6 +127,10 @@ export interface GridBlock extends BaseBlock {
   heading?: string;
   items: GridItem[];
   columns?: GridColumns;
+  /** Item chrome variant. Omit to use the theme default (or classic `cards`). */
+  style?: GridStyle;
+  /** Small kicker/label above the heading. */
+  eyebrow?: string;
 }
 
 export interface TwoColumnBlock extends BaseBlock {
@@ -127,6 +146,8 @@ export interface QuoteBlock extends BaseBlock {
   author?: string;
   role?: string;
   image?: string;
+  /** Structural variant. Omit to use the theme default (or classic `centered`). */
+  style?: QuoteStyle;
 }
 
 export interface FormBlock extends BaseBlock {
@@ -178,7 +199,9 @@ export interface SiteConfig {
   fonts: {
     heading: string;
     body: string;
-    pair?: 'editorial' | 'studio' | 'tech' | 'warm' | 'monochrome';
+    /** Font-pair preset name (classic or expressive). Free string so client
+       sites can register their own pairs; unknown names fall back to heading/body. */
+    pair?: string;
   };
   colors: {
     primary: string;
@@ -187,9 +210,14 @@ export interface SiteConfig {
     text: string;
   };
   theme?: {
-    preset?: 'editorial' | 'studio' | 'tech' | 'warm' | 'monochrome';
+    /** Theme preset name (classic or expressive). Free string so client sites can
+       register custom presets; selecting an expressive name activates the
+       art-direction engine. */
+    preset?: string;
     appearance?: 'light' | 'dark' | 'auto';
     accent?: string;
+    /** Force the classic or expressive code path regardless of preset name. */
+    system?: 'classic' | 'expressive';
   };
   motion?: {
     intensity?: 'none' | 'subtle' | 'rich';

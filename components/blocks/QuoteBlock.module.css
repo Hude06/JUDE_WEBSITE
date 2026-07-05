@@ -66,10 +66,51 @@
   margin-left: var(--space-1);
 }
 
+/* ---- Display: oversized left-aligned pull quote ---- */
+.figureDisplay {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-8);
+  align-items: flex-start;
+  text-align: left;
+  margin: 0;
+}
+.quoteDisplay {
+  font-family: var(--font-display);
+  font-size: var(--text-5xl);
+  line-height: 1.05;
+  color: var(--foreground);
+  font-weight: var(--weight-semibold);
+  letter-spacing: var(--display-tracking);
+  max-width: 20ch;
+}
+
+/* ---- Bordered: left accent rule ---- */
+.figureBordered {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-6);
+  align-items: flex-start;
+  text-align: left;
+  margin: 0;
+  padding-left: var(--space-6);
+  border-left: 3px solid var(--accent);
+}
+.quoteBordered {
+  font-family: var(--font-display);
+  font-size: var(--text-2xl);
+  line-height: var(--leading-snug);
+  color: var(--foreground);
+  font-weight: var(--weight-regular);
+  letter-spacing: -0.01em;
+  max-width: 40rem;
+}
+
 @media (max-width: 640px) {
   .quote {
     font-size: var(--text-2xl);
   }
+  .quoteDisplay { font-size: var(--text-3xl); }
   .quote::before {
     font-size: var(--text-5xl);
     top: -0.8rem;
