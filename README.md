@@ -20,7 +20,7 @@ A reusable framework for building static-ish client websites. You scaffold a new
 - **Admin panel** at `/admin` — page editor, block gallery, nav editor, image upload, live preview iframe
 - **BlockRenderer contract** — admin panel edits JSON data, blocks render it. Generic over the registry.
 - **No CSS framework** — small set of hand-rolled primitives + CSS Modules + design tokens. No Tailwind, no shadcn.
-- **5 theme presets** — editorial / studio / tech / warm / monochrome. Themes are CSS variable bundles applied via `[data-theme]`.
+- **11 theme presets, two generations** — 5 classic (editorial / studio / tech / warm / monochrome) plus 6 expressive (atelier / brutalist / console / almanac / kinetic / salon). Classic themes are conservative CSS-variable bundles applied via `[data-theme]`; expressive themes additionally drive texture/atmosphere, per-theme shadows, scroll motion, and structural block layout defaults. Selecting an expressive preset is fully opt-in — classic sites render unchanged.
 - **Dual animation engines** — Motion is the default engine; GSAP is optional per site (`content/site.json`).
 - **No database** — everything is JSON files in `/content/`
 - **Immutable core model** — client sites extend via `site/`, `client/`, and content JSON. Framework internals stay stable and updateable.
@@ -130,16 +130,20 @@ site/
 
 | Type | Description | Key fields |
 |------|-------------|-----------|
-| `heading` | A standalone heading | text, level (1-6), size, tone, align |
+| `heading` | A standalone heading | text, level (1-6), size (…`hero`/`mega`/`giant`), tone, align |
 | `text` | Body paragraphs (split on blank lines) | body, size, tone, weight, align |
 | `image` | Image with optional caption | src, alt, caption, width |
 | `button` | Call-to-action link | label, href, variant, size, align |
-| `hero` | Title + subtitle + buttons + optional image | title, subtitle, buttons[], image, align |
-| `section` | Visual band with heading + body | heading, body, background, padding, anchor |
-| `grid` | N-column grid of items | heading, items[{title, body, image}], columns |
+| `hero` | Title + subtitle + buttons + optional image | title, subtitle, buttons[], image, align, **layout** (stack/split/full-bleed/offset), **eyebrow** |
+| `section` | Visual band with heading + body | heading, body, background, padding, anchor, **layout** (centered/left/wide/aside), **eyebrow** |
+| `grid` | N-column grid of items | heading, items[{title, body, image}], columns, **style** (cards/bare/bordered-list/numbered/feature), **eyebrow** |
 | `two-column` | Side-by-side layout | left/right: {title, body, image, button}, ratio |
-| `quote` | Pull quote with author + role | quote, author, role, image |
+| `quote` | Pull quote with author + role | quote, author, role, image, **style** (centered/display/bordered) |
 | `form` | Contact form with configurable fields | heading, fields[{name, label, type, required}], submitLabel, action |
+
+The **bold** fields are optional layout variants (added additively, still Contract v1). Omit them to
+use the theme's default layout; expressive themes supply distinctive defaults, classic themes keep the
+original layout.
 
 Need something more specific (FAQ, pricing, team grid)? Build a **custom block** in `client/blocks/` — it merges into the gallery automatically without touching framework code. See `client/README.md`.
 

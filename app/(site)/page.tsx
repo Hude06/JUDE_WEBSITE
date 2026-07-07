@@ -1,6 +1,8 @@
 import { notFound } from 'next/navigation';
 import type { PageContent } from '@/lib/types';
-import { loadPage } from '@/lib/content';
+import { loadPage, loadSiteConfig } from '@/lib/content';
+import { resolveReveal } from '@/lib/motion-engine';
+import { resolveThemeStructure } from '@/lib/themes';
 import { BlockRenderer, frameworkBlocks } from '@/components/BlockRenderer';
 import { clientBlocks } from '@client/registry';
 
@@ -13,5 +15,13 @@ export default async function HomePage() {
   } catch {
     notFound();
   }
-  return <BlockRenderer blocks={page.blocks} registry={blockRegistry} />;
+  const config = loadSiteConfig();
+  return (
+    <BlockRenderer
+      blocks={page.blocks}
+      registry={blockRegistry}
+      reveal={resolveReveal(config)}
+      dna={resolveThemeStructure(config.theme?.preset, config.theme?.system)}
+    />
+  );
 }

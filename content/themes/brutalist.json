@@ -1,0 +1,57 @@
+{
+  "name": "brutalist",
+  "label": "Brutalist",
+  "description": "Neo-brutalist poster. Pure white, pure black, electric vermilion accent. Zero radius, hard offset shadows, Space Grotesk at mega scale, uppercase labels, dot-grid field. Numbered grids, left-hung sections.",
+  "colors": {
+    "bg": "oklch(1 0 0)",
+    "fg": "oklch(0.1 0 0)",
+    "primary": "oklch(0.1 0 0)",
+    "primaryForeground": "oklch(1 0 0)",
+    "accent": "oklch(0.66 0.21 30)",
+    "accentForeground": "oklch(1 0 0)",
+    "muted": "oklch(0.96 0 0)",
+    "mutedForeground": "oklch(0.34 0 0)",
+    "border": "oklch(0.1 0 0)",
+    "card": "oklch(1 0 0)",
+    "cardForeground": "oklch(0.1 0 0)"
+  },
+  "colorsDark": {
+    "bg": "oklch(0.1 0 0)",
+    "fg": "oklch(1 0 0)",
+    "primary": "oklch(1 0 0)",
+    "primaryForeground": "oklch(0.1 0 0)",
+    "muted": "oklch(0.17 0 0)",
+    "mutedForeground": "oklch(0.72 0 0)",
+    "border": "oklch(1 0 0)",
+    "card": "oklch(0.1 0 0)",
+    "cardForeground": "oklch(1 0 0)"
+  },
+  "radius": "0rem",
+  "shadow": {
+    "sm": "3px 3px 0 0 oklch(0.1 0 0)",
+    "md": "5px 5px 0 0 oklch(0.1 0 0)",
+    "lg": "8px 8px 0 0 oklch(0.66 0.21 30)",
+    "xl": "12px 12px 0 0 oklch(0.66 0.21 30)"
+  },
+  "fontPair": "brutalist",
+  "motion": {
+    "duration": 0.3,
+    "ease": "cubic-bezier(0.68, -0.55, 0.265, 1.55)",
+    "stagger": 0.06,
+    "character": "elastic"
+  },
+  "atmosphere": "dot-grid",
+  "structure": {
+    "heroLayout": "offset",
+    "gridStyle": "numbered",
+    "sectionLayout": "left",
+    "quoteStyle": "bordered",
+    "containerWidth": "wide",
+    "rule": "bold"
+  },
+  "type": {
+    "displayScale": "mega",
+    "displayTracking": "-0.03em",
+    "eyebrowCase": "upper"
+  }
+}
