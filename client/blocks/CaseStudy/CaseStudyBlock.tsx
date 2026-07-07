@@ -1,6 +1,5 @@
 import type { CaseStudyBlock as CaseStudyBlockType } from '@/client/types';
 import { cn } from '@/lib/utils';
-import { Tilt } from '@/client/blocks/shared/Tilt';
 import styles from './CaseStudyBlock.module.css';
 
 interface CaseStudyBlockProps {
@@ -27,6 +26,8 @@ export function CaseStudyBlock({ block }: CaseStudyBlockProps) {
           src={image}
           alt={`${client} — ${tagline}`}
           className={styles.image}
+          width={1600}
+          height={1000}
           loading="lazy"
           decoding="async"
         />
@@ -46,14 +47,19 @@ export function CaseStudyBlock({ block }: CaseStudyBlockProps) {
               aria-label={`Visit ${client}`}
               className={styles.figureLink}
             >
-              <Tilt maxTilt={3}>{imageElement}</Tilt>
+              {imageElement}
             </a>
           ) : (
-            <Tilt maxTilt={3}>{imageElement}</Tilt>
+            imageElement
           )}
         </figure>
 
         <div className={styles.content}>
+          {index && (
+            <span aria-hidden className={styles.ghostIndex}>
+              {index}
+            </span>
+          )}
           {index && <span className={styles.index}>{index} / Case study</span>}
 
           <h3 className={styles.title}>{client}</h3>
@@ -63,19 +69,6 @@ export function CaseStudyBlock({ block }: CaseStudyBlockProps) {
           <dl className={styles.metaList}>
             <MetaRow label="Role" value={role} />
             <MetaRow label="Year" value={year} />
-            <MetaRow
-              label="Status"
-              value={
-                isArchived ? (
-                  <span className={styles.archivedStatus}>Archived</span>
-                ) : (
-                  <span className={styles.statusLive}>
-                    <span className="pulse-dot" aria-hidden />
-                    <span>Live</span>
-                  </span>
-                )
-              }
-            />
           </dl>
 
           {link && !isArchived && (

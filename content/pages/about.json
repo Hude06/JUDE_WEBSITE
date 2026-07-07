@@ -1,8 +1,8 @@
 {
   "contractVersion": 1,
-  "title": "About — Jude Hill",
+  "title": "About Jude Hill — Web Designer & Developer in Eugene, Oregon",
   "slug": "about",
-  "description": "Designer & developer building fast, beautiful websites. Based in Eugene, Oregon.",
+  "description": "About Jude Hill — a web designer and developer in Eugene, Oregon who designs in the browser, ships every few days, and hands off sites you can update yourself.",
   "blocks": [
     {
       "id": "about-1",

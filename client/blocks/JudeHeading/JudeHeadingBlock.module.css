@@ -1,3 +1,6 @@
+/* Headings — daylight workshop theme. Plain display type; the § section
+   marks were retired (they read as generated boilerplate). */
+
 .container {
   margin-inline: auto;
   max-width: var(--container-wide);
@@ -36,43 +39,41 @@
 
 .level1Heading,
 .defaultHeading {
-  max-width: 64rem;
+  max-width: 24ch;
   color: var(--color-fg);
   font-family: var(--font-display);
-  font-size: clamp(3rem, 8vw, 6.5rem);
-  font-weight: 400;
+  font-size: var(--fs-display-hero);
+  font-weight: 600;
   letter-spacing: -0.02em;
-  line-height: 1;
+  line-height: 1.02;
+  text-wrap: balance;
 }
 
 .level2Heading {
-  max-width: 56rem;
+  max-width: 30ch;
   color: var(--color-fg);
   font-family: var(--font-display);
-  font-size: clamp(2.1rem, 4.8vw, 3.6rem);
-  font-weight: 400;
-  letter-spacing: -0.015em;
-  line-height: 1.06;
-}
-
-.accent {
-  color: var(--moss-deep);
-  font-style: italic;
-  font-weight: 300;
+  font-size: var(--fs-section-heading);
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  line-height: 1.05;
+  text-wrap: balance;
 }
 
 .level3Heading {
   color: var(--color-fg);
   font-family: var(--font-display);
-  font-size: clamp(1.5rem, 2.4vw, 2rem);
-  line-height: 1.15;
+  font-size: clamp(1.3rem, 2.2vw, 1.7rem);
+  font-weight: 500;
+  line-height: 1.2;
 }
 
 .level4Heading {
   color: var(--color-muted);
+  font-family: var(--font-mono);
   font-size: 0.72rem;
   font-weight: 500;
-  letter-spacing: 0.26em;
+  letter-spacing: 0.1em;
   text-transform: uppercase;
 }
 
@@ -90,26 +91,3 @@
   letter-spacing: -0.01em;
 }
 
-.dividerRow {
-  display: flex;
-  align-items: center;
-  gap: 1.25rem;
-  margin-bottom: 1.5rem;
-}
-
-.dividerLine {
-  display: block;
-  flex: 1;
-  height: 1.5px;
-  max-width: 2.5rem;
-  background: var(--moss);
-}
-
-.sectionMark {
-  color: var(--moss-deep);
-  font-size: 0.72rem;
-  font-weight: 600;
-  font-variant-numeric: tabular-nums;
-  letter-spacing: 0.26em;
-  text-transform: uppercase;
-}

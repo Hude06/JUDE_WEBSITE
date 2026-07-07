@@ -3,22 +3,21 @@
   "nav": [
     { "label": "Work", "href": "/#work" },
     { "label": "Projects", "href": "/projects" },
-    { "label": "Atelier", "href": "/atelier" },
     { "label": "About", "href": "/about" },
     { "label": "Contact", "href": "/contact" }
   ],
   "fonts": {
-    "heading": "'Fraunces', var(--font-fraunces), Georgia, serif",
-    "body": "var(--font-bricolage), 'Helvetica Neue', sans-serif"
+    "heading": "'Clash Display', 'Avenir Next', 'Helvetica Neue', sans-serif",
+    "body": "'Switzer', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif"
   },
   "colors": {
-    "primary": "#2e5440",
-    "secondary": "#46523f",
-    "background": "#f6f2e7",
-    "text": "#1f2a20"
+    "primary": "#17181c",
+    "secondary": "#4b5058",
+    "background": "#fcfcfa",
+    "text": "#17181c"
   },
   "motion": {
-    "engine": "gsap",
+    "engine": "motion",
     "intensity": "subtle"
   }
 }

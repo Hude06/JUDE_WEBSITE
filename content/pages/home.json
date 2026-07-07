@@ -1,14 +1,14 @@
 {
   "contractVersion": 1,
-  "title": "Jude Hill — Websites, made by hand.",
+  "title": "Jude Hill — Web Designer & Developer in Eugene, Oregon",
   "slug": "home",
-  "description": "Designer & developer hand-building fast, beautiful websites. Based in Eugene, Oregon.",
+  "description": "Hand-built websites for small businesses, creatives, and product launches. Jude Hill is a freelance web designer and developer in Eugene, Oregon — no templates, no page builders.",
   "blocks": [
     {
       "id": "home-1",
       "type": "jude-hero",
-      "eyebrow": "Jude Hill — Designer & Developer",
-      "headline": "Websites, made by hand.",
+      "eyebrow": "Available for new projects",
+      "headline": "Websites, made simple.",
       "subheadline": "Fast, beautiful sites built one at a time for small businesses, creatives, and anyone with an idea worth shipping — designed in the browser, from Eugene, Oregon.",
       "primaryCta": {
         "text": "Start a project",
@@ -18,7 +18,12 @@
         "text": "See selected work",
         "href": "/#work"
       },
-      "align": "left"
+      "align": "left",
+      "index": [
+        { "label": "Rosales Designs", "year": "2025", "status": "live", "href": "/#work" },
+        { "label": "Bobby Salazar's", "year": "2024", "status": "live", "href": "/#work" },
+        { "label": "Gravel Truck Plans", "year": "2024", "status": "archived", "href": "/#work" }
+      ]
     },
     {
       "id": "home-2",
@@ -32,10 +37,10 @@
       "type": "case-study",
       "index": "01",
       "client": "Rosales Designs",
-      "tagline": "A branding studio with sixteen years of work across food, lifestyle, and consumer brands.",
+      "tagline": "A branding studio with sixteen years of work across food, lifestyle, and consumer brands. A custom portfolio site built to put the studio's own brand work front and center.",
       "year": "2025",
       "role": "Design + Build",
-      "image": "/portfolio/rosales-designs.png",
+      "image": "/uploads/portfolio/rosales-designs.webp",
       "link": "https://rosalesdesigns.com",
       "status": "live"
     },
@@ -44,10 +49,10 @@
       "type": "case-study",
       "index": "02",
       "client": "Bobby Salazar's",
-      "tagline": "Family-run Mexican food since 1990 — restaurants, catering, retail salsa, and recipes that go back generations.",
+      "tagline": "Family-run Mexican food since 1990 — restaurants, catering, retail salsa, and recipes that go back generations. A multi-page small business website covering locations, menus, and catering inquiries.",
       "year": "2024",
       "role": "Design + Build",
-      "image": "/portfolio/bobby-salazars.png",
+      "image": "/uploads/portfolio/bobby-salazars.webp",
       "link": "https://bobbysalazar.com",
       "status": "live",
       "reverse": true
@@ -57,15 +62,11 @@
       "type": "case-study",
       "index": "03",
       "client": "Gravel Truck Plans",
-      "tagline": "End-of-life planning for families who want their paperwork in order before anything goes wrong.",
+      "tagline": "End-of-life planning for families who want their paperwork in order before anything goes wrong. A landing page designed to make a hard topic feel approachable.",
       "year": "2024",
       "role": "Design + Build",
-      "image": "/portfolio/gravel-truck-plans.png",
+      "image": "/uploads/portfolio/gravel-truck-plans.webp",
       "status": "archived"
-    },
-    {
-      "id": "home-sep-1",
-      "type": "separator"
     },
     {
       "id": "home-6",
@@ -80,34 +81,30 @@
       "columns": 3,
       "items": [
         {
-          "title": "Clean and simple",
-          "description": "No clutter, no bloat. Every site is stripped down to what matters — clear design, modern aesthetics, and an experience that just works."
+          "title": "Built from scratch",
+          "description": "No templates or page builders. Every site starts as a blank file, so yours ends up looking like your business — not like everyone else's."
         },
         {
-          "title": "Continuous support",
-          "description": "Your site isn't done when it launches. I stick around to iterate, tweak, and improve based on what's working."
+          "title": "Here after launch",
+          "description": "The site going live isn't the end. I stick around for updates, tweaks, and new pages as your business changes."
         },
         {
-          "title": "Quick and fast",
-          "description": "Performance comes first. Every site loads fast, runs smooth, and scores well where it counts."
+          "title": "Fast everywhere",
+          "description": "Lean, hand-written code means pages load instantly — on a laptop, on a phone, on bad Wi-Fi."
         }
       ]
     },
     {
-      "id": "home-sep-2",
-      "type": "separator"
-    },
-    {
       "id": "home-8",
       "type": "jude-heading",
-      "text": "A little about me",
+      "text": "About Jude",
       "level": 2,
       "anchorId": "about-snippet"
     },
     {
       "id": "home-9",
       "type": "paragraph",
-      "text": "I'm a high school student from Eugene, Oregon who builds websites for small businesses and creatives. I design in the browser, ship every few days, and hand off something you can update yourself. When I'm not shipping code, I'm flying FPV drones, running an Etsy store, and making things in my workshop."
+      "text": "I'm a high school student from Eugene, Oregon who handles web design, development, and ongoing maintenance for small businesses and creatives — in Eugene and beyond. I design in the browser, ship every few days, and hand off something you can update yourself. When I'm not shipping code, I'm flying FPV drones, running an Etsy store, and making things in my workshop."
     },
     {
       "id": "home-10",

@@ -1,6 +1,4 @@
 import Link from 'next/link';
-import { LiveMasthead } from '@/site/components/LiveMasthead';
-import { Marquee } from '@/site/components/Marquee';
 
 interface FooterProps {
   siteName: string;
@@ -24,19 +22,6 @@ export function Footer({ siteName }: FooterProps) {
 
   return (
     <footer className="site-footer">
-      {/* Marquee — decorative motion strip */}
-      <Marquee
-        items={[
-          'Websites',
-          'Portfolios',
-          'Landing pages',
-          'Small business',
-          'Brand sites',
-          'Design + Build',
-          'Eugene, Oregon',
-        ]}
-      />
-
       {/* Big CTA band */}
       <section className="site-footer__cta-band">
         <div className="jude-container site-footer__cta-inner">
@@ -44,8 +29,8 @@ export function Footer({ siteName }: FooterProps) {
           <h2 className="site-footer__title">
             Let&rsquo;s make
             <br />
-            something <span className="site-footer__title-accent">
-              good.
+            it <span className="site-footer__title-accent">
+              happen.
             </span>
           </h2>
 
@@ -96,18 +81,18 @@ export function Footer({ siteName }: FooterProps) {
           </div>
         </div>
 
+        {/* Giant hollow wordmark — pure decoration, runs off the page edge. */}
+        <Link href="/" aria-hidden tabIndex={-1} className="site-footer__wordmark">
+          <span className="site-footer__wordmark-text">JUDE MAKES THINGS</span>
+        </Link>
+
         {/* Fine print */}
         <div className="site-footer__fine-print-wrap">
           <div className="jude-container site-footer__fine-print">
             <span className="site-footer__copyright">
               © {year} · {siteName}
             </span>
-            <span className="site-footer__location">
-              <span className="pulse-dot" aria-hidden />
-              <span className="tabular-nums">
-                Eugene, Oregon · <LiveMasthead />
-              </span>
-            </span>
+            <span className="site-footer__location">Eugene, Oregon</span>
             <span className="site-footer__stack">
               Designed &amp; built by Jude Hill
             </span>

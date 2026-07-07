@@ -1,338 +1,256 @@
+/* Type-led hero on clean ground — daylight workshop theme. The headline,
+   index panel, and whitespace carry it; no backdrop decoration.
+   Children stagger in via the global .hero-rise + --rise-delay. */
+
 .root {
   position: relative;
+  padding-top: clamp(4rem, 9vw, 7.5rem);
+  padding-bottom: clamp(3rem, 6vw, 5.5rem);
+  border-bottom: 1px solid var(--color-hairline);
   overflow: hidden;
 }
 
 .inner {
   position: relative;
-  z-index: 2;
   margin-inline: auto;
   max-width: var(--container-wide);
-  padding: 3rem var(--gutter) 5rem;
+  padding-inline: var(--gutter);
 }
 
 .innerSplit {
   display: grid;
-  grid-template-columns: 1fr;
+  /* minmax(0, …) everywhere: an auto track could grow past the viewport on
+     small screens (mono labels + nowrap rows have wide min-content). */
+  grid-template-columns: minmax(0, 1fr);
+  gap: 3rem;
   align-items: center;
-  gap: 2.5rem;
+}
+
+.innerSplit > * {
+  min-width: 0;
 }
 
 @media (min-width: 900px) {
   .innerSplit {
-    grid-template-columns: 1.05fr 0.95fr;
-    gap: 2rem;
-    padding-top: 5rem;
-    padding-bottom: 6.5rem;
+    grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr);
+    gap: 4.5rem;
   }
 }
 
-.innerCentered {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+.rootCentered .inner {
   text-align: center;
-  padding-top: 5rem;
 }
 
-.innerCentered .copy {
-  align-items: center;
+.rootCentered .headline,
+.rootCentered .subheadline,
+.rootCentered .metaList {
+  margin-inline: auto;
 }
 
-.innerCentered .metaRow {
+.rootCentered .ctaRow {
   justify-content: center;
 }
 
-.copy {
-  position: relative;
-  z-index: 2;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-}
-
 .eyebrow {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.75rem;
-  margin-bottom: 1.75rem;
-  color: var(--moss-deep);
-  font-size: 0.78rem;
-  font-weight: 600;
-  letter-spacing: 0.22em;
+  margin: 0 0 1.75rem;
+  color: var(--color-subtle);
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  font-weight: 500;
+  letter-spacing: 0.1em;
   text-transform: uppercase;
 }
 
-.eyebrow::before {
-  content: "";
-  display: inline-block;
-  width: 2.6rem;
-  height: 1.5px;
-  flex-shrink: 0;
-  background: var(--moss);
-}
-
-/* —— word-by-word masked line-up ————————————————— */
 .headline {
+  margin: 0;
+  max-width: 14ch;
   color: var(--color-fg);
   font-family: var(--font-display);
-  font-size: clamp(3rem, 7.2vw, 5.8rem);
-  font-weight: 400;
-  letter-spacing: -0.015em;
-  line-height: 1.04;
-}
-
-.lineMask {
-  display: inline-block;
-  overflow: hidden;
-  vertical-align: bottom;
-  /* room for descenders inside the clipping mask */
-  padding-bottom: 0.14em;
-  margin-bottom: -0.14em;
-}
-
-.lineInner {
-  display: inline-block;
-  transform: translateY(115%);
-  animation: line-up 1s var(--ease-out-soft) forwards;
-}
-
-.accentWord {
-  position: relative;
-  color: var(--moss-deep);
-  font-style: italic;
-  font-weight: 300;
-}
-
-/* Clean rule that draws in beneath the accent word. */
-.accentRule {
-  position: absolute;
-  left: 0.02em;
-  right: 0.05em;
-  bottom: 0;
-  height: 0.045em;
-  background: var(--amber);
-  border-radius: 999px;
-  transform: scaleX(0);
-  transform-origin: left;
-  animation: rule-in 0.8s var(--ease-out-soft) 1.35s forwards;
+  font-size: var(--fs-display-hero);
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  line-height: 1.02;
+  text-wrap: balance;
 }
 
 .subheadline {
-  max-width: 46ch;
-  margin-top: 1.9rem;
-  color: var(--ink-soft);
-  font-size: 1.1rem;
-  line-height: 1.6;
+  margin: 1.75rem 0 0;
+  max-width: 44ch;
+  color: var(--color-muted);
+  font-size: clamp(1.05rem, 1.5vw, 1.2rem);
+  line-height: 1.7;
 }
 
-@media (min-width: 768px) {
-  .subheadline {
-    font-size: 1.18rem;
-  }
-}
-
+/* Meta ledger. */
 .metaList {
-  display: grid;
-  gap: 0.7rem;
-  margin-top: 2.25rem;
-  font-size: 0.76rem;
-  font-variant-numeric: tabular-nums;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+  max-width: 24rem;
+  margin: 2rem 0 0;
+  padding: 0.9rem 0;
+  border-top: 1px solid var(--color-hairline);
+  border-bottom: 1px solid var(--color-hairline);
 }
 
 .metaRow {
   display: flex;
   align-items: baseline;
-  gap: 1.25rem;
+  justify-content: space-between;
+  gap: 1.5rem;
 }
 
 .metaLabel {
-  min-width: 6rem;
   color: var(--color-subtle);
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
 }
 
 .metaValue {
+  margin: 0;
   color: var(--color-fg);
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  font-weight: 500;
+  font-variant-numeric: tabular-nums;
 }
 
 .ctaRow {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  column-gap: 1.75rem;
-  row-gap: 1.25rem;
-  margin-top: 2.5rem;
-}
-
-.secondaryAction {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
+  gap: 1rem 2rem;
+  margin-top: 2rem;
 }
 
 .secondaryArrow {
   display: inline-block;
-  transition: transform 300ms var(--ease-out-soft);
+  transition: transform var(--speed-slow) var(--ease);
 }
 
-.secondaryAction:hover .secondaryArrow {
-  transform: translateX(0.25rem);
+.ctaRow a:hover .secondaryArrow {
+  transform: translateX(3px);
 }
 
-/* —— the self-drawing illustration ————————————————— */
-.art {
-  position: relative;
-  z-index: 1;
+/* —— index panel: a lit instrument on the bench —————————— */
+.panelColumn {
+  min-width: 0;
+}
+
+.panel {
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  border: 1px solid var(--color-hairline);
+  border-radius: var(--r-lg);
+  background: rgba(255, 255, 255, 0.78);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  box-shadow: var(--shadow-panel);
+  overflow: hidden;
+}
+
+.panelHeader {
+  display: flex;
   align-items: center;
+  justify-content: space-between;
+  padding: 1rem 1.4rem;
+  border-bottom: 1px solid var(--color-hairline);
+  background: rgba(23, 24, 28, 0.025);
 }
 
-.sketch {
-  width: min(100%, 480px);
-  height: auto;
-  overflow: visible;
-  /* grounded, soft presentation shadow in place of a drawn ground line */
-  filter: drop-shadow(0 30px 40px rgba(31, 42, 32, 0.14));
+.panelTitle {
+  color: var(--color-fg);
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
 }
 
-@media (max-width: 899px) {
-  .sketch {
-    width: min(100%, 380px);
-  }
+.panelList {
+  margin: 0;
+  padding: 0;
+  list-style: none;
 }
 
-.stroke {
-  fill: none;
-  stroke: var(--ink);
-  stroke-linecap: round;
-  stroke-dasharray: 1;
-  stroke-dashoffset: 1;
-  animation: draw 1.4s var(--ease-out-soft) forwards;
+.panelList li + li .panelRow {
+  border-top: 1px solid var(--color-hairline);
 }
 
-.frame {
-  animation-delay: 0.35s;
-  animation-duration: 1.6s;
+.panelRow {
+  display: grid;
+  grid-template-columns: 2rem minmax(0, 1fr) auto;
+  align-items: baseline;
+  gap: 1rem;
+  padding: 1.1rem 1.4rem;
+  text-decoration: none;
+  transition: background-color var(--speed) linear;
 }
 
-.frameBar {
-  animation-delay: 0.95s;
-  animation-duration: 0.8s;
+.panelRow:hover {
+  background: rgba(23, 24, 28, 0.03);
 }
 
-.contentInk {
-  stroke: var(--ink);
-  animation-delay: 1.4s;
-  animation-duration: 0.7s;
+.panelRow:hover .panelLabel {
+  text-decoration: underline;
+  text-underline-offset: 3px;
 }
 
-.contentSoft {
-  stroke: var(--ink-faint);
-  animation-delay: 1.55s;
-  animation-duration: 0.7s;
+.panelIndex {
+  color: var(--ink-faint);
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
 }
 
-.bodyLine1,
-.bodyLine2,
-.bodyLine3 {
-  stroke: var(--ink-faint);
-  opacity: 0.55;
-  animation-duration: 0.6s;
+.panelLabel {
+  overflow: hidden;
+  color: var(--color-fg);
+  font-family: var(--font-display);
+  font-size: 1rem;
+  font-weight: 500;
+  letter-spacing: 0;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  transition: color var(--speed) linear;
 }
 
-.bodyLine1 {
-  animation-delay: 1.85s;
+.panelYear {
+  color: var(--color-subtle);
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  font-variant-numeric: tabular-nums;
 }
 
-.bodyLine2 {
-  animation-delay: 1.95s;
+.panelFooter {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.95rem 1.4rem;
+  border-top: 1px solid var(--color-hairline);
+  color: var(--color-muted);
+  font-family: var(--font-mono);
+  font-size: 0.74rem;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  text-decoration: none;
+  transition: color var(--speed) linear;
 }
 
-.bodyLine3 {
-  animation-delay: 2.05s;
+.panelFooter:hover {
+  color: var(--ink);
 }
 
-.puff {
-  transform-box: fill-box;
-  transform-origin: center;
-  transform: scale(0);
-  animation: bloom 1s var(--ease-spring) forwards;
+.panelFooterArrow {
+  display: inline-block;
+  transition: transform var(--speed-slow) var(--ease);
 }
 
-.cursor {
-  opacity: 0;
-  transform-box: fill-box;
-  transform-origin: center;
-  animation: cursor-in 0.7s var(--ease-out-soft) 2.5s forwards;
-}
-
-@keyframes cursor-in {
-  from {
-    opacity: 0;
-    transform: translate(18px, 18px);
-  }
-
-  to {
-    opacity: 1;
-    transform: translate(0, 0);
-  }
-}
-
-/* —— keyframes ——
-   CSS Modules localize animation names, so the hero's keyframes must live in
-   this file (references to keyframes in site/styles.css would silently hash
-   to nothing). */
-@keyframes line-up {
-  to {
-    transform: translateY(0);
-  }
-}
-
-@keyframes rule-in {
-  to {
-    transform: scaleX(1);
-  }
-}
-
-@keyframes draw {
-  to {
-    stroke-dashoffset: 0;
-  }
-}
-
-@keyframes bloom {
-  to {
-    transform: scale(1);
-  }
-}
-
-/* —— reduced motion: everything lands in its final state —— */
-@media (prefers-reduced-motion: reduce) {
-  .lineInner {
-    transform: none;
-    animation: none;
-  }
-
-  .accentRule {
-    transform: scaleX(1);
-    animation: none;
-  }
-
-  .stroke {
-    stroke-dashoffset: 0;
-    animation: none;
-  }
-
-  .puff {
-    transform: scale(1);
-    animation: none;
-  }
-
-  .cursor {
-    opacity: 1;
-    animation: none;
-  }
+.panelFooter:hover .panelFooterArrow {
+  transform: translateX(3px);
 }

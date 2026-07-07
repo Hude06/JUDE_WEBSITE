@@ -35,6 +35,15 @@ export interface JudeHeroBlock {
   secondaryCta?: { text: string; href: string };
   image?: string;
   align?: 'left' | 'center';
+  /** Rows for the hero's project-index panel; panel is omitted when absent. */
+  index?: HeroIndexRow[];
+}
+
+export interface HeroIndexRow {
+  label: string;
+  year: string;
+  status: 'live' | 'archived';
+  href: string;
 }
 
 export interface BadgeGroupBlock {
@@ -116,19 +125,7 @@ export interface SeparatorBlock {
   type: 'separator';
 }
 
-export interface AtelierPageBlock {
-  id: string;
-  type: 'atelier-page';
-}
-
-export interface AtelierDownloadBlock {
-  id: string;
-  type: 'atelier-download';
-}
-
 export type ClientBlock =
-  | AtelierPageBlock
-  | AtelierDownloadBlock
   | JudeHeadingBlock
   | ParagraphBlock
   | JudeButtonBlock

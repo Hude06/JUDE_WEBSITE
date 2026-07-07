@@ -2,7 +2,7 @@
   "contractVersion": 1,
   "title": "Projects — Jude Hill",
   "slug": "projects",
-  "description": "Designer & developer building fast, beautiful websites. Based in Eugene, Oregon.",
+  "description": "Side projects by Jude Hill — apps, tools, and experiments built in Eugene, Oregon. Some shipping, some in progress, all things that deserved to exist.",
   "blocks": [
     {
       "id": "projects-1",
@@ -31,8 +31,9 @@
       "type": "card-grid",
       "cards": [
         {
-          "title": "Coming soon",
-          "description": "An app I'm currently working on — details and a link will land here soon."
+          "title": "Website framework",
+          "description": "The content-driven Next.js framework this site runs on — JSON content, an admin editor, and client-safe customization zones. It powers every client site I ship.",
+          "link": "https://github.com/Hude06"
         }
       ]
     },
