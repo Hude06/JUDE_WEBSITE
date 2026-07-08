@@ -1,6 +1,5 @@
 /* Type-led hero on clean ground — daylight workshop theme. The headline,
-   index panel, and whitespace carry it; no backdrop decoration.
-   Children stagger in via the global .hero-rise + --rise-delay. */
+   index panel, and whitespace carry it; no backdrop decoration. */
 
 .root {
   position: relative;

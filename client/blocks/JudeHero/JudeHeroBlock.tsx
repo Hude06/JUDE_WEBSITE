@@ -49,38 +49,22 @@ export function JudeHeroBlock({ block }: JudeHeroBlockProps) {
       <div className={cn(styles.inner, hasPanel && styles.innerSplit)}>
         <div className={styles.copy}>
           {block.eyebrow && (
-            <p className={cn(styles.eyebrow, 'hero-rise')}>{block.eyebrow}</p>
+            <p className={styles.eyebrow}>{block.eyebrow}</p>
           )}
 
-          <h1
-            className={cn(styles.headline, 'hero-rise')}
-            style={{ '--rise-delay': '80ms' } as React.CSSProperties}
-          >
-            {block.headline}
-          </h1>
+          <h1 className={styles.headline}>{block.headline}</h1>
 
           {block.subheadline && (
-            <p
-              className={cn(styles.subheadline, 'hero-rise')}
-              style={{ '--rise-delay': '160ms' } as React.CSSProperties}
-            >
-              {block.subheadline}
-            </p>
+            <p className={styles.subheadline}>{block.subheadline}</p>
           )}
 
-          <dl
-            className={cn(styles.metaList, 'hero-rise')}
-            style={{ '--rise-delay': '240ms' } as React.CSSProperties}
-          >
+          <dl className={styles.metaList}>
             <MetaRow label="Based in" value="Eugene, Oregon" />
             <MetaRow label="Role" value="Designer & developer" />
           </dl>
 
           {(block.primaryCta || block.secondaryCta) && (
-            <div
-              className={cn(styles.ctaRow, 'hero-rise')}
-              style={{ '--rise-delay': '320ms' } as React.CSSProperties}
-            >
+            <div className={styles.ctaRow}>
               {block.primaryCta && (
                 <SmartLink href={block.primaryCta.href} className={primaryButton}>
                   <span>{block.primaryCta.text}</span>
@@ -98,10 +82,7 @@ export function JudeHeroBlock({ block }: JudeHeroBlockProps) {
         </div>
 
         {hasPanel && (
-          <div
-            className={cn(styles.panelColumn, 'hero-rise')}
-            style={{ '--rise-delay': '260ms' } as React.CSSProperties}
-          >
+          <div className={styles.panelColumn}>
             <IndexPanel rows={block.index!} />
           </div>
         )}

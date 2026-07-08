@@ -829,32 +829,14 @@ a {
 }
 
 /* -------------------------------------------------------------------------
-   Motion — one orchestrated hero load + scroll reveals below the fold.
+   Motion — scroll reveals below the fold only; the hero renders instantly.
 
-   .hero-rise is applied to hero children with an inline --rise-delay; it
-   runs once on load. Below-the-fold sections use .scroll-reveal, which is
-   velocity-correct by construction: Chromium scrubs it to scroll position
-   via animation-timeline: view(); other engines get .is-revealed from
+   Below-the-fold sections use .scroll-reveal, which is velocity-correct by
+   construction: Chromium scrubs it to scroll position via
+   animation-timeline: view(); other engines get .is-revealed from
    ScrollRevealFallback's IntersectionObserver (already-visible items snap
    in instantly via .reveal-instant).
    ------------------------------------------------------------------------- */
-
-.hero-rise {
-  animation: hero-rise 0.9s var(--ease-out-expo) both;
-  animation-delay: var(--rise-delay, 0ms);
-}
-
-@keyframes hero-rise {
-  0% {
-    opacity: 0;
-    transform: translateY(22px);
-  }
-
-  100% {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
 
 @supports (animation-timeline: view()) {
   .scroll-reveal {
@@ -901,8 +883,7 @@ a {
 
 @media (prefers-reduced-motion: reduce) {
   .scroll-reveal,
-  .scroll-reveal.is-revealed,
-  .hero-rise {
+  .scroll-reveal.is-revealed {
     opacity: 1 !important;
     transform: none !important;
     animation: none !important;
