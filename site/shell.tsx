@@ -1,4 +1,5 @@
 import type { ReactNode } from 'react';
+import Script from 'next/script';
 import { Header } from '@/site/components/Header';
 import { Footer } from '@/site/components/Footer';
 import { ScrollRevealFallback } from '@/site/components/ScrollRevealFallback';
@@ -83,6 +84,19 @@ export function SiteShell({ config, children }: SiteShellProps) {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
       />
+      {/* Google Analytics (gtag.js) */}
+      <Script
+        src="https://www.googletagmanager.com/gtag/js?id=G-5S85L38R1M"
+        strategy="afterInteractive"
+      />
+      <Script id="google-analytics" strategy="afterInteractive">
+        {`
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', 'G-5S85L38R1M');
+        `}
+      </Script>
       {expressive && <Atmosphere />}
       <Header siteName={config.siteName} nav={config.nav} />
       <main>{children}</main>
