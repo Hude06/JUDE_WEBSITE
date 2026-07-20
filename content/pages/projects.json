@@ -31,6 +31,11 @@
       "type": "card-grid",
       "cards": [
         {
+          "title": "Summer Money",
+          "description": "A macOS menu bar app for tracking recurring income as MRR/ARR — goals, pace, Stripe sync, and a popover that lives in your menu bar. $9, sold direct.",
+          "link": "https://judemakes.com/summer-money/"
+        },
+        {
           "title": "Website framework",
           "description": "The content-driven Next.js framework this site runs on — JSON content, an admin editor, and client-safe customization zones. It powers every client site I ship.",
           "link": "https://github.com/Hude06"
