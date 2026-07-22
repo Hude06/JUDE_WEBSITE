@@ -20,7 +20,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
   const slugs = listPages();
 
-  return slugs.map((slug) => {
+  const pages: MetadataRoute.Sitemap = slugs.map((slug) => {
     const isHome = slug === 'home';
     const pathname = isHome ? '/' : `/${slug}`;
 
@@ -31,4 +31,14 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: isHome ? 1 : 0.8,
     };
   });
+
+  // Static pages mounted into public/ at deploy time, invisible to listPages().
+  pages.push({
+    url: `${baseUrl}/summer-money`,
+    lastModified: now,
+    changeFrequency: 'monthly',
+    priority: 0.9,
+  });
+
+  return pages;
 }

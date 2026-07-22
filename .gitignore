@@ -34,6 +34,8 @@ yarn-error.log*
 # env files (can opt-in for committing if needed)
 .env*
 !.env.example
+# committed on purpose: build-time site URL for canonical/OG/sitemap/robots
+!.env.production
 
 # vercel
 .vercel
