@@ -2,27 +2,25 @@
   "contractVersion": 1,
   "title": "Contact Jude Hill — Start a Website Project in Eugene, Oregon",
   "slug": "contact",
-  "description": "Start a website project with Jude Hill, web designer and developer in Eugene, Oregon. Email a few sentences about your idea and get a reply within a day.",
+  "description": "Start a website project with Jude Hill, web designer and developer in Eugene, Oregon. A few sentences about your idea is all it takes — replies within a day.",
   "blocks": [
     {
-      "id": "contact-1",
-      "type": "jude-heading",
-      "text": "Let's talk.",
-      "level": 1
-    },
-    {
-      "id": "contact-2",
-      "type": "paragraph",
-      "text": "Based in Eugene, Oregon and excited to start working with you. Send me an email with a few sentences about your project and I'll get back to you shortly."
-    },
-    {
-      "id": "contact-6",
-      "type": "badge-group",
-      "badges": [
-        "Available now",
-        "Eugene, Oregon",
-        "Replies within a day"
-      ]
+      "id": "contact-form",
+      "type": "contact-form",
+      "action": "https://formsubmit.co/jude@micah77.org",
+      "eyebrow": "Available for new projects",
+      "heading": "Let's talk.",
+      "intro": "A few sentences is all it takes. I read everything myself and reply within a day.",
+      "facts": [
+        { "label": "Based in", "value": "Eugene, OR" },
+        { "label": "Sites from", "value": "$500" },
+        { "label": "Timeline", "value": "Weeks, not months" },
+        { "label": "Good for", "value": "Small business, portfolios, launches" }
+      ],
+      "subject": "New project inquiry — judemakes.com",
+      "note": "Goes straight to my inbox.",
+      "timelineLabel": "When would you like your new site built?",
+      "timelineOptions": ["Today", "Tomorrow", "Next week"]
     },
     {
       "id": "contact-sep-1",
@@ -31,7 +29,7 @@
     {
       "id": "contact-head-2",
       "type": "jude-heading",
-      "text": "Reach me here",
+      "text": "Or reach me here",
       "level": 2,
       "anchorId": "channels"
     },
@@ -65,21 +63,6 @@
           "link": "https://etsy.com/shop/JudeMakesThings"
         }
       ]
-    },
-    {
-      "id": "contact-sep-2",
-      "type": "separator"
-    },
-    {
-      "id": "contact-4",
-      "type": "jude-heading",
-      "text": "What I'm good for",
-      "level": 2
-    },
-    {
-      "id": "contact-5",
-      "type": "paragraph",
-      "text": "Personal sites, small business sites, portfolios, landing pages, and just about anything that needs to look clean and load fast."
     }
   ]
 }

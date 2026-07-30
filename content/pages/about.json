@@ -73,27 +73,15 @@
     },
     {
       "id": "about-8",
-      "type": "card-grid",
-      "cards": [
+      "type": "photo-strip",
+      "photos": [
         {
-          "title": "Instagram",
-          "description": "@judemakes",
-          "link": "https://instagram.com/judemakes"
+          "image": "/uploads/photos/drone.jpg",
+          "alt": "FPV drone Jude built, pink canopy and teal props"
         },
         {
-          "title": "YouTube",
-          "description": "@Judemakesfpv",
-          "link": "https://youtube.com/@Judemakesfpv"
-        },
-        {
-          "title": "GitHub",
-          "description": "github.com/Hude06",
-          "link": "https://github.com/Hude06"
-        },
-        {
-          "title": "Etsy",
-          "description": "JudeMakesThings",
-          "link": "https://etsy.com/shop/JudeMakesThings"
+          "image": "/uploads/photos/night.jpg",
+          "alt": "Jude in a helmet and headlamp at night, thumbs up"
         }
       ]
     }

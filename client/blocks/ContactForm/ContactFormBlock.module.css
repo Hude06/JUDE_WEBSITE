@@ -1,0 +1,259 @@
+/* Contact opener — a job-sheet intro on paper (left: eyebrow, pitch, fact
+   ledger), the form in a lit white panel (right). Mono labels, hairline
+   inputs, crimson submit. The ledger mirrors the home hero's fact row. */
+
+.root {
+  margin-inline: auto;
+  max-width: var(--container-wide);
+  padding: clamp(2.5rem, 5vw, 4rem) var(--gutter) 2.5rem;
+  scroll-margin-top: 5rem;
+}
+
+.layout {
+  display: grid;
+  gap: 2.5rem;
+  grid-template-columns: minmax(0, 1fr);
+}
+
+.layoutSplit {
+  align-items: start;
+}
+
+@media (min-width: 900px) {
+  .layoutSplit {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1.15fr);
+    gap: 3.5rem;
+  }
+}
+
+.eyebrow {
+  margin: 0 0 1.2rem;
+  color: var(--color-subtle);
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.heading {
+  margin: 0;
+  color: var(--color-fg);
+  font-family: var(--font-display);
+  font-size: var(--fs-page-title);
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  line-height: 1.05;
+}
+
+.pitch {
+  max-width: 34ch;
+  margin: 1.1rem 0 0;
+  color: var(--color-muted);
+  font-size: clamp(1.02rem, 1.4vw, 1.12rem);
+  line-height: 1.65;
+}
+
+/* Fact ledger — label:value hairline rows, same voice as the hero fact
+   row and the steps ledger. */
+.facts {
+  max-width: 26rem;
+  margin: 2.25rem 0 0;
+  border-top: 1px solid var(--color-hairline-strong);
+}
+
+.fact {
+  display: grid;
+  grid-template-columns: 7.5rem minmax(0, 1fr);
+  align-items: baseline;
+  gap: 1rem;
+  padding: 0.85rem 0;
+  border-bottom: 1px solid var(--color-hairline);
+}
+
+.factLabel {
+  color: var(--color-subtle);
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.factValue {
+  margin: 0;
+  color: var(--color-fg);
+  font-family: var(--font-mono);
+  font-size: 0.74rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  font-variant-numeric: tabular-nums;
+}
+
+/* —— the form panel ——————————————————————— */
+.panel {
+  border: 1px solid var(--color-hairline);
+  border-radius: var(--r-lg);
+  background: var(--bg-panel);
+  box-shadow: var(--shadow-panel);
+  padding: clamp(1.4rem, 2.6vw, 2rem);
+}
+
+.honey {
+  display: none;
+}
+
+.row {
+  display: grid;
+  gap: 1.1rem;
+  grid-template-columns: minmax(0, 1fr);
+}
+
+@media (min-width: 640px) {
+  .row {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+.field {
+  display: block;
+  margin-bottom: 1.1rem;
+}
+
+.label {
+  display: block;
+  margin-bottom: 0.45rem;
+  color: var(--color-subtle);
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+/* —— qualifier pills ——————————————————————— */
+/* Fieldset reset so choice groups sit like any other field. */
+.choiceField {
+  margin: 0 0 1.1rem;
+  padding: 0;
+  border: 0;
+}
+
+.choiceField legend {
+  padding: 0;
+}
+
+.pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.pill {
+  display: inline-flex;
+  align-items: center;
+  border: 1px solid var(--color-hairline-strong);
+  border-radius: var(--r-sm);
+  background: var(--bg);
+  padding: 0.5rem 0.9rem;
+  color: var(--ink-soft);
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  cursor: pointer;
+  user-select: none;
+  transition:
+    border-color var(--speed) linear,
+    background-color var(--speed) linear,
+    color var(--speed) linear,
+    box-shadow var(--speed) linear;
+}
+
+.pill:hover {
+  border-color: var(--accent);
+}
+
+.pill:has(.radio:checked) {
+  border-color: var(--accent);
+  background: var(--accent-wash);
+  color: var(--accent);
+  font-weight: 600;
+}
+
+.pill:has(.radio:focus-visible) {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px var(--accent-wash);
+}
+
+/* Visually hidden but still focusable/announced native radio. */
+.radio {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  border: 0;
+  clip-path: inset(50%);
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+/* URL field hides until the "Yes" pill is picked. Browsers without :has
+   just never show it — the field is optional, so submits still work. */
+.urlField {
+  display: none;
+}
+
+.panel:has(.radio[value='Yes']:checked) .urlField {
+  display: block;
+}
+
+.input,
+.textarea {
+  width: 100%;
+  padding: 0.75rem 0.9rem;
+  color: var(--color-fg);
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  line-height: 1.5;
+  background: var(--bg);
+  border: 1px solid var(--color-hairline-strong);
+  border-radius: var(--r-sm);
+  transition:
+    border-color var(--speed) linear,
+    box-shadow var(--speed) linear;
+}
+
+.input::placeholder,
+.textarea::placeholder {
+  color: var(--ink-faint);
+}
+
+.input:focus,
+.textarea:focus {
+  outline: none;
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px var(--accent-wash);
+}
+
+.textarea {
+  resize: vertical;
+  min-height: 7.5rem;
+}
+
+.submitRow {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 1rem 1.5rem;
+  margin-top: 0.4rem;
+}
+
+.note {
+  color: var(--ink-faint);
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.04em;
+}

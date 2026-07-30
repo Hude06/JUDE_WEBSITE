@@ -8,110 +8,93 @@
       "id": "home-1",
       "type": "jude-hero",
       "eyebrow": "Available for new projects",
-      "headline": "Websites, made simple.",
-      "subheadline": "Fast, beautiful sites built one at a time for small businesses, creatives, and anyone with an idea worth shipping — designed in the browser, from Eugene, Oregon.",
+      "headline": "I'm Jude —",
+      "headlineAccent": "Eugene's fastest sites.",
+      "subheadline": "Small-business sites, designed in the browser and shipped in weeks.",
       "primaryCta": {
         "text": "Start a project",
         "href": "/contact"
       },
       "secondaryCta": {
-        "text": "See selected work",
+        "text": "See the work",
         "href": "/#work"
       },
       "align": "left",
-      "index": [
-        { "label": "Rosales Designs", "year": "2025", "status": "live", "href": "/#work" },
-        { "label": "Bobby Salazar's", "year": "2024", "status": "live", "href": "/#work" },
-        { "label": "Gravel Truck Plans", "year": "2024", "status": "archived", "href": "/#work" }
-      ]
+      "photo": "/uploads/photos/portrait.jpg",
+      "photoAlt": "Jude sitting on a slackline in the woods",
+      "photoCaption": "Jude · Eugene, OR"
     },
     {
-      "id": "home-2",
-      "type": "jude-heading",
-      "text": "Selected work",
-      "level": 2,
-      "anchorId": "work"
-    },
-    {
-      "id": "home-3",
-      "type": "case-study",
-      "index": "01",
-      "client": "Rosales Designs",
-      "tagline": "A branding studio with sixteen years of work across food, lifestyle, and consumer brands. A custom portfolio site built to put the studio's own brand work front and center.",
-      "year": "2025",
-      "role": "Design + Build",
-      "image": "/uploads/portfolio/rosales-designs.webp",
-      "link": "https://rosalesdesigns.com",
-      "status": "live"
-    },
-    {
-      "id": "home-4",
-      "type": "case-study",
-      "index": "02",
-      "client": "Bobby Salazar's",
-      "tagline": "Family-run Mexican food since 1990 — restaurants, catering, retail salsa, and recipes that go back generations. A multi-page small business website covering locations, menus, and catering inquiries.",
-      "year": "2024",
-      "role": "Design + Build",
-      "image": "/uploads/portfolio/bobby-salazars.webp",
-      "link": "https://bobbysalazar.com",
-      "status": "live",
-      "reverse": true
-    },
-    {
-      "id": "home-5",
-      "type": "case-study",
-      "index": "03",
-      "client": "Gravel Truck Plans",
-      "tagline": "End-of-life planning for families who want their paperwork in order before anything goes wrong. A landing page designed to make a hard topic feel approachable.",
-      "year": "2024",
-      "role": "Design + Build",
-      "image": "/uploads/portfolio/gravel-truck-plans.webp",
-      "status": "archived"
-    },
-    {
-      "id": "home-6",
-      "type": "jude-heading",
-      "text": "How I work",
-      "level": 2,
-      "anchorId": "process"
-    },
-    {
-      "id": "home-7",
-      "type": "feature-grid",
-      "columns": 3,
+      "id": "home-work",
+      "type": "work-grid",
+      "heading": "Selected work",
+      "countLabel": "03 shipped",
+      "anchorId": "work",
+      "showEmptyCard": true,
       "items": [
         {
-          "title": "Built from scratch",
-          "description": "No templates or page builders. Every site starts as a blank file, so yours ends up looking like your business — not like everyone else's."
+          "name": "Rosales Designs",
+          "tagline": "Portfolio site for a 16-year branding studio.",
+          "year": "2025",
+          "image": "/uploads/portfolio/rosales-designs.webp",
+          "link": "https://rosalesdesigns.com",
+          "status": "live"
         },
         {
-          "title": "Here after launch",
-          "description": "The site going live isn't the end. I stick around for updates, tweaks, and new pages as your business changes."
+          "name": "Bobby Salazar's",
+          "tagline": "Multi-page site for a family Mexican restaurant.",
+          "year": "2024",
+          "image": "/uploads/portfolio/bobby-salazars.webp",
+          "link": "https://bobbysalazar.com",
+          "status": "live"
         },
         {
-          "title": "Fast everywhere",
-          "description": "Lean, hand-written code means pages load instantly — on a laptop, on a phone, on bad Wi-Fi."
+          "name": "Gravel Truck Plans",
+          "tagline": "Landing page that makes a hard topic approachable.",
+          "year": "2024",
+          "image": "/uploads/portfolio/gravel-truck-plans.webp",
+          "status": "archived"
         }
       ]
     },
     {
-      "id": "home-8",
-      "type": "jude-heading",
-      "text": "About Jude",
-      "level": 2,
-      "anchorId": "about-snippet"
+      "id": "home-process",
+      "type": "steps",
+      "heading": "How it works",
+      "steps": [
+        {
+          "title": "We talk",
+          "description": "A quick conversation about what you need and who it's for."
+        },
+        {
+          "title": "I design + build",
+          "description": "Real progress in the browser every few days — not mockups."
+        },
+        {
+          "title": "We iterate",
+          "description": "Quick rounds of feedback until you're happy."
+        },
+        {
+          "title": "You own it",
+          "description": "The site, the code, the content — all yours."
+        }
+      ]
     },
     {
-      "id": "home-9",
-      "type": "paragraph",
-      "text": "I'm a high school student from Eugene, Oregon who handles web design, development, and ongoing maintenance for small businesses and creatives — in Eugene and beyond. I design in the browser, ship every few days, and hand off something you can update yourself. When I'm not shipping code, I'm flying FPV drones, running an Etsy store, and making things in my workshop."
-    },
-    {
-      "id": "home-10",
-      "type": "jude-button",
-      "text": "Read more",
-      "href": "/about",
-      "variant": "outline"
+      "id": "home-off-hours",
+      "type": "photo-strip",
+      "title": "Off hours",
+      "text": "FPV drones, an Etsy store, and a workshop full of half-finished projects. Same hands, same care that goes into your website.",
+      "photos": [
+        {
+          "image": "/uploads/photos/drone.jpg",
+          "alt": "FPV drone Jude built, pink canopy and teal props"
+        },
+        {
+          "image": "/uploads/photos/night.jpg",
+          "alt": "Jude in a helmet and headlamp at night, thumbs up"
+        }
+      ]
     }
   ]
 }

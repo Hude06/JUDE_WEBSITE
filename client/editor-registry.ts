@@ -11,6 +11,11 @@ import { StepsEditor } from '@/client/blocks/Steps/StepsEditor';
 import { CardGridEditor } from '@/client/blocks/CardGrid/CardGridEditor';
 import { BadgeGroupEditor } from '@/client/blocks/BadgeGroup/BadgeGroupEditor';
 import { CtaEditor } from '@/client/blocks/Cta/CtaEditor';
+import { TestimonialEditor } from '@/client/blocks/Testimonial/TestimonialEditor';
+import { PhotoEditor } from '@/client/blocks/Photo/PhotoEditor';
+import { WorkGridEditor } from '@/client/blocks/WorkGrid/WorkGridEditor';
+import { PhotoStripEditor } from '@/client/blocks/PhotoStrip/PhotoStripEditor';
+import { ContactFormEditor } from '@/client/blocks/ContactForm/ContactFormEditor';
 
 export interface ClientEditorProps<T extends Block = Block> {
   block: T;
@@ -29,6 +34,11 @@ export const clientEditors: Record<string, ComponentType<ClientEditorProps>> = {
   'card-grid': CardGridEditor as unknown as ComponentType<ClientEditorProps>,
   'badge-group': BadgeGroupEditor as unknown as ComponentType<ClientEditorProps>,
   cta: CtaEditor as unknown as ComponentType<ClientEditorProps>,
+  testimonial: TestimonialEditor as unknown as ComponentType<ClientEditorProps>,
+  photo: PhotoEditor as unknown as ComponentType<ClientEditorProps>,
+  'work-grid': WorkGridEditor as unknown as ComponentType<ClientEditorProps>,
+  'photo-strip': PhotoStripEditor as unknown as ComponentType<ClientEditorProps>,
+  'contact-form': ContactFormEditor as unknown as ComponentType<ClientEditorProps>,
 };
 
 export const clientTypeLabels: Record<string, string> = {
@@ -43,4 +53,9 @@ export const clientTypeLabels: Record<string, string> = {
   'card-grid': 'Card Grid',
   'badge-group': 'Badge Group',
   cta: 'CTA',
+  testimonial: 'Testimonial',
+  photo: 'Photo',
+  'work-grid': 'Work Grid',
+  'photo-strip': 'Photo Strip',
+  'contact-form': 'Contact Form',
 };

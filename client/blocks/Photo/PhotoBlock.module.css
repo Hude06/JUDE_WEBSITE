@@ -1,0 +1,56 @@
+/* Photo — a single framed photograph with a mono caption. Renders a quiet
+   dashed placeholder until an image is set, so the slot is visible in dev. */
+
+.root {
+  margin-inline: auto;
+  max-width: var(--container-wide);
+  padding: 1.5rem var(--gutter) 2rem;
+}
+
+.figure {
+  margin: 0;
+  max-width: 52rem;
+}
+
+.frame {
+  overflow: hidden;
+  border: 1px solid var(--color-hairline);
+  border-radius: var(--r-md);
+  background: var(--bg-panel);
+  box-shadow: var(--shadow-panel);
+}
+
+.image {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 3 / 2;
+  object-fit: cover;
+}
+
+.placeholder {
+  display: grid;
+  place-items: center;
+  aspect-ratio: 3 / 2;
+  border-style: dashed;
+  background: var(--bg-raised);
+  box-shadow: none;
+}
+
+.placeholderLabel {
+  color: var(--color-subtle);
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.caption {
+  margin-top: 0.8rem;
+  color: var(--ink-faint);
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+}

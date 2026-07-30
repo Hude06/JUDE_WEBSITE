@@ -7,7 +7,7 @@ interface CaseStudyBlockProps {
 }
 
 export function CaseStudyBlock({ block }: CaseStudyBlockProps) {
-  const { client, tagline, year, role, image, link, status = 'live', reverse = false, index } = block;
+  const { client, tagline, year, role, image, link, status = 'live', index } = block;
 
   const isArchived = status === 'archived';
 
@@ -37,35 +37,20 @@ export function CaseStudyBlock({ block }: CaseStudyBlockProps) {
 
   return (
     <section className={cn(styles.root, 'scroll-reveal')}>
-      <div className={cn(styles.layout, reverse && styles.reverse)}>
-        <figure className={styles.figure}>
-          {link && !isArchived ? (
-            <a
-              href={link}
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label={`Visit ${client}`}
-              className={styles.figureLink}
-            >
-              {imageElement}
-            </a>
-          ) : (
-            imageElement
-          )}
-        </figure>
+      <header className={styles.header}>
+        {index && (
+          <span aria-hidden className={styles.ghostIndex}>
+            {index}
+          </span>
+        )}
 
-        <div className={styles.content}>
-          {index && (
-            <span aria-hidden className={styles.ghostIndex}>
-              {index}
-            </span>
-          )}
+        <div className={styles.heading}>
           {index && <span className={styles.index}>{index} / Case study</span>}
-
           <h3 className={styles.title}>{client}</h3>
-
           <p className={styles.tagline}>{tagline}</p>
+        </div>
 
+        <div className={styles.aside}>
           <dl className={styles.metaList}>
             <MetaRow label="Role" value={role} />
             <MetaRow label="Year" value={year} />
@@ -86,7 +71,23 @@ export function CaseStudyBlock({ block }: CaseStudyBlockProps) {
           )}
           {isArchived && <p className={styles.archivedNote}>Site no longer available</p>}
         </div>
-      </div>
+      </header>
+
+      <figure className={styles.figure}>
+        {link && !isArchived ? (
+          <a
+            href={link}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label={`Visit ${client}`}
+            className={styles.figureLink}
+          >
+            {imageElement}
+          </a>
+        ) : (
+          imageElement
+        )}
+      </figure>
     </section>
   );
 }

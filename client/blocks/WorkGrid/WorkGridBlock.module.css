@@ -1,0 +1,169 @@
+/* Work grid — all projects scannable in one screen. Screenshots are the
+   only saturated thing on the page until you hover; then the accent
+   confirms the card is a door, not a picture. */
+
+.root {
+  margin-inline: auto;
+  max-width: var(--container-wide);
+  padding: 0.5rem var(--gutter) 2.75rem;
+  scroll-margin-top: 5rem;
+}
+
+.head {
+  display: flex;
+  align-items: baseline;
+  gap: 1.25rem;
+  padding-top: 2.6rem;
+  margin-bottom: 1.5rem;
+}
+
+.heading {
+  color: var(--color-fg);
+  font-family: var(--font-display);
+  font-size: var(--fs-section-heading);
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+
+.rule {
+  flex: 1;
+  height: 1px;
+  background: var(--color-hairline);
+}
+
+.count {
+  color: var(--ink-faint);
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.grid {
+  display: grid;
+  gap: 1.5rem 1.4rem;
+  grid-template-columns: minmax(0, 1fr);
+}
+
+@media (min-width: 768px) {
+  .grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+.card {
+  display: block;
+  color: inherit;
+  text-decoration: none;
+}
+
+.frame {
+  transition:
+    transform var(--speed-slow) var(--ease),
+    border-color var(--speed) linear,
+    box-shadow var(--speed-slow) var(--ease);
+}
+
+.card:hover .frame {
+  transform: translateY(-3px);
+  border-color: var(--accent);
+  box-shadow: 0 22px 48px -18px var(--accent-glow);
+}
+
+a.card:hover .name {
+  color: var(--accent);
+}
+
+.domain {
+  display: block;
+  margin-left: 0.5rem;
+  overflow: hidden;
+  color: var(--color-subtle);
+  font-family: var(--font-mono);
+  font-size: 0.66rem;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.imageSurface {
+  overflow: hidden;
+  background: var(--color-surface);
+}
+
+.image {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 16 / 10;
+  object-fit: cover;
+  object-position: top center;
+}
+
+.meta {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-top: 0.8rem;
+}
+
+.name {
+  color: var(--color-fg);
+  font-family: var(--font-display);
+  font-size: 1.15rem;
+  font-weight: 500;
+  transition: color var(--speed) linear;
+}
+
+.year {
+  color: var(--ink-faint);
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  font-variant-numeric: tabular-nums;
+}
+
+.tagline {
+  margin-top: 0.2rem;
+  color: var(--color-muted);
+  font-size: 0.88rem;
+  line-height: 1.6;
+}
+
+/* Dashed sales slot — the portfolio's last card is an invitation. */
+.emptyCard {
+  display: grid;
+  place-items: center;
+  min-height: 230px;
+  border: 1.5px dashed var(--color-hairline-strong);
+  border-radius: var(--r-md);
+  text-align: center;
+  text-decoration: none;
+  transition:
+    border-color var(--speed) linear,
+    background-color var(--speed) linear;
+}
+
+.emptyCard:hover {
+  border-color: var(--accent);
+  background: var(--accent-wash);
+}
+
+.emptyTitle {
+  display: block;
+  color: var(--color-fg);
+  font-family: var(--font-display);
+  font-size: 1.2rem;
+  font-weight: 500;
+}
+
+.emptyCta {
+  display: block;
+  margin-top: 0.4rem;
+  color: var(--accent);
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}

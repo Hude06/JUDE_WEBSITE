@@ -1,10 +1,11 @@
-/* Type-led hero on clean ground — daylight workshop theme. The headline,
-   index panel, and whitespace carry it; no backdrop decoration. */
+/* Field-notes hero: pitch and facts on the left, taped-in portrait on the
+   right. Warm paper ground comes from the page; the accent does the
+   pointing. */
 
 .root {
   position: relative;
-  padding-top: clamp(4rem, 9vw, 7.5rem);
-  padding-bottom: clamp(3rem, 6vw, 5.5rem);
+  padding-top: clamp(2.5rem, 5.5vw, 4.5rem);
+  padding-bottom: clamp(2.5rem, 5.5vw, 4.5rem);
   border-bottom: 1px solid var(--color-hairline);
   overflow: hidden;
 }
@@ -18,8 +19,6 @@
 
 .innerSplit {
   display: grid;
-  /* minmax(0, …) everywhere: an auto track could grow past the viewport on
-     small screens (mono labels + nowrap rows have wide min-content). */
   grid-template-columns: minmax(0, 1fr);
   gap: 3rem;
   align-items: center;
@@ -31,8 +30,8 @@
 
 @media (min-width: 900px) {
   .innerSplit {
-    grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr);
-    gap: 4.5rem;
+    grid-template-columns: minmax(0, 1.35fr) minmax(0, 1fr);
+    gap: 3.5rem;
   }
 }
 
@@ -41,17 +40,20 @@
 }
 
 .rootCentered .headline,
-.rootCentered .subheadline,
-.rootCentered .metaList {
+.rootCentered .subheadline {
   margin-inline: auto;
 }
 
-.rootCentered .ctaRow {
+.rootCentered .ctaRow,
+.rootCentered .factRow {
   justify-content: center;
 }
 
 .eyebrow {
-  margin: 0 0 1.75rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  margin: 0;
   color: var(--color-subtle);
   font-family: var(--font-mono);
   font-size: 0.7rem;
@@ -61,195 +63,114 @@
 }
 
 .headline {
-  margin: 0;
-  max-width: 14ch;
+  margin: 1.2rem 0 0;
+  max-width: 27ch;
   color: var(--color-fg);
   font-family: var(--font-display);
   font-size: var(--fs-display-hero);
   font-weight: 600;
   letter-spacing: -0.02em;
-  line-height: 1.02;
-  text-wrap: balance;
+  line-height: 1.08;
+}
+
+/* The accent is always its own line: one color per line, one thought per
+   line — the ink line hands off at the dash, the red line is the claim. */
+.headlineAccent {
+  display: block;
+  font-style: normal;
+  color: var(--accent);
 }
 
 .subheadline {
-  margin: 1.75rem 0 0;
-  max-width: 44ch;
+  margin: 1.1rem 0 0;
+  max-width: 40ch;
   color: var(--color-muted);
-  font-size: clamp(1.05rem, 1.5vw, 1.2rem);
-  line-height: 1.7;
-}
-
-/* Meta ledger. */
-.metaList {
-  display: flex;
-  flex-direction: column;
-  gap: 0.45rem;
-  max-width: 24rem;
-  margin: 2rem 0 0;
-  padding: 0.9rem 0;
-  border-top: 1px solid var(--color-hairline);
-  border-bottom: 1px solid var(--color-hairline);
-}
-
-.metaRow {
-  display: flex;
-  align-items: baseline;
-  justify-content: space-between;
-  gap: 1.5rem;
-}
-
-.metaLabel {
-  color: var(--color-subtle);
-  font-family: var(--font-mono);
-  font-size: 0.68rem;
-  font-weight: 500;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-}
-
-.metaValue {
-  margin: 0;
-  color: var(--color-fg);
-  font-family: var(--font-mono);
-  font-size: 0.8rem;
-  font-weight: 500;
-  font-variant-numeric: tabular-nums;
+  font-size: clamp(1.02rem, 1.4vw, 1.12rem);
+  line-height: 1.65;
+  text-wrap: balance;
 }
 
 .ctaRow {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  gap: 1rem 2rem;
-  margin-top: 2rem;
+  gap: 1rem;
+  margin-top: 1.6rem;
 }
 
-.secondaryArrow {
-  display: inline-block;
-  transition: transform var(--speed-slow) var(--ease);
-}
-
-.ctaRow a:hover .secondaryArrow {
-  transform: translateX(3px);
-}
-
-/* —— index panel: a lit instrument on the bench —————————— */
-.panelColumn {
-  min-width: 0;
-}
-
-.panel {
+/* Horizontal fact ledger under the CTAs. */
+.factRow {
   display: flex;
-  flex-direction: column;
-  border: 1px solid var(--color-hairline);
-  border-radius: var(--r-lg);
-  background: rgba(255, 255, 255, 0.78);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  box-shadow: var(--shadow-panel);
-  overflow: hidden;
-}
-
-.panelHeader {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 1rem 1.4rem;
-  border-bottom: 1px solid var(--color-hairline);
-  background: rgba(23, 24, 28, 0.025);
-}
-
-.panelTitle {
-  color: var(--color-fg);
-  font-family: var(--font-mono);
-  font-size: 0.7rem;
-  font-weight: 600;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-}
-
-.panelList {
-  margin: 0;
-  padding: 0;
-  list-style: none;
-}
-
-.panelList li + li .panelRow {
+  flex-wrap: wrap;
+  gap: 0.8rem 2rem;
+  margin: 1.6rem 0 0;
+  padding-top: 1rem;
   border-top: 1px solid var(--color-hairline);
 }
 
-.panelRow {
-  display: grid;
-  grid-template-columns: 2rem minmax(0, 1fr) auto;
+.fact {
+  display: flex;
   align-items: baseline;
-  gap: 1rem;
-  padding: 1.1rem 1.4rem;
-  text-decoration: none;
-  transition: background-color var(--speed) linear;
+  gap: 0.45rem;
 }
 
-.panelRow:hover {
-  background: rgba(23, 24, 28, 0.03);
+.factLabel {
+  color: var(--color-subtle);
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  font-weight: 500;
+  letter-spacing: 0.04em;
 }
 
-.panelRow:hover .panelLabel {
-  text-decoration: underline;
-  text-underline-offset: 3px;
-}
-
-.panelIndex {
-  color: var(--ink-faint);
+.factValue {
+  margin: 0;
+  color: var(--color-fg);
   font-family: var(--font-mono);
   font-size: 0.72rem;
   font-weight: 600;
+  letter-spacing: 0.04em;
   font-variant-numeric: tabular-nums;
 }
 
-.panelLabel {
+/* —— taped-in portrait ——————————————————————— */
+.photoColumn {
+  min-width: 0;
+}
+
+.photoWrap {
+  position: relative;
+  max-width: 26rem;
+  margin-inline: auto;
+}
+
+.photoFrame {
   overflow: hidden;
-  color: var(--color-fg);
-  font-family: var(--font-display);
-  font-size: 1rem;
-  font-weight: 500;
-  letter-spacing: 0;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  transition: color var(--speed) linear;
+  border-radius: 14px;
+  border: 5px solid #fff;
+  box-shadow: 0 24px 50px -20px rgba(23, 24, 28, 0.4);
+  transform: rotate(-1.2deg);
 }
 
-.panelYear {
-  color: var(--color-subtle);
-  font-family: var(--font-mono);
-  font-size: 0.75rem;
-  font-variant-numeric: tabular-nums;
+.photo {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 4 / 4.7;
+  object-fit: cover;
+  object-position: 50% 18%;
 }
 
-.panelFooter {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
-  padding: 0.95rem 1.4rem;
-  border-top: 1px solid var(--color-hairline);
-  color: var(--color-muted);
+.photoCaption {
+  position: absolute;
+  bottom: 16px;
+  left: 20px;
+  background: var(--accent);
+  color: #fff;
   font-family: var(--font-mono);
-  font-size: 0.74rem;
+  font-size: 0.62rem;
   font-weight: 500;
-  letter-spacing: 0.06em;
+  letter-spacing: 0.08em;
   text-transform: uppercase;
-  text-decoration: none;
-  transition: color var(--speed) linear;
-}
-
-.panelFooter:hover {
-  color: var(--ink);
-}
-
-.panelFooterArrow {
-  display: inline-block;
-  transition: transform var(--speed-slow) var(--ease);
-}
-
-.panelFooter:hover .panelFooterArrow {
-  transform: translateX(3px);
+  padding: 0.35rem 0.6rem;
+  border-radius: 5px;
 }

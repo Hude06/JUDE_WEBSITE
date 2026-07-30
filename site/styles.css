@@ -1,12 +1,11 @@
 /*
-  Client override stylesheet — "daylight workshop" theme.
+  Client override stylesheet — "field notes" theme (K7 · Crimson white).
 
-  60/30/10: soft white ground (60), cool ink structure — type, panels,
-  hairlines (30), one signal orange (10) — drafting-redline territory.
-  Clash Display carries the big voice, IBM Plex Mono carries structure
-  (nav, labels, data), Switzer carries prose. Depth comes from grain, a
-  faint blueprint grid, a soft warm aurora, and layered shadows. Motion is staged: one orchestrated
-  hero load, scroll reveals below the fold, precise micro-interactions.
+  60/30/10: warm paper ground (60), ink structure — type, hairlines,
+  white panels (30), crimson accent (10) doing all the pointing: buttons,
+  links, numerals, live dots, the photo caption chip. No dark bands —
+  sections separate with hairline rules on white. Clash Display carries
+  the big voice, IBM Plex Mono carries labels, Switzer carries prose.
   Framework-native CSS only (no Tailwind, no shadcn).
 */
 
@@ -73,21 +72,19 @@
   --font-body: "Switzer", -apple-system, BlinkMacSystemFont, "Segoe UI",
     "Helvetica Neue", Arial, sans-serif;
 
-  /* —— palette: 60/30/10 — soft white ground (60), cool ink structure (30),
-     one signal orange (10) ——————————————————————— */
-  --bg: #fcfcfa;
-  --bg-raised: #f4f5f3;
+  /* —— palette: 60/30/10 — warm paper ground (60), ink structure (30),
+     crimson accent (10) ——————————————————————— */
+  --bg: #fbf8f7;
+  --bg-raised: #f4efee;
   --bg-panel: #ffffff;
   --ink: #17181c;
   --ink-soft: #4b5058;
   --ink-faint: #666c76;
-  /* Monochrome: the "accent" is ink. Personality lives in the type system,
-     hairlines, grain, and motion — not a color. */
-  --accent: #17181c;
-  --accent-bright: #17181c;
-  --accent-deep: #000000;
-  --accent-wash: rgba(23, 24, 28, 0.04);
-  --accent-glow: rgba(23, 24, 28, 0.1);
+  --accent: #c22f2f;
+  --accent-bright: #c22f2f;
+  --accent-deep: #9c2424;
+  --accent-wash: #fae3e3;
+  --accent-glow: rgba(194, 47, 47, 0.28);
   --live: var(--accent);
 
   /* Soft-technical radius scale. */
@@ -109,8 +106,8 @@
   --color-subtle: var(--ink-faint);
   --color-hairline: rgba(23, 24, 28, 0.1);
   --color-hairline-strong: rgba(23, 24, 28, 0.24);
-  --color-accent-ink: var(--ink);
-  --color-accent-warm: var(--ink);
+  --color-accent-ink: var(--accent);
+  --color-accent-warm: var(--accent);
   --color-live: var(--live);
 
   /* Legacy aliases — CSS modules not yet rewritten (CardGrid) still reference
@@ -119,12 +116,12 @@
   --paper: var(--bg);
   --paper-deep: var(--bg-raised);
   --paper-bright: var(--bg-panel);
-  --moss: var(--ink);
-  --moss-deep: var(--ink);
-  --moss-bright: var(--ink);
+  --moss: var(--accent);
+  --moss-deep: var(--accent-deep);
+  --moss-bright: var(--accent);
   --amber: var(--ink-soft);
   --amber-deep: var(--ink);
-  --rust: var(--ink-faint);
+  --rust: var(--accent);
   --bark: var(--ink-soft);
 
   --space-section-sm: clamp(1.5rem, 2.5vw, 2.5rem);
@@ -136,11 +133,14 @@
   /* Single source of truth for horizontal page gutter. */
   --gutter: 1.5rem;
 
-  /* Display scale — Clash Display can carry real size. */
-  --fs-display-hero: clamp(2.6rem, 6.2vw, 5rem);
+  /* Display scale — one ladder, used everywhere (hero → page title →
+     section heading → item titles). Section headings are always Clash 600
+     at the same size so every section reads as the same element. */
+  --fs-display-hero: clamp(2.2rem, 4.4vw, 3.3rem);
   --fs-display-xl: clamp(4rem, 13vw, 10rem);
-  --fs-section-heading: clamp(2rem, 4.2vw, 3.2rem);
-  --fs-cta-title: clamp(2.4rem, 5.5vw, 4.2rem);
+  --fs-page-title: clamp(2.2rem, 4.4vw, 3.2rem);
+  --fs-section-heading: clamp(1.6rem, 2.6vw, 2rem);
+  --fs-cta-title: clamp(1.9rem, 3.6vw, 2.6rem);
 
   /* Micro-interaction speeds: --speed for color/border, --speed-slow for
      transform lifts. Eased, never bouncy. */
@@ -234,7 +234,7 @@ h6 {
 }
 
 ::selection {
-  background: var(--ink);
+  background: var(--accent);
   color: #fff;
 }
 
@@ -300,17 +300,18 @@ a {
   background: var(--color-hairline-strong);
 }
 
+/* Buttons speak in sentence case — mono caps are reserved for labels
+   (nav, eyebrows, ledger rows) so they keep their signal. */
 .jude-btn {
   display: inline-flex;
   align-items: center;
   gap: 0.6rem;
   border-radius: var(--r-sm);
-  padding: 0.85rem 1.5rem;
-  font-family: var(--font-mono);
-  font-size: 0.8rem;
-  font-weight: 600;
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
+  padding: 0.8rem 1.5rem;
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  font-weight: 500;
+  letter-spacing: 0;
   transition:
     color var(--speed) linear,
     background-color var(--speed) linear,
@@ -381,7 +382,7 @@ a {
   top: 0;
   z-index: 40;
   border-bottom: 1px solid var(--color-hairline);
-  background: rgba(252, 252, 250, 0.85);
+  background: rgba(251, 248, 247, 0.85);
   backdrop-filter: blur(12px) saturate(1.4);
   -webkit-backdrop-filter: blur(12px) saturate(1.4);
 }
@@ -410,12 +411,12 @@ a {
   height: 1.9rem;
   border-radius: var(--r-sm);
   color: #fff;
-  background: var(--ink);
+  background: var(--accent);
   transition: background-color var(--speed) linear;
 }
 
 .site-brand:hover .site-brand__mark {
-  background: #000;
+  background: var(--accent-deep);
 }
 
 .site-brand__letter {
@@ -510,8 +511,8 @@ a {
 }
 
 .site-nav__link:hover {
-  color: var(--color-fg);
-  border-bottom-color: var(--color-fg);
+  color: var(--accent);
+  border-bottom-color: var(--accent);
 }
 
 .site-nav__link.link-underline {
@@ -532,186 +533,64 @@ a {
 }
 
 .site-footer__cta-band {
-  position: relative;
-  overflow: hidden;
   border-top: 1px solid var(--color-hairline);
 }
 
-/* The footer gets its own pool of light so the CTA feels like a place,
-   not a paragraph. */
-.site-footer__cta-band::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-  background: radial-gradient(
-    ellipse 60% 90% at 20% 110%,
-    rgba(23, 24, 28, 0.02),
-    transparent 65%
-  );
-}
-
 .site-footer__cta-inner {
-  position: relative;
-  padding-top: 4rem;
-  padding-bottom: 4rem;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2rem;
+  padding-top: 3rem;
+  padding-bottom: 3rem;
 }
 
 @media (min-width: 768px) {
   .site-footer__cta-inner {
-    padding-top: 6rem;
-    padding-bottom: 6rem;
+    padding-top: 4rem;
+    padding-bottom: 4rem;
   }
-}
-
-.site-footer__eyebrow {
-  margin: 0 0 1.5rem;
-  color: var(--ink-soft);
-  font-family: var(--font-mono);
-  font-size: 0.7rem;
-  font-weight: 500;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
 }
 
 .site-footer__title {
   margin: 0;
   color: var(--color-fg);
   font-family: var(--font-display);
-  font-size: var(--fs-cta-title);
+  font-size: clamp(1.9rem, 3.6vw, 2.6rem);
   font-weight: 600;
   line-height: 1.05;
   letter-spacing: -0.015em;
 }
 
-.site-footer__title-accent {
-  color: inherit;
-  font-style: normal;
-}
-
 .site-footer__cta-actions {
   display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 1rem 2.5rem;
-  margin-top: 2.5rem;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.85rem;
 }
 
-.site-footer__email-link {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.6rem;
-  color: var(--color-fg);
+.site-footer__email-line {
+  color: var(--ink-soft);
   font-family: var(--font-mono);
-  font-size: 1.05rem;
+  font-size: 0.74rem;
+  letter-spacing: 0.02em;
+}
+
+.site-footer__email-line a {
+  color: inherit;
+  text-decoration: none;
   transition: color var(--speed) linear;
 }
 
-.site-footer__email-link:hover {
-  color: var(--ink-soft);
+.site-footer__email-line a:hover {
+  color: var(--accent);
 }
 
-.site-footer__email-arrow {
-  display: inline-block;
-  transition: transform var(--speed-slow) var(--ease);
-}
-
-.site-footer__email-link:hover .site-footer__email-arrow {
-  transform: translateX(3px);
-}
-
-.site-footer__brief-link {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
-  color: var(--color-muted);
-  font-size: 0.9rem;
-  transition: color var(--speed) linear;
-}
-
-.site-footer__brief-link:hover {
-  color: var(--ink);
-}
-
-/* Everything below the CTA sits on a slightly raised band —
-   rules and tone shifts. */
-.site-footer__band {
-  border-top: 1px solid var(--color-hairline);
-  background: var(--bg-raised);
-  color: var(--ink-soft);
-}
-
-.site-footer__links-grid {
-  display: grid;
-  gap: 2rem;
-  padding-top: 2.5rem;
-  padding-bottom: 2.5rem;
-}
-
-@media (min-width: 768px) {
-  .site-footer__links-grid {
-    grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr) minmax(0, 1fr);
-    padding-top: 3rem;
-    padding-bottom: 2.5rem;
-  }
-}
-
-.site-footer__brand-row {
-  display: flex;
-  align-items: center;
-  gap: 0.7rem;
-}
-
-.site-footer__brand-mark {
-  display: grid;
-  place-items: center;
-  width: 1.9rem;
-  height: 1.9rem;
-  border-radius: var(--r-sm);
-  background: var(--ink);
-}
-
-.site-footer__brand-letter {
-  color: #fff;
-  font-family: var(--font-display);
-  font-size: 0.95rem;
-  font-weight: 600;
-  line-height: 1;
-}
-
-.site-footer__brand-label {
-  color: var(--ink-faint);
-  font-family: var(--font-mono);
-  font-size: 0.72rem;
-  font-weight: 500;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  font-variant-numeric: tabular-nums;
-}
-
-.site-footer__brand-name {
-  color: var(--ink);
-  font-weight: 600;
-}
-
-.site-footer__brand-separator {
-  margin-inline: 0.5rem;
-}
-
-.site-footer__brand-role {
-  color: var(--ink-faint);
-}
-
-.site-footer__bio {
-  max-width: 22rem;
-  margin-top: 1.25rem;
-  color: var(--ink-soft);
-  font-size: 0.875rem;
-  line-height: 1.6;
-}
-
+/* Thin white closing bar — hairline rules, no dark surfaces. */
 .site-footer__fine-print-wrap {
   border-top: 1px solid var(--color-hairline);
+  background: var(--bg-panel);
 }
 
 .site-footer__fine-print {
@@ -750,82 +629,8 @@ a {
   color: var(--ink-faint);
 }
 
-/* Giant closing wordmark — hollow type running off the bottom of the page.
-   aria-hidden decoration; the real brand name lives in the fine print. */
-.site-footer__wordmark {
-  display: block;
-  overflow: hidden;
-  max-width: 100%;
-  padding-top: 1rem;
-  user-select: none;
-}
-
-.site-footer__wordmark-text {
-  display: block;
-  margin-bottom: -0.24em;
-  color: transparent;
-  -webkit-text-stroke: 1px rgba(23, 24, 28, 0.18);
-  font-family: var(--font-display);
-  /* 8.5vw ≈ the largest size at which the full name still fits the viewport. */
-  font-size: clamp(2.5rem, 8.5vw, 12rem);
-  font-weight: 600;
-  letter-spacing: 0.01em;
-  line-height: 1;
-  white-space: nowrap;
-  text-align: center;
-  transition: -webkit-text-stroke-color var(--speed-slow) linear;
-}
-
-.site-footer__wordmark:hover .site-footer__wordmark-text {
-  -webkit-text-stroke-color: rgba(23, 24, 28, 0.42);
-}
-
 .site-live-time {
   color: inherit;
-}
-
-.site-footer-col__title {
-  margin: 0;
-  color: var(--ink-faint);
-  font-family: var(--font-mono);
-  font-size: 0.68rem;
-  font-weight: 500;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-}
-
-.site-footer-col__list {
-  margin: 1.1rem 0 0;
-  padding: 0;
-  list-style: none;
-}
-
-.site-footer-col__list li + li {
-  margin-top: 0.55rem;
-}
-
-.site-footer-col__link {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.375rem;
-  color: var(--ink);
-  font-size: 0.9rem;
-  transition: color var(--speed) linear;
-}
-
-.site-footer-col__link:hover {
-  color: var(--ink-soft);
-}
-
-.site-footer-col__arrow {
-  display: inline-block;
-  color: var(--ink-faint);
-  opacity: 0;
-  transition: opacity var(--speed) linear;
-}
-
-.site-footer-col__link:hover .site-footer-col__arrow {
-  opacity: 1;
 }
 
 /* -------------------------------------------------------------------------
@@ -974,7 +779,7 @@ a {
   color: var(--color-fg);
   font-family: var(--font-display);
   font-size: var(--fs-section-heading);
-  font-weight: 500;
+  font-weight: 600;
   letter-spacing: -0.01em;
   line-height: 1.1;
 }
@@ -1033,7 +838,7 @@ a {
 }
 
 .feature-grid-block__index {
-  color: var(--ink-faint);
+  color: var(--accent);
   font-family: var(--font-mono);
   font-size: 0.72rem;
   font-weight: 600;
@@ -1102,7 +907,7 @@ a {
   color: var(--color-fg);
   font-family: var(--font-display);
   font-size: var(--fs-section-heading);
-  font-weight: 500;
+  font-weight: 600;
   letter-spacing: -0.01em;
   line-height: 1.1;
 }
@@ -1143,7 +948,7 @@ a {
 }
 
 .steps-block__index {
-  color: var(--ink-faint);
+  color: var(--accent);
   font-family: var(--font-mono);
   font-size: 0.78rem;
   font-weight: 600;

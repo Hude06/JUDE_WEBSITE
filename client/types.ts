@@ -30,20 +30,17 @@ export interface JudeHeroBlock {
   type: 'jude-hero';
   eyebrow?: string;
   headline: string;
+  /** Rendered after the headline in the accent color (e.g. "by hand."). */
+  headlineAccent?: string;
   subheadline?: string;
   primaryCta?: { text: string; href: string };
   secondaryCta?: { text: string; href: string };
   image?: string;
   align?: 'left' | 'center';
-  /** Rows for the hero's project-index panel; panel is omitted when absent. */
-  index?: HeroIndexRow[];
-}
-
-export interface HeroIndexRow {
-  label: string;
-  year: string;
-  status: 'live' | 'archived';
-  href: string;
+  /** Portrait photo shown in the right column; omitted when absent. */
+  photo?: string;
+  photoAlt?: string;
+  photoCaption?: string;
 }
 
 export interface BadgeGroupBlock {
@@ -125,6 +122,84 @@ export interface SeparatorBlock {
   type: 'separator';
 }
 
+export interface TestimonialBlock {
+  id: string;
+  type: 'testimonial';
+  quote: string;
+  name: string;
+  business?: string;
+  link?: string;
+}
+
+export interface PhotoBlock {
+  id: string;
+  type: 'photo';
+  /** Renders a visible placeholder frame until an image is set. */
+  image?: string;
+  alt?: string;
+  caption?: string;
+}
+
+export interface WorkGridItem {
+  name: string;
+  tagline: string;
+  year: string;
+  image: string;
+  /** Shown in the browser-frame bar; derived from link when absent. */
+  domain?: string;
+  link?: string;
+  status?: 'live' | 'archived';
+}
+
+export interface WorkGridBlock {
+  id: string;
+  type: 'work-grid';
+  heading?: string;
+  /** Small mono counter next to the heading, e.g. "03 shipped". */
+  countLabel?: string;
+  anchorId?: string;
+  items: WorkGridItem[];
+  /** Appends a dashed "Your site here" card linking to /contact. */
+  showEmptyCard?: boolean;
+}
+
+export interface PhotoStripPhoto {
+  image: string;
+  alt?: string;
+}
+
+export interface ContactFormFact {
+  label: string;
+  value: string;
+}
+
+export interface ContactFormBlock {
+  id: string;
+  type: 'contact-form';
+  /** Hosted form-to-email endpoint, e.g. https://formsubmit.co/you@example.com */
+  action: string;
+  /** Optional intro column: eyebrow, page heading, short pitch, fact ledger. */
+  eyebrow?: string;
+  heading?: string;
+  intro?: string;
+  facts?: ContactFormFact[];
+  subject?: string;
+  placeholder?: string;
+  submitLabel?: string;
+  note?: string;
+  /** Urgency qualifier: question label + pill options. Defaults in the block. */
+  timelineLabel?: string;
+  timelineOptions?: string[];
+}
+
+export interface PhotoStripBlock {
+  id: string;
+  type: 'photo-strip';
+  title?: string;
+  text?: string;
+  photos: PhotoStripPhoto[];
+}
+
 export type ClientBlock =
   | JudeHeadingBlock
   | ParagraphBlock
@@ -136,4 +211,9 @@ export type ClientBlock =
   | StepsBlock
   | CaseStudyBlock
   | CtaBlock
-  | SeparatorBlock;
+  | SeparatorBlock
+  | TestimonialBlock
+  | PhotoBlock
+  | WorkGridBlock
+  | PhotoStripBlock
+  | ContactFormBlock;

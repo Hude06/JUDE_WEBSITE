@@ -154,6 +154,71 @@ export const clientTemplates: ClientBlockTemplate[] = [
       }) as Block,
   },
   {
+    type: 'work-grid',
+    label: 'Work Grid',
+    description: 'Two-up project grid with browser frames and a sales slot.',
+    icon: '▦',
+    create: (id) =>
+      ({
+        id,
+        type: 'work-grid',
+        heading: 'Selected work',
+        items: [{ name: 'New project', tagline: 'One-line summary', year: '2026', image: '' }],
+        showEmptyCard: true,
+      }) as Block,
+  },
+  {
+    type: 'photo-strip',
+    label: 'Photo Strip',
+    description: 'Tilted photos with an optional caption column.',
+    icon: '▤',
+    create: (id) =>
+      ({
+        id,
+        type: 'photo-strip',
+        photos: [{ image: '', alt: '' }],
+      }) as Block,
+  },
+  {
+    type: 'contact-form',
+    label: 'Contact Form',
+    description: 'Name/email/message form posting to a form-to-email endpoint.',
+    icon: '✉',
+    create: (id) =>
+      ({
+        id,
+        type: 'contact-form',
+        action: 'https://formsubmit.co/jude@micah77.org',
+        subject: 'New project inquiry — judemakes.com',
+      }) as Block,
+  },
+  {
+    type: 'testimonial',
+    label: 'Testimonial',
+    description: 'A client quote set large, with ledger attribution.',
+    icon: '“',
+    create: (id) =>
+      ({
+        id,
+        type: 'testimonial',
+        quote: 'What the client said, in their own words.',
+        name: 'Client Name',
+        business: 'Their business',
+      }) as Block,
+  },
+  {
+    type: 'photo',
+    label: 'Photo',
+    description: 'A single framed photograph with a mono caption.',
+    icon: '▢',
+    create: (id) =>
+      ({
+        id,
+        type: 'photo',
+        caption: '',
+      }) as Block,
+  },
+  {
     type: 'cta',
     label: 'CTA Band',
     description: 'Large call-to-action section.',

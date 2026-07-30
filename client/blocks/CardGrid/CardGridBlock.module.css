@@ -35,8 +35,8 @@
   display: block;
   margin-inline: -1rem;
   padding-inline: 1rem;
-  border-radius: 12px;
-  transition: background-color 300ms var(--ease-out-soft);
+  border-radius: var(--r-md);
+  transition: background-color var(--speed) linear;
 }
 
 @media (min-width: 768px) {
@@ -49,7 +49,7 @@
 /* Soft ink tint — a near-white block here read as a stray white border
    against the paper background. */
 .itemLink:hover {
-  background: rgba(31, 42, 32, 0.045);
+  background: rgba(23, 24, 28, 0.03);
 }
 
 .row {
@@ -83,20 +83,16 @@
   }
 }
 
+/* Crimson mono index — same element as the steps ledger's. */
 .index {
   flex-shrink: 0;
   width: 1.75rem;
-  color: var(--amber-deep);
-  font-size: 0.75rem;
-  font-weight: 700;
-  letter-spacing: 0.1em;
+  color: var(--accent);
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
   font-variant-numeric: tabular-nums;
-}
-
-@media (min-width: 768px) {
-  .index {
-    font-size: 0.8rem;
-  }
 }
 
 .copy {
@@ -117,21 +113,23 @@
 .title {
   color: var(--color-fg);
   font-family: var(--font-display);
-  font-size: clamp(1.4rem, 2.4vw, 1.9rem);
-  line-height: 1.15;
-  transition: color 300ms var(--ease-out-soft);
+  font-size: clamp(1.25rem, 2vw, 1.65rem);
+  font-weight: 500;
+  line-height: 1.2;
+  transition: color var(--speed) linear;
 }
 
 .itemLink:hover .title,
 .group:hover .title {
-  color: var(--color-accent-ink);
+  color: var(--accent);
 }
 
 .description {
   margin-top: 0.25rem;
   overflow: hidden;
   color: var(--color-muted);
-  font-size: 0.875rem;
+  font-size: 0.95rem;
+  line-height: 1.65;
   text-overflow: ellipsis;
   white-space: nowrap;
 }
@@ -155,12 +153,14 @@
 .arrow {
   color: var(--color-subtle);
   font-size: 1.25rem;
-  transition: transform 400ms var(--ease-out-soft), color 400ms var(--ease-out-soft);
+  transition:
+    transform var(--speed-slow) var(--ease),
+    color var(--speed) linear;
 }
 
 .itemLink:hover .arrow,
 .group:hover .arrow {
-  color: var(--color-fg);
+  color: var(--accent);
   transform: translateX(0.25rem);
 }
 

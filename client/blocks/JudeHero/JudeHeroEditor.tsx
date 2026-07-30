@@ -1,7 +1,7 @@
 'use client';
 
 import type { JudeHeroBlock } from '@/client/types';
-import { SelectField, TextAreaField, TextField } from '@/lib/ui';
+import { ImageField, SelectField, TextAreaField, TextField } from '@/lib/ui';
 
 interface JudeHeroEditorProps {
   block: JudeHeroBlock;
@@ -21,6 +21,11 @@ export function JudeHeroEditor({ block, onChange }: JudeHeroEditorProps) {
         rows={2}
         value={block.headline}
         onChange={(headline) => onChange({ ...block, headline })}
+      />
+      <TextField
+        label="Headline accent (shown in red after the headline)"
+        value={block.headlineAccent ?? ''}
+        onChange={(headlineAccent) => onChange({ ...block, headlineAccent: headlineAccent || undefined })}
       />
       <TextAreaField
         label="Subheadline"
@@ -71,10 +76,21 @@ export function JudeHeroEditor({ block, onChange }: JudeHeroEditorProps) {
         }
       />
 
+      <ImageField
+        label="Portrait photo"
+        value={block.photo ?? ''}
+        onChange={(photo) => onChange({ ...block, photo: photo || undefined })}
+        alt={block.photoAlt ?? ''}
+      />
       <TextField
-        label="Image URL (optional)"
-        value={block.image ?? ''}
-        onChange={(image) => onChange({ ...block, image: image || undefined })}
+        label="Photo alt text"
+        value={block.photoAlt ?? ''}
+        onChange={(photoAlt) => onChange({ ...block, photoAlt: photoAlt || undefined })}
+      />
+      <TextField
+        label="Photo caption chip"
+        value={block.photoCaption ?? ''}
+        onChange={(photoCaption) => onChange({ ...block, photoCaption: photoCaption || undefined })}
       />
       <SelectField
         label="Alignment"

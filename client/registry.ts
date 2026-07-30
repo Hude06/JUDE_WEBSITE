@@ -10,6 +10,11 @@ import { StepsBlock } from '@/client/blocks/Steps/StepsBlock';
 import { CardGridBlock } from '@/client/blocks/CardGrid/CardGridBlock';
 import { BadgeGroupBlock } from '@/client/blocks/BadgeGroup/BadgeGroupBlock';
 import { CtaBlock } from '@/client/blocks/Cta/CtaBlock';
+import { TestimonialBlock } from '@/client/blocks/Testimonial/TestimonialBlock';
+import { PhotoBlock } from '@/client/blocks/Photo/PhotoBlock';
+import { WorkGridBlock } from '@/client/blocks/WorkGrid/WorkGridBlock';
+import { PhotoStripBlock } from '@/client/blocks/PhotoStrip/PhotoStripBlock';
+import { ContactFormBlock } from '@/client/blocks/ContactForm/ContactFormBlock';
 
 export const clientBlocks: Record<string, ComponentType<{ block: never }>> = {
   'jude-hero': JudeHeroBlock as ComponentType<{ block: never }>,
@@ -23,4 +28,9 @@ export const clientBlocks: Record<string, ComponentType<{ block: never }>> = {
   'card-grid': CardGridBlock as ComponentType<{ block: never }>,
   'badge-group': BadgeGroupBlock as ComponentType<{ block: never }>,
   cta: CtaBlock as ComponentType<{ block: never }>,
+  testimonial: TestimonialBlock as ComponentType<{ block: never }>,
+  photo: PhotoBlock as ComponentType<{ block: never }>,
+  'work-grid': WorkGridBlock as ComponentType<{ block: never }>,
+  'photo-strip': PhotoStripBlock as ComponentType<{ block: never }>,
+  'contact-form': ContactFormBlock as ComponentType<{ block: never }>,
 };
