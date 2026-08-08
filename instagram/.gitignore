@@ -1,0 +1,5 @@
+# Intermediates — regenerate with:
+#   node scripts/instagram/capture.mjs        (raw full-page + element archive)
+#   node scripts/instagram/contact-sheet.mjs  (review contact sheets)
+_raw/
+_review/

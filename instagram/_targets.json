@@ -1,0 +1,54 @@
+{
+  "heading": "Selected work",
+  "baseUrl": "http://127.0.0.1:3000",
+  "discoveredAt": "2026-08-08T17:35:10.540Z",
+  "clients": [
+    {
+      "name": "Rosales Designs",
+      "year": "2025",
+      "tagline": "Portfolio site for a 16-year branding studio.",
+      "domain": "rosalesdesigns.com",
+      "link": "https://rosalesdesigns.com",
+      "image": "/uploads/portfolio/rosales-designs.webp",
+      "slug": "rosales-designs",
+      "status": "live",
+      "url": "https://rosalesdesigns.com",
+      "self": false
+    },
+    {
+      "name": "Bobby Salazar's",
+      "year": "2024",
+      "tagline": "Multi-page site for a family Mexican restaurant.",
+      "domain": "bobbysalazar.com",
+      "link": "https://bobbysalazar.com",
+      "image": "/uploads/portfolio/bobby-salazars.webp",
+      "slug": "bobby-salazars",
+      "status": "live",
+      "url": "https://bobbysalazar.com",
+      "self": false
+    },
+    {
+      "name": "Gravel Truck Plans",
+      "year": "2024",
+      "tagline": "Landing page that makes a hard topic approachable.",
+      "domain": "graveltruckplans.com",
+      "link": "",
+      "image": "/uploads/portfolio/gravel-truck-plans.webp",
+      "slug": "gravel-truck-plans",
+      "status": "archived",
+      "url": "https://graveltruckplans.com",
+      "self": false
+    },
+    {
+      "name": "Jude Makes Things",
+      "slug": "judemakes",
+      "domain": "judemakes.com",
+      "url": "http://127.0.0.1:3000",
+      "publicUrl": "https://judemakes.com",
+      "tagline": "Jude Hill's portfolio — web design and development in Eugene, Oregon.",
+      "year": "2025",
+      "status": "live",
+      "self": true
+    }
+  ]
+}

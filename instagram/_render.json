@@ -1,0 +1,656 @@
+{
+  "produced": [
+    {
+      "slug": "judemakes",
+      "name": "hero",
+      "ratio": "4x5",
+      "mode": "desktop",
+      "file": "instagram/judemakes/hero-4x5.png",
+      "region": {
+        "x": 0,
+        "y": 60,
+        "width": 1440,
+        "height": 1800,
+        "narrowed": false,
+        "anchored": true
+      },
+      "captured": "2880x3600",
+      "upscaled": false,
+      "narrowed": false
+    },
+    {
+      "slug": "judemakes",
+      "name": "hero",
+      "ratio": "1x1",
+      "mode": "desktop",
+      "file": "instagram/judemakes/hero-1x1.png",
+      "region": {
+        "x": 0,
+        "y": 60,
+        "width": 1440,
+        "height": 1440,
+        "narrowed": false,
+        "anchored": true
+      },
+      "captured": "2880x2880",
+      "upscaled": false,
+      "narrowed": false
+    },
+    {
+      "slug": "judemakes",
+      "name": "hero",
+      "ratio": "9x16",
+      "mode": "desktop",
+      "file": "instagram/judemakes/hero-9x16.png",
+      "region": {
+        "x": 0,
+        "y": 60,
+        "width": 1440,
+        "height": 2560,
+        "narrowed": false,
+        "anchored": true
+      },
+      "captured": "2880x5120",
+      "upscaled": false,
+      "narrowed": false
+    },
+    {
+      "slug": "judemakes",
+      "name": "work-grid",
+      "ratio": "4x5",
+      "mode": "desktop",
+      "file": "instagram/judemakes/work-grid-4x5.png",
+      "region": {
+        "x": 100,
+        "y": 672,
+        "width": 1240,
+        "height": 1550,
+        "narrowed": false,
+        "anchored": true
+      },
+      "captured": "2480x3100",
+      "upscaled": false,
+      "narrowed": false
+    },
+    {
+      "slug": "judemakes",
+      "name": "work-grid",
+      "ratio": "1x1",
+      "mode": "desktop",
+      "file": "instagram/judemakes/work-grid-1x1.png",
+      "region": {
+        "x": 100,
+        "y": 672,
+        "width": 1240,
+        "height": 1240,
+        "narrowed": false,
+        "anchored": true
+      },
+      "captured": "2480x2480",
+      "upscaled": false,
+      "narrowed": false
+    },
+    {
+      "slug": "judemakes",
+      "name": "work-grid",
+      "ratio": "9x16",
+      "mode": "desktop",
+      "file": "instagram/judemakes/work-grid-9x16.png",
+      "region": {
+        "x": 100,
+        "y": 672,
+        "width": 1240,
+        "height": 2204,
+        "narrowed": false,
+        "anchored": true
+      },
+      "captured": "2480x4408",
+      "upscaled": false,
+      "narrowed": false
+    },
+    {
+      "slug": "judemakes",
+      "name": "how-it-works",
+      "ratio": "4x5",
+      "mode": "mobile",
+      "file": "instagram/judemakes/how-it-works-4x5.png",
+      "region": {
+        "x": 0,
+        "y": 2514,
+        "width": 390,
+        "height": 488,
+        "narrowed": false,
+        "anchored": true
+      },
+      "captured": "1170x1464",
+      "upscaled": false,
+      "narrowed": false
+    },
+    {
+      "slug": "judemakes",
+      "name": "how-it-works",
+      "ratio": "1x1",
+      "mode": "mobile",
+      "file": "instagram/judemakes/how-it-works-1x1.png",
+      "region": {
+        "x": 0,
+        "y": 2514,
+        "width": 390,
+        "height": 390,
+        "narrowed": false,
+        "anchored": true
+      },
+      "captured": "1170x1170",
+      "upscaled": false,
+      "narrowed": false
+    },
+    {
+      "slug": "judemakes",
+      "name": "how-it-works",
+      "ratio": "9x16",
+      "mode": "mobile",
+      "file": "instagram/judemakes/how-it-works-9x16.png",
+      "region": {
+        "x": 0,
+        "y": 2514,
+        "width": 390,
+        "height": 693,
+        "narrowed": false,
+        "anchored": true
+      },
+      "captured": "1170x2079",
+      "upscaled": false,
+      "narrowed": false
+    },
+    {
+      "slug": "judemakes",
+      "name": "off-hours",
+      "ratio": "4x5",
+      "mode": "mobile",
+      "file": "instagram/judemakes/off-hours-4x5.png",
+      "region": {
+        "x": 0,
+        "y": 3218,
+        "width": 390,
+        "height": 488,
+        "narrowed": false,
+        "anchored": true
+      },
+      "captured": "1170x1464",
+      "upscaled": false,
+      "narrowed": false
+    },
+    {
+      "slug": "judemakes",
+      "name": "off-hours",
+      "ratio": "1x1",
+      "mode": "mobile",
+      "file": "instagram/judemakes/off-hours-1x1.png",
+      "region": {
+        "x": 0,
+        "y": 3218,
+        "width": 390,
+        "height": 390,
+        "narrowed": false,
+        "anchored": true
+      },
+      "captured": "1170x1170",
+      "upscaled": false,
+      "narrowed": false
+    },
+    {
+      "slug": "judemakes",
+      "name": "off-hours",
+      "ratio": "9x16",
+      "mode": "mobile",
+      "file": "instagram/judemakes/off-hours-9x16.png",
+      "region": {
+        "x": 0,
+        "y": 3218,
+        "width": 390,
+        "height": 693,
+        "narrowed": false,
+        "anchored": true
+      },
+      "captured": "1170x2079",
+      "upscaled": false,
+      "narrowed": false
+    },
+    {
+      "slug": "judemakes",
+      "name": "home-full",
+      "ratio": "4x5",
+      "mode": "desktop",
+      "file": "instagram/judemakes/home-full-4x5.png",
+      "region": {
+        "x": 0,
+        "y": 0,
+        "width": 1440,
+        "height": 1800,
+        "narrowed": false,
+        "anchored": true
+      },
+      "captured": "2880x3600",
+      "upscaled": false,
+      "narrowed": false
+    },
+    {
+      "slug": "judemakes",
+      "name": "home-full",
+      "ratio": "1x1",
+      "mode": "desktop",
+      "file": "instagram/judemakes/home-full-1x1.png",
+      "region": {
+        "x": 0,
+        "y": 0,
+        "width": 1440,
+        "height": 1440,
+        "narrowed": false,
+        "anchored": true
+      },
+      "captured": "2880x2880",
+      "upscaled": false,
+      "narrowed": false
+    },
+    {
+      "slug": "judemakes",
+      "name": "home-full",
+      "ratio": "9x16",
+      "mode": "desktop",
+      "file": "instagram/judemakes/home-full-9x16.png",
+      "region": {
+        "x": 0,
+        "y": 0,
+        "width": 1440,
+        "height": 2560,
+        "narrowed": false,
+        "anchored": true
+      },
+      "captured": "2880x5120",
+      "upscaled": false,
+      "narrowed": false
+    },
+    {
+      "slug": "judemakes",
+      "name": "hero-mobile",
+      "ratio": "4x5",
+      "mode": "mobile",
+      "file": "instagram/judemakes/hero-mobile-4x5.png",
+      "region": {
+        "x": 0,
+        "y": 92,
+        "width": 390,
+        "height": 488,
+        "narrowed": false,
+        "anchored": true
+      },
+      "captured": "1170x1464",
+      "upscaled": false,
+      "narrowed": false
+    },
+    {
+      "slug": "judemakes",
+      "name": "hero-mobile",
+      "ratio": "1x1",
+      "mode": "mobile",
+      "file": "instagram/judemakes/hero-mobile-1x1.png",
+      "region": {
+        "x": 0,
+        "y": 92,
+        "width": 390,
+        "height": 390,
+        "narrowed": false,
+        "anchored": true
+      },
+      "captured": "1170x1170",
+      "upscaled": false,
+      "narrowed": false
+    },
+    {
+      "slug": "judemakes",
+      "name": "hero-mobile",
+      "ratio": "9x16",
+      "mode": "mobile",
+      "file": "instagram/judemakes/hero-mobile-9x16.png",
+      "region": {
+        "x": 0,
+        "y": 92,
+        "width": 390,
+        "height": 693,
+        "narrowed": false,
+        "anchored": true
+      },
+      "captured": "1170x2079",
+      "upscaled": false,
+      "narrowed": false
+    },
+    {
+      "slug": "judemakes",
+      "name": "work-grid-mobile",
+      "ratio": "4x5",
+      "mode": "mobile",
+      "file": "instagram/judemakes/work-grid-mobile-4x5.png",
+      "region": {
+        "x": 0,
+        "y": 1092,
+        "width": 390,
+        "height": 488,
+        "narrowed": false,
+        "anchored": true
+      },
+      "captured": "1170x1464",
+      "upscaled": false,
+      "narrowed": false
+    },
+    {
+      "slug": "judemakes",
+      "name": "work-grid-mobile",
+      "ratio": "1x1",
+      "mode": "mobile",
+      "file": "instagram/judemakes/work-grid-mobile-1x1.png",
+      "region": {
+        "x": 0,
+        "y": 1092,
+        "width": 390,
+        "height": 390,
+        "narrowed": false,
+        "anchored": true
+      },
+      "captured": "1170x1170",
+      "upscaled": false,
+      "narrowed": false
+    },
+    {
+      "slug": "judemakes",
+      "name": "work-grid-mobile",
+      "ratio": "9x16",
+      "mode": "mobile",
+      "file": "instagram/judemakes/work-grid-mobile-9x16.png",
+      "region": {
+        "x": 0,
+        "y": 1092,
+        "width": 390,
+        "height": 693,
+        "narrowed": false,
+        "anchored": true
+      },
+      "captured": "1170x2079",
+      "upscaled": false,
+      "narrowed": false
+    },
+    {
+      "slug": "judemakes",
+      "name": "projects-list",
+      "ratio": "4x5",
+      "mode": "mobile",
+      "file": "instagram/judemakes/projects-list-4x5.png",
+      "region": {
+        "x": 0,
+        "y": 390,
+        "width": 390,
+        "height": 488,
+        "narrowed": false,
+        "anchored": true
+      },
+      "captured": "1170x1464",
+      "upscaled": false,
+      "narrowed": false
+    },
+    {
+      "slug": "judemakes",
+      "name": "projects-list",
+      "ratio": "1x1",
+      "mode": "desktop",
+      "file": "instagram/judemakes/projects-list-1x1.png",
+      "region": {
+        "x": 100,
+        "y": 362,
+        "width": 1240,
+        "height": 1240,
+        "narrowed": false,
+        "anchored": true
+      },
+      "captured": "2480x2480",
+      "upscaled": false,
+      "narrowed": false
+    },
+    {
+      "slug": "judemakes",
+      "name": "projects-list",
+      "ratio": "9x16",
+      "mode": "mobile",
+      "file": "instagram/judemakes/projects-list-9x16.png",
+      "region": {
+        "x": 0,
+        "y": 390,
+        "width": 390,
+        "height": 693,
+        "narrowed": false,
+        "anchored": true
+      },
+      "captured": "1170x2079",
+      "upscaled": false,
+      "narrowed": false
+    },
+    {
+      "slug": "judemakes",
+      "name": "about-steps",
+      "ratio": "4x5",
+      "mode": "desktop",
+      "file": "instagram/judemakes/about-steps-4x5.png",
+      "region": {
+        "x": 100,
+        "y": 564,
+        "width": 1240,
+        "height": 1550,
+        "narrowed": false,
+        "anchored": true
+      },
+      "captured": "2480x3100",
+      "upscaled": false,
+      "narrowed": false
+    },
+    {
+      "slug": "judemakes",
+      "name": "about-steps",
+      "ratio": "1x1",
+      "mode": "desktop",
+      "file": "instagram/judemakes/about-steps-1x1.png",
+      "region": {
+        "x": 100,
+        "y": 564,
+        "width": 1240,
+        "height": 1240,
+        "narrowed": false,
+        "anchored": true
+      },
+      "captured": "2480x2480",
+      "upscaled": false,
+      "narrowed": false
+    },
+    {
+      "slug": "judemakes",
+      "name": "about-steps",
+      "ratio": "9x16",
+      "mode": "mobile",
+      "file": "instagram/judemakes/about-steps-9x16.png",
+      "region": {
+        "x": 0,
+        "y": 608,
+        "width": 390,
+        "height": 693,
+        "narrowed": false,
+        "anchored": true
+      },
+      "captured": "1170x2079",
+      "upscaled": false,
+      "narrowed": false
+    },
+    {
+      "slug": "judemakes",
+      "name": "about-photos",
+      "ratio": "4x5",
+      "mode": "mobile",
+      "file": "instagram/judemakes/about-photos-4x5.png",
+      "region": {
+        "x": 0,
+        "y": 1483,
+        "width": 390,
+        "height": 488,
+        "narrowed": false,
+        "anchored": true
+      },
+      "captured": "1170x1464",
+      "upscaled": false,
+      "narrowed": false
+    },
+    {
+      "slug": "judemakes",
+      "name": "about-photos",
+      "ratio": "1x1",
+      "mode": "mobile",
+      "file": "instagram/judemakes/about-photos-1x1.png",
+      "region": {
+        "x": 0,
+        "y": 1483,
+        "width": 390,
+        "height": 390,
+        "narrowed": false,
+        "anchored": true
+      },
+      "captured": "1170x1170",
+      "upscaled": false,
+      "narrowed": false
+    },
+    {
+      "slug": "judemakes",
+      "name": "about-photos",
+      "ratio": "9x16",
+      "mode": "mobile",
+      "file": "instagram/judemakes/about-photos-9x16.png",
+      "region": {
+        "x": 0,
+        "y": 1483,
+        "width": 390,
+        "height": 693,
+        "narrowed": false,
+        "anchored": true
+      },
+      "captured": "1170x2079",
+      "upscaled": false,
+      "narrowed": false
+    },
+    {
+      "slug": "judemakes",
+      "name": "contact",
+      "ratio": "4x5",
+      "mode": "desktop",
+      "file": "instagram/judemakes/contact-4x5.png",
+      "region": {
+        "x": 100,
+        "y": 40,
+        "width": 1240,
+        "height": 1550,
+        "narrowed": false,
+        "anchored": true
+      },
+      "captured": "2480x3100",
+      "upscaled": false,
+      "narrowed": false
+    },
+    {
+      "slug": "judemakes",
+      "name": "contact",
+      "ratio": "1x1",
+      "mode": "desktop",
+      "file": "instagram/judemakes/contact-1x1.png",
+      "region": {
+        "x": 100,
+        "y": 40,
+        "width": 1240,
+        "height": 1240,
+        "narrowed": false,
+        "anchored": true
+      },
+      "captured": "2480x2480",
+      "upscaled": false,
+      "narrowed": false
+    },
+    {
+      "slug": "judemakes",
+      "name": "contact",
+      "ratio": "9x16",
+      "mode": "mobile",
+      "file": "instagram/judemakes/contact-9x16.png",
+      "region": {
+        "x": 0,
+        "y": 82,
+        "width": 390,
+        "height": 693,
+        "narrowed": false,
+        "anchored": true
+      },
+      "captured": "1170x2079",
+      "upscaled": false,
+      "narrowed": false
+    },
+    {
+      "slug": "judemakes",
+      "name": "contact-mobile",
+      "ratio": "4x5",
+      "mode": "mobile",
+      "file": "instagram/judemakes/contact-mobile-4x5.png",
+      "region": {
+        "x": 0,
+        "y": 82,
+        "width": 390,
+        "height": 488,
+        "narrowed": false,
+        "anchored": true
+      },
+      "captured": "1170x1464",
+      "upscaled": false,
+      "narrowed": false
+    },
+    {
+      "slug": "judemakes",
+      "name": "contact-mobile",
+      "ratio": "1x1",
+      "mode": "mobile",
+      "file": "instagram/judemakes/contact-mobile-1x1.png",
+      "region": {
+        "x": 0,
+        "y": 82,
+        "width": 390,
+        "height": 390,
+        "narrowed": false,
+        "anchored": true
+      },
+      "captured": "1170x1170",
+      "upscaled": false,
+      "narrowed": false
+    }
+  ],
+  "skipped": [
+    {
+      "slug": "rosales-designs",
+      "url": "https://rosalesdesigns.com",
+      "reason": "unreachable — no capture possible"
+    },
+    {
+      "slug": "bobby-salazars",
+      "url": "https://bobbysalazar.com",
+      "reason": "unreachable — no capture possible"
+    },
+    {
+      "slug": "gravel-truck-plans",
+      "url": "https://graveltruckplans.com",
+      "reason": "unreachable — no capture possible"
+    },
+    {
+      "slug": "judemakes",
+      "name": "contact-mobile-9x16",
+      "reason": "byte-identical to contact-9x16 (both resolved to the phone layout) — removed"
+    }
+  ]
+}
