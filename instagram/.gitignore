@@ -1,5 +1,5 @@
-# Intermediates — regenerate with:
+# Intermediates are kept in the repo so the untrimmed originals survive.
+#
+# Regenerate with:
 #   node scripts/instagram/capture.mjs        (raw full-page + element archive)
 #   node scripts/instagram/contact-sheet.mjs  (review contact sheets)
-_raw/
-_review/
