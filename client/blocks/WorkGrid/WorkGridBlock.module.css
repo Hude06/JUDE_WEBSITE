@@ -52,6 +52,33 @@
   }
 }
 
+/* Phone: a 16:10 desktop capture at ~350px wide renders its text at about
+   4px — proof of nothing. A taller crop, anchored top by object-position
+   below, shows the client's hero at roughly double the scale for the same
+   card height. */
+@media (max-width: 767.98px) {
+  .root {
+    padding-bottom: 1.75rem;
+  }
+
+  .head {
+    padding-top: 1.9rem;
+    margin-bottom: 1.1rem;
+  }
+
+  .grid {
+    gap: 1.1rem;
+  }
+
+  .image {
+    aspect-ratio: 4 / 3;
+  }
+
+  .emptyCard {
+    min-height: 150px;
+  }
+}
+
 .card {
   display: block;
   color: inherit;

@@ -7,6 +7,12 @@
   padding: 1.5rem var(--gutter) 2rem;
 }
 
+@media (max-width: 639.98px) {
+  .root {
+    padding-block: 1rem 1.5rem;
+  }
+}
+
 .figure {
   margin: 0;
   max-width: 52rem;

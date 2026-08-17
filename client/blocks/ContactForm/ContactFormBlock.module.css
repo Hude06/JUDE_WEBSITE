@@ -210,6 +210,9 @@
   display: block;
 }
 
+/* 16px is not a taste call: iOS Safari zooms the whole page on focus for any
+   input below it, which throws the form off-centre on every single tap.
+   Scoped to phones so the desktop panel keeps its 0.95rem field size. */
 .input,
 .textarea {
   width: 100%;
@@ -236,6 +239,20 @@
   outline: none;
   border-color: var(--accent);
   box-shadow: 0 0 0 3px var(--accent-wash);
+}
+
+@media (max-width: 639.98px) {
+  .input,
+  .textarea {
+    font-size: 16px;
+  }
+
+  /* Choice pills are the first thing a phone visitor taps — give them a
+     full 44pt target instead of the desktop 40px. */
+  .pill {
+    min-height: 44px;
+    padding-block: 0.6rem;
+  }
 }
 
 .textarea {

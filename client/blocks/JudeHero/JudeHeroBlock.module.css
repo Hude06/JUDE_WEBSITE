@@ -132,6 +132,46 @@
   font-variant-numeric: tabular-nums;
 }
 
+/* —— phone —————————————————————————————————
+   Two changes worth naming. The CTAs go full-width so the stack reads as a
+   stack instead of a jag of two different widths. The fact row becomes the
+   same label/value hairline ledger the contact page already uses, because
+   at 390px the horizontal version wraps 2-then-1 and stops looking like a
+   ledger at all. */
+@media (max-width: 639.98px) {
+  .innerSplit {
+    gap: 2rem;
+  }
+
+  .ctaRow {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 0.75rem;
+    margin-top: 1.4rem;
+  }
+
+  .ctaRow > * {
+    justify-content: center;
+    width: 100%;
+  }
+
+  .factRow {
+    display: block;
+    margin-top: 1.4rem;
+    padding-top: 0;
+    border-top: 1px solid var(--color-hairline-strong);
+  }
+
+  .fact {
+    display: grid;
+    grid-template-columns: 7rem minmax(0, 1fr);
+    gap: 1rem;
+    align-items: baseline;
+    padding: 0.7rem 0;
+    border-bottom: 1px solid var(--color-hairline);
+  }
+}
+
 /* —— taped-in portrait ——————————————————————— */
 .photoColumn {
   min-width: 0;
