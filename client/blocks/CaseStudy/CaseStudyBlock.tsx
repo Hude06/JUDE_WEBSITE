@@ -1,5 +1,6 @@
 import type { CaseStudyBlock as CaseStudyBlockType } from '@/client/types';
 import { cn } from '@/lib/utils';
+import { formatDomain, guessDomain } from '@/client/blocks/shared/domain';
 import styles from './CaseStudyBlock.module.css';
 
 interface CaseStudyBlockProps {
@@ -18,7 +19,7 @@ export function CaseStudyBlock({ block }: CaseStudyBlockProps) {
         <span className="browser-frame__dot" />
         <span className="browser-frame__dot" />
         <span className={styles.domain}>
-          {link ? link.replace(/^https?:\/\//, '').replace(/\/$/, '') : `${client.toLowerCase().replace(/[^a-z]/g, '')}.com`}
+          {link ? formatDomain(link) : guessDomain(client)}
         </span>
       </div>
       <div className={styles.imageSurface}>

@@ -1,7 +1,7 @@
 'use client';
 
 import type { PhotoBlock } from '@/client/types';
-import { ImageField, TextField } from '@/lib/ui';
+import { ImageField, TextAreaField, TextField } from '@/lib/ui';
 
 interface PhotoEditorProps {
   block: PhotoBlock;
@@ -26,6 +26,17 @@ export function PhotoEditor({ block, onChange }: PhotoEditorProps) {
         label="Caption (optional)"
         value={block.caption ?? ''}
         onChange={(caption) => onChange({ ...block, caption: caption || undefined })}
+      />
+      <TextField
+        label="Side column heading (optional)"
+        value={block.title ?? ''}
+        onChange={(title) => onChange({ ...block, title: title || undefined })}
+      />
+      <TextAreaField
+        label="Side column text — narrows the image to make room"
+        rows={4}
+        value={block.text ?? ''}
+        onChange={(text) => onChange({ ...block, text: text || undefined })}
       />
     </>
   );

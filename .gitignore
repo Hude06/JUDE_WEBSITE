@@ -55,3 +55,6 @@ next-env.d.ts
 .claude/settings.local.json
 # Claude Code transient worktrees (never committed)
 .claude/worktrees/
+
+# runtime logs (security scans, etc.) — never committed
+/logs/

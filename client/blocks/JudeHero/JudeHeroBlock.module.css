@@ -1,11 +1,11 @@
 /* Field-notes hero: pitch and facts on the left, taped-in portrait on the
-   right. Warm paper ground comes from the page; the accent does the
-   pointing. */
+   right. Warm paper ground comes from the page. There is no accent hue any
+   more — hierarchy is carried by ink weight. */
 
 .root {
   position: relative;
-  padding-top: clamp(2.5rem, 5.5vw, 4.5rem);
-  padding-bottom: clamp(2.5rem, 5.5vw, 4.5rem);
+  padding-top: clamp(2rem, 4vw, 3.25rem);
+  padding-bottom: clamp(2rem, 4vw, 3.25rem);
   border-bottom: 1px solid var(--color-hairline);
   overflow: hidden;
 }
@@ -63,9 +63,11 @@
 }
 
 .headline {
-  margin: 1.2rem 0 0;
+  margin: 0.9rem 0 0;
   max-width: 27ch;
-  color: var(--color-fg);
+  /* Both lines sit at full ink; the weight/size step and the line break do
+     the separating. */
+  color: var(--ink);
   font-family: var(--font-display);
   font-size: var(--fs-display-hero);
   font-weight: 600;
@@ -73,17 +75,16 @@
   line-height: 1.08;
 }
 
-/* The accent is always its own line: one color per line, one thought per
-   line — the ink line hands off at the dash, the red line is the claim. */
+/* The claim is always its own line. */
 .headlineAccent {
   display: block;
   font-style: normal;
-  color: var(--accent);
+  color: var(--ink);
 }
 
 .subheadline {
-  margin: 1.1rem 0 0;
-  max-width: 40ch;
+  margin: 0.9rem 0 0;
+  max-width: 46ch;
   color: var(--color-muted);
   font-size: clamp(1.02rem, 1.4vw, 1.12rem);
   line-height: 1.65;
@@ -95,17 +96,15 @@
   flex-wrap: wrap;
   align-items: center;
   gap: 1rem;
-  margin-top: 1.6rem;
+  margin-top: 1.4rem;
 }
 
 /* Horizontal fact ledger under the CTAs. */
 .factRow {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.8rem 2rem;
-  margin: 1.6rem 0 0;
-  padding-top: 1rem;
-  border-top: 1px solid var(--color-hairline);
+  gap: 0.7rem 1.9rem;
+  margin: 1.5rem 0 0;
 }
 
 .fact {
@@ -158,8 +157,6 @@
   .factRow {
     display: block;
     margin-top: 1.4rem;
-    padding-top: 0;
-    border-top: 1px solid var(--color-hairline-strong);
   }
 
   .fact {
@@ -185,10 +182,9 @@
 
 .photoFrame {
   overflow: hidden;
-  border-radius: 14px;
-  border: 5px solid #fff;
-  box-shadow: 0 24px 50px -20px rgba(23, 24, 28, 0.4);
-  transform: rotate(-1.2deg);
+  border-radius: var(--r-lg);
+  border: 1px solid var(--color-hairline);
+  box-shadow: var(--shadow-panel);
 }
 
 .photo {
@@ -200,17 +196,15 @@
   object-position: 50% 18%;
 }
 
+/* Caption sits under the frame as a plain mono line — the badge-on-photo
+   version repeated "Eugene, OR" from the fact ledger in a loud chip. */
 .photoCaption {
-  position: absolute;
-  bottom: 16px;
-  left: 20px;
-  background: var(--accent);
-  color: #fff;
+  display: block;
+  margin-top: 0.7rem;
+  color: var(--color-subtle);
   font-family: var(--font-mono);
-  font-size: 0.62rem;
+  font-size: 0.68rem;
   font-weight: 500;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  padding: 0.35rem 0.6rem;
-  border-radius: 5px;
 }

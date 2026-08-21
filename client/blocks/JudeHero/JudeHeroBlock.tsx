@@ -2,6 +2,7 @@ import type { JudeHeroBlock as JudeHeroBlockType } from '@/client/types';
 import { cn } from '@/lib/utils';
 import { ghostButton, primaryButton, primaryButtonArrow } from '@/client/blocks/shared/buttons';
 import { SmartLink } from '@/client/blocks/shared/SmartLink';
+import { HeroLoadReadout } from './LoadMeter';
 import styles from './JudeHeroBlock.module.css';
 
 interface JudeHeroBlockProps {
@@ -11,6 +12,7 @@ interface JudeHeroBlockProps {
 export function JudeHeroBlock({ block }: JudeHeroBlockProps) {
   const isCentered = block.align === 'center';
   const hasPhoto = !isCentered && Boolean(block.photo);
+  const showFacts = block.showFacts !== false;
 
   return (
     <section className={cn(styles.root, isCentered && styles.rootCentered)}>
@@ -51,11 +53,20 @@ export function JudeHeroBlock({ block }: JudeHeroBlockProps) {
             </div>
           )}
 
-          <dl className={styles.factRow}>
-            <FactItem label="Based in" value="Eugene, OR" />
-            <FactItem label="Sites from" value="$500" />
-            <FactItem label="Replies" value="within a day" />
-          </dl>
+          {/* The load readout leads the ledger: it is the only fact on the
+              page that the page itself proves while you read it. */}
+          {showFacts && (
+            <dl className={styles.factRow}>
+              <HeroLoadReadout
+                className={styles.fact}
+                labelClassName={styles.factLabel}
+                valueClassName={styles.factValue}
+              />
+              <FactItem label="Based in" value="Eugene, OR" />
+              <FactItem label="Sites from" value="$500" />
+              <FactItem label="Replies" value="within a day" />
+            </dl>
+          )}
         </div>
 
         {hasPhoto && (

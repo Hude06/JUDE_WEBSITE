@@ -5,6 +5,8 @@ import { ParagraphBlock } from '@/client/blocks/Paragraph/ParagraphBlock';
 import { JudeButtonBlock } from '@/client/blocks/JudeButton/JudeButtonBlock';
 import { SeparatorBlock } from '@/client/blocks/Separator/SeparatorBlock';
 import { CaseStudyBlock } from '@/client/blocks/CaseStudy/CaseStudyBlock';
+import { CaseStudyHeaderBlock } from '@/client/blocks/CaseStudyHeader/CaseStudyHeaderBlock';
+import { StatRowBlock } from '@/client/blocks/StatRow/StatRowBlock';
 import { FeatureGridBlock } from '@/client/blocks/FeatureGrid/FeatureGridBlock';
 import { StepsBlock } from '@/client/blocks/Steps/StepsBlock';
 import { CardGridBlock } from '@/client/blocks/CardGrid/CardGridBlock';
@@ -13,6 +15,7 @@ import { CtaBlock } from '@/client/blocks/Cta/CtaBlock';
 import { TestimonialBlock } from '@/client/blocks/Testimonial/TestimonialBlock';
 import { PhotoBlock } from '@/client/blocks/Photo/PhotoBlock';
 import { WorkGridBlock } from '@/client/blocks/WorkGrid/WorkGridBlock';
+import { ProjectListBlock } from '@/client/blocks/ProjectList/ProjectListBlock';
 import { PhotoStripBlock } from '@/client/blocks/PhotoStrip/PhotoStripBlock';
 import { ContactFormBlock } from '@/client/blocks/ContactForm/ContactFormBlock';
 
@@ -23,6 +26,8 @@ export const clientBlocks: Record<string, ComponentType<{ block: never }>> = {
   'jude-button': JudeButtonBlock as ComponentType<{ block: never }>,
   separator: SeparatorBlock as ComponentType<{ block: never }>,
   'case-study': CaseStudyBlock as ComponentType<{ block: never }>,
+  'case-study-header': CaseStudyHeaderBlock as ComponentType<{ block: never }>,
+  'stat-row': StatRowBlock as ComponentType<{ block: never }>,
   'feature-grid': FeatureGridBlock as ComponentType<{ block: never }>,
   steps: StepsBlock as ComponentType<{ block: never }>,
   'card-grid': CardGridBlock as ComponentType<{ block: never }>,
@@ -31,6 +36,7 @@ export const clientBlocks: Record<string, ComponentType<{ block: never }>> = {
   testimonial: TestimonialBlock as ComponentType<{ block: never }>,
   photo: PhotoBlock as ComponentType<{ block: never }>,
   'work-grid': WorkGridBlock as ComponentType<{ block: never }>,
+  'project-list': ProjectListBlock as ComponentType<{ block: never }>,
   'photo-strip': PhotoStripBlock as ComponentType<{ block: never }>,
   'contact-form': ContactFormBlock as ComponentType<{ block: never }>,
 };

@@ -1,0 +1,31 @@
+/* The slot is laid out from the first server-rendered byte and only fades
+   its contents in, so the ledger never reflows around it. */
+.readout {
+  opacity: 0;
+  transition: opacity 240ms linear;
+}
+
+.readout[data-ready] {
+  opacity: 1;
+}
+
+/* The pip in the ledger row: hollow while the count runs, filled the instant
+   the number is final. It is the only "done" signal, so it has to be legible
+   at 7px — a fill change reads at that size, a color change would not. */
+.pip {
+  display: inline-block;
+  width: 0.42rem;
+  height: 0.42rem;
+  margin-right: 0.45rem;
+  vertical-align: 0.02rem;
+  border: 1px solid var(--color-hairline-strong);
+  background: transparent;
+  transition:
+    background-color var(--speed) linear,
+    border-color var(--speed) linear;
+}
+
+.pip[data-settled] {
+  border-color: var(--ink);
+  background: var(--ink);
+}

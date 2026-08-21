@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import type { WorkGridBlock as WorkGridBlockType, WorkGridItem } from '@/client/types';
 import { cn } from '@/lib/utils';
+import { formatDomain, guessDomain } from '@/client/blocks/shared/domain';
 import styles from './WorkGridBlock.module.css';
 
 interface WorkGridBlockProps {
@@ -9,8 +10,8 @@ interface WorkGridBlockProps {
 
 function domainFor(item: WorkGridItem): string {
   if (item.domain) return item.domain;
-  if (item.link) return item.link.replace(/^https?:\/\//, '').replace(/\/$/, '');
-  return `${item.name.toLowerCase().replace(/[^a-z]/g, '')}.com`;
+  if (item.link) return formatDomain(item.link);
+  return guessDomain(item.name);
 }
 
 function Card({ item }: { item: WorkGridItem }) {

@@ -13,9 +13,55 @@
   }
 }
 
+/* Full container width so both edges align with the fact ledger and stat
+   grid above and below. A measure cap belongs on the caption, not the image. */
 .figure {
   margin: 0;
-  max-width: 52rem;
+}
+
+/* With a copy column the image gives up a third of the width, which also
+   takes a third off its height — a full-bleed 3:2 shot is overwhelming on
+   the way past. */
+@media (min-width: 768px) {
+  .figureWithCopy {
+    display: grid;
+    align-items: start;
+    gap: 2rem;
+    grid-template-columns: minmax(0, 2fr) minmax(0, 1fr);
+  }
+}
+
+.media {
+  min-width: 0;
+}
+
+.copy {
+  min-width: 0;
+}
+
+/* Keep the description alongside the image while a tall one scrolls past.
+   Clears the sticky site header. */
+@media (min-width: 768px) {
+  .copy {
+    position: sticky;
+    top: 6rem;
+  }
+}
+
+.title {
+  color: var(--color-fg);
+  font-family: var(--font-display);
+  font-size: 1.4rem;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+
+.text {
+  max-width: 42ch;
+  margin-top: 0.5rem;
+  color: var(--color-muted);
+  font-size: 0.92rem;
+  line-height: 1.65;
 }
 
 .frame {
@@ -46,17 +92,20 @@
 .placeholderLabel {
   color: var(--color-subtle);
   font-family: var(--font-mono);
-  font-size: 0.7rem;
+  font-size: 0.75rem;
   font-weight: 500;
   letter-spacing: 0.1em;
   text-transform: uppercase;
 }
 
+/* The caption is text, so it keeps a reading measure (~66ch) even though the
+   image no longer does. */
 .caption {
-  margin-top: 0.8rem;
+  max-width: 66ch;
+  margin-top: 0.75rem;
   color: var(--ink-faint);
   font-family: var(--font-mono);
-  font-size: 0.72rem;
+  font-size: 0.75rem;
   font-weight: 500;
   letter-spacing: 0.06em;
 }

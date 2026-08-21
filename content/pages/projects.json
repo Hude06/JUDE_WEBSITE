@@ -5,56 +5,40 @@
   "description": "Side projects by Jude Hill — apps, tools, and experiments built in Eugene, Oregon. Some shipping, some in progress, all things that deserved to exist.",
   "blocks": [
     {
-      "id": "projects-1",
-      "type": "jude-heading",
-      "text": "Projects",
-      "level": 1
+      "id": "projects-hero",
+      "type": "jude-hero",
+      "eyebrow": "Side projects",
+      "headline": "Things I build",
+      "headlineAccent": "because I want them to exist.",
+      "subheadline": "Apps, tools, and experiments outside of client work. Some shipping, some in progress — all of them things I use myself.",
+      "primaryCta": {
+        "text": "Start a project",
+        "href": "/contact"
+      },
+      "secondaryCta": {
+        "text": "See client work",
+        "href": "/#work"
+      },
+      "align": "center",
+      "showFacts": false
     },
     {
-      "id": "projects-2",
-      "type": "paragraph",
-      "text": "A collection of apps, tools, and experiments I'm building on the side. Some are shipping, some are in progress, all are things I wanted to exist."
-    },
-    {
-      "id": "projects-sep-1",
-      "type": "separator"
-    },
-    {
-      "id": "projects-3",
-      "type": "jude-heading",
-      "text": "Apps & tools",
-      "level": 2,
-      "anchorId": "apps"
-    },
-    {
-      "id": "projects-4",
-      "type": "card-grid",
-      "cards": [
+      "id": "projects-list",
+      "type": "project-list",
+      "countLabel": "02 building",
+      "anchorId": "apps",
+      "items": [
         {
-          "title": "Summer Money",
-          "description": "A macOS menu bar app for tracking recurring income as MRR/ARR — goals, pace, Stripe sync, and a popover that lives in your menu bar. $9, sold direct.",
+          "name": "Summer Money",
+          "description": "macOS menu bar app for tracking recurring income as MRR and ARR. $9, sold direct.",
           "link": "https://judemakes.com/summer-money/"
         },
         {
-          "title": "Website framework",
-          "description": "The content-driven Next.js framework this site runs on — JSON content, an admin editor, and client-safe customization zones. It powers every client site I ship.",
+          "name": "Website framework",
+          "description": "The JSON-driven Next.js framework this site runs on. It powers every client site I ship.",
           "link": "https://github.com/Hude06"
         }
       ]
-    },
-    {
-      "id": "projects-sep-2",
-      "type": "separator"
-    },
-    {
-      "id": "projects-5",
-      "type": "cta",
-      "title": "Got an idea worth building?",
-      "description": "If you're working on something and want a collaborator or a second set of eyes, get in touch.",
-      "primaryCta": {
-        "text": "Start a conversation",
-        "href": "/contact"
-      }
     }
   ]
 }

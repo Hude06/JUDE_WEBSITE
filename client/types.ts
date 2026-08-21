@@ -41,6 +41,8 @@ export interface JudeHeroBlock {
   photo?: string;
   photoAlt?: string;
   photoCaption?: string;
+  /** Load/location/price/reply ledger under the CTAs. Defaults to true. */
+  showFacts?: boolean;
 }
 
 export interface BadgeGroupBlock {
@@ -106,6 +108,38 @@ export interface CaseStudyBlock {
   reverse?: boolean;
 }
 
+export interface CaseStudyHeaderBlock {
+  id: string;
+  type: 'case-study-header';
+  /** Small mono kicker, e.g. "Case study / 01". */
+  eyebrow?: string;
+  client: string;
+  tagline?: string;
+  role?: string;
+  year?: string;
+  services?: string[];
+  link?: string;
+  /** Renders a back link above the title; omitted when absent. */
+  backHref?: string;
+  backLabel?: string;
+}
+
+export interface StatItem {
+  label: string;
+  value: string;
+  note?: string;
+}
+
+export interface StatRowBlock {
+  id: string;
+  type: 'stat-row';
+  eyebrow?: string;
+  heading?: string;
+  stats: StatItem[];
+  /** Footnote for sourcing, e.g. "Measured with PageSpeed Insights". */
+  note?: string;
+}
+
 export interface CtaBlock {
   id: string;
   type: 'cta';
@@ -138,6 +172,10 @@ export interface PhotoBlock {
   image?: string;
   alt?: string;
   caption?: string;
+  /** Optional copy column beside the image. When either is set the image
+   *  narrows to make room, and the column sticks while a tall image scrolls. */
+  title?: string;
+  text?: string;
 }
 
 export interface WorkGridItem {
@@ -161,6 +199,25 @@ export interface WorkGridBlock {
   items: WorkGridItem[];
   /** Appends a dashed "Your site here" card linking to /contact. */
   showEmptyCard?: boolean;
+}
+
+export interface ProjectListItem {
+  name: string;
+  /** One line. The block gives it a single column, not a card. */
+  description: string;
+  link?: string;
+  /** Shown in place of the domain when there is no link, e.g. "in progress". */
+  status?: string;
+}
+
+export interface ProjectListBlock {
+  id: string;
+  type: 'project-list';
+  heading?: string;
+  /** Small mono counter next to the heading, e.g. "02 building". */
+  countLabel?: string;
+  anchorId?: string;
+  items: ProjectListItem[];
 }
 
 export interface PhotoStripPhoto {
@@ -210,10 +267,13 @@ export type ClientBlock =
   | FeatureGridBlock
   | StepsBlock
   | CaseStudyBlock
+  | CaseStudyHeaderBlock
+  | StatRowBlock
   | CtaBlock
   | SeparatorBlock
   | TestimonialBlock
   | PhotoBlock
   | WorkGridBlock
+  | ProjectListBlock
   | PhotoStripBlock
   | ContactFormBlock;

@@ -1,0 +1,124 @@
+{
+  "contractVersion": 1,
+  "title": "What You Get — Domain, Hosting, Updates & Maintenance | Jude Hill",
+  "slug": "what-you-get",
+  "description": "Everything that comes with a site built by Jude Hill: domain, hosting, SSL, backups, a self-serve editor, and maintenance. No lock-in — you own the site.",
+  "blocks": [
+    {
+      "id": "wyg-hero",
+      "type": "jude-hero",
+      "eyebrow": "The whole picture",
+      "headline": "A website is more than the pages.",
+      "headlineAccent": "I handle the rest of it.",
+      "subheadline": "Domain, server, certificate, backups, updates — here's the whole list.",
+      "primaryCta": {
+        "text": "Start a project",
+        "href": "/contact"
+      },
+      "align": "center",
+      "showFacts": false
+    },
+    {
+      "id": "wyg-included",
+      "type": "feature-grid",
+      "heading": "Included in every build",
+      "columns": 3,
+      "items": [
+        {
+          "title": "Your domain",
+          "description": "In your name, on your account, from day one."
+        },
+        {
+          "title": "Managed hosting",
+          "description": "Runs on my server. Nothing for you to configure."
+        },
+        {
+          "title": "HTTPS, auto-renewed",
+          "description": "Never a \"not secure\" warning."
+        },
+        {
+          "title": "Backups",
+          "description": "Anything breaks, I roll it back within an hour."
+        },
+        {
+          "title": "Self-serve editing",
+          "description": "Change text, photos, hours, prices yourself."
+        },
+        {
+          "title": "Hand-written code",
+          "description": "Real HTML and CSS — no builder, no theme."
+        }
+      ]
+    },
+    {
+      "id": "wyg-sep-1",
+      "type": "separator"
+    },
+    {
+      "id": "wyg-domain-head",
+      "type": "jude-heading",
+      "text": "Domains",
+      "level": 2,
+      "anchorId": "domains"
+    },
+    {
+      "id": "wyg-domain-copy",
+      "type": "paragraph",
+      "text": "Rented, not bought. Already have one? I need ten minutes of DNS access. Don't? We pick one together on our first call. Turn on auto-renew: an expired domain is the one thing I can't fix remotely."
+    },
+    {
+      "id": "wyg-sep-2",
+      "type": "separator"
+    },
+    {
+      "id": "wyg-hosting-head",
+      "type": "jude-heading",
+      "text": "Hosting",
+      "level": 2,
+      "anchorId": "hosting"
+    },
+    {
+      "id": "wyg-hosting-copy",
+      "type": "paragraph",
+      "text": "Each site runs isolated on a server I maintain — patches, certificates, monitoring, all handled overnight without downtime."
+    },
+    {
+      "id": "wyg-hosting-stats",
+      "type": "stat-row",
+      "stats": [
+        { "label": "Load time", "value": "<1s" },
+        { "label": "Uptime", "value": "99.9%" },
+        { "label": "Plugins", "value": "Zero" },
+        { "label": "Lock-in", "value": "None" }
+      ]
+    },
+    {
+      "id": "wyg-sep-3",
+      "type": "separator"
+    },
+    {
+      "id": "wyg-updates-head",
+      "type": "jude-heading",
+      "text": "Updates after launch",
+      "level": 2,
+      "anchorId": "updates"
+    },
+    {
+      "id": "wyg-updates-copy",
+      "type": "paragraph",
+      "text": "Edit it yourself in the browser — free, live instantly. Or text me: small changes are free, usually same day. New pages or features get quoted up front before I start."
+    },
+    {
+      "id": "wyg-maint-head",
+      "type": "jude-heading",
+      "text": "Maintenance",
+      "level": 2,
+      "anchorId": "maintenance"
+    },
+    {
+      "id": "wyg-maint-copy",
+      "type": "paragraph",
+      "text": "No plugins means almost nothing can break. If something does, monitoring alerts my phone before you notice — and you have my number directly. No ticket queue."
+    }
+  ]
+}

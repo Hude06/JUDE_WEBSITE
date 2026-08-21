@@ -1,0 +1,88 @@
+{
+  "contractVersion": 1,
+  "title": "Case Study Template",
+  "slug": "case-study-template",
+  "description": "Structural template for a case study page. Not for publishing.",
+  "blocks": [
+    {
+      "id": "cst-header",
+      "type": "case-study-header",
+      "eyebrow": "Case study",
+      "client": "Client Name",
+      "tagline": "Tagline slot — one line.",
+      "role": "Role",
+      "year": "Year",
+      "services": ["Service", "Service"],
+      "backHref": "/projects",
+      "backLabel": "All work"
+    },
+    {
+      "id": "cst-hero-shot",
+      "type": "photo",
+      "alt": "Hero screenshot slot",
+      "title": "Side heading slot",
+      "text": "Side column slot — describes what the image shows."
+    },
+    {
+      "id": "cst-problem-h",
+      "type": "jude-heading",
+      "text": "Section heading",
+      "level": 2
+    },
+    {
+      "id": "cst-problem-p",
+      "type": "paragraph",
+      "text": "Body copy slot."
+    },
+    {
+      "id": "cst-built-h",
+      "type": "jude-heading",
+      "text": "Section heading",
+      "level": 2
+    },
+    {
+      "id": "cst-built-p",
+      "type": "paragraph",
+      "text": "Body copy slot."
+    },
+    {
+      "id": "cst-detail-shots",
+      "type": "photo-strip",
+      "title": "Strip title slot",
+      "text": "Strip caption slot.",
+      "photos": [
+        { "image": "", "alt": "Screenshot slot" },
+        { "image": "", "alt": "Screenshot slot" }
+      ]
+    },
+    {
+      "id": "cst-stats",
+      "type": "stat-row",
+      "eyebrow": "Eyebrow",
+      "heading": "Section heading",
+      "stats": [
+        { "label": "Metric", "value": "—", "note": "Note slot" },
+        { "label": "Metric", "value": "—", "note": "Note slot" },
+        { "label": "Metric", "value": "—", "note": "Note slot" }
+      ],
+      "note": "Sourcing footnote slot."
+    },
+    {
+      "id": "cst-quote",
+      "type": "testimonial",
+      "quote": "Quote slot.",
+      "name": "Name",
+      "business": "Business"
+    },
+    {
+      "id": "cst-cta",
+      "type": "cta",
+      "eyebrow": "Eyebrow",
+      "title": "CTA heading slot",
+      "description": "CTA body slot.",
+      "primaryCta": { "text": "Primary action", "href": "/contact" },
+      "secondaryCta": { "text": "Secondary action", "href": "/projects" },
+      "tone": "bold"
+    }
+  ]
+}

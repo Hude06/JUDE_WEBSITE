@@ -1,12 +1,13 @@
 /*
-  Client override stylesheet — "field notes" theme (K7 · Crimson white).
+  Client override stylesheet — "field notes" theme (K7 · Monochrome ink).
 
-  60/30/10: warm paper ground (60), ink structure — type, hairlines,
-  white panels (30), crimson accent (10) doing all the pointing: buttons,
-  links, numerals, live dots, the photo caption chip. No dark bands —
-  sections separate with hairline rules on white. Clash Display carries
-  the big voice, IBM Plex Mono carries labels, Switzer carries prose.
-  Framework-native CSS only (no Tailwind, no shadcn).
+  No accent hue. The palette is warm paper, near-black ink, and the
+  greys between them; every "accent" token now resolves to ink, so the
+  only color on a page comes from the photographs. Emphasis is carried
+  by weight, size, and the hairline grid instead of by hue. No dark
+  bands — sections separate with hairline rules on white. Clash Display
+  carries the big voice, IBM Plex Mono carries labels, Switzer carries
+  prose. Framework-native CSS only (no Tailwind, no shadcn).
 */
 
 /* —— self-hosted fonts (all latin subsets, 10–20KB per weight) ————— */
@@ -72,19 +73,21 @@
   --font-body: "Switzer", -apple-system, BlinkMacSystemFont, "Segoe UI",
     "Helvetica Neue", Arial, sans-serif;
 
-  /* —— palette: 60/30/10 — warm paper ground (60), ink structure (30),
-     crimson accent (10) ——————————————————————— */
+  /* —— palette: warm paper ground, ink structure, no hue ————————
+     The accent tokens are kept (dozens of modules reference them) but
+     every one of them now resolves to ink. Swapping these six values is
+     the only edit needed to reintroduce a hue later. */
   --bg: #fbf8f7;
   --bg-raised: #f4efee;
   --bg-panel: #ffffff;
   --ink: #17181c;
   --ink-soft: #4b5058;
   --ink-faint: #666c76;
-  --accent: #c22f2f;
-  --accent-bright: #c22f2f;
-  --accent-deep: #9c2424;
-  --accent-wash: #fae3e3;
-  --accent-glow: rgba(194, 47, 47, 0.28);
+  --accent: #17181c;
+  --accent-bright: #17181c;
+  --accent-deep: #000000;
+  --accent-wash: #eceaea;
+  --accent-glow: rgba(23, 24, 28, 0.28);
   --live: var(--accent);
 
   /* Soft-technical radius scale. */
@@ -112,7 +115,7 @@
 
   /* Legacy aliases — CSS modules not yet rewritten (CardGrid) still reference
      the old palette names. Mapped into the current scheme so nothing renders
-     cream or moss. */
+     cream, moss, or blue. */
   --paper: var(--bg);
   --paper-deep: var(--bg-raised);
   --paper-bright: var(--bg-panel);
@@ -124,9 +127,13 @@
   --rust: var(--accent);
   --bark: var(--ink-soft);
 
-  --space-section-sm: clamp(1.5rem, 2.5vw, 2.5rem);
-  --space-section-md: clamp(3rem, 5vw, 5rem);
-  --space-section-lg: clamp(4rem, 7vw, 7rem);
+  /* Section rhythm. Every block pads top and bottom, so between any two
+     sections the reader crosses two of these — the old medium step meant
+     10rem of paper between "How it works" and the next thought. The ratios
+     between the three steps are unchanged; only the absolutes came down. */
+  --space-section-sm: clamp(1.25rem, 2vw, 1.75rem);
+  --space-section-md: clamp(2rem, 3.4vw, 3.25rem);
+  --space-section-lg: clamp(3rem, 5vw, 4.75rem);
 
   --container-wide: 1240px;
 
@@ -260,10 +267,11 @@ a {
   padding-inline: var(--gutter);
 }
 
-/* Shared label style: small tracked mono caps. */
+/* Shared label style: small tracked mono caps. 0.75rem is the 12px floor —
+   below that small caps stop being readable. */
 .mono-label {
   font-family: var(--font-mono);
-  font-size: 0.7rem;
+  font-size: 0.75rem;
   font-weight: 500;
   letter-spacing: 0.1em;
   text-transform: uppercase;
@@ -323,13 +331,7 @@ a {
   transition:
     color var(--speed) linear,
     background-color var(--speed) linear,
-    border-color var(--speed) linear,
-    box-shadow var(--speed-slow) var(--ease),
-    transform var(--speed-slow) var(--ease);
-}
-
-.jude-btn:hover {
-  transform: translateY(-1px);
+    border-color var(--speed) linear;
 }
 
 .jude-btn--primary {
@@ -413,43 +415,105 @@ a {
   align-items: center;
   justify-content: space-between;
   gap: 1.5rem;
-  padding-top: 0.9rem;
-  padding-bottom: 0.9rem;
+  padding-top: 1.15rem;
+  padding-bottom: 1.15rem;
 }
 
 .site-brand {
   display: inline-flex;
   align-items: center;
-  gap: 0.7rem;
+  gap: 0.85rem;
   color: var(--color-fg);
-  text-decoration: none;
 }
 
+/* A button, not decoration: clicking the mark rerolls its face. */
 .site-brand__mark {
+  position: relative;
   display: grid;
   place-items: center;
-  width: 1.9rem;
-  height: 1.9rem;
-  border-radius: var(--r-sm);
-  color: #fff;
-  background: var(--accent);
-  transition: background-color var(--speed) linear;
+  width: 3rem;
+  height: 3rem;
+  flex: none;
+  padding: 0;
+  border: 0;
+  border-radius: 999px;
+  background: none;
+  cursor: pointer;
+  transition: transform 160ms ease;
 }
 
-.site-brand:hover .site-brand__mark {
-  background: var(--accent-deep);
+.site-brand__mark:hover {
+  transform: scale(1.06) rotate(-4deg);
 }
 
-.site-brand__letter {
-  font-family: var(--font-display);
-  font-size: 0.95rem;
-  font-weight: 600;
-  line-height: 1;
+.site-brand__mark:active {
+  transform: scale(0.94);
+}
+
+.site-brand__mark:focus-visible {
+  outline: 2px solid var(--color-accent-ink);
+  outline-offset: 3px;
+}
+
+@keyframes brand-mark-pop {
+  0% { transform: scale(1) rotate(0deg); }
+  40% { transform: scale(1.16) rotate(7deg); }
+  100% { transform: scale(1) rotate(0deg); }
+}
+
+.site-brand__mark.is-popping {
+  animation: brand-mark-pop 300ms ease;
+}
+
+/* Fades in a beat after load, and retires for good on the first click. */
+.site-brand__hint {
+  position: absolute;
+  top: calc(100% - 0.1rem);
+  left: 50%;
+  font-family: var(--font-mono);
+  font-size: 0.5rem;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--color-subtle);
+  white-space: nowrap;
+  pointer-events: none;
+  opacity: 0;
+  transform: translateX(-50%);
+  animation: brand-hint-in 600ms ease 1.4s forwards;
+}
+
+@keyframes brand-hint-in {
+  to { opacity: 0.7; }
+}
+
+.site-brand__mark:hover .site-brand__hint {
+  color: var(--color-accent-ink);
+  opacity: 1;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .site-brand__mark,
+  .site-brand__mark:hover,
+  .site-brand__mark:active {
+    transform: none;
+    transition: none;
+  }
+
+  .site-brand__mark.is-popping {
+    animation: none;
+  }
+
+  .site-brand__hint {
+    animation: none;
+    opacity: 0.7;
+  }
 }
 
 .site-brand__label {
   display: inline-flex;
   align-items: baseline;
+  text-decoration: none;
   color: var(--color-subtle);
   font-family: var(--font-mono);
   font-size: 0.72rem;
@@ -489,18 +553,55 @@ a {
   gap: 1.5rem;
 }
 
-/* Phone: the wordmark steps aside so the mark and all four destinations fit
+.site-nav__link {
+  color: var(--color-muted);
+  font-family: var(--font-mono);
+  /* "What you get" is three words; without this it breaks across lines and
+     buckles the header rather than the row shrinking to fit. */
+  white-space: nowrap;
+  font-size: 0.74rem;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+  padding-bottom: 2px;
+  transition:
+    color var(--speed) linear,
+    border-color var(--speed) linear;
+}
+
+.site-nav__link:hover {
+  color: var(--accent);
+  border-bottom-color: var(--accent);
+}
+
+.site-nav__link.link-underline {
+  background-image: none;
+}
+
+/* Phone: the wordmark steps aside so the mark and all five destinations fit
    on one line. The <Link> carries aria-label="… — home", so the site name is
    still announced; only the redundant visual duplicate is dropped. Keeping
    every destination one tap away matters more here than the wordmark. */
 @media (max-width: 639.98px) {
   .site-header__inner {
     gap: 0.75rem;
-    padding-top: 0.35rem;
-    padding-bottom: 0.35rem;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
   }
 
   .site-brand__label {
+    display: none;
+  }
+
+  /* Fill the 44px tap target the mark already sits inside. */
+  .site-brand__mark {
+    width: 2.75rem;
+    height: 2.75rem;
+  }
+
+  .site-brand__hint {
     display: none;
   }
 
@@ -523,8 +624,8 @@ a {
      the gap between links carries the visual separation. */
   .site-nav__link {
     justify-content: center;
-    font-size: 0.72rem;
-    letter-spacing: 0.06em;
+    font-size: 0.66rem;
+    letter-spacing: 0.02em;
     border-bottom: 0;
     padding-bottom: 0;
   }
@@ -537,15 +638,18 @@ a {
 
 }
 
-/* 320px still has to fit four 44px-wide targets next to the mark. */
-@media (max-width: 359.98px) {
+/* Under 390px five labels cannot all hold a 44px-wide box beside the mark, so
+   the box narrows to its text and only the 44px height is kept. Overflowing
+   instead would push the nav into a second row or off-screen. */
+@media (max-width: 389.98px) {
   .site-nav {
     gap: 0.35rem;
   }
 
   .site-nav__link {
-    font-size: 0.68rem;
-    letter-spacing: 0.04em;
+    min-width: 0;
+    font-size: 0.6rem;
+    letter-spacing: 0.01em;
   }
 }
 
@@ -553,30 +657,6 @@ a {
   .site-nav {
     gap: 1.75rem;
   }
-}
-
-.site-nav__link {
-  color: var(--color-muted);
-  font-family: var(--font-mono);
-  font-size: 0.74rem;
-  font-weight: 500;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  text-decoration: none;
-  border-bottom: 1px solid transparent;
-  padding-bottom: 2px;
-  transition:
-    color var(--speed) linear,
-    border-color var(--speed) linear;
-}
-
-.site-nav__link:hover {
-  color: var(--accent);
-  border-bottom-color: var(--accent);
-}
-
-.site-nav__link.link-underline {
-  background-image: none;
 }
 
 /* ============================================================
@@ -1053,6 +1133,8 @@ a {
 
 .cta-block__inner {
   max-width: 56rem;
+  margin-inline: auto;
+  text-align: center;
 }
 
 .cta-block__eyebrow {
@@ -1077,6 +1159,7 @@ a {
 
 .cta-block__description {
   max-width: 36rem;
+  margin-inline: auto;
   margin-top: 1.5rem;
   color: var(--color-muted);
   font-size: 1.05rem;
@@ -1087,13 +1170,18 @@ a {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
+  justify-content: center;
   gap: 1.25rem 2.5rem;
   margin-top: 2.5rem;
 }
 
+/* Overrides the mono face jude-link-inline inherits: a primary action reads
+   as a button, so it uses the body face like every other CTA on the site. */
 .cta-block__primary-link {
   color: var(--color-fg);
-  font-size: 1.1rem;
+  font-family: var(--font-body);
+  font-size: 1.05rem;
+  font-weight: 500;
 }
 
 /* —— separator ————————————————————————————— */

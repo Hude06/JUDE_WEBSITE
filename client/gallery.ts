@@ -97,6 +97,44 @@ export const clientTemplates: ClientBlockTemplate[] = [
       }) as Block,
   },
   {
+    type: 'case-study-header',
+    label: 'Case Study Header',
+    description: 'Page masthead for a single client story: name, tagline, fact ledger.',
+    icon: '◪',
+    create: (id) =>
+      ({
+        id,
+        type: 'case-study-header',
+        eyebrow: 'Case study',
+        client: 'Client name',
+        tagline: '',
+        role: '',
+        year: '',
+        services: [],
+        link: '',
+        backHref: '/work',
+        backLabel: 'All work',
+      }) as Block,
+  },
+  {
+    type: 'stat-row',
+    label: 'Stat Row',
+    description: 'Two to four result numbers with labels and sourcing footnote.',
+    icon: '◆',
+    create: (id) =>
+      ({
+        id,
+        type: 'stat-row',
+        eyebrow: 'Results',
+        heading: 'What changed',
+        stats: [
+          { label: 'Metric', value: '—' },
+          { label: 'Metric', value: '—' },
+        ],
+        note: '',
+      }) as Block,
+  },
+  {
     type: 'feature-grid',
     label: 'Feature Grid',
     description: 'Three-column process or feature highlight grid.',
@@ -165,6 +203,25 @@ export const clientTemplates: ClientBlockTemplate[] = [
         heading: 'Selected work',
         items: [{ name: 'New project', tagline: 'One-line summary', year: '2026', image: '' }],
         showEmptyCard: true,
+      }) as Block,
+  },
+  {
+    type: 'project-list',
+    label: 'Project List',
+    description: 'Compact hairline ledger of side projects — one row each.',
+    icon: '≡',
+    create: (id) =>
+      ({
+        id,
+        type: 'project-list',
+        heading: 'Projects',
+        countLabel: '02 building',
+        items: [
+          {
+            name: 'New project',
+            description: 'One line on what it is.',
+          },
+        ],
       }) as Block,
   },
   {

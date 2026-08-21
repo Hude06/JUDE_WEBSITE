@@ -1,0 +1,100 @@
+/* Stat row — the "what changed" numbers on a case study. Values set in
+   display type so they read as the headline of the section.
+
+   Deliberately no accent colour here: on a case-study page the crimson is
+   spent on the live-site link and the closing CTA. An accent eyebrow in the
+   middle of the page competes with both. */
+
+.root {
+  margin-inline: auto;
+  max-width: var(--container-wide);
+  padding: var(--space-section-md) var(--gutter);
+}
+
+.head {
+  margin-bottom: 2rem;
+}
+
+.eyebrow {
+  margin: 0 0 0.75rem;
+  color: var(--color-subtle);
+}
+
+.heading {
+  max-width: 24ch;
+  margin: 0;
+  color: var(--color-fg);
+  font-family: var(--font-display);
+  font-size: var(--fs-section-heading);
+  font-weight: 600;
+  letter-spacing: -0.015em;
+  line-height: 1.15;
+  text-wrap: balance;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(12rem, 1fr));
+  gap: 0;
+  margin: 0;
+  border-top: 1px solid var(--color-hairline);
+}
+
+.stat {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  padding: 1.5rem 1.5rem 1.5rem 0;
+  border-bottom: 1px solid var(--color-hairline);
+}
+
+/* Vertical rules between columns, drawn on the left so the first column in
+   each row stays flush with the text column. */
+.stat + .stat {
+  padding-left: 1.5rem;
+  border-left: 1px solid var(--color-hairline);
+}
+
+.label {
+  color: var(--color-subtle);
+}
+
+.value {
+  margin: 0;
+  color: var(--color-fg);
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 4vw, 2.9rem);
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -0.03em;
+  line-height: 1;
+}
+
+.note {
+  max-width: 26ch;
+  margin: 0.25rem 0 0;
+  color: var(--color-muted);
+  font-family: var(--font-body);
+  font-size: 0.875rem;
+  line-height: 1.5;
+  text-wrap: pretty;
+}
+
+.footnote {
+  margin: 1.5rem 0 0;
+  color: var(--color-subtle);
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.03em;
+  line-height: 1.6;
+}
+
+/* Below the auto-fit breakpoint the columns stack, so the left rule would
+   read as a stray vertical tick. Drop it and restore flush padding. */
+@media (max-width: 640px) {
+  .stat + .stat {
+    padding-left: 0;
+    border-left: none;
+  }
+}

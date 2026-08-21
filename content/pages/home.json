@@ -19,10 +19,7 @@
         "text": "See the work",
         "href": "/#work"
       },
-      "align": "left",
-      "photo": "/uploads/photos/portrait.jpg",
-      "photoAlt": "Jude sitting on a slackline in the woods",
-      "photoCaption": "Jude · Eugene, OR"
+      "align": "center"
     },
     {
       "id": "home-work",
@@ -30,7 +27,6 @@
       "heading": "Selected work",
       "countLabel": "03 shipped",
       "anchorId": "work",
-      "showEmptyCard": true,
       "items": [
         {
           "name": "Rosales Designs",
@@ -58,43 +54,16 @@
       ]
     },
     {
-      "id": "home-process",
-      "type": "steps",
-      "heading": "How it works",
-      "steps": [
-        {
-          "title": "We talk",
-          "description": "A quick conversation about what you need and who it's for."
-        },
-        {
-          "title": "I design + build",
-          "description": "Real progress in the browser every few days — not mockups."
-        },
-        {
-          "title": "We iterate",
-          "description": "Quick rounds of feedback until you're happy."
-        },
-        {
-          "title": "You own it",
-          "description": "The site, the code, the content — all yours."
-        }
-      ]
-    },
-    {
-      "id": "home-off-hours",
-      "type": "photo-strip",
-      "title": "Off hours",
-      "text": "FPV drones, an Etsy store, and a workshop full of half-finished projects. Same hands, same care that goes into your website.",
-      "photos": [
-        {
-          "image": "/uploads/photos/drone.jpg",
-          "alt": "FPV drone Jude built, pink canopy and teal props"
-        },
-        {
-          "image": "/uploads/photos/night.jpg",
-          "alt": "Jude in a helmet and headlamp at night, thumbs up"
-        }
-      ]
+      "id": "home-what-you-get",
+      "type": "cta",
+      "eyebrow": "The rest of it",
+      "title": "Domain, hosting, and updates, handled.",
+      "description": "You don't have to learn what a DNS record is or pick a hosting company. I set all of it up and keep it running.",
+      "primaryCta": {
+        "text": "What you get",
+        "href": "/what-you-get"
+      },
+      "tone": "quiet"
     }
   ]
 }

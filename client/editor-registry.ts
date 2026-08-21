@@ -6,6 +6,8 @@ import { ParagraphEditor } from '@/client/blocks/Paragraph/ParagraphEditor';
 import { JudeButtonEditor } from '@/client/blocks/JudeButton/JudeButtonEditor';
 import { SeparatorEditor } from '@/client/blocks/Separator/SeparatorEditor';
 import { CaseStudyEditor } from '@/client/blocks/CaseStudy/CaseStudyEditor';
+import { CaseStudyHeaderEditor } from '@/client/blocks/CaseStudyHeader/CaseStudyHeaderEditor';
+import { StatRowEditor } from '@/client/blocks/StatRow/StatRowEditor';
 import { FeatureGridEditor } from '@/client/blocks/FeatureGrid/FeatureGridEditor';
 import { StepsEditor } from '@/client/blocks/Steps/StepsEditor';
 import { CardGridEditor } from '@/client/blocks/CardGrid/CardGridEditor';
@@ -14,6 +16,7 @@ import { CtaEditor } from '@/client/blocks/Cta/CtaEditor';
 import { TestimonialEditor } from '@/client/blocks/Testimonial/TestimonialEditor';
 import { PhotoEditor } from '@/client/blocks/Photo/PhotoEditor';
 import { WorkGridEditor } from '@/client/blocks/WorkGrid/WorkGridEditor';
+import { ProjectListEditor } from '@/client/blocks/ProjectList/ProjectListEditor';
 import { PhotoStripEditor } from '@/client/blocks/PhotoStrip/PhotoStripEditor';
 import { ContactFormEditor } from '@/client/blocks/ContactForm/ContactFormEditor';
 
@@ -29,6 +32,8 @@ export const clientEditors: Record<string, ComponentType<ClientEditorProps>> = {
   'jude-button': JudeButtonEditor as unknown as ComponentType<ClientEditorProps>,
   separator: SeparatorEditor as unknown as ComponentType<ClientEditorProps>,
   'case-study': CaseStudyEditor as unknown as ComponentType<ClientEditorProps>,
+  'case-study-header': CaseStudyHeaderEditor as unknown as ComponentType<ClientEditorProps>,
+  'stat-row': StatRowEditor as unknown as ComponentType<ClientEditorProps>,
   'feature-grid': FeatureGridEditor as unknown as ComponentType<ClientEditorProps>,
   steps: StepsEditor as unknown as ComponentType<ClientEditorProps>,
   'card-grid': CardGridEditor as unknown as ComponentType<ClientEditorProps>,
@@ -37,6 +42,7 @@ export const clientEditors: Record<string, ComponentType<ClientEditorProps>> = {
   testimonial: TestimonialEditor as unknown as ComponentType<ClientEditorProps>,
   photo: PhotoEditor as unknown as ComponentType<ClientEditorProps>,
   'work-grid': WorkGridEditor as unknown as ComponentType<ClientEditorProps>,
+  'project-list': ProjectListEditor as unknown as ComponentType<ClientEditorProps>,
   'photo-strip': PhotoStripEditor as unknown as ComponentType<ClientEditorProps>,
   'contact-form': ContactFormEditor as unknown as ComponentType<ClientEditorProps>,
 };
@@ -48,6 +54,8 @@ export const clientTypeLabels: Record<string, string> = {
   'jude-button': 'Jude Button',
   separator: 'Separator',
   'case-study': 'Case Study',
+  'case-study-header': 'Case Study Header',
+  'stat-row': 'Stat Row',
   'feature-grid': 'Feature Grid',
   steps: 'Steps',
   'card-grid': 'Card Grid',
@@ -56,6 +64,7 @@ export const clientTypeLabels: Record<string, string> = {
   testimonial: 'Testimonial',
   photo: 'Photo',
   'work-grid': 'Work Grid',
+  'project-list': 'Project List',
   'photo-strip': 'Photo Strip',
   'contact-form': 'Contact Form',
 };

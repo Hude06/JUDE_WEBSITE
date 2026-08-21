@@ -3,6 +3,7 @@
   "nav": [
     { "label": "Work", "href": "/#work" },
     { "label": "Projects", "href": "/projects" },
+    { "label": "What you get", "href": "/what-you-get" },
     { "label": "About", "href": "/about" },
     { "label": "Contact", "href": "/contact" }
   ],
@@ -11,7 +12,7 @@
     "body": "'Switzer', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif"
   },
   "colors": {
-    "primary": "#c22f2f",
+    "primary": "#2f4fc2",
     "secondary": "#4b5058",
     "background": "#fbf8f7",
     "text": "#17181c"
