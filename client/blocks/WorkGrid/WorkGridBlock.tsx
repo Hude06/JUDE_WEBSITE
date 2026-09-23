@@ -1,32 +1,25 @@
-import Link from 'next/link';
 import type { WorkGridBlock as WorkGridBlockType, WorkGridItem } from '@/client/types';
 import { cn } from '@/lib/utils';
-import { formatDomain, guessDomain } from '@/client/blocks/shared/domain';
+import { YourSiteCard } from './YourSiteCard';
 import styles from './WorkGridBlock.module.css';
 
 interface WorkGridBlockProps {
   block: WorkGridBlockType;
 }
 
-function domainFor(item: WorkGridItem): string {
-  if (item.domain) return item.domain;
-  if (item.link) return formatDomain(item.link);
-  return guessDomain(item.name);
-}
+/* The first row sits right under the hero, so on most screens it holds the
+   biggest thing in view. Lazy-loading it made the browser discover the
+   page's main image late (Lighthouse: 1.6s of LCP load delay). */
+const EAGER_CARDS = 3;
 
-function Card({ item }: { item: WorkGridItem }) {
+function Card({ item, index }: { item: WorkGridItem; index: number }) {
+  const eager = index < EAGER_CARDS;
   const isArchived = item.status === 'archived';
   const clickable = Boolean(item.link) && !isArchived;
 
   const body = (
     <>
       <div className={cn('browser-frame', styles.frame)}>
-        <div className="browser-frame__bar">
-          <span className="browser-frame__dot" />
-          <span className="browser-frame__dot" />
-          <span className="browser-frame__dot" />
-          <span className={styles.domain}>{domainFor(item)}</span>
-        </div>
         <div className={styles.imageSurface}>
           <img
             src={item.image}
@@ -34,7 +27,8 @@ function Card({ item }: { item: WorkGridItem }) {
             className={styles.image}
             width={1600}
             height={1000}
-            loading="lazy"
+            loading={eager ? 'eager' : 'lazy'}
+            fetchPriority={index === 0 ? 'high' : undefined}
             decoding="async"
           />
         </div>
@@ -77,17 +71,10 @@ export function WorkGridBlock({ block }: WorkGridBlockProps) {
       )}
 
       <div className={styles.grid}>
-        {block.items.map((item) => (
-          <Card key={item.name} item={item} />
+        {block.items.map((item, index) => (
+          <Card key={item.name} item={item} index={index} />
         ))}
-        {block.showEmptyCard && (
-          <Link href="/contact" className={styles.emptyCard}>
-            <span>
-              <span className={styles.emptyTitle}>Your site here</span>
-              <span className={styles.emptyCta}>Start a project →</span>
-            </span>
-          </Link>
-        )}
+        {block.showEmptyCard && <YourSiteCard />}
       </div>
     </section>
   );

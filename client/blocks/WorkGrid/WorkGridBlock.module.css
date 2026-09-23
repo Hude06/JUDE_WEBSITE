@@ -21,7 +21,7 @@
   color: var(--color-fg);
   font-family: var(--font-display);
   font-size: var(--fs-section-heading);
-  font-weight: 600;
+  font-weight: 700;
   letter-spacing: -0.01em;
 }
 
@@ -82,10 +82,6 @@
   .image {
     aspect-ratio: 4 / 3;
   }
-
-  .emptyCard {
-    min-height: 150px;
-  }
 }
 
 .card {
@@ -101,6 +97,12 @@
     box-shadow var(--speed-slow) var(--ease);
 }
 
+/* Tighter than the site-wide --r-md; scoped under .card so it outranks
+   the global .browser-frame rule regardless of stylesheet order. */
+.card .frame {
+  border-radius: 6px;
+}
+
 .card:hover .frame {
   transform: translateY(-3px);
   border-color: var(--accent);
@@ -109,17 +111,6 @@
 
 a.card:hover .name {
   color: var(--accent);
-}
-
-.domain {
-  display: block;
-  margin-left: 0.5rem;
-  overflow: hidden;
-  color: var(--color-subtle);
-  font-family: var(--font-mono);
-  font-size: 0.66rem;
-  text-overflow: ellipsis;
-  white-space: nowrap;
 }
 
 .imageSurface {
@@ -148,7 +139,7 @@ a.card:hover .name {
   color: var(--color-fg);
   font-family: var(--font-display);
   font-size: 1.15rem;
-  font-weight: 500;
+  font-weight: 600;
   transition: color var(--speed) linear;
 }
 
@@ -166,40 +157,172 @@ a.card:hover .name {
   line-height: 1.6;
 }
 
-/* Dashed sales slot — the portfolio's last card is an invitation. */
-.emptyCard {
-  display: grid;
-  place-items: center;
-  min-height: 230px;
-  border: 1.5px dashed var(--color-hairline-strong);
-  border-radius: var(--r-md);
-  text-align: center;
-  text-decoration: none;
-  transition:
-    border-color var(--speed) linear,
-    background-color var(--speed) linear;
+/* "Your site here" — the portfolio's last card. The visitor types their
+   business name and the frame becomes a tiny site for it, tinted from the
+   header mark's palette. Everything inside the mock is sized in cqi so it
+   scales with the card like a screenshot would. */
+.yourFrame {
+  border-style: dashed;
 }
 
-.emptyCard:hover {
-  border-color: var(--accent);
-  background: var(--accent-wash);
+.card:has(.yourInput:focus) .yourFrame,
+.card:hover .yourFrame {
+  border-style: solid;
 }
 
-.emptyTitle {
-  display: block;
+.mock {
+  --mock-color: var(--accent);
+  container-type: inline-size;
+  display: flex;
+  flex-direction: column;
+  aspect-ratio: 16 / 10;
+  overflow: hidden;
+  background: color-mix(in srgb, var(--mock-color) 7%, #fff);
+  transition: background-color var(--speed-slow) linear;
+}
+
+.mockNav {
+  display: flex;
+  align-items: center;
+  gap: 2.4cqi;
+  padding: 3.2cqi 4.5cqi;
+  border-bottom: 1px solid color-mix(in srgb, var(--mock-color) 16%, transparent);
+}
+
+.mockLogo {
+  flex: none;
+  width: 4cqi;
+  height: 4cqi;
+  border-radius: 999px;
+  background: var(--mock-color);
+  transition: background-color var(--speed-slow) linear;
+}
+
+.mockBrand {
+  overflow: hidden;
   color: var(--color-fg);
   font-family: var(--font-display);
-  font-size: 1.2rem;
+  font-size: 3.4cqi;
+  font-weight: 700;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.mockLinks {
+  display: flex;
+  gap: 2.4cqi;
+  margin-left: auto;
+}
+
+.mockLinks span {
+  width: 7cqi;
+  height: 1.3cqi;
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--color-fg) 18%, transparent);
+}
+
+.mockHero {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 2.2cqi;
+  padding: 0 4.5cqi 2cqi;
+}
+
+.mockTitle {
+  display: -webkit-box;
+  max-width: 100%;
+  overflow: hidden;
+  color: var(--color-fg);
+  font-family: var(--font-display);
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: -0.03em;
+  overflow-wrap: anywhere;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+}
+
+.mock[data-empty] .mockTitle,
+.mock[data-empty] .mockBrand {
+  color: color-mix(in srgb, var(--color-fg) 32%, transparent);
+}
+
+.mockLine {
+  width: 62%;
+  height: 1.6cqi;
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--color-fg) 14%, transparent);
+}
+
+.mockLineShort {
+  width: 40%;
+  margin-top: -0.6cqi;
+}
+
+.mockButton {
+  margin-top: 1.2cqi;
+  padding: 1.6cqi 3.2cqi;
+  border-radius: 1.2cqi;
+  background: var(--mock-color);
+  color: #fff;
+  font-family: var(--font-body);
+  font-size: 2.6cqi;
+  font-weight: 600;
+  transition: background-color var(--speed-slow) linear;
+}
+
+.yourInput {
+  min-width: 0;
+  flex: 1;
+  padding: 0 0 0.15rem;
+  border: 0;
+  border-bottom: 1.5px dashed var(--color-hairline-strong);
+  border-radius: 0;
+  background: none;
+  color: var(--color-fg);
+  font-family: var(--font-display);
+  /* Keep at or above 16px: anything smaller makes iOS Safari zoom on focus. */
+  font-size: 1.15rem;
+  font-weight: 600;
+  outline: none;
+  transition: border-color var(--speed) linear;
+}
+
+.yourInput::placeholder {
+  color: var(--ink-faint);
   font-weight: 500;
 }
 
-.emptyCta {
-  display: block;
-  margin-top: 0.4rem;
-  color: var(--accent);
-  font-family: var(--font-mono);
-  font-size: 0.68rem;
-  font-weight: 500;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
+.yourInput:hover,
+.yourInput:focus {
+  border-bottom-color: var(--color-fg);
+  border-bottom-style: solid;
+}
+
+.yourCta {
+  color: var(--color-fg);
+  font-weight: 600;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.yourCta:hover {
+  text-decoration-thickness: 2px;
+}
+
+@media (max-width: 767.98px) {
+  .mock {
+    aspect-ratio: 4 / 3;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .mock,
+  .mockLogo,
+  .mockButton {
+    transition: none;
+  }
 }

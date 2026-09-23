@@ -1,6 +1,6 @@
 {
   "contractVersion": 1,
-  "title": "What You Get — Domain, Hosting, Updates & Maintenance | Jude Hill",
+  "title": "What You Get — Domain, Hosting & Updates",
   "slug": "what-you-get",
   "description": "Everything that comes with a site built by Jude Hill: domain, hosting, SSL, backups, a self-serve editor, and maintenance. No lock-in — you own the site.",
   "blocks": [
@@ -8,8 +8,7 @@
       "id": "wyg-hero",
       "type": "jude-hero",
       "eyebrow": "The whole picture",
-      "headline": "A website is more than the pages.",
-      "headlineAccent": "I handle the rest of it.",
+      "headline": "What comes in a website",
       "subheadline": "Domain, server, certificate, backups, updates — here's the whole list.",
       "primaryCta": {
         "text": "Start a project",
@@ -26,7 +25,7 @@
       "items": [
         {
           "title": "Your domain",
-          "description": "In your name, on your account, from day one."
+          "description": "A domain you own. I handle the renewals and settings."
         },
         {
           "title": "Managed hosting",
@@ -38,15 +37,15 @@
         },
         {
           "title": "Backups",
-          "description": "Anything breaks, I roll it back within an hour."
+          "description": "Anything breaks, I roll it back."
         },
         {
           "title": "Self-serve editing",
           "description": "Change text, photos, hours, prices yourself."
         },
         {
-          "title": "Hand-written code",
-          "description": "Real HTML and CSS — no builder, no theme."
+          "title": "A direct line to me",
+          "description": "Text me, not a support ticket. You talk to the person who built it."
         }
       ]
     },
@@ -64,7 +63,7 @@
     {
       "id": "wyg-domain-copy",
       "type": "paragraph",
-      "text": "Rented, not bought. Already have one? I need ten minutes of DNS access. Don't? We pick one together on our first call. Turn on auto-renew: an expired domain is the one thing I can't fix remotely."
+      "text": "Already have one? Great, we'll use it. Don't have one yet? I'll help you find the perfect name for your business, and if it's available, we can get it."
     },
     {
       "id": "wyg-sep-2",
@@ -80,7 +79,7 @@
     {
       "id": "wyg-hosting-copy",
       "type": "paragraph",
-      "text": "Each site runs isolated on a server I maintain — patches, certificates, monitoring, all handled overnight without downtime."
+      "text": "Each site runs in its own isolated container on a server I maintain. Patches, certificates, and monitoring are all handled overnight without downtime."
     },
     {
       "id": "wyg-hosting-stats",
@@ -106,7 +105,7 @@
     {
       "id": "wyg-updates-copy",
       "type": "paragraph",
-      "text": "Edit it yourself in the browser — free, live instantly. Or text me: small changes are free, usually same day. New pages or features get quoted up front before I start."
+      "text": "You can edit text and photos yourself in the browser for free, and changes go live right away. Or just text me. Small changes are free and usually done the same day. New pages or features get a quote up front before I start."
     },
     {
       "id": "wyg-maint-head",
@@ -118,7 +117,47 @@
     {
       "id": "wyg-maint-copy",
       "type": "paragraph",
-      "text": "No plugins means almost nothing can break. If something does, monitoring alerts my phone before you notice — and you have my number directly. No ticket queue."
+      "text": "With no plugins, there's very little that can break. If something does, I get an alert on my phone before you notice, and you can always text or call me directly. No ticket queue."
+    },
+    {
+      "id": "wyg-sep-4",
+      "type": "separator"
+    },
+    {
+      "id": "wyg-faq",
+      "type": "faq",
+      "heading": "Questions people ask first",
+      "anchorId": "faq",
+      "items": [
+        {
+          "question": "How much does a website cost?",
+          "answer": "Sites start at $500 and I quote flat, so you get one number before any work starts and that is the number you pay. Price depends mostly on how many pages you need and whether you need anything beyond the usual, like online ordering."
+        },
+        {
+          "question": "How long does it take to build a website?",
+          "answer": "Two to four weeks for a typical small-business site, from the first call to going live. You will see a real working page within the first few days rather than waiting until the end."
+        },
+        {
+          "question": "Do you work with businesses outside Eugene?",
+          "answer": "Yes. I am based in Eugene and work throughout Springfield and Lane County, and I take remote projects anywhere. Being local just means I can come and see the shop or the truck in person, which usually beats photos over email."
+        },
+        {
+          "question": "Do I own the website?",
+          "answer": "Yes, outright. The domain is registered in your name, the code is yours, and there is no platform you are locked into. If you ever want to move it somewhere else or hand it to another developer, nothing stops you."
+        },
+        {
+          "question": "Can I update the site myself?",
+          "answer": "Yes. You get a login that lets you change text and swap photos from your browser, with no code involved. Anything bigger, send it to me and small edits are included after launch."
+        },
+        {
+          "question": "Do you use WordPress, Squarespace or Wix?",
+          "answer": "No. Every site is hand-written code. That is why they load fast and why there is no plugin stack to keep patched, no monthly platform fee, and nothing that breaks when a theme or plugin gets updated or discontinued."
+        },
+        {
+          "question": "What do you need from me to get started?",
+          "answer": "A few sentences about the business and what you want the site to do. Photos, text and a logo help if you have them, but they are not required to get a quote and we can sort them out as we go."
+        }
+      ]
     }
   ]
 }

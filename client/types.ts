@@ -183,8 +183,6 @@ export interface WorkGridItem {
   tagline: string;
   year: string;
   image: string;
-  /** Shown in the browser-frame bar; derived from link when absent. */
-  domain?: string;
   link?: string;
   status?: 'live' | 'archived';
 }
@@ -257,7 +255,22 @@ export interface PhotoStripBlock {
   photos: PhotoStripPhoto[];
 }
 
+export interface FaqItem {
+  question: string;
+  answer: string;
+}
+
+export interface FaqBlock {
+  id: string;
+  type: 'faq';
+  eyebrow?: string;
+  heading?: string;
+  anchorId?: string;
+  items: FaqItem[];
+}
+
 export type ClientBlock =
+  | FaqBlock
   | JudeHeadingBlock
   | ParagraphBlock
   | JudeButtonBlock

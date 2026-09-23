@@ -17,32 +17,42 @@ import { isExpressiveTheme, resolveTheme, themeToCssVars, themeToDarkCssVars } f
 import { cn, readableForeground } from '@/lib/utils';
 import { SmoothAnchorScroll } from '@/components/SmoothAnchorScroll';
 import { PlausibleScript } from '@/components/PlausibleScript';
+import { SuperviewScript } from '@/components/SuperviewScript';
 import { TrackPageview } from '@/components/TrackPageview';
 import { AnimationEngineProvider } from '@/components/motion/AnimationEngineProvider';
 import { siteMetadata } from '@/site/metadata';
 import './globals.css';
 import '@/site/styles.css';
 
-const geist = Geist({ subsets: ['latin'], variable: '--font-geist' });
+// Only Inter is preloaded. The other nine faces exist so any theme preset can
+// be switched on from content/site.json, but none of them are used by this
+// site's current config — preloading all ten put 359 KB of fonts in the
+// critical render path and delayed LCP for nothing. preload:false keeps them
+// available (they still load if a preset selects them) without the <link
+// rel=preload> tag.
+const geist = Geist({ subsets: ['latin'], variable: '--font-geist', preload: false });
 const instrumentSerif = Instrument_Serif({
   subsets: ['latin'],
   weight: '400',
   variable: '--font-instrument-serif',
+  preload: false,
 });
 const inter = Inter({ subsets: ['latin'], variable: '--font-inter' });
 const bricolage = Bricolage_Grotesque({
   subsets: ['latin'],
   variable: '--font-bricolage',
+  preload: false,
 });
 const jetbrainsMono = JetBrains_Mono({
   subsets: ['latin'],
   variable: '--font-jetbrains-mono',
+  preload: false,
 });
-const fraunces = Fraunces({ subsets: ['latin'], variable: '--font-fraunces' });
-const lora = Lora({ subsets: ['latin'], variable: '--font-lora' });
-const spaceGrotesk = Space_Grotesk({ subsets: ['latin'], variable: '--font-space-grotesk' });
-const newsreader = Newsreader({ subsets: ['latin'], variable: '--font-newsreader' });
-const playfair = Playfair_Display({ subsets: ['latin'], variable: '--font-playfair' });
+const fraunces = Fraunces({ subsets: ['latin'], variable: '--font-fraunces', preload: false });
+const lora = Lora({ subsets: ['latin'], variable: '--font-lora', preload: false });
+const spaceGrotesk = Space_Grotesk({ subsets: ['latin'], variable: '--font-space-grotesk', preload: false });
+const newsreader = Newsreader({ subsets: ['latin'], variable: '--font-newsreader', preload: false });
+const playfair = Playfair_Display({ subsets: ['latin'], variable: '--font-playfair', preload: false });
 
 const FONT_PAIR_VARS: Record<string, { display: string; body: string }> = {
   editorial: { display: 'var(--font-instrument-serif)', body: 'var(--font-inter)' },
@@ -141,6 +151,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           <SmoothAnchorScroll />
           {children}
           <PlausibleScript />
+          <SuperviewScript />
           {process.env.MC_TRACK_DISABLED !== '1' && <TrackPageview />}
         </AnimationEngineProvider>
       </body>

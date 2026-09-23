@@ -6,9 +6,9 @@ const siteUrl =
 
 const metadataBase = new URL(siteUrl);
 
-const title = 'Jude Hill — Web Designer & Developer in Eugene, Oregon';
+const title = 'Web Designer & Developer in Eugene, Oregon — Jude Hill';
 const description =
-  'Hand-built websites for small businesses, creatives, and product launches. Jude Hill is a freelance web designer and developer in Eugene, Oregon shipping fast, custom sites — no templates, no page builders.';
+  'Web designer and developer in Eugene, Oregon. Hand-coded sites for small businesses, no templates and no page builders. Fast, custom, built to last.';
 
 const shareImage = {
   url: '/uploads/seo-share-image.png',

@@ -1,5 +1,6 @@
 import type { ContactFormBlock as ContactFormBlockType } from '@/client/types';
 import { cn } from '@/lib/utils';
+import { BusinessPrefill } from './BusinessPrefill';
 import styles from './ContactFormBlock.module.css';
 
 interface ContactFormBlockProps {
@@ -12,8 +13,8 @@ const DEFAULT_TIMELINE_OPTIONS = ['Today', 'Tomorrow', 'Next week'];
 /** Two-column opener: job-sheet intro left (pitch + fact ledger), the form
     in a lit panel right. Plain HTML POST — works with JS disabled. The
     action is a hosted form-to-email endpoint (FormSubmit/Formspree style).
-    The URL field reveal is CSS-only (:has), so this stays a zero-JS
-    server component. */
+    The URL field reveal is CSS-only (:has), so this stays a server
+    component; the only JS is the optional business-name prefill. */
 export function ContactFormBlock({ block }: ContactFormBlockProps) {
   const hasIntro = Boolean(block.heading || block.intro || block.facts?.length);
   const timelineOptions = block.timelineOptions?.length
@@ -46,6 +47,7 @@ export function ContactFormBlock({ block }: ContactFormBlockProps) {
           <input type="hidden" name="_subject" value={block.subject ?? 'New project inquiry'} />
           <input type="hidden" name="_captcha" value="false" />
           <input type="text" name="_honey" className={styles.honey} tabIndex={-1} autoComplete="off" aria-hidden />
+          <BusinessPrefill />
 
           <fieldset className={styles.choiceField}>
             <legend className={styles.label}>Do you already have a website?</legend>

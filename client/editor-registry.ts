@@ -9,6 +9,7 @@ import { CaseStudyEditor } from '@/client/blocks/CaseStudy/CaseStudyEditor';
 import { CaseStudyHeaderEditor } from '@/client/blocks/CaseStudyHeader/CaseStudyHeaderEditor';
 import { StatRowEditor } from '@/client/blocks/StatRow/StatRowEditor';
 import { FeatureGridEditor } from '@/client/blocks/FeatureGrid/FeatureGridEditor';
+import { FaqEditor } from '@/client/blocks/Faq/FaqEditor';
 import { StepsEditor } from '@/client/blocks/Steps/StepsEditor';
 import { CardGridEditor } from '@/client/blocks/CardGrid/CardGridEditor';
 import { BadgeGroupEditor } from '@/client/blocks/BadgeGroup/BadgeGroupEditor';
@@ -36,6 +37,7 @@ export const clientEditors: Record<string, ComponentType<ClientEditorProps>> = {
   'stat-row': StatRowEditor as unknown as ComponentType<ClientEditorProps>,
   'feature-grid': FeatureGridEditor as unknown as ComponentType<ClientEditorProps>,
   steps: StepsEditor as unknown as ComponentType<ClientEditorProps>,
+  faq: FaqEditor as unknown as ComponentType<ClientEditorProps>,
   'card-grid': CardGridEditor as unknown as ComponentType<ClientEditorProps>,
   'badge-group': BadgeGroupEditor as unknown as ComponentType<ClientEditorProps>,
   cta: CtaEditor as unknown as ComponentType<ClientEditorProps>,
@@ -58,6 +60,7 @@ export const clientTypeLabels: Record<string, string> = {
   'stat-row': 'Stat Row',
   'feature-grid': 'Feature Grid',
   steps: 'Steps',
+  faq: 'FAQ',
   'card-grid': 'Card Grid',
   'badge-group': 'Badge Group',
   cta: 'CTA',

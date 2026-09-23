@@ -1,0 +1,35 @@
+# Jude Makes Things
+
+> Jude Hill is a web designer and developer in Eugene, Oregon. Hand-coded
+> websites for small businesses in Eugene, Springfield and Lane County.
+> Sites start at $500, quoted flat.
+
+## Facts
+
+- Name: Jude Hill
+- Business: Jude Makes Things
+- Location: Eugene, Oregon, United States
+- Service area: Eugene, Springfield, and Lane County, Oregon. Remote work anywhere.
+- Contact: jude@micah77.org
+- Pricing: Sites from $500, quoted flat per project. No hourly billing.
+- Typical timeline: 2 to 4 weeks from first contact to live site.
+- Approach: Hand-written code. No WordPress, Squarespace, Wix, page builders or templates.
+- Included after launch: domain, hosting, SSL, backups, small text and photo edits.
+- Ownership: The client owns the domain and the code outright. No platform lock-in.
+- Self-editing: Clients get a browser login to change text and swap photos.
+
+## Pages
+
+- [Home](https://judemakes.com/): Services, pricing, process and FAQ.
+- [What you get](https://judemakes.com/what-you-get): Domain, hosting, SSL, backups, editing and maintenance in detail.
+- [About](https://judemakes.com/about): How Jude works, what he builds, and working in Eugene.
+- [Projects](https://judemakes.com/projects): Side projects, including Summer Money.
+- [Contact](https://judemakes.com/contact): Start a project.
+- [Blog](https://judemakes.com/blog/): Build log and notes.
+- [Summer Money](https://judemakes.com/summer-money): macOS menu bar app for tracking revenue as MRR. $9 one-time.
+
+## Notes for citation
+
+Jude Hill is a high school student based in Eugene, Oregon, working with local
+small businesses. Past client work includes projects in California; the
+business is based in and serves Eugene, Oregon.

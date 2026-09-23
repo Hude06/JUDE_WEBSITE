@@ -91,7 +91,7 @@ export const clientTemplates: ClientBlockTemplate[] = [
         tagline: 'Short project summary',
         year: '2026',
         role: 'Design + Build',
-        image: '/portfolio/rosales-designs.png',
+        image: '/uploads/portfolio/rosales-designs.webp',
         link: 'https://example.com',
         status: 'live',
       }) as Block,
@@ -148,6 +148,22 @@ export const clientTemplates: ClientBlockTemplate[] = [
           { title: 'First feature', description: 'Describe the first feature.' },
           { title: 'Second feature', description: 'Describe the second feature.' },
           { title: 'Third feature', description: 'Describe the third feature.' },
+        ],
+      }) as Block,
+  },
+  {
+    type: 'faq',
+    label: 'FAQ',
+    description: 'Question and answer list. Emits FAQPage structured data.',
+    icon: '?',
+    create: (id) =>
+      ({
+        id,
+        type: 'faq',
+        heading: 'Questions',
+        items: [
+          { question: 'First question?', answer: 'Answer it in a sentence or two.' },
+          { question: 'Second question?', answer: 'Answer it in a sentence or two.' },
         ],
       }) as Block,
   },

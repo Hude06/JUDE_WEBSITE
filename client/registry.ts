@@ -8,6 +8,7 @@ import { CaseStudyBlock } from '@/client/blocks/CaseStudy/CaseStudyBlock';
 import { CaseStudyHeaderBlock } from '@/client/blocks/CaseStudyHeader/CaseStudyHeaderBlock';
 import { StatRowBlock } from '@/client/blocks/StatRow/StatRowBlock';
 import { FeatureGridBlock } from '@/client/blocks/FeatureGrid/FeatureGridBlock';
+import { FaqBlock } from '@/client/blocks/Faq/FaqBlock';
 import { StepsBlock } from '@/client/blocks/Steps/StepsBlock';
 import { CardGridBlock } from '@/client/blocks/CardGrid/CardGridBlock';
 import { BadgeGroupBlock } from '@/client/blocks/BadgeGroup/BadgeGroupBlock';
@@ -30,6 +31,7 @@ export const clientBlocks: Record<string, ComponentType<{ block: never }>> = {
   'stat-row': StatRowBlock as ComponentType<{ block: never }>,
   'feature-grid': FeatureGridBlock as ComponentType<{ block: never }>,
   steps: StepsBlock as ComponentType<{ block: never }>,
+  faq: FaqBlock as ComponentType<{ block: never }>,
   'card-grid': CardGridBlock as ComponentType<{ block: never }>,
   'badge-group': BadgeGroupBlock as ComponentType<{ block: never }>,
   cta: CtaBlock as ComponentType<{ block: never }>,

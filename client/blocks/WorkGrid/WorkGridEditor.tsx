@@ -48,11 +48,6 @@ export function WorkGridEditor({ block, onChange }: WorkGridEditorProps) {
               value={item.link ?? ''}
               onChange={(link) => update({ ...item, link: link || undefined })}
             />
-            <TextField
-              label="Domain label (optional)"
-              value={item.domain ?? ''}
-              onChange={(domain) => update({ ...item, domain: domain || undefined })}
-            />
             <SelectField
               label="Status"
               value={item.status ?? 'live'}

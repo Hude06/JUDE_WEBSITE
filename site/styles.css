@@ -5,72 +5,21 @@
   greys between them; every "accent" token now resolves to ink, so the
   only color on a page comes from the photographs. Emphasis is carried
   by weight, size, and the hairline grid instead of by hue. No dark
-  bands — sections separate with hairline rules on white. Clash Display
-  carries the big voice, IBM Plex Mono carries labels, Switzer carries
-  prose. Framework-native CSS only (no Tailwind, no shadcn).
+  bands — sections separate with hairline rules on white. One family
+  throughout: Inter (loaded by the framework via next/font) at bold
+  with tight tracking for headings, regular for prose and labels — tall
+  x-height, open spacing, built for screens. Framework-native CSS only
+  (no Tailwind, no shadcn).
 */
 
-/* —— self-hosted fonts (all latin subsets, 10–20KB per weight) ————— */
-@font-face {
-  font-family: "Clash Display";
-  font-style: normal;
-  font-weight: 500;
-  font-display: swap;
-  src: url("/uploads/fonts/clash-display-500.woff2") format("woff2");
-}
-
-@font-face {
-  font-family: "Clash Display";
-  font-style: normal;
-  font-weight: 600;
-  font-display: swap;
-  src: url("/uploads/fonts/clash-display-600.woff2") format("woff2");
-}
-
-@font-face {
-  font-family: "Switzer";
-  font-style: normal;
-  font-weight: 400;
-  font-display: swap;
-  src: url("/uploads/fonts/switzer-400.woff2") format("woff2");
-}
-
-@font-face {
-  font-family: "Switzer";
-  font-style: normal;
-  font-weight: 500;
-  font-display: swap;
-  src: url("/uploads/fonts/switzer-500.woff2") format("woff2");
-}
-
-@font-face {
-  font-family: "IBM Plex Mono";
-  font-style: normal;
-  font-weight: 400;
-  font-display: swap;
-  src: url("/uploads/fonts/ibm-plex-mono-400.woff2") format("woff2");
-}
-
-@font-face {
-  font-family: "IBM Plex Mono";
-  font-style: normal;
-  font-weight: 500;
-  font-display: swap;
-  src: url("/uploads/fonts/ibm-plex-mono-500.woff2") format("woff2");
-}
-
-@font-face {
-  font-family: "IBM Plex Mono";
-  font-style: normal;
-  font-weight: 600;
-  font-display: swap;
-  src: url("/uploads/fonts/ibm-plex-mono-600.woff2") format("woff2");
-}
-
 :root {
-  --font-display: "Clash Display", "Avenir Next", "Helvetica Neue", sans-serif;
-  --font-mono: "IBM Plex Mono", ui-monospace, "SF Mono", Menlo, monospace;
-  --font-body: "Switzer", -apple-system, BlinkMacSystemFont, "Segoe UI",
+  --font-display: var(--font-inter), -apple-system, BlinkMacSystemFont,
+    "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+  /* Labels used to be mono; they now share the body sans for readability.
+     Token name kept because every block module references it. */
+  --font-mono: var(--font-inter), -apple-system, BlinkMacSystemFont, "Segoe UI",
+    "Helvetica Neue", Arial, sans-serif;
+  --font-body: var(--font-inter), -apple-system, BlinkMacSystemFont, "Segoe UI",
     "Helvetica Neue", Arial, sans-serif;
 
   /* —— palette: warm paper ground, ink structure, no hue ————————
@@ -141,7 +90,7 @@
   --gutter: 1.5rem;
 
   /* Display scale — one ladder, used everywhere (hero → page title →
-     section heading → item titles). Section headings are always Clash 600
+     section heading → item titles). Section headings are always Inter 700
      at the same size so every section reads as the same element. */
   --fs-display-hero: clamp(2.2rem, 4.4vw, 3.3rem);
   --fs-display-xl: clamp(4rem, 13vw, 10rem);
@@ -243,7 +192,7 @@ h4,
 h5,
 h6 {
   font-family: var(--font-display);
-  font-weight: 500;
+  font-weight: 600;
   letter-spacing: -0.01em;
   color: var(--color-fg);
 }
@@ -698,7 +647,7 @@ a {
   color: var(--color-fg);
   font-family: var(--font-display);
   font-size: clamp(1.9rem, 3.6vw, 2.6rem);
-  font-weight: 600;
+  font-weight: 700;
   line-height: 1.05;
   letter-spacing: -0.015em;
 }
@@ -922,7 +871,7 @@ a {
   color: var(--color-fg);
   font-family: var(--font-display);
   font-size: var(--fs-section-heading);
-  font-weight: 600;
+  font-weight: 700;
   letter-spacing: -0.01em;
   line-height: 1.1;
 }
@@ -1000,7 +949,7 @@ a {
   color: var(--color-fg);
   font-family: var(--font-display);
   font-size: 1.35rem;
-  font-weight: 500;
+  font-weight: 600;
   letter-spacing: 0;
   line-height: 1.2;
 }
@@ -1050,7 +999,7 @@ a {
   color: var(--color-fg);
   font-family: var(--font-display);
   font-size: var(--fs-section-heading);
-  font-weight: 600;
+  font-weight: 700;
   letter-spacing: -0.01em;
   line-height: 1.1;
 }
@@ -1112,13 +1061,84 @@ a {
   color: var(--color-fg);
   font-family: var(--font-display);
   font-size: clamp(1.25rem, 2vw, 1.65rem);
-  font-weight: 500;
+  font-weight: 600;
   letter-spacing: 0;
   line-height: 1.2;
   transition: color var(--speed) linear;
 }
 
 .steps-block__description {
+  max-width: 42rem;
+  color: var(--color-muted);
+  font-size: 0.95rem;
+  line-height: 1.65;
+}
+
+/* —— FAQ ————————————————————————————————— */
+.faq-block {
+  padding-top: 1.5rem;
+  padding-bottom: 2.5rem;
+}
+
+.faq-block__header {
+  margin-bottom: 2rem;
+}
+
+.faq-block__eyebrow {
+  margin: 0 0 1rem;
+  color: var(--ink-soft);
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.faq-block__heading {
+  max-width: 48rem;
+  color: var(--color-fg);
+  font-family: var(--font-display);
+  font-size: var(--fs-section-heading);
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  line-height: 1.1;
+}
+
+.faq-block__list {
+  margin: 0;
+  padding: 0;
+  border-top: 1px solid var(--color-hairline-strong);
+}
+
+.faq-block__item {
+  display: grid;
+  gap: 0.6rem;
+  border-bottom: 1px solid var(--color-hairline);
+  padding: 1.4rem 0;
+}
+
+@media (min-width: 768px) {
+  .faq-block__item {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1.6fr);
+    align-items: baseline;
+    gap: 3rem;
+    padding-top: 1.75rem;
+    padding-bottom: 1.75rem;
+  }
+}
+
+.faq-block__question {
+  margin: 0;
+  color: var(--color-fg);
+  font-family: var(--font-display);
+  font-size: clamp(1.05rem, 1.6vw, 1.3rem);
+  font-weight: 600;
+  line-height: 1.25;
+  text-wrap: balance;
+}
+
+.faq-block__answer {
+  margin: 0;
   max-width: 42rem;
   color: var(--color-muted);
   font-size: 0.95rem;
@@ -1152,7 +1172,7 @@ a {
   color: var(--color-fg);
   font-family: var(--font-display);
   font-size: var(--fs-cta-title);
-  font-weight: 600;
+  font-weight: 700;
   letter-spacing: -0.015em;
   line-height: 1.05;
 }
@@ -1221,7 +1241,7 @@ a {
   color: var(--color-fg);
   font-family: var(--font-display);
   font-size: var(--fs-display-xl);
-  font-weight: 600;
+  font-weight: 700;
   line-height: 0.95;
   letter-spacing: -0.02em;
 }

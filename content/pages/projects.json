@@ -7,10 +7,8 @@
     {
       "id": "projects-hero",
       "type": "jude-hero",
-      "eyebrow": "Side projects",
-      "headline": "Things I build",
-      "headlineAccent": "because I want them to exist.",
-      "subheadline": "Apps, tools, and experiments outside of client work. Some shipping, some in progress — all of them things I use myself.",
+      "headline": "Side projects",
+      "subheadline": "Apps, tools, and experiments outside of client work. Some shipping, some in progress, all of them things I use myself.",
       "primaryCta": {
         "text": "Start a project",
         "href": "/contact"
@@ -39,6 +37,44 @@
           "link": "https://github.com/Hude06"
         }
       ]
+    },
+    {
+      "id": "projects-sep-1",
+      "type": "separator"
+    },
+    {
+      "id": "projects-why-head",
+      "type": "jude-heading",
+      "text": "Why I build these",
+      "level": 2,
+      "anchorId": "why"
+    },
+    {
+      "id": "projects-why-1",
+      "type": "paragraph",
+      "text": "Every one of these started as something I wanted and could not buy, or could buy but not at a price that made sense. Summer Money exists because I wanted to see revenue in the menu bar without opening a dashboard. The website framework exists because starting each client site from scratch was wasting the first week of every project."
+    },
+    {
+      "id": "projects-why-2",
+      "type": "paragraph",
+      "text": "They are not portfolio pieces. They are tools I use, which means they get fixed when they break and abandoned when they stop being useful. That is a different standard than client work, and an honest one to be clear about."
+    },
+    {
+      "id": "projects-client-head",
+      "type": "jude-heading",
+      "text": "What this has to do with client work",
+      "level": 2,
+      "anchorId": "client-work"
+    },
+    {
+      "id": "projects-client-1",
+      "type": "paragraph",
+      "text": "Shipping my own software is where the sharp edges get found. Summer Money handles real money through Stripe, which means real error states, real edge cases, and real consequences for getting it wrong. Every client site benefits from that in ways that are hard to see and easy to feel: fewer things break, and the things that do break fail quietly instead of loudly."
+    },
+    {
+      "id": "projects-client-2",
+      "type": "paragraph",
+      "text": "The framework is the clearest example. Because I maintain it across every site I build, a fix or a speed improvement made for one business lands on all of them. You are not paying for a one-off build that starts rotting the day it ships."
     }
   ]
 }

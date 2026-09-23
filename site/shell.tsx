@@ -63,7 +63,20 @@ const structuredData = {
       name: 'Jude Makes Things — Web Design & Development',
       url: siteUrl,
       founder: { '@id': `${siteUrl}/#person` },
-      areaServed: 'Eugene, Oregon',
+      email: 'mailto:jude@micah77.org',
+      // Free text is valid here; Google reads it for the "price" chip.
+      priceRange: 'From $500',
+      address: {
+        '@type': 'PostalAddress',
+        addressLocality: 'Eugene',
+        addressRegion: 'OR',
+        addressCountry: 'US',
+      },
+      areaServed: [
+        { '@type': 'City', name: 'Eugene', address: { '@type': 'PostalAddress', addressRegion: 'OR', addressCountry: 'US' } },
+        { '@type': 'City', name: 'Springfield', address: { '@type': 'PostalAddress', addressRegion: 'OR', addressCountry: 'US' } },
+        { '@type': 'AdministrativeArea', name: 'Lane County, Oregon' },
+      ],
       serviceType: [
         'Web design',
         'Web development',

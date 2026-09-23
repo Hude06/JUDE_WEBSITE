@@ -14,6 +14,8 @@ This framework is designed to run with minimal required environment configuratio
 | `BUILD_TIME` | Optional | `app/api/health/route.ts`, `app/api/fleet/stats/route.ts` | Build timestamp surfaced in health/stats output. |
 | `PLAUSIBLE_DOMAIN` | Optional | `components/PlausibleScript.tsx` | Enables Plausible script injection when set with `PLAUSIBLE_SRC`. |
 | `PLAUSIBLE_SRC` | Optional | `components/PlausibleScript.tsx` | Full script URL for Plausible script injection. |
+| `SUPERVIEW_SITE` | Optional | `components/SuperviewScript.tsx` | Superview site ID; enables the script when set with `SUPERVIEW_SRC`. |
+| `SUPERVIEW_SRC` | Optional | `components/SuperviewScript.tsx` | Full script URL for Superview script injection. |
 | `SKIP_TYPE_CHECK` | Optional | `next.config.ts` | Skips TypeScript errors during `next build` when truthy. Use sparingly. |
 | `NODE_ENV` | Recommended | runtime | Standard Node runtime mode (`production` in deploy). |
 | `PORT` | Recommended | runtime | Next.js server listen port. |
