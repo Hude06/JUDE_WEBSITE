@@ -43,6 +43,9 @@ export const siteMetadata: Metadata = {
     'Jude Hill',
   ],
   category: 'design',
+  verification: {
+    google: 'gg8Y1mXbu2qR1Zt32QPMIgbin-CLInFAh26sTCoHzHI',
+  },
   icons: {
     icon: [
       { url: '/favicon.ico', sizes: '48x48 32x32 16x16' },
