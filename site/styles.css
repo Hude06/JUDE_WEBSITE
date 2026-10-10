@@ -788,6 +788,17 @@ a {
   }
 }
 
+/* The first two blocks on a page are on screen at load (the work grid under
+   the hero, or the contact form that opens /contact) and usually hold the
+   LCP element. Revealing them hid that element until hydration on
+   Safari/Firefox and faded it in on Chromium, so they render immediately. */
+main > .scroll-reveal:nth-child(-n + 2) {
+  opacity: 1;
+  transform: none;
+  animation: none;
+  transition: none;
+}
+
 /* ============================================================
    BLOCKS
    ============================================================ */

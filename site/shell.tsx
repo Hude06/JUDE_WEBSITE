@@ -97,12 +97,15 @@ export function SiteShell({ config, children }: SiteShellProps) {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
       />
-      {/* Google Analytics (gtag.js) */}
+      {/* Google Analytics (gtag.js). lazyOnload: gtag is ~180 KB compressed,
+          more than all of the site's own JS, so it waits until the page has
+          finished loading instead of competing with it. Superview still
+          records every visit immediately. */}
       <Script
         src="https://www.googletagmanager.com/gtag/js?id=G-5S85L38R1M"
-        strategy="afterInteractive"
+        strategy="lazyOnload"
       />
-      <Script id="google-analytics" strategy="afterInteractive">
+      <Script id="google-analytics" strategy="lazyOnload">
         {`
           window.dataLayer = window.dataLayer || [];
           function gtag(){dataLayer.push(arguments);}
