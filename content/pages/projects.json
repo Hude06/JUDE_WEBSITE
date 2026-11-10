@@ -1,5 +1,4 @@
 {
-  "contractVersion": 1,
   "title": "Projects — Jude Hill",
   "slug": "projects",
   "description": "Side projects by Jude Hill — apps, tools, and experiments built in Eugene, Oregon. Some shipping, some in progress, all things that deserved to exist.",
@@ -8,7 +7,7 @@
       "id": "projects-hero",
       "type": "jude-hero",
       "headline": "Side projects",
-      "subheadline": "Apps, tools, and experiments outside of client work. Some shipping, some in progress, all of them things I use myself.",
+      "subheadline": "Things I start and don't finish.",
       "primaryCta": {
         "text": "Start a project",
         "href": "/contact"
@@ -23,17 +22,12 @@
     {
       "id": "projects-list",
       "type": "project-list",
-      "countLabel": "02 building",
+      "countLabel": "01 building",
       "anchorId": "apps",
       "items": [
         {
-          "name": "Summer Money",
-          "description": "macOS menu bar app for tracking recurring income as MRR and ARR. $9, sold direct.",
-          "link": "https://judemakes.com/summer-money/"
-        },
-        {
           "name": "Website framework",
-          "description": "The JSON-driven Next.js framework this site runs on. It powers every client site I ship.",
+          "description": "I wanted a framework that allows agents to work directly, but with some limitations.",
           "link": "https://github.com/Hude06"
         }
       ]
@@ -52,12 +46,22 @@
     {
       "id": "projects-why-1",
       "type": "paragraph",
-      "text": "Every one of these started as something I wanted and could not buy, or could buy but not at a price that made sense. Summer Money exists because I wanted to see revenue in the menu bar without opening a dashboard. The website framework exists because starting each client site from scratch was wasting the first week of every project."
+      "text": "1) It does not exist."
+    },
+    {
+      "id": "projects-why-1b",
+      "type": "paragraph",
+      "text": "2) It does, but it is shit."
+    },
+    {
+      "id": "projects-why-1c",
+      "type": "paragraph",
+      "text": "3) I am lazy and don't want to pay for someone else's product."
     },
     {
       "id": "projects-why-2",
       "type": "paragraph",
-      "text": "They are not portfolio pieces. They are tools I use, which means they get fixed when they break and abandoned when they stop being useful. That is a different standard than client work, and an honest one to be clear about."
+      "text": "These are tools I use day to day, and they genuinely make my work and life faster and more efficient."
     },
     {
       "id": "projects-client-head",
@@ -69,12 +73,7 @@
     {
       "id": "projects-client-1",
       "type": "paragraph",
-      "text": "Shipping my own software is where the sharp edges get found. Summer Money handles real money through Stripe, which means real error states, real edge cases, and real consequences for getting it wrong. Every client site benefits from that in ways that are hard to see and easy to feel: fewer things break, and the things that do break fail quietly instead of loudly."
-    },
-    {
-      "id": "projects-client-2",
-      "type": "paragraph",
-      "text": "The framework is the clearest example. Because I maintain it across every site I build, a fix or a speed improvement made for one business lands on all of them. You are not paying for a one-off build that starts rotting the day it ships."
+      "text": "Small side projects allow me to increase what I bring to you. When I have a tool already built to do something, I can move faster, and you get more of what is important from me."
     }
   ]
 }

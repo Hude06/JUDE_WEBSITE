@@ -1,5 +1,3 @@
-'use client';
-
 /**
  * The hero's proof-of-claim. "Eugene's fastest sites" is an assertion; this
  * measures the page you are currently reading and draws the result in the

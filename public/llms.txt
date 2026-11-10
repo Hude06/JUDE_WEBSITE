@@ -16,17 +16,14 @@
 - Approach: Hand-written code. No WordPress, Squarespace, Wix, page builders or templates.
 - Included after launch: domain, hosting, SSL, backups, small text and photo edits.
 - Ownership: The client owns the domain and the code outright. No platform lock-in.
-- Self-editing: Clients get a browser login to change text and swap photos.
 
 ## Pages
 
 - [Home](https://judemakes.com/): Services, pricing, process and FAQ.
-- [What you get](https://judemakes.com/what-you-get): Domain, hosting, SSL, backups, editing and maintenance in detail.
+- [What you get](https://judemakes.com/what-you-get): Domain, hosting, SSL, backups and maintenance in detail.
 - [About](https://judemakes.com/about): How Jude works, what he builds, and working in Eugene.
-- [Projects](https://judemakes.com/projects): Side projects, including Summer Money.
+- [Projects](https://judemakes.com/projects): Side projects.
 - [Contact](https://judemakes.com/contact): Start a project.
-- [Blog](https://judemakes.com/blog/): Build log and notes.
-- [Summer Money](https://judemakes.com/summer-money): macOS menu bar app for tracking revenue as MRR. $9 one-time.
 
 ## Notes for citation
 

@@ -1,223 +1,30 @@
-# Website Framework
+# judemakes.com
 
-An open-source, AI-first website framework built on Next.js + React. Designed as a lightweight WordPress alternative for developers who build client websites with Claude.
-
-## What This Is
-
-A reusable framework for building static-ish client websites. You scaffold a new site from this framework, customize it with Claude, deploy it to a Docker container on your server, and hand your client an admin panel where they can edit content without touching code.
-
-## How It Works
-
-1. **Developer scaffolds a new site** from this framework
-2. **Developer customizes** the site with Claude (blocks, styling, content)
-3. **Developer deploys** to a Docker container on a Linode server behind Nginx
-4. **Client edits content** through an admin panel at `/admin` (text, images, pages, navigation)
-5. **Changes auto-sync** to GitHub via git commit + push
-
-## Key Features
-
-- **Block-based content** — pages are JSON files with 10 typed base blocks (heading, text, image, button, hero, section, grid, two-column, quote, form)
-- **Admin panel** at `/admin` — page editor, block gallery, nav editor, image upload, live preview iframe
-- **BlockRenderer contract** — admin panel edits JSON data, blocks render it. Generic over the registry.
-- **No CSS framework** — small set of hand-rolled primitives + CSS Modules + design tokens. No Tailwind, no shadcn.
-- **11 theme presets, two generations** — 5 classic (editorial / studio / tech / warm / monochrome) plus 6 expressive (atelier / brutalist / console / almanac / kinetic / salon). Classic themes are conservative CSS-variable bundles applied via `[data-theme]`; expressive themes additionally drive texture/atmosphere, per-theme shadows, scroll motion, and structural block layout defaults. Selecting an expressive preset is fully opt-in — classic sites render unchanged.
-- **Dual animation engines** — Motion is the default engine; GSAP is optional per site (`content/site.json`).
-- **No database** — everything is JSON files in `/content/`
-- **Immutable core model** — client sites extend via `site/`, `client/`, and content JSON. Framework internals stay stable and updateable.
-- **No auth code in the app** — Nginx basic auth protects `/admin` on the server
-- **Git-backed** — content changes commit and push automatically
-
-## Quick Start
-
-```bash
-npm install
-npm run dev          # http://localhost:3000
-npm run build        # production build
-npm test             # jest + testing-library
-npm run lint
-```
-
-Visit:
-- `http://localhost:3000` — the site
-- `http://localhost:3000/admin` — admin panel (block editor + preview)
-- `http://localhost:3000/ui-preview` — primitive showcase with theme switcher
-
-Release hardening checklist: `docs/production-readiness.md`
-Deployment env reference: `docs/deployment-env.md`
-Post-deploy health checks: `docs/post-deploy-healthcheck.md`
-Backup/restore runbook: `docs/backup-restore.md`
-Content contract: `docs/contract-v1.md`
-Create CLI release runbook: `docs/releasing-create-cli.md`
-
-## Scaffold A New Client Site
-
-Use the initializer:
-
-```bash
-npm create @judemakesthings/website-framework my-client-site
-```
-
-This runs the scoped create package `@judemakesthings/create-website-framework`, scaffolds a local site, adds the `framework` remote, and creates the `.client-site` marker.
-
-The scaffold keeps shared git history with the framework so `npm run sync-framework` can pull updates without unrelated-history merges.
-
-## Project Structure
+Jude Hill's site, built with Vite into plain static files (no server code).
 
 ```
-app/
-  (site)/              Public site (with Header + Footer)
-    page.tsx           Home — loads content/pages/home.json
-    [slug]/page.tsx    Dynamic pages — loads content/pages/{slug}.json
-    not-found.tsx      404
-  admin/               Admin panel (no site chrome)
-    page.tsx           Page editor, block gallery, nav editor, settings, iframe preview
-  api/admin/           API routes for content CRUD
-    pages/             List, create, read, update, delete pages
-    site/              Read and update site config (nav, colors, fonts)
-    upload/            Image upload
-    rebuild/           Trigger npm run build + git commit/push
-  ui-preview/          Primitive showcase + theme switcher (dev tool)
-  layout.tsx           Root layout — loads fonts, sets theme attributes
-  globals.css          Design tokens + 5 theme presets
-
-components/
-  blocks/              The 10 base block render components
-  admin/               Admin chrome (BlockEditor, BlockGallery, PageSidebar, etc.)
-  admin/editors/       Per-block admin editors
-  admin/manifests.ts   Block templates for the gallery (defaults + labels)
-  BlockRenderer.tsx    Maps block.type → component, merges client + framework registry
-  Header.tsx           Site header with nav links from site.json
-  Footer.tsx           Site footer
-
-lib/
-  ui/                  12 primitives: Container, Stack, Heading, Text, Button,
-                       TextField, TextAreaField, NumberField, SelectField,
-                       ToggleField, ImageField, ArrayField (all CSS Modules)
-  content.ts           loadPage(), loadSiteConfig(), listPages()
-  admin.ts             Server-side helpers (write, delete, validate, git, rebuild)
-  admin-api.ts         Client-side fetch wrappers
-  types.ts             TypeScript types for the 10 base blocks + page + site config
-  schemas.ts           Zod schemas (validate on save)
-  themes.ts            Theme preset loader
-  motion.tsx           Reveal / Stagger / Parallax primitives (engine-aware: Motion or GSAP)
-
-content/
-  pages/*.json         Page content files (home, about, contact)
-  themes/*.json        5 theme presets
-  site.json            Site config (name, nav links, fonts, theme)
-
-public/
-  uploads/             Client-uploaded images served at `/uploads/*`
-
-client/
-  blocks/              Client-specific custom blocks (empty by default)
-  registry.ts          Client block render components map
-  editor-registry.ts   Client block admin editors map
-  gallery.ts           Client block gallery entries
-  types.ts             Client block TypeScript union
-  theme.ts             Client theme presets map
-  README.md            Client zone docs
-
-site/
-  shell.tsx            Client-owned site chrome (header/footer/layout)
-  metadata.ts          Client-owned metadata overrides
-  not-found.tsx        Client-owned 404 component
-  styles.css           Client-owned global style overrides
-  README.md            Site customization guidance
+npm install          # once
+npm run dev          # local preview at http://localhost:5173 (renders in the browser)
+npm run build        # dist/: one HTML file per page + JS/CSS, sitemap.xml, robots.txt, 404.html
+npm run typecheck
 ```
 
-## The 10 Base Blocks
+Deploy (from ~/xp/prod-server):
 
-| Type | Description | Key fields |
-|------|-------------|-----------|
-| `heading` | A standalone heading | text, level (1-6), size (…`hero`/`mega`/`giant`), tone, align |
-| `text` | Body paragraphs (split on blank lines) | body, size, tone, weight, align |
-| `image` | Image with optional caption | src, alt, caption, width |
-| `button` | Call-to-action link | label, href, variant, size, align |
-| `hero` | Title + subtitle + buttons + optional image | title, subtitle, buttons[], image, align, **layout** (stack/split/full-bleed/offset), **eyebrow** |
-| `section` | Visual band with heading + body | heading, body, background, padding, anchor, **layout** (centered/left/wide/aside), **eyebrow** |
-| `grid` | N-column grid of items | heading, items[{title, body, image}], columns, **style** (cards/bare/bordered-list/numbered/feature), **eyebrow** |
-| `two-column` | Side-by-side layout | left/right: {title, body, image, button}, ratio |
-| `quote` | Pull quote with author + role | quote, author, role, image, **style** (centered/display/bordered) |
-| `form` | Contact form with configurable fields | heading, fields[{name, label, type, required}], submitLabel, action |
-
-The **bold** fields are optional layout variants (added additively, still Contract v1). Omit them to
-use the theme's default layout; expressive themes supply distinctive defaults, classic themes keep the
-original layout.
-
-Need something more specific (FAQ, pricing, team grid)? Build a **custom block** in `client/blocks/` — it merges into the gallery automatically without touching framework code. See `client/README.md`.
-
-## Content File Format
-
-Content files use `contractVersion` for forward migrations. Legacy files without it are read as v1 and normalized on save.
-
-```json
-{
-  "contractVersion": 1,
-  "title": "About",
-  "slug": "about",
-  "blocks": [
-    { "id": "about-h1", "type": "heading", "text": "About us", "level": 1, "size": "display" },
-    { "id": "about-body", "type": "text", "body": "We do things.\n\nAnd we do them well." }
-  ]
-}
+```
+./deploy.sh site judemakes.com ~/xp/jude-website/new-site/dist
 ```
 
-## Animation Engine Selection
+## Where things are
 
-Each site can choose its animation engine through `content/site.json`:
+- `content/pages/*.json` — page text, one file per page; the file name is the URL (`about.json` → `/about`, `home.json` → `/`)
+- `content/site.json` — site name and nav links
+- `client/blocks/` — the page blocks the JSON refers to by `type`; `client/registry.ts` maps types to blocks
+- `site/` — header, footer, 404, global CSS (`styles.css`), SEO tags (`metadata.ts`), fonts (`fonts.css`)
+- `public/` — copied into `dist/` as-is (images in `public/uploads/`, Inter in `public/fonts/`)
+- `src/` — Vite entry points; `scripts/build.mjs` prerenders every page to HTML
+- `vendor/moodie-react-0.5.1.tgz` — the header face, checked against the lockfile hash the old site used
 
-```json
-{
-  "motion": {
-    "engine": "motion",
-    "intensity": "subtle"
-  }
-}
-```
+The contact form posts straight to FormSubmit (`formsubmit.co`); nothing runs on our server.
 
-- `"motion"` keeps the current Motion-based behavior.
-- `"gsap"` enables GSAP-powered Reveal/Stagger/Parallax primitives.
-
-Use GSAP when you need advanced timeline choreography and heavier scroll storytelling.
-
-## Adding a New Block Type
-
-**Framework block** (ships to all clients — edit this repo):
-1. Add the interface to `lib/types.ts`, add to `FrameworkBlock` union
-2. Add the zod schema to `lib/schemas.ts`
-3. Create the render component in `components/blocks/<Name>Block.tsx`
-4. Register in `components/BlockRenderer.tsx`
-5. Create the editor in `components/admin/editors/<Name>Editor.tsx`
-6. Register in `components/admin/editors/index.ts`
-7. Add the manifest to `components/admin/manifests.ts`
-
-**Client block** (lives in one site only — edit `client/` in that site): see `client/README.md`.
-
-## Deployment
-
-Sites deploy as Docker containers on a Linode server behind Nginx with SSL via Certbot.
-
-- `/admin` and `/api/admin` are protected by Nginx basic auth (no app-level auth code)
-- Docker container runs Next.js in standalone mode
-- Git deploy key (push-only, single repo) for content sync
-
-See `ARCHITECTURE.md` for full deployment flow diagrams.
-
-## Tech Stack
-
-- **Next.js 16** — App Router, standalone output
-- **React 19** — server and client components
-- **Motion** — animation primitives (Reveal / Stagger / Parallax)
-- **GSAP** — optional advanced animation engine (`gsap`, `@gsap/react`)
-- **Lucide** — icon library (optional, on demand)
-- **Zod** — schema validation for admin saves
-- **TypeScript** — strict mode
-- **Jest + Testing Library** — unit and component tests
-- **Docker + Nginx** — containerized deployment with SSL
-
-No CSS framework, no component library — UI is hand-rolled primitives + CSS Modules + CSS variables.
-
-## License
-
-Open source. MIT.
+Still third-party code shipped to visitors: react, react-dom, @moodie/react, motion.

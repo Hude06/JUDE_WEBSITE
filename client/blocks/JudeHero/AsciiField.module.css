@@ -1,0 +1,65 @@
+/* Sits behind the hero copy; the hero root sets `isolation: isolate`. */
+.root {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  -webkit-mask-image: linear-gradient(180deg, transparent, #000 22%, #000 78%, transparent);
+  mask-image: linear-gradient(180deg, transparent, #000 22%, #000 78%, transparent);
+}
+
+.side {
+  position: absolute;
+  top: 0;
+  height: 100%;
+  overflow: hidden;
+  contain: strict;
+}
+
+/* Fade toward the middle so the copy always reads clean. */
+.left {
+  -webkit-mask-image: linear-gradient(90deg, #000 10%, transparent);
+  mask-image: linear-gradient(90deg, #000 10%, transparent);
+}
+
+.right {
+  -webkit-mask-image: linear-gradient(270deg, #000 10%, transparent);
+  mask-image: linear-gradient(270deg, #000 10%, transparent);
+}
+
+.layer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  max-width: none;
+  display: block;
+}
+
+.drift {
+  will-change: transform;
+  animation: drift 30s infinite;
+}
+
+.right .drift {
+  animation-direction: reverse;
+}
+
+@keyframes drift {
+  to {
+    transform: translateX(var(--shift));
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .drift {
+    animation: none;
+  }
+}
+
+/* Phones: the side strips would sit under the copy. */
+@media (max-width: 720px) {
+  .root {
+    display: none;
+  }
+}

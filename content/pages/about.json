@@ -1,5 +1,4 @@
 {
-  "contractVersion": 1,
   "title": "About Jude Hill — Web Designer in Eugene",
   "slug": "about",
   "description": "Jude Hill is a web designer and developer in Eugene, Oregon. Hand-coded sites for small businesses in Eugene, Springfield and Lane County, from $500 flat.",
@@ -8,7 +7,7 @@
       "id": "about-1",
       "type": "jude-hero",
       "headline": "Hi, I'm Jude Hill.",
-      "subheadline": "I'm a high school student in Eugene, Oregon. I build fast, simple websites for small businesses, creatives, and anyone with an idea.",
+      "subheadline": "I'm a high school student in Eugene, Oregon. I build fast, simple websites for small businesses and anyone with an idea.",
       "primaryCta": {
         "text": "Start a project",
         "href": "/contact"
@@ -32,7 +31,7 @@
     {
       "id": "about-how-1",
       "type": "paragraph",
-      "text": "I build in the browser, not in a mockup. You see a working page within a few days and watch it come together. Everything is hand-coded, with no page builders or plugins to break later."
+      "text": "I work outside of school and on the weekends. When you send me a message, it gets added to my list, and then I start working on it. I have a development version of your site that gets sent to you so we can work through changes before it goes live."
     },
     {
       "id": "about-what",
@@ -47,11 +46,6 @@
       "text": "Small business sites: a few clear pages that cover what you do, what it costs, where you are, and how to reach you. New sites, or rebuilds of old slow ones."
     },
     {
-      "id": "about-what-2",
-      "type": "paragraph",
-      "text": "From $500, quoted flat. Domain, hosting, backups and small edits after launch are handled, and you can update the text yourself."
-    },
-    {
       "id": "about-eugene",
       "type": "jude-heading",
       "text": "Based in Eugene",
@@ -61,7 +55,7 @@
     {
       "id": "about-eugene-1",
       "type": "paragraph",
-      "text": "I work with businesses in Eugene, Springfield and around Lane County, so I can come see your shop in person. You work with me directly, not an account manager."
+      "text": "I work with businesses in Eugene, Springfield and around Lane County, so I can come see your shop in person. You work with me directly."
     },
     {
       "id": "about-sep-2",
@@ -71,7 +65,7 @@
       "id": "about-8",
       "type": "photo-strip",
       "title": "Outside the browser",
-      "text": "FPV drones, an Etsy store, and a workshop full of half-finished projects.",
+      "text": "FPV drones, an Etsy store, and a workbench full of drone parts.",
       "photos": [
         {
           "image": "/uploads/photos/drone.webp",

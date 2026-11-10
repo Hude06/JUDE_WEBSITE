@@ -1,10 +1,4 @@
-import Link from 'next/link';
-
-/**
- * Client-owned 404 component.
- *
- * Edit this in a client site when you need custom 404 copy or design.
- */
+/** The 404 page (built to dist/404.html). */
 export function SiteNotFound() {
   return (
     <section className="jude-container site-not-found">
@@ -19,9 +13,9 @@ export function SiteNotFound() {
         typo. Either way, let&apos;s get you back on track.
       </p>
       <div className="site-not-found__actions">
-        <Link href="/" className="jude-btn jude-btn--primary">
+        <a href="/" className="jude-btn jude-btn--primary">
           Back to home
-        </Link>
+        </a>
         <a href="mailto:jude@micah77.org" className="jude-link-inline">
           Email me →
         </a>

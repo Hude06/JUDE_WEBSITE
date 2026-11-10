@@ -1,5 +1,3 @@
-'use client';
-
 import { useEffect, useRef } from 'react';
 
 /** Picks up the name typed into the work grid's "Your site here" card

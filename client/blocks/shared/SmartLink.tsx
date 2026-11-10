@@ -1,4 +1,3 @@
-import Link from 'next/link';
 import type { AnchorHTMLAttributes, ReactNode } from 'react';
 
 interface SmartLinkProps extends Omit<AnchorHTMLAttributes<HTMLAnchorElement>, 'href'> {
@@ -6,24 +5,12 @@ interface SmartLinkProps extends Omit<AnchorHTMLAttributes<HTMLAnchorElement>, '
   children: ReactNode;
 }
 
-function isInternal(href: string): boolean {
-  return href.startsWith('/') || href.startsWith('#');
-}
-
 /**
- * Renders next/link for in-app routes ("/...", "#...") so they get prefetch +
- * client-side navigation, and a plain <a> for external/protocol links
- * (http(s), mailto:, tel:) with safe target/rel applied automatically.
+ * Plain <a> for every link. External http(s) links open in a new tab with
+ * safe target/rel applied automatically; site links ("/...", "#...") and
+ * mailto:/tel: stay in the same tab.
  */
 export function SmartLink({ href, children, ...rest }: SmartLinkProps) {
-  if (isInternal(href)) {
-    return (
-      <Link href={href} {...rest}>
-        {children}
-      </Link>
-    );
-  }
-
   const opensNewTab = href.startsWith('http');
   return (
     <a

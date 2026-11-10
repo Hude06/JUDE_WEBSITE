@@ -1,5 +1,4 @@
 {
-  "contractVersion": 1,
   "title": "Web Designer & Developer in Eugene, Oregon — Jude Hill",
   "slug": "home",
   "description": "Web designer and developer in Eugene, Oregon. Hand-coded sites for small businesses, no templates and no page builders. Fast, custom, built to last.",
@@ -9,7 +8,7 @@
       "type": "jude-hero",
       "eyebrow": "Available for new projects",
       "headline": "Eugene Web Designer",
-      "subheadline": "Small business sites, designed in the browser and built in weeks.",
+      "subheadline": "Small business sites, designed and built in weeks.",
       "primaryCta": {
         "text": "Start a project",
         "href": "/contact"
@@ -24,7 +23,7 @@
       "id": "home-work",
       "type": "work-grid",
       "heading": "Selected work",
-      "countLabel": "03 shipped · 02 concepts",
+      "countLabel": "03 shipped · 03 concepts",
       "anchorId": "work",
       "items": [
         {
@@ -55,7 +54,7 @@
           "tagline": "Concept redesign for a Eugene bakery open since 1976.",
           "year": "2026",
           "image": "/uploads/portfolio/metropol-bakery.webp",
-          "link": "https://metropolbakery.judemakes.dev/",
+          "link": "https://judemakes.com/metropol-bakery/",
           "status": "live"
         },
         {
@@ -63,11 +62,19 @@
           "tagline": "Concept site for a family coffee and piroshki shop.",
           "year": "2026",
           "image": "/uploads/portfolio/kingdom-koffee.webp",
-          "link": "https://kingdomkoffee.judemakes.dev/",
+          "link": "https://judemakes.com/kingdom-koffee/",
+          "status": "live"
+        },
+        {
+          "name": "Pup's Place",
+          "tagline": "Concept site for a Fear Free grooming shop in downtown Springfield.",
+          "year": "2026",
+          "image": "/uploads/portfolio/pups-place.webp",
+          "link": "https://judemakes.com/pups-place/",
           "status": "live"
         }
       ],
-      "showEmptyCard": true
+      "showEmptyCard": false
     },
     {
       "id": "home-sep-1",
@@ -83,7 +90,7 @@
     {
       "id": "home-services-copy",
       "type": "paragraph",
-      "text": "Restaurants, trades, studios, shops. A few clear pages that answer what people actually call about, built as hand-written code so they load in under a second on a phone with two bars, and so there is nothing bolted on that needs patching later."
+      "text": "Restaurants, trades, studios and shops. A few clear pages, hand-coded to load in under a second on any phone, with nothing bolted on to patch later."
     },
     {
       "id": "home-how-head",
@@ -110,7 +117,7 @@
         },
         {
           "title": "It goes live, and stays live",
-          "description": "I point the domain, set up hosting and SSL, and keep it running. You get a login so you can edit the text yourself."
+          "description": "I point the domain, set up hosting and SSL, and keep it running."
         }
       ]
     },

@@ -6,7 +6,7 @@
   only color on a page comes from the photographs. Emphasis is carried
   by weight, size, and the hairline grid instead of by hue. No dark
   bands — sections separate with hairline rules on white. One family
-  throughout: Inter (loaded by the framework via next/font) at bold
+  throughout: Inter (self-hosted, site/fonts.css) at bold
   with tight tracking for headings, regular for prose and labels — tall
   x-height, open spacing, built for screens. Framework-native CSS only
   (no Tailwind, no shadcn).
@@ -22,21 +22,22 @@
   --font-body: var(--font-inter), -apple-system, BlinkMacSystemFont, "Segoe UI",
     "Helvetica Neue", Arial, sans-serif;
 
-  /* —— palette: warm paper ground, ink structure, no hue ————————
-     The accent tokens are kept (dozens of modules reference them) but
-     every one of them now resolves to ink. Swapping these six values is
-     the only edit needed to reintroduce a hue later. */
-  --bg: #fbf8f7;
-  --bg-raised: #f4efee;
-  --bg-panel: #ffffff;
-  --ink: #17181c;
-  --ink-soft: #4b5058;
-  --ink-faint: #666c76;
-  --accent: #17181c;
-  --accent-bright: #17181c;
-  --accent-deep: #000000;
-  --accent-wash: #eceaea;
-  --accent-glow: rgba(23, 24, 28, 0.28);
+  /* —— palette: sky ground, navy ink, hot pink accent ————————
+     Pink only points: buttons, links, step numbers, the live dot, and the
+     cursor/sun in the ASCII pieces. #c81f65 rather than a brighter pink so
+     small pink text still clears 4.5:1 on the sky ground. */
+  --bg: #e9f3ff;
+  --bg-raised: #dbeaff;
+  --bg-panel: #f6faff;
+  --hero-tint: #cfe5ff;
+  --ink: #141a2a;
+  --ink-soft: #464e60;
+  --ink-faint: #646c7e;
+  --accent: #c81f65;
+  --accent-bright: #ff2e88;
+  --accent-deep: #a8174f;
+  --accent-wash: #fde7f0;
+  --accent-glow: rgba(200, 31, 101, 0.24);
   --live: var(--accent);
 
   /* Soft-technical radius scale. */
@@ -56,8 +57,8 @@
   --color-fg: var(--ink);
   --color-muted: var(--ink-soft);
   --color-subtle: var(--ink-faint);
-  --color-hairline: rgba(23, 24, 28, 0.1);
-  --color-hairline-strong: rgba(23, 24, 28, 0.24);
+  --color-hairline: rgba(20, 26, 42, 0.1);
+  --color-hairline-strong: rgba(20, 26, 42, 0.22);
   --color-accent-ink: var(--accent);
   --color-accent-warm: var(--accent);
   --color-live: var(--live);
@@ -353,7 +354,7 @@ a {
 
 @media (min-width: 640px) {
   .site-header {
-    background: rgba(251, 248, 247, 0.85);
+    background: color-mix(in srgb, var(--bg) 85%, transparent);
     backdrop-filter: blur(12px) saturate(1.4);
     -webkit-backdrop-filter: blur(12px) saturate(1.4);
   }
@@ -375,97 +376,16 @@ a {
   color: var(--color-fg);
 }
 
-/* A button, not decoration: clicking the mark rerolls its face. */
-.site-brand__mark {
-  position: relative;
-  display: grid;
-  place-items: center;
-  width: 3rem;
-  height: 3rem;
-  flex: none;
-  padding: 0;
-  border: 0;
-  border-radius: 999px;
-  background: none;
-  cursor: pointer;
-  transition: transform 160ms ease;
-}
-
-.site-brand__mark:hover {
-  transform: scale(1.06) rotate(-4deg);
-}
-
-.site-brand__mark:active {
-  transform: scale(0.94);
-}
-
-.site-brand__mark:focus-visible {
-  outline: 2px solid var(--color-accent-ink);
-  outline-offset: 3px;
-}
-
-@keyframes brand-mark-pop {
-  0% { transform: scale(1) rotate(0deg); }
-  40% { transform: scale(1.16) rotate(7deg); }
-  100% { transform: scale(1) rotate(0deg); }
-}
-
-.site-brand__mark.is-popping {
-  animation: brand-mark-pop 300ms ease;
-}
-
-/* Fades in a beat after load, and retires for good on the first click. */
-.site-brand__hint {
-  position: absolute;
-  top: calc(100% - 0.1rem);
-  left: 50%;
-  font-family: var(--font-mono);
-  font-size: 0.5rem;
-  font-weight: 500;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: var(--color-subtle);
-  white-space: nowrap;
-  pointer-events: none;
-  opacity: 0;
-  transform: translateX(-50%);
-  animation: brand-hint-in 600ms ease 1.4s forwards;
-}
-
-@keyframes brand-hint-in {
-  to { opacity: 0.7; }
-}
-
-.site-brand__mark:hover .site-brand__hint {
-  color: var(--color-accent-ink);
-  opacity: 1;
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .site-brand__mark,
-  .site-brand__mark:hover,
-  .site-brand__mark:active {
-    transform: none;
-    transition: none;
-  }
-
-  .site-brand__mark.is-popping {
-    animation: none;
-  }
-
-  .site-brand__hint {
-    animation: none;
-    opacity: 0.7;
-  }
-}
-
 .site-brand__label {
   display: inline-flex;
   align-items: baseline;
   text-decoration: none;
   color: var(--color-subtle);
   font-family: var(--font-mono);
-  font-size: 0.72rem;
+  font-size: 0.74rem;
+  /* same underline room as .site-nav__link so the two share a baseline */
+  border-bottom: 1px solid transparent;
+  padding-bottom: 2px;
   font-weight: 500;
   letter-spacing: 0.08em;
   text-transform: uppercase;
@@ -529,28 +449,43 @@ a {
   background-image: none;
 }
 
-/* Phone: the wordmark steps aside so the mark and all five destinations fit
-   on one line. The <Link> carries aria-label="… — home", so the site name is
-   still announced; only the redundant visual duplicate is dropped. Keeping
-   every destination one tap away matters more here than the wordmark. */
+/* Phone: the name gets its own short row and the five destinations spread
+   across the row under it; one line can't hold both. The role drops. */
 @media (max-width: 639.98px) {
   .site-header__inner {
-    gap: 0.75rem;
-    padding-top: 0.5rem;
-    padding-bottom: 0.5rem;
+    flex-wrap: wrap;
+    gap: 0;
+    padding-top: 0.35rem;
+    padding-bottom: 0.15rem;
+  }
+
+  .site-brand {
+    flex: 1 0 100%;
+  }
+
+  .site-nav {
+    flex: 1 0 100%;
+    justify-content: space-between;
+  }
+
+  /* first and last links hug the gutters so the row lines up with the name */
+  .site-nav__link:first-child {
+    justify-content: flex-start;
+  }
+
+  .site-nav__link:last-child {
+    justify-content: flex-end;
   }
 
   .site-brand__label {
-    display: none;
+    font-size: 0.66rem;
+    letter-spacing: 0.04em;
+    border-bottom: 0;
+    padding-bottom: 0;
   }
 
-  /* Fill the 44px tap target the mark already sits inside. */
-  .site-brand__mark {
-    width: 2.75rem;
-    height: 2.75rem;
-  }
-
-  .site-brand__hint {
+  .site-brand__role,
+  .site-brand__separator {
     display: none;
   }
 
@@ -579,10 +514,12 @@ a {
     padding-bottom: 0;
   }
 
-  /* The brand box grows rightward only, so the mark stays flush with the
-     page gutter while the tap area reaches 44px. */
+  /* The brand box grows rightward only, so the name stays flush with the
+     page gutter. Its row is shorter than the nav row; the link inside still
+     spans the full width, so the tap target stays generous. */
   .site-brand {
     justify-content: flex-start;
+    min-height: 2.25rem;
   }
 
 }
@@ -623,6 +560,7 @@ a {
 
 .site-footer__cta-band {
   border-top: 1px solid var(--color-hairline);
+  background: var(--bg-raised);
 }
 
 .site-footer__cta-inner {
@@ -680,6 +618,120 @@ a {
 }
 
 /* Thin white closing bar — hairline rules, no dark surfaces. */
+/* ASCII skyline along the bottom of the CTA band (site/components/AsciiRidge.tsx).
+   Everything that moves is a transform or a CSS animation. */
+.ascii-ridge {
+  position: relative;
+  height: 143px;
+  overflow: hidden;
+  color: var(--ink-faint);
+  font-family: ui-monospace, "SF Mono", SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: 13px;
+  line-height: 1.1;
+  user-select: none;
+  pointer-events: none;
+  contain: strict;
+}
+
+.ascii-ridge pre {
+  position: absolute;
+  top: 0;
+  left: 0;
+  margin: 0;
+  font: inherit;
+  line-height: inherit;
+  white-space: pre;
+}
+
+.ascii-ridge__sky {
+  position: absolute;
+  inset: 0;
+}
+
+.ascii-ridge__far {
+  opacity: 0.45;
+}
+
+.ascii-ridge__near {
+  color: var(--ink-soft);
+}
+
+.ascii-ridge__far,
+.ascii-ridge__near {
+  animation-name: ascii-slide;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+  will-change: transform;
+}
+
+.ascii-ridge__label {
+  opacity: 0.6;
+}
+
+.ascii-ridge__mark,
+.ascii-ridge__sun {
+  color: var(--accent);
+}
+
+.ascii-ridge__sun {
+  animation-name: ascii-slide;
+  animation-iteration-count: infinite;
+  will-change: transform;
+}
+
+.ascii-ridge__cloud {
+  opacity: 0.55;
+  animation-name: ascii-slide;
+  animation-iteration-count: infinite;
+  will-change: transform;
+}
+
+.ascii-ridge__bird {
+  position: absolute;
+  left: 0;
+  color: var(--ink-soft);
+  animation-name: ascii-slide;
+  animation-fill-mode: forwards;
+  will-change: transform;
+}
+
+.ascii-ridge__bird i {
+  font-style: normal;
+  animation: ascii-flap 0.5s steps(1) infinite;
+}
+
+.ascii-ridge__bird i + i {
+  position: absolute;
+  top: 0;
+  left: 0;
+  animation-direction: reverse;
+}
+
+@keyframes ascii-slide {
+  from { transform: translateX(var(--from)); }
+  to { transform: translateX(var(--to)); }
+}
+
+@keyframes ascii-flap {
+  50% { opacity: 0; }
+}
+
+@media (max-width: 720px) {
+  .ascii-ridge {
+    font-size: 9px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ascii-ridge__far,
+  .ascii-ridge__near,
+  .ascii-ridge__sun,
+  .ascii-ridge__cloud,
+  .ascii-ridge__bird i {
+    animation: none;
+  }
+}
+
 .site-footer__fine-print-wrap {
   border-top: 1px solid var(--color-hairline);
   background: var(--bg-panel);

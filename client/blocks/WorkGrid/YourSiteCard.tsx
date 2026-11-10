@@ -1,7 +1,4 @@
-'use client';
-
 import { useState } from 'react';
-import Link from 'next/link';
 import { MARK_PALETTE } from '@/client/blocks/shared/markPalette';
 import styles from './WorkGridBlock.module.css';
 
@@ -72,9 +69,9 @@ export function YourSiteCard() {
       </div>
       <p className={styles.tagline}>
         {trimmed ? 'Like it? ' : 'Yours could be the next one here. '}
-        <Link href={href} className={styles.yourCta}>
+        <a href={href} className={styles.yourCta}>
           {trimmed ? 'Let’s build the real one →' : 'Start a project →'}
-        </Link>
+        </a>
       </p>
     </div>
   );

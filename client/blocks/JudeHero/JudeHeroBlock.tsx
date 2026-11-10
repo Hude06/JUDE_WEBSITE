@@ -3,6 +3,7 @@ import { cn } from '@/lib/utils';
 import { ghostButton, primaryButton, primaryButtonArrow } from '@/client/blocks/shared/buttons';
 import { SmartLink } from '@/client/blocks/shared/SmartLink';
 import { HeroLoadReadout } from './LoadMeter';
+import { AsciiField } from './AsciiField';
 import styles from './JudeHeroBlock.module.css';
 
 interface JudeHeroBlockProps {
@@ -16,6 +17,7 @@ export function JudeHeroBlock({ block }: JudeHeroBlockProps) {
 
   return (
     <section className={cn(styles.root, isCentered && styles.rootCentered)}>
+      <AsciiField />
       <div className={cn(styles.inner, hasPhoto && styles.innerSplit)}>
         <div className={styles.copy}>
           {block.eyebrow && (

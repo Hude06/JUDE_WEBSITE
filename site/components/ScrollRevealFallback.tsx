@@ -1,7 +1,4 @@
-'use client';
-
 import { useEffect } from 'react';
-import { usePathname } from 'next/navigation';
 
 /**
  * Cross-browser fallback for `.scroll-reveal` entrances.
@@ -12,10 +9,7 @@ import { usePathname } from 'next/navigation';
  * lack scroll-driven animations (Safari ≤18, Firefox), it drives the reveal with
  * a single IntersectionObserver, adding `.is-revealed` as elements enter.
  *
- * Re-runs on every route change: this component lives in the persistent layout
- * shell, so a client-side navigation swaps in brand-new `.scroll-reveal` nodes
- * that the previous observer never saw. Without the pathname dependency those
- * sections would stay at opacity 0 forever (a "blank page" below the fold).
+ * Every page is a full page load, so this runs once per page.
  *
  * Snap-if-already-visible: anything already on (or above) the viewport when this
  * runs — including items the user scrolled past quickly before hydration — is
@@ -23,8 +17,6 @@ import { usePathname } from 'next/navigation';
  * motion is handled in CSS (content forced visible), so we bail early there.
  */
 export function ScrollRevealFallback() {
-  const pathname = usePathname();
-
   useEffect(() => {
     if (typeof window === 'undefined') return;
 
@@ -71,7 +63,7 @@ export function ScrollRevealFallback() {
     pending.forEach((el) => observer.observe(el));
 
     return () => observer.disconnect();
-  }, [pathname]);
+  }, []);
 
   return null;
 }

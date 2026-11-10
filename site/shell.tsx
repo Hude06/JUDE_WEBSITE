@@ -1,20 +1,15 @@
 import type { ReactNode } from 'react';
-import Script from 'next/script';
 import { Header } from '@/site/components/Header';
 import { Footer } from '@/site/components/Footer';
 import { ScrollRevealFallback } from '@/site/components/ScrollRevealFallback';
-import { Atmosphere } from '@/components/theme/Atmosphere';
-import { isExpressiveTheme } from '@/lib/themes';
+import { SmoothAnchorScroll } from '@/components/SmoothAnchorScroll';
+import { SITE_URL as siteUrl } from '@/site/metadata';
 import type { SiteConfig } from '@/lib/types';
 
 export interface SiteShellProps {
   config: SiteConfig;
   children: ReactNode;
 }
-
-const siteUrl =
-  process.env.NEXT_PUBLIC_SITE_URL ??
-  (process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : 'http://localhost:3000');
 
 /* Structured data: who Jude is and what this site is. Emitted once in the
    shell so every page carries it. */
@@ -88,32 +83,13 @@ const structuredData = {
 };
 
 export function SiteShell({ config, children }: SiteShellProps) {
-  // Only expressive themes get the texture overlay. Classic themes render no
-  // extra element, keeping their DOM identical to before.
-  const expressive = isExpressiveTheme(config.theme?.preset) || config.theme?.system === 'expressive';
   return (
     <>
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
       />
-      {/* Google Analytics (gtag.js). lazyOnload: gtag is ~180 KB compressed,
-          more than all of the site's own JS, so it waits until the page has
-          finished loading instead of competing with it. Superview still
-          records every visit immediately. */}
-      <Script
-        src="https://www.googletagmanager.com/gtag/js?id=G-5S85L38R1M"
-        strategy="lazyOnload"
-      />
-      <Script id="google-analytics" strategy="lazyOnload">
-        {`
-          window.dataLayer = window.dataLayer || [];
-          function gtag(){dataLayer.push(arguments);}
-          gtag('js', new Date());
-          gtag('config', 'G-5S85L38R1M');
-        `}
-      </Script>
-      {expressive && <Atmosphere />}
+      <SmoothAnchorScroll />
       <Header siteName={config.siteName} nav={config.nav} />
       <main>{children}</main>
       <Footer siteName={config.siteName} />

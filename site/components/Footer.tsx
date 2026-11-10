@@ -1,4 +1,4 @@
-import Link from 'next/link';
+import { AsciiRidge } from './AsciiRidge';
 
 interface FooterProps {
   siteName: string;
@@ -19,14 +19,18 @@ export function Footer({ siteName }: FooterProps) {
           </h2>
 
           <div className="site-footer__cta-actions">
-            <Link href="/contact" className="jude-btn jude-btn--primary">
+            <a href="/contact" className="jude-btn jude-btn--primary">
               <span>Start a project</span>
               <span aria-hidden className="jude-btn__arrow">→</span>
-            </Link>
+            </a>
             <span className="site-footer__email-line">
               <a href="mailto:jude@micah77.org">jude@micah77.org</a> · replies within a day
             </span>
           </div>
+        </div>
+
+        <div className="jude-container">
+          <AsciiRidge />
         </div>
       </section>
 
