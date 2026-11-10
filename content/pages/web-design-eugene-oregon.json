@@ -1,0 +1,221 @@
+{
+  "contractVersion": 1,
+  "title": "Web Design Eugene Oregon | Small-Business Websites",
+  "slug": "web-design-eugene-oregon",
+  "description": "Custom web design in Eugene, Oregon for small businesses. Hand-built sites from $500, launched in weeks, with hosting and maintenance handled.",
+  "blocks": [
+    {
+      "id": "wde-hero",
+      "type": "jude-hero",
+      "eyebrow": "Eugene, Oregon",
+      "headline": "Web design in Eugene, Oregon",
+      "headlineAccent": "for small businesses.",
+      "subheadline": "Custom websites built by hand for Eugene businesses. No templates, no page builders, no monthly platform fee. Designed, developed, and maintained by one person you can actually reach.",
+      "primaryCta": {
+        "text": "Start a project",
+        "href": "/contact"
+      },
+      "secondaryCta": {
+        "text": "See the work",
+        "href": "/projects"
+      },
+      "align": "center",
+      "showFacts": true
+    },
+    {
+      "id": "wde-intro-heading",
+      "type": "jude-heading",
+      "text": "A web designer in Eugene who builds the site himself",
+      "level": 2
+    },
+    {
+      "id": "wde-intro",
+      "type": "paragraph",
+      "text": "I'm Jude Hill, a freelance web designer and developer based in Eugene, Oregon. When you hire an agency you get an account manager, and the actual work goes to someone you never meet. When you hire me, the person you talk to is the person writing the code. That means fewer things get lost, decisions happen in a single email, and the site gets built the way we agreed."
+    },
+    {
+      "id": "wde-intro-2",
+      "type": "paragraph",
+      "text": "I build every site in code rather than assembling it out of a page builder. It takes more skill up front, and the payoff is a website that loads in well under a second, looks right on a phone, and has no plugins waiting to break. For a small business competing for attention in Eugene, that speed is not a vanity metric. It is the difference between a customer waiting and a customer leaving."
+    },
+    {
+      "id": "wde-services-grid",
+      "type": "feature-grid",
+      "eyebrow": "Services",
+      "heading": "Website design and development services in Eugene",
+      "columns": 2,
+      "items": [
+        {
+          "title": "Small-business website design",
+          "description": "The core of what I do. A custom multi-page site for a local business, restaurant, studio, tradesperson, or clinic, designed around the one or two things you need a visitor to do."
+        },
+        {
+          "title": "Landing pages",
+          "description": "A single focused page for a campaign, a product launch, or a service you want to push. Fast to build and fast to load."
+        },
+        {
+          "title": "Website redesign and rebuilds",
+          "description": "If your current site is slow, looks like it was built in 2012, or you cannot update it without calling someone, I rebuild it and keep the rankings you already have."
+        },
+        {
+          "title": "E-commerce and booking",
+          "description": "Straightforward online ordering, booking, or payment set up with tools that will not charge you a percentage of every sale you make."
+        },
+        {
+          "title": "Domain, hosting, and SSL",
+          "description": "Registered, configured, secured, and monitored. One invoice and one person to call instead of three separate vendors."
+        },
+        {
+          "title": "Ongoing maintenance",
+          "description": "Content changes, new pages, updates, and uptime monitoring after launch. Email me and it gets done."
+        }
+      ]
+    },
+    {
+      "id": "wde-why-heading",
+      "type": "jude-heading",
+      "text": "Why Eugene businesses choose a freelance web designer",
+      "level": 2
+    },
+    {
+      "id": "wde-why",
+      "type": "feature-grid",
+      "columns": 3,
+      "items": [
+        {
+          "title": "You talk to the builder",
+          "description": "No account manager, no handoffs, no telephone game between sales and production. One person, start to finish."
+        },
+        {
+          "title": "Agencies cost more",
+          "description": "An agency has offices and a sales team, and that overhead lands in your quote. My sites start at $500 because my overhead is a laptop."
+        },
+        {
+          "title": "Weeks, not quarters",
+          "description": "Most small-business sites launch in two to four weeks. There is no queue, no sprint planning, and no waiting on four other departments."
+        },
+        {
+          "title": "Genuinely fast sites",
+          "description": "Hand-written code with no page-builder bloat. These load in under a second, which helps both your visitors and your Google ranking."
+        },
+        {
+          "title": "Local and reachable",
+          "description": "I live in Eugene. We can meet for coffee, and I know the market you are selling into because I live in it too."
+        },
+        {
+          "title": "You own everything",
+          "description": "The domain, the code, and the content are yours. You are not renting your own website from a platform that raises prices every year."
+        }
+      ]
+    },
+    {
+      "id": "wde-process-heading",
+      "type": "jude-heading",
+      "text": "The web design process",
+      "level": 2
+    },
+    {
+      "id": "wde-process",
+      "type": "steps",
+      "steps": [
+        {
+          "title": "Free first conversation",
+          "description": "Tell me about your business, your customers, and what is not working now. I will tell you honestly whether I am the right fit, and roughly what it will cost."
+        },
+        {
+          "title": "A fixed quote",
+          "description": "You get a number and a scope in writing before any work begins. No hourly billing that quietly doubles."
+        },
+        {
+          "title": "Designed in the browser",
+          "description": "I skip static mockups and build real pages on a real URL. You watch the site take shape and give feedback while it is still cheap to change."
+        },
+        {
+          "title": "Revisions",
+          "description": "We refine until it is right. Adjustments during the design phase are part of the project, not a change order."
+        },
+        {
+          "title": "Launch",
+          "description": "Domain, hosting, SSL, page titles, structured data, and sitemap all configured. Your site goes live and Google can read it properly from day one."
+        },
+        {
+          "title": "After launch",
+          "description": "I keep it updated, backed up, and monitored. When you need a change, you email me."
+        }
+      ]
+    },
+    {
+      "id": "wde-areas-heading",
+      "type": "jude-heading",
+      "text": "Areas served around Eugene",
+      "level": 2
+    },
+    {
+      "id": "wde-areas",
+      "type": "paragraph",
+      "text": "Based in Eugene, Oregon and working with businesses across Lane County, including Springfield, Cottage Grove, Creswell, Junction City, Veneta, Coburg, and Florence. In-person meetings are easy anywhere in the Eugene and Springfield metro area. I also work remotely with clients elsewhere in Oregon and across the country."
+    },
+    {
+      "id": "wde-faq-heading",
+      "type": "jude-heading",
+      "text": "Frequently asked questions",
+      "level": 2
+    },
+    {
+      "id": "wde-faq",
+      "type": "feature-grid",
+      "columns": 2,
+      "items": [
+        {
+          "title": "How much does web design cost in Eugene, Oregon?",
+          "description": "My sites start at $500. A single-page site for a small business sits near that floor; a larger multi-page site with custom functionality runs higher. Local agency projects frequently start in the several-thousand range, which is the gap I exist to fill. You always get a fixed quote before work starts."
+        },
+        {
+          "title": "How long does it take to build a website?",
+          "description": "Two to four weeks is typical for a small-business site, measured from our first conversation to launch day. Bigger projects take longer. The most common delay is waiting on photos and copy, so having those ready speeds everything up."
+        },
+        {
+          "title": "Do you build WordPress sites?",
+          "description": "I build custom sites in code instead. WordPress brings plugin updates, security patching, and slow load times that small businesses end up paying for one way or another. If you are already on WordPress I can maintain it, or migrate you to something faster."
+        },
+        {
+          "title": "What do I need to provide?",
+          "description": "Your logo if you have one, photos of your work or space, and a rough sense of what you want to say. If writing is not your thing, I will draft copy and you edit it. Nobody needs to stare at a blank page."
+        },
+        {
+          "title": "Will you help my site rank on Google?",
+          "description": "Every site ships with the technical foundations: clean titles and meta descriptions, structured data, a sitemap, mobile-friendly layout, and fast load times. Local ranking also depends heavily on your Google Business Profile and customer reviews, and I will show you how to set those up."
+        },
+        {
+          "title": "Can I update the site myself?",
+          "description": "Yes. I can set you up with an admin panel for the parts you will actually want to change, like hours, menus, or photos. For everything else, emailing me is usually faster than learning a CMS."
+        },
+        {
+          "title": "What happens if I want changes later?",
+          "description": "You email me and I make them. There is no ticket system and no minimum retainer. Ongoing maintenance covers small changes; larger additions get quoted separately."
+        },
+        {
+          "title": "Do you work with businesses outside Eugene?",
+          "description": "Often. Local clients get in-person meetings, but the work itself happens the same way regardless of where you are. Remote projects across Oregon and the rest of the country are normal."
+        }
+      ],
+      "faq": true
+    },
+    {
+      "id": "wde-cta",
+      "type": "cta",
+      "eyebrow": "Eugene, Oregon",
+      "title": "Let's build your site.",
+      "description": "Tell me about your business and what you need. I reply within a day, and the first conversation costs nothing.",
+      "primaryCta": {
+        "text": "Start a project",
+        "href": "/contact"
+      },
+      "secondaryCta": {
+        "text": "See the work",
+        "href": "/projects"
+      },
+      "tone": "bold"
+    }
+  ]
+}

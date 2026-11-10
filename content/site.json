@@ -1,11 +1,30 @@
 {
   "siteName": "Jude Makes Things",
   "nav": [
-    { "label": "Work", "href": "/#work" },
-    { "label": "Projects", "href": "/projects" },
-    { "label": "What you get", "href": "/what-you-get" },
-    { "label": "About", "href": "/about" },
-    { "label": "Contact", "href": "/contact" }
+    {
+      "label": "Web design",
+      "href": "/web-design-eugene-oregon"
+    },
+    {
+      "label": "Work",
+      "href": "/#work"
+    },
+    {
+      "label": "Projects",
+      "href": "/projects"
+    },
+    {
+      "label": "What you get",
+      "href": "/what-you-get"
+    },
+    {
+      "label": "About",
+      "href": "/about"
+    },
+    {
+      "label": "Contact",
+      "href": "/contact"
+    }
   ],
   "fonts": {
     "heading": "'Clash Display', 'Avenir Next', 'Helvetica Neue', sans-serif",

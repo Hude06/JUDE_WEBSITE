@@ -1,14 +1,14 @@
 {
   "contractVersion": 1,
-  "title": "About Jude Hill — Web Designer & Developer in Eugene, Oregon",
+  "title": "About Jude Hill | Web Designer in Eugene, OR",
   "slug": "about",
-  "description": "About Jude Hill — a web designer and developer in Eugene, Oregon who designs in the browser, ships every few days, and hands off sites you can update yourself.",
+  "description": "Jude Hill is a freelance web designer and developer in Eugene, Oregon building fast, custom small-business websites by hand. No templates.",
   "blocks": [
     {
       "id": "about-1",
       "type": "jude-hero",
-      "headline": "Hi, I'm Jude Hill.",
-      "subheadline": "I'm a high school student from Eugene, Oregon who builds stunning websites that are fast and simple. Whether you're a small business, a creative, or just someone with an idea — I'd love to help you create something you'll love.",
+      "headline": "Jude Hill, web designer",
+      "subheadline": "I'm a high school student from Eugene, Oregon who builds fast, genuinely good-looking websites for small businesses, creatives, and anyone with an idea worth putting online. I design in the browser, write the code by hand, and hand off a site you can actually update yourself.",
       "primaryCta": {
         "text": "Start a project",
         "href": "/contact"
@@ -16,7 +16,35 @@
       "align": "left",
       "photo": "/uploads/photos/portrait.jpg",
       "photoAlt": "Jude sitting on a slackline in the woods",
-      "showFacts": false
+      "showFacts": false,
+      "headlineAccent": "in Eugene, Oregon."
+    },
+    {
+      "id": "about-story-head",
+      "type": "jude-heading",
+      "text": "How I work as a web designer",
+      "level": 2
+    },
+    {
+      "id": "about-story",
+      "type": "paragraph",
+      "text": "I started building websites because the tools most small businesses are handed are bad. Page builders produce sites that load slowly and look like everyone else's, and the agencies that do better work price themselves out of reach for a local shop. So I build custom sites by hand, in code, and charge what a small business can actually pay. Sites start at $500."
+    },
+    {
+      "id": "about-story-2",
+      "type": "paragraph",
+      "text": "Designing in the browser is the part clients notice most. Instead of sending flat mockups that never quite match the finished site, I build real pages on a real URL and you watch the thing take shape. Feedback lands while changes are still cheap, and nobody is surprised at launch."
+    },
+    {
+      "id": "about-local-head",
+      "type": "jude-heading",
+      "text": "Based in Eugene",
+      "level": 2
+    },
+    {
+      "id": "about-local",
+      "type": "paragraph",
+      "text": "I live in Eugene, Oregon, and I work with businesses here and across Lane County, including Springfield, Cottage Grove, and Creswell. Being local means we can sit down together and that I already understand the market you are selling into. My client work so far includes a branding studio, a family restaurant, and a handful of launches around town."
     },
     {
       "id": "about-sep-1",

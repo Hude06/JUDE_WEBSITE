@@ -4,7 +4,12 @@ import { loadPage, listPages, loadSiteConfig } from '@/lib/content';
 import { resolveReveal } from '@/lib/motion-engine';
 import { resolveThemeStructure } from '@/lib/themes';
 import { BlockRenderer, frameworkBlocks } from '@/components/BlockRenderer';
+import { buildFaqSchema } from '@/lib/faq-schema';
 import { clientBlocks } from '@client/registry';
+
+const siteUrl =
+  process.env.NEXT_PUBLIC_SITE_URL ??
+  (process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : 'http://localhost:3000');
 
 const blockRegistry = { ...frameworkBlocks, ...clientBlocks };
 const config = loadSiteConfig();
@@ -78,12 +83,21 @@ export default async function SlugPage({ params }: SlugPageProps) {
   } catch {
     notFound();
   }
+  const faqSchema = buildFaqSchema(page.blocks, `${siteUrl}/${slug}`);
   return (
-    <BlockRenderer
-      blocks={page.blocks}
-      registry={blockRegistry}
-      reveal={resolveReveal(config)}
-      dna={resolveThemeStructure(config.theme?.preset, config.theme?.system)}
-    />
+    <>
+      {faqSchema && (
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+        />
+      )}
+      <BlockRenderer
+        blocks={page.blocks}
+        registry={blockRegistry}
+        reveal={resolveReveal(config)}
+        dna={resolveThemeStructure(config.theme?.preset, config.theme?.system)}
+      />
+    </>
   );
 }

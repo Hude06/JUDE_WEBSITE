@@ -1,26 +1,42 @@
 {
   "contractVersion": 1,
-  "title": "Contact Jude Hill — Start a Website Project in Eugene, Oregon",
+  "title": "Contact | Hire a Web Designer in Eugene, OR",
   "slug": "contact",
-  "description": "Start a website project with Jude Hill, web designer and developer in Eugene, Oregon. A few sentences about your idea is all it takes — replies within a day.",
+  "description": "Start a website project with Jude Hill, freelance web designer in Eugene, Oregon. A few sentences is all it takes. Replies within a day.",
   "blocks": [
     {
       "id": "contact-form",
       "type": "contact-form",
       "action": "https://formsubmit.co/jude@micah77.org",
       "eyebrow": "Available for new projects",
-      "heading": "Let's talk.",
-      "intro": "A few sentences is all it takes. I read everything myself and reply within a day.",
+      "heading": "Hire a web designer in Eugene.",
+      "intro": "A few sentences about your business is all it takes. I read everything myself and reply within a day. Serving Eugene, Springfield, and the rest of Lane County.",
       "facts": [
-        { "label": "Based in", "value": "Eugene, OR" },
-        { "label": "Sites from", "value": "$500" },
-        { "label": "Timeline", "value": "Weeks, not months" },
-        { "label": "Good for", "value": "Small business, portfolios, launches" }
+        {
+          "label": "Based in",
+          "value": "Eugene, OR"
+        },
+        {
+          "label": "Sites from",
+          "value": "$500"
+        },
+        {
+          "label": "Timeline",
+          "value": "Weeks, not months"
+        },
+        {
+          "label": "Good for",
+          "value": "Small business, portfolios, launches"
+        }
       ],
       "subject": "New project inquiry — judemakes.com",
       "note": "Goes straight to my inbox.",
       "timelineLabel": "When would you like your new site built?",
-      "timelineOptions": ["Today", "Tomorrow", "Next week"]
+      "timelineOptions": [
+        "Today",
+        "Tomorrow",
+        "Next week"
+      ]
     },
     {
       "id": "contact-sep-1",

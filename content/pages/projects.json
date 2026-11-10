@@ -1,8 +1,8 @@
 {
   "contractVersion": 1,
-  "title": "Projects — Jude Hill",
+  "title": "Projects | Jude Hill, Eugene Web Designer",
   "slug": "projects",
-  "description": "Side projects by Jude Hill — apps, tools, and experiments built in Eugene, Oregon. Some shipping, some in progress, all things that deserved to exist.",
+  "description": "Apps, tools, and experiments built by Jude Hill, a web designer and developer in Eugene, Oregon. Some shipping, some still in progress.",
   "blocks": [
     {
       "id": "projects-hero",
@@ -39,6 +39,22 @@
           "link": "https://github.com/Hude06"
         }
       ]
+    },
+    {
+      "id": "projects-cta",
+      "type": "cta",
+      "eyebrow": "Client work",
+      "title": "Need a website for your business?",
+      "description": "Side projects are how I stay sharp. Client work is the day job. If you run a small business in Eugene and need a site, let's talk.",
+      "primaryCta": {
+        "text": "Web design in Eugene",
+        "href": "/web-design-eugene-oregon"
+      },
+      "secondaryCta": {
+        "text": "Start a project",
+        "href": "/contact"
+      },
+      "tone": "quiet"
     }
   ]
 }

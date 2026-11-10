@@ -6,15 +6,15 @@ const siteUrl =
 
 const metadataBase = new URL(siteUrl);
 
-const title = 'Jude Hill — Web Designer & Developer in Eugene, Oregon';
+const title = 'Web Design in Eugene, Oregon | Jude Hill';
 const description =
-  'Hand-built websites for small businesses, creatives, and product launches. Jude Hill is a freelance web designer and developer in Eugene, Oregon shipping fast, custom sites — no templates, no page builders.';
+  'Freelance web designer in Eugene, Oregon. Custom, hand-built small-business websites that load in under a second. Hosting and updates included.';
 
 const shareImage = {
   url: '/uploads/seo-share-image.png',
   width: 1200,
   height: 630,
-  alt: 'Jude Hill — web designer & developer, Eugene, Oregon',
+  alt: 'Jude Hill, web designer and developer in Eugene, Oregon',
 };
 
 /**
@@ -27,19 +27,25 @@ export const siteMetadata: Metadata = {
   metadataBase,
   title: {
     default: title,
-    template: '%s · Jude Makes Things',
+    template: '%s',
   },
   description,
   applicationName: 'Jude Makes Things',
   authors: [{ name: 'Jude Hill', url: siteUrl }],
   creator: 'Jude Hill',
   keywords: [
+    'web design Eugene Oregon',
+    'Eugene web design',
     'web designer Eugene Oregon',
+    'Eugene web designers',
     'web developer Eugene Oregon',
-    'freelance web designer',
-    'small business website design',
+    'freelance web designer Eugene',
+    'website design Eugene',
+    'small business website design Eugene',
+    'website redesign Eugene Oregon',
+    'Springfield Oregon web design',
+    'Lane County web design',
     'custom website development',
-    'hand-built websites',
     'Jude Hill',
   ],
   category: 'design',

@@ -1,8 +1,8 @@
 {
   "contractVersion": 1,
-  "title": "What You Get — Domain, Hosting, Updates & Maintenance | Jude Hill",
+  "title": "What's Included | Eugene Web Design & Hosting",
   "slug": "what-you-get",
-  "description": "Everything that comes with a site built by Jude Hill: domain, hosting, SSL, backups, a self-serve editor, and maintenance. No lock-in — you own the site.",
+  "description": "Everything included with a site built by Jude Hill in Eugene, Oregon: domain, hosting, SSL, backups, self-serve editing, and maintenance.",
   "blocks": [
     {
       "id": "wyg-hero",
@@ -10,7 +10,7 @@
       "eyebrow": "The whole picture",
       "headline": "A website is more than the pages.",
       "headlineAccent": "I handle the rest of it.",
-      "subheadline": "Domain, server, certificate, backups, updates — here's the whole list.",
+      "subheadline": "Domain, server, certificate, backups, updates. Every site I design in Eugene comes with all of it handled. Here's the whole list.",
       "primaryCta": {
         "text": "Start a project",
         "href": "/contact"
@@ -86,10 +86,22 @@
       "id": "wyg-hosting-stats",
       "type": "stat-row",
       "stats": [
-        { "label": "Load time", "value": "<1s" },
-        { "label": "Uptime", "value": "99.9%" },
-        { "label": "Plugins", "value": "Zero" },
-        { "label": "Lock-in", "value": "None" }
+        {
+          "label": "Load time",
+          "value": "<1s"
+        },
+        {
+          "label": "Uptime",
+          "value": "99.9%"
+        },
+        {
+          "label": "Plugins",
+          "value": "Zero"
+        },
+        {
+          "label": "Lock-in",
+          "value": "None"
+        }
       ]
     },
     {
@@ -119,6 +131,22 @@
       "id": "wyg-maint-copy",
       "type": "paragraph",
       "text": "No plugins means almost nothing can break. If something does, monitoring alerts my phone before you notice — and you have my number directly. No ticket queue."
+    },
+    {
+      "id": "wyg-cta",
+      "type": "cta",
+      "eyebrow": "Eugene, Oregon",
+      "title": "Ready to get started?",
+      "description": "Every site includes everything on this page. Tell me about your business and I'll send a fixed quote.",
+      "primaryCta": {
+        "text": "Start a project",
+        "href": "/contact"
+      },
+      "secondaryCta": {
+        "text": "Web design in Eugene",
+        "href": "/web-design-eugene-oregon"
+      },
+      "tone": "bold"
     }
   ]
 }

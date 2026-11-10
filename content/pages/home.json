@@ -1,16 +1,16 @@
 {
   "contractVersion": 1,
-  "title": "Jude Hill — Web Designer & Developer in Eugene, Oregon",
+  "title": "Web Design in Eugene, Oregon | Jude Hill",
   "slug": "home",
-  "description": "Hand-built websites for small businesses, creatives, and product launches. Jude Hill is a freelance web designer and developer in Eugene, Oregon — no templates, no page builders.",
+  "description": "Freelance web designer in Eugene, Oregon. Custom, hand-built small-business websites that load in under a second. Hosting and updates included.",
   "blocks": [
     {
       "id": "home-1",
       "type": "jude-hero",
       "eyebrow": "Available for new projects",
-      "headline": "I'm Jude",
-      "headlineAccent": "Eugene's fastest sites.",
-      "subheadline": "Small-business sites, designed in the browser and shipped in weeks.",
+      "headline": "Web design in Eugene, Oregon",
+      "headlineAccent": "that loads in under a second.",
+      "subheadline": "I'm Jude Hill, a freelance web designer and developer in Eugene. I build custom small-business websites by hand, no templates and no page builders, and ship them in weeks.",
       "primaryCta": {
         "text": "Start a project",
         "href": "/contact"
@@ -20,6 +20,39 @@
         "href": "/#work"
       },
       "align": "center"
+    },
+    {
+      "id": "home-services",
+      "type": "feature-grid",
+      "eyebrow": "What I do",
+      "heading": "Web design services for Eugene small businesses",
+      "columns": 3,
+      "items": [
+        {
+          "title": "Custom website design",
+          "description": "Small-business websites designed in the browser for your business, not picked off a template shelf. Every page is built around what you actually need customers to do."
+        },
+        {
+          "title": "Web development",
+          "description": "Hand-written code instead of a page builder. That is why these sites load in under a second on a phone, which is where most of your Eugene customers will find you."
+        },
+        {
+          "title": "Website redesign",
+          "description": "Already have a site that looks dated or loads slowly? I rebuild it on modern foundations and keep the content and search rankings you have earned."
+        },
+        {
+          "title": "Domain and hosting setup",
+          "description": "You do not have to learn what a DNS record is or pick a hosting company. I register the domain, configure hosting and SSL, and point everything where it belongs."
+        },
+        {
+          "title": "Website maintenance",
+          "description": "Updates, backups, and uptime monitoring after launch. When something needs changing you send me an email and it gets changed."
+        },
+        {
+          "title": "Local SEO foundations",
+          "description": "Clean page titles, structured data, a working sitemap, and fast load times, so Google can read your site properly and rank it for Eugene searches."
+        }
+      ]
     },
     {
       "id": "home-work",
@@ -54,6 +87,79 @@
       ]
     },
     {
+      "id": "home-process",
+      "type": "steps",
+      "eyebrow": "How it works",
+      "heading": "What a website project looks like",
+      "steps": [
+        {
+          "title": "We talk",
+          "description": "A short conversation about your business, your customers, and what the site has to accomplish. Free, and there is no pitch deck."
+        },
+        {
+          "title": "I design in the browser",
+          "description": "No static mockups that look nothing like the finished thing. You see real pages on a real URL and give feedback as it comes together."
+        },
+        {
+          "title": "You review",
+          "description": "We go back and forth until the pages are right. Changes at this stage are normal and expected, not an extra invoice."
+        },
+        {
+          "title": "It ships",
+          "description": "I handle the domain, hosting, SSL, and search setup, then hand you a site that is live and fast. Most projects launch within a few weeks."
+        }
+      ]
+    },
+    {
+      "id": "home-areas",
+      "type": "jude-heading",
+      "text": "Serving Eugene, Springfield, and Lane County",
+      "level": 2
+    },
+    {
+      "id": "home-areas-body",
+      "type": "paragraph",
+      "text": "I live and work in Eugene, Oregon, and most of my clients are within a few miles of downtown. Being local means we can meet in person, and it means I understand who you are selling to. I also work with businesses in Springfield, Cottage Grove, Creswell, and the rest of Lane County, and remotely with clients further afield."
+    },
+    {
+      "id": "home-faq-heading",
+      "type": "jude-heading",
+      "text": "Common questions about working with a Eugene web designer",
+      "level": 2
+    },
+    {
+      "id": "home-faq",
+      "type": "feature-grid",
+      "columns": 2,
+      "items": [
+        {
+          "title": "How much does a website cost in Eugene?",
+          "description": "Sites start at $500. A simple one-page site for a small business sits near the bottom of that range, and a larger multi-page site with custom features costs more. You get a fixed number before any work starts."
+        },
+        {
+          "title": "How long does a website take to build?",
+          "description": "Most small-business sites take two to four weeks from our first conversation to launch. The main variable is how quickly you can get me your content and feedback."
+        },
+        {
+          "title": "Do you work with WordPress?",
+          "description": "I build custom sites in code rather than on WordPress, which is what makes them fast and removes the plugin updates and security patching. If you already have a WordPress site I can maintain it or migrate you off it."
+        },
+        {
+          "title": "Do I need to handle my own hosting?",
+          "description": "No. I set up the domain, hosting, and SSL certificate and keep them running. You get one point of contact instead of three vendors."
+        },
+        {
+          "title": "Will my site show up on Google?",
+          "description": "Every site I build ships with proper page titles, meta descriptions, structured data, a sitemap, and fast load times. That is the technical groundwork Google needs. Ranking also depends on your Google Business Profile and reviews, and I will walk you through both."
+        },
+        {
+          "title": "Can you fix or redesign my existing site?",
+          "description": "Yes. Redesigns are a good chunk of my work. I keep the content and rankings you already have and rebuild the parts that are slow, dated, or hard to update."
+        }
+      ],
+      "faq": true
+    },
+    {
       "id": "home-what-you-get",
       "type": "cta",
       "eyebrow": "The rest of it",
@@ -64,6 +170,18 @@
         "href": "/what-you-get"
       },
       "tone": "quiet"
+    },
+    {
+      "id": "home-final-cta",
+      "type": "cta",
+      "eyebrow": "Eugene, Oregon",
+      "title": "Need a web designer in Eugene?",
+      "description": "Tell me about your business and what the site needs to do. I reply within a day, and the first conversation is free.",
+      "primaryCta": {
+        "text": "Start a project",
+        "href": "/contact"
+      },
+      "tone": "bold"
     }
   ]
 }

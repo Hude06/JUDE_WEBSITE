@@ -46,7 +46,11 @@ const structuredData = {
         'Next.js',
         'Small business websites',
         'Custom website development',
+        'Website redesign',
+        'Local SEO',
+        'Responsive web design',
       ],
+      worksFor: { '@id': `${siteUrl}/#service` },
     },
     {
       '@type': 'WebSite',
@@ -58,18 +62,72 @@ const structuredData = {
       publisher: { '@id': `${siteUrl}/#person` },
     },
     {
-      '@type': 'ProfessionalService',
+      '@type': ['ProfessionalService', 'LocalBusiness'],
       '@id': `${siteUrl}/#service`,
       name: 'Jude Makes Things — Web Design & Development',
+      alternateName: 'Jude Makes Things Web Design',
+      description:
+        'Freelance web design and development in Eugene, Oregon. Custom, hand-built small-business websites with domain, hosting, and maintenance included.',
       url: siteUrl,
+      email: 'mailto:jude@micah77.org',
       founder: { '@id': `${siteUrl}/#person` },
-      areaServed: 'Eugene, Oregon',
+      image: `${siteUrl}/uploads/seo-share-image.png`,
+      priceRange: '$$',
+      address: {
+        '@type': 'PostalAddress',
+        addressLocality: 'Eugene',
+        addressRegion: 'OR',
+        addressCountry: 'US',
+      },
+      areaServed: [
+        { '@type': 'City', name: 'Eugene', address: { '@type': 'PostalAddress', addressRegion: 'OR', addressCountry: 'US' } },
+        { '@type': 'City', name: 'Springfield', address: { '@type': 'PostalAddress', addressRegion: 'OR', addressCountry: 'US' } },
+        { '@type': 'City', name: 'Cottage Grove', address: { '@type': 'PostalAddress', addressRegion: 'OR', addressCountry: 'US' } },
+        { '@type': 'City', name: 'Creswell', address: { '@type': 'PostalAddress', addressRegion: 'OR', addressCountry: 'US' } },
+        { '@type': 'AdministrativeArea', name: 'Lane County, Oregon' },
+      ],
       serviceType: [
         'Web design',
         'Web development',
+        'Website design',
+        'Website redesign',
         'Website maintenance',
         'Small business websites',
+        'Landing page design',
       ],
+      hasOfferCatalog: {
+        '@type': 'OfferCatalog',
+        name: 'Web design services in Eugene, Oregon',
+        itemListElement: [
+          {
+            '@type': 'Offer',
+            itemOffered: {
+              '@type': 'Service',
+              name: 'Custom small-business website design',
+              description:
+                'A custom multi-page website designed and hand-coded for a small business in Eugene, Oregon.',
+            },
+          },
+          {
+            '@type': 'Offer',
+            itemOffered: {
+              '@type': 'Service',
+              name: 'Website redesign',
+              description:
+                'Rebuilding an existing slow or dated website on modern foundations while keeping its content and search rankings.',
+            },
+          },
+          {
+            '@type': 'Offer',
+            itemOffered: {
+              '@type': 'Service',
+              name: 'Domain, hosting, and maintenance',
+              description:
+                'Domain registration, managed hosting, SSL, backups, monitoring, and ongoing content updates after launch.',
+            },
+          },
+        ],
+      },
     },
   ],
 };
